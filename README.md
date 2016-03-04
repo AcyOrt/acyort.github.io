@@ -1,4 +1,8 @@
-# blog-content
-AcyOrt blog demo origin post content
+# acyort.github.io
+AcyOrt blog demo
 
-https://github.com/AcyOrt/blog-content/issues
+http://acyort.github.io
+
+## Origin post data
+
+https://github.com/AcyOrt/acyort.github.io/issues
