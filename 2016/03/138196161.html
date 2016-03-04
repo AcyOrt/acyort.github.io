@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="google" content="notranslate" />
+<link rel="icon" href="/images/icon.png" />
+<title>Markdown Test  - AcyOrt </title>
+<link rel="stylesheet" href="/css/acyort.css" />
+</head>
+<body>
+
+<div class="header">
+    <div class="center">
+        <h1><a href="/">AcyOrt</a></h1>
+        <p>A Node.js blog tool powered by GitHub.</p>
+    </div>
+    <div class="menu">
+        <a href="/">home</a>
+        <a href="/about/">about</a>
+        <a href="/archives/">archives</a>
+    </div>
+</div>
+
+<div id="post" class="center">
+
+    <h1>Markdown Test </h1>
+    <p><a href="https://github.com/LoeiFy">LoeiFy</a> Updated at Mar 03, 2016</p>
+
+    <div class="content"><h1 id="an-h1-header">An h1 header</h1>
+<p>Paragraphs are separated by a blank line.</p>
+<p>2nd paragraph. <em>Italic</em>, <strong>bold</strong>, and <code>monospace</code>. Itemized lists
+look like:</p>
+<ul>
+<li>this one</li>
+<li>that one</li>
+<li>the other one</li>
+</ul>
+<p>Note that --- not considering the asterisk --- the actual text
+content starts at 4-columns in.</p>
+<blockquote>
+<p>Block quotes are
+written like so.</p>
+<p>They can span multiple paragraphs,
+if you like.</p>
+</blockquote>
+<p>Use 3 dashes for an em-dash. Use 2 dashes for ranges (ex., &quot;it&#39;s all
+in chapters 12--14&quot;). Three dots ... will be converted to an ellipsis.
+Unicode is supported. ☺</p>
+<h2 id="an-h2-header">An h2 header</h2>
+<p>Here&#39;s a numbered list:</p>
+<ol>
+<li>first item</li>
+<li>second item</li>
+<li>third item</li>
+</ol>
+<p>Note again how the actual text starts at 4 columns in (4 characters
+from the left side). Here&#39;s a code sample:</p>
+<pre><code># <span class="hljs-keyword">Let</span> <span class="hljs-keyword">me</span> re-iterate ...
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span> .. <span class="hljs-number">10</span> { <span class="hljs-keyword">do</span>-something(i) }
+</code></pre><p>As you probably guessed, indented 4 spaces. By the way, instead of
+indenting the block, you can use delimited blocks, if you like:</p>
+<pre><code><span class="hljs-keyword">define</span> <span class="hljs-section">foobar</span>() {
+    print <span class="hljs-string">"Welcome to flavor country!"</span>;
+}
+</code></pre><p>(which makes copying &amp; pasting easier). You can optionally mark the
+delimited block for Pandoc to syntax highlight it:</p>
+<pre><code class="lang-python">import <span class="hljs-keyword">time</span>
+<span class="hljs-comment"># Quick, count to ten!</span>
+<span class="hljs-keyword">for</span> i in range(<span class="hljs-number">10</span>):
+    <span class="hljs-comment"># (but not *too* quick)</span>
+    <span class="hljs-keyword">time</span>.<span class="hljs-keyword">sleep</span>(<span class="hljs-number">0</span>.<span class="hljs-number">5</span>)
+    <span class="hljs-keyword">print</span> i
+</code></pre>
+<h3 id="an-h3-header">An h3 header</h3>
+<p>Now a nested list:</p>
+<ol>
+<li><p>First, get these ingredients:</p>
+<ul>
+<li>carrots</li>
+<li>celery</li>
+<li>lentils</li>
+</ul>
+</li>
+<li><p>Boil some water.</p>
+</li>
+<li><p>Dump everything in the pot and follow
+this algorithm:</p>
+<pre><code>find wooden spoon
+uncover pot
+stir
+cover pot
+balance wooden spoon precariously <span class="hljs-keyword">on</span> pot handle
+wait <span class="hljs-number">10</span> minutes
+<span class="hljs-keyword">goto</span> first <span class="hljs-keyword">step</span> (<span class="hljs-keyword">or</span> shut <span class="hljs-keyword">off</span> burner <span class="hljs-keyword">when</span> done)
+</code></pre><p>Do not bump wooden spoon or it will fall.</p>
+</li>
+</ol>
+<p>Notice again how text always lines up on 4-space indents (including
+that last line which continues item 3 above).</p>
+<p>Here&#39;s a link to <a href="http://foo.bar">a website</a>, to a <a href="local-doc.html">local
+doc</a>, and to a <a href="#an-h2-header">section heading in the current
+doc</a>. Here&#39;s a footnote [^1].</p>
+<p>[^1]: Footnote text goes here.</p>
+<p>Tables can look like this:</p>
+<p>size  material      color</p>
+<hr>
+<p>9     leather       brown
+10    hemp canvas   natural
+11    glass         transparent</p>
+<p>Table: Shoes, their sizes, and what they&#39;re made of</p>
+<p>(The above is the caption for the table.) Pandoc also supports
+multi-line tables:</p>
+<hr>
+<p>keyword   text</p>
+<hr>
+<p>red       Sunsets, apples, and
+          other red or reddish
+          things.</p>
+<p>green     Leaves, grass, frogs
+          and other things it&#39;s
+          not easy being.</p>
+<hr>
+<p>A horizontal rule follows.</p>
+<hr>
+<p>Here&#39;s a definition list:</p>
+<p>apples
+  : Good for making applesauce.
+oranges
+  : Citrus!
+tomatoes
+  : There&#39;s no &quot;e&quot; in tomatoe.</p>
+<p>Again, text is indented 4 spaces. (Put a blank line between each
+term/definition pair to spread things out more.)</p>
+<p>Here&#39;s a &quot;line block&quot;:</p>
+<p>| Line one
+|   Line too
+| Line tree</p>
+<p>and images can be specified like so:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/2193211/8693788/5acf79b6-2b0c-11e5-9631-c1743dc43810.PNG" alt="example image" title="An exemplary image"></p>
+<p>Inline math equations go in like so: $\omega = d\phi / dt$. Display
+math should get its own line and be put in in double-dollarsigns:</p>
+<p>$$I = \int \rho R^{2} dV$$</p>
+<p>And note that you can backslash-escape any punctuation characters
+which you wish to be displayed literally, ex.: `foo`, *bar*, etc.</p>
+</div>
+
+    <div class="label">
+    <div><a href="/tags/enhancement/">#enhancement</a></div>
+    <div><a href="/tags/help wanted/">#help wanted</a></div>
+    <div><a href="/tags/invalid/">#invalid</a></div>
+    </div>
+
+    <div class="comment_list hide" id="disqus_thread"></div>
+    <div id="duoshuo_thread" class="comment_list hide ds-thread" data-thread-key="138196161" data-title="" data-url=""></div>
+
+    <button class="hide" data-id="138196161" id="comment">Add Comments</button>
+
+</div>
+
+<div class="footer">
+    <div class="center">
+        © 2016 AcyOrt . <a target="_blank" href="https://github.com/LoeiFy/AcyOrt">AcyOrt</a> . <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+if (''.length > 0) {
+    document.getElementById('comment').classList.remove('hide')
+}
+
+var duoshuoQuery = {short_name: ''};
+
+document.getElementById('comment').addEventListener('click', function() {
+
+    this.style.display = 'none';
+
+    var identifier = this.getAttribute('data-id'),
+        title = document.title,
+        url = location.href.split('?')[0];
+
+    document.getElementById('duoshuo_thread').setAttribute('data-title', title)
+    document.getElementById('duoshuo_thread').setAttribute('data-url', url)
+
+    var disqus_config = function () {
+        this.page.url = url;
+        this.page.identifier = identifier;
+    };
+
+    var sc = document.createElement('script'); 
+    sc.async = true;
+    sc.src = (location.protocol == 'https:' ? 'https:' : 'http:') + '';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(sc);
+
+    if (''.indexOf('disqus') > -1) {
+        document.getElementById('disqus_thread').classList.remove('hide')
+    }
+
+    if (''.indexOf('duoshuo') > -1) {
+        document.getElementById('duoshuo_thread').classList.remove('hide')
+    }
+
+}, false)
+
+</script>
+
+</body>
+</html>

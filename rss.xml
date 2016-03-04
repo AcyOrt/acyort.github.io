@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[AcyOrt]]></title><description><![CDATA[A Node.js blog tool powered by GitHub.]]></description><link>http://acyort.github.io</link><generator>RSS for Node</generator><lastBuildDate>Fri, 04 Mar 2016 07:51:10 GMT</lastBuildDate><atom:link href="http://acyort.github.iorss.xml" rel="self" type="application/rss+xml"/><pubDate>Fri, 04 Mar 2016 07:51:10 GMT</pubDate><item><title><![CDATA[Markdown Test ]]></title><description><![CDATA[<h1 id="an-h1-header">An h1 header</h1>
+<p>Paragraphs are separated by a blank line.</p>
+<p>2nd paragraph. <em>Italic</em>, <strong>bold</strong>, and <code>monospace</code>. Itemized lists
+look like:</p>
+<ul>
+<li>this one</li>
+<li>that one</li>
+<li>the other one</li>
+</ul>
+<p>Note that --- not considering the asterisk --- the actual text
+content starts at 4-columns in.</p>
+<blockquote>
+<p>Block quotes are
+written like so.</p>
+<p>They can span multiple paragraphs,
+if you like.</p>
+</blockquote>
+<p>Use 3 dashes for an em-dash. Use 2 dashes for ranges (ex., &quot;it&#39;s all
+in chapters 12--14&quot;). Three dots ... will be converted to an ellipsis.
+Unicode is supported. ☺</p>
+<h2 id="an-h2-header">An h2 header</h2>
+<p>Here&#39;s a numbered list:</p>
+<ol>
+<li>first item</li>
+<li>second item</li>
+<li>third item</li>
+</ol>
+<p>Note again how the actual text starts at 4 columns in (4 characters
+from the left side). Here&#39;s a code sample:</p>
+<pre><code># Let me re-iterate ...
+for i in 1 .. 10 { do-something(i) }
+</code></pre><p>As you probably guessed, indented 4 spaces. By the way, instead of
+indenting the block, you can use delimited blocks, if you like:</p>
+<pre><code>define foobar() {
+    print &quot;Welcome to flavor country!&quot;;
+}
+</code></pre><p>(which makes copying &amp; pasting easier). You can optionally mark the
+delimited block for Pandoc to syntax highlight it:</p>
+<pre><code class="lang-python">import time
+# Quick, count to ten!
+for i in range(10):
+    # (but not *too* quick)
+    time.sleep(0.5)
+    print i
+</code></pre>
+<h3 id="an-h3-header">An h3 header</h3>
+<p>Now a nested list:</p>
+<ol>
+<li><p>First, get these ingredients:</p>
+<ul>
+<li>carrots</li>
+<li>celery</li>
+<li>lentils</li>
+</ul>
+</li>
+<li><p>Boil some water.</p>
+</li>
+<li><p>Dump everything in the pot and follow
+this algorithm:</p>
+<pre><code>find wooden spoon
+uncover pot
+stir
+cover pot
+balance wooden spoon precariously on pot handle
+wait 10 minutes
+goto first step (or shut off burner when done)
+</code></pre><p>Do not bump wooden spoon or it will fall.</p>
+</li>
+</ol>
+<p>Notice again how text always lines up on 4-space indents (including
+that last line which continues item 3 above).</p>
+<p>Here&#39;s a link to <a href="http://foo.bar">a website</a>, to a <a href="local-doc.html">local
+doc</a>, and to a <a href="#an-h2-header">section heading in the current
+doc</a>. Here&#39;s a footnote [^1].</p>
+<p>[^1]: Footnote text goes here.</p>
+<p>Tables can look like this:</p>
+<p>size  material      color</p>
+<hr>
+<p>9     leather       brown
+10    hemp canvas   natural
+11    glass         transparent</p>
+<p>Table: Shoes, their sizes, and what they&#39;re made of</p>
+<p>(The above is the caption for the table.) Pandoc also supports
+multi-line tables:</p>
+<hr>
+<p>keyword   text</p>
+<hr>
+<p>red       Sunsets, apples, and
+          other red or reddish
+          things.</p>
+<p>green     Leaves, grass, frogs
+          and other things it&#39;s
+          not easy being.</p>
+<hr>
+<p>A horizontal rule follows.</p>
+<hr>
+<p>Here&#39;s a definition list:</p>
+<p>apples
+  : Good for making applesauce.
+oranges
+  : Citrus!
+tomatoes
+  : There&#39;s no &quot;e&quot; in tomatoe.</p>
+<p>Again, text is indented 4 spaces. (Put a blank line between each
+term/definition pair to spread things out more.)</p>
+<p>Here&#39;s a &quot;line block&quot;:</p>
+<p>| Line one
+|   Line too
+| Line tree</p>
+<p>and images can be specified like so:</p>
+<p><img src="https://cloud.githubusercontent.com/assets/2193211/8693788/5acf79b6-2b0c-11e5-9631-c1743dc43810.PNG" alt="example image" title="An exemplary image"></p>
+<p>Inline math equations go in like so: $\omega = d\phi / dt$. Display
+math should get its own line and be put in in double-dollarsigns:</p>
+<p>$$I = \int \rho R^{2} dV$$</p>
+<p>And note that you can backslash-escape any punctuation characters
+which you wish to be displayed literally, ex.: `foo`, *bar*, etc.</p>
+]]></description><link>http://acyort.github.io/2016/03/138196161.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138196161.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 02 Mar 2016 16:00:00 GMT</pubDate></item><item><title><![CDATA[View More Test]]></title><description><![CDATA[<p>In my previous post many were telling me I was missing the point about task runners - they&#39;re for wiring up complex sets of tasks, not just running odd tasks. So I thought I&#39;d wrap up this piece with a complex set of tasks typical of a multi-hundred-line Gruntfile. For this example I want to do the following:</p>
+<pre><code class="lang-js">  &quot;scripts&quot;: {
+    &quot;clean&quot;: &quot;rimraf dist/*&quot;,
+
+    &quot;prebuild&quot;: &quot;npm run clean -s&quot;,
+    &quot;build&quot;: &quot;npm run build:scripts -s &amp;&amp; npm run build:styles -s &amp;&amp; npm run build:markup -s&quot;,
+    &quot;build:scripts&quot;: &quot;browserify -d assets/scripts/main.js -p [minifyify --compressPath . --map main.js.map --output dist/main.js.map] | hashmark -n dist/main.js -s -l 8 -m assets.json &#39;dist/{name}{hash}{ext}&#39;&quot;,
+    &quot;build:styles&quot;: &quot;stylus assets/styles/main.styl -m -o dist/ &amp;&amp; hashmark -s -l 8 -m assets.json dist/main.css &#39;dist/{name}{hash}{ext}&#39;&quot;,
+    &quot;build:markup&quot;: &quot;jade assets/markup/index.jade --obj assets.json -o dist&quot;,
+
+    &quot;test&quot;: &quot;karma start --singleRun&quot;,
+
+    &quot;watch&quot;: &quot;parallelshell &#39;npm run watch:test -s&#39; &#39;npm run watch:build -s&#39;&quot;,
+    &quot;watch:test&quot;: &quot;karma start&quot;,
+    &quot;watch:build&quot;: &quot;nodemon -q -w assets/ --ext &#39;.&#39; --exec &#39;npm run build&#39;&quot;,
+
+    &quot;open:prod&quot;: &quot;opener http://example.com&quot;,
+    &quot;open:stage&quot;: &quot;opener http://staging.example.internal&quot;,
+    &quot;open:dev&quot;: &quot;opener http://localhost:9090&quot;,
+
+    &quot;deploy:prod&quot;: &quot;s3-cli sync ./dist/ s3://example-com/prod-site/&quot;,
+    &quot;deploy:stage&quot;: &quot;s3-cli sync ./dist/ s3://example-com/stage-site/&quot;,
+
+    &quot;serve&quot;: &quot;http-server -p 9090 dist/&quot;,
+    &quot;live-reload&quot;: &quot;live-reload --port 9091 dist/&quot;,
+
+    &quot;dev&quot;: &quot;npm run open:dev -s &amp; parallelshell &#39;npm run live-reload -s&#39; &#39;npm run serve -s&#39; &#39;npm run watch -s&#39;&quot;
+  }
+</code></pre>
+]]></description><link>http://acyort.github.io/2016/03/138195947.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138195947.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 02 Mar 2016 16:00:00 GMT</pubDate></item><item><title><![CDATA[中文测试]]></title><description><![CDATA[<p>善我王上魚、產生資西員合兒臉趣論。畫衣生這著爸毛親可時，安程幾？合學作。觀經而作建。都非子作這！法如言子你關！手師也。</p>
+<p>以也座論頭室業放。要車時地變此親不老高小是統習直麼調未，行年香一？</p>
+<p>就竟在，是我童示讓利分和異種百路關母信過明驗有個歷洋中前合著區亮風值新底車有正結，進快保的行戰從：弟除文辦條國備當來際年每小腳識世可的的外的廣下歌洲保輪市果底天影；全氣具些回童但倒影發狀在示，數上學大法很，如要我……月品大供這起服滿老？應學傳者國：山式排只不之然清同關；細車是！停屋常間又，資畫領生，相們制在？公別的人寫教資夠。資再我我！只臉夫藝量不路政吃息緊回力之；兒足灣電空時局我怎初安。意今一子區首者微陸現際安除發連由子由而走學體區園我車當會，經時取頭，嚴了新科同？很夫營動通打，出和導一樂，查旅他。坐是收外子發物北看蘭戰坐車身做可來。道就學務。</p>
+<p>國新故。</p>
+<p>工步他始能詩的，裝進分星海演意學值例道……於財型目古香亮自和這乎？化經溫詩。只賽嚴大一主價世哥受的沒有中年即病行金拉麼河。主小路了種就小為廣不？</p>
+]]></description><link>http://acyort.github.io/2016/03/138195195.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138195195.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 02 Mar 2016 16:00:00 GMT</pubDate></item><item><title><![CDATA[Markdown Cheatsheet]]></title><description><![CDATA[<p>Emphasis, aka italics, with <em>asterisks</em> or <em>underscores</em>.</p>
+<p>Strong emphasis, aka bold, with <strong>asterisks</strong> or <strong>underscores</strong>.</p>
+<p>Combined emphasis with <strong>asterisks and <em>underscores</em></strong>.</p>
+<p>Strikethrough uses two tildes. <del>Scratch this.</del></p>
+<ol>
+<li>First ordered list item</li>
+<li>Another item
+⋅⋅* Unordered sub-list. </li>
+<li>Actual numbers don&#39;t matter, just that it&#39;s a number
+⋅⋅1. Ordered sub-list</li>
+<li>And another item.</li>
+</ol>
+<p>⋅⋅⋅You can have properly indented paragraphs within list items. Notice the blank line above, and the leading spaces (at least one, but we&#39;ll use three here to also align the raw Markdown).</p>
+<p>⋅⋅⋅To have a line break without a paragraph, you will need to use two trailing spaces.⋅⋅
+⋅⋅⋅Note that this line is separate, but within the same paragraph.⋅⋅
+⋅⋅⋅(This is contrary to the typical GFM line break behaviour, where trailing spaces are not required.)</p>
+<ul>
+<li>Unordered list can use asterisks</li>
+</ul>
+<ul>
+<li>Or minuses</li>
+</ul>
+<ul>
+<li>Or pluses</li>
+</ul>
+<p><a href="https://www.google.com">I&#39;m an inline-style link</a></p>
+<p><a href="https://www.google.com" title="Google&#39;s Homepage">I&#39;m an inline-style link with title</a></p>
+<p>[I&#39;m a reference-style link][Arbitrary case-insensitive reference text]</p>
+<p><a href="../blob/master/LICENSE">I&#39;m a relative reference to a repository file</a></p>
+<p>Here&#39;s our logo (hover to see the title text):</p>
+<p>Inline-style: 
+<img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="alt text" title="Logo Title Text 1"></p>
+<p>Reference-style: 
+<img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="alt text" title="Logo Title Text 2"></p>
+<pre><code class="lang-javascript">var s = &quot;JavaScript syntax highlighting&quot;;
+alert(s);
+</code></pre>
+<pre><code class="lang-python">s = &quot;Python syntax highlighting&quot;
+print s
+</code></pre>
+<pre><code>No language indicated, so no syntax highlighting. 
+But let&#39;s throw in a &lt;b&gt;tag&lt;/b&gt;.
+</code></pre>]]></description><link>http://acyort.github.io/2016/03/138194595.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138194595.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 02 Mar 2016 16:00:00 GMT</pubDate></item><item><title><![CDATA[CSS with Superpowers]]></title><description><![CDATA[<p>Sass is completely compatible with all versions of CSS. We take this compatibility seriously, so that you can seamlessly use any available CSS libraries.</p>
+<p>Sass boasts more features and abilities than any other CSS extension language out there. The Sass Core Team has worked endlessly to not only keep up, but stay ahead.</p>
+<p>Mature
+Sass has been actively supported for about 8 years by its loving Core</p>
+<p>Team
+Over and over again, the industry is choosing Sass as the premier CSS extension language.</p>
+<p>Large Community
+Sass is actively supported and developed by a consortium of several tech companies and hundreds of developers.</p>
+<p>Frameworks
+There are endless number of frameworks built with Sass. Compass, Bourbon, and Susy just to name a few.</p>
+<p>Dreamcatcher cold-pressed American Apparel, post-ironic Carles Shoreditch craft beer Banksy PBR retro distillery before they sold out freegan asymmetrical kogi. Food truck Schlitz direct trade, deep v ethical yr sriracha mumblecore freegan. Tattooed occupy pork belly, letterpress typewriter cold-pressed viral swag farm-to-table flexitarian. +1 hashtag put a bird on it authentic. 3 wolf moon locavore Vice, normcore actually meggings leggings cornhole brunch. Four loko vinyl trust fund, Intelligentsia wolf Bushwick lo-fi sriracha. Deep v vegan forage selvage.</p>
+]]></description><link>http://acyort.github.io/2016/03/138194267.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138194267.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 02 Mar 2016 16:00:00 GMT</pubDate></item><item><title><![CDATA[A Great Story Never Told]]></title><description><![CDATA[<p>I’ve never told this to anyone. Sit yourself down and strap yourself in, you will experience some turbulence before you reach a steady altitude.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam nihil eum cum quas! Consectetur aliquam molestias quos voluptatum recusandae accusantium eaque sed architecto esse. Ut obcaecati, porro numquam sed. Odio.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quam provident accusamus vero autem culpa illum quo enim maiores eius error, sapiente inventore cum hic earum. Libero porro quisquam harum.</p>
+<p>iceland</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam nihil eum cum quas! Consectetur aliquam molestias quos voluptatum recusandae accusantium eaque sed architecto esse. Ut obcaecati, porro numquam sed. Odio.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quam provident accusamus vero autem culpa illum quo enim maiores eius error, sapiente inventore cum hic earum. Libero porro quisquam harum.</p>
+]]></description><link>http://acyort.github.io/2016/03/138194101.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138194101.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 02 Mar 2016 16:00:00 GMT</pubDate></item></channel></rss>
