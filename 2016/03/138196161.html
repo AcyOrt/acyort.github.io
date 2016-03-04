@@ -166,11 +166,11 @@ which you wish to be displayed literally, ex.: `foo`, *bar*, etc.</p>
 
 <script>
 
-if (''.length > 0) {
+if ('acyort'.length > 0) {
     document.getElementById('comment').classList.remove('hide')
 }
 
-var duoshuoQuery = {short_name: ''};
+var duoshuoQuery = {short_name: 'acyort'};
 
 document.getElementById('comment').addEventListener('click', function() {
 
@@ -190,14 +190,14 @@ document.getElementById('comment').addEventListener('click', function() {
 
     var sc = document.createElement('script'); 
     sc.async = true;
-    sc.src = (location.protocol == 'https:' ? 'https:' : 'http:') + '';
+    sc.src = (location.protocol == 'https:' ? 'https:' : 'http:') + '//acyort.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(sc);
 
-    if (''.indexOf('disqus') > -1) {
+    if ('//acyort.disqus.com/embed.js'.indexOf('disqus') > -1) {
         document.getElementById('disqus_thread').classList.remove('hide')
     }
 
-    if (''.indexOf('duoshuo') > -1) {
+    if ('//acyort.disqus.com/embed.js'.indexOf('duoshuo') > -1) {
         document.getElementById('duoshuo_thread').classList.remove('hide')
     }
 
