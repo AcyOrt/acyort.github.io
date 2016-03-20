@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[AcyOrt]]></title><description><![CDATA[A Node.js blog tool powered by GitHub.]]></description><link>http://acyort.github.io</link><generator>RSS for Node</generator><lastBuildDate>Fri, 04 Mar 2016 08:07:39 GMT</lastBuildDate><atom:link href="http://acyort.github.iorss.xml" rel="self" type="application/rss+xml"/><pubDate>Fri, 04 Mar 2016 08:07:39 GMT</pubDate><item><title><![CDATA[Markdown Test ]]></title><description><![CDATA[<h1 id="an-h1-header">An h1 header</h1>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[AcyOrt]]></title><description><![CDATA[A Node.js blog tool powered by GitHub.]]></description><link>http://acyort.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sun, 20 Mar 2016 06:13:26 GMT</lastBuildDate><atom:link href="http://acyort.github.io/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 20 Mar 2016 06:13:26 GMT</pubDate><item><title><![CDATA[No title]]></title><description><![CDATA[<h1 id="an-h1-header">An h1 header</h1>
 <p>Paragraphs are separated by a blank line.</p>
 <p>2nd paragraph. <em>Italic</em>, <strong>bold</strong>, and <code>monospace</code>. Itemized lists
 look like:</p>
@@ -27,21 +27,21 @@ Unicode is supported. ☺</p>
 </ol>
 <p>Note again how the actual text starts at 4 columns in (4 characters
 from the left side). Here&#39;s a code sample:</p>
-<pre><code># Let me re-iterate ...
-for i in 1 .. 10 { do-something(i) }
+<pre><code># <span class="hljs-keyword">Let</span> <span class="hljs-keyword">me</span> re-iterate ...
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span> .. <span class="hljs-number">10</span> { <span class="hljs-keyword">do</span>-something(i) }
 </code></pre><p>As you probably guessed, indented 4 spaces. By the way, instead of
 indenting the block, you can use delimited blocks, if you like:</p>
-<pre><code>define foobar() {
-    print &quot;Welcome to flavor country!&quot;;
+<pre><code><span class="hljs-keyword">define</span> <span class="hljs-section">foobar</span>() {
+    print <span class="hljs-string">"Welcome to flavor country!"</span>;
 }
 </code></pre><p>(which makes copying &amp; pasting easier). You can optionally mark the
 delimited block for Pandoc to syntax highlight it:</p>
-<pre><code class="lang-python">import time
-# Quick, count to ten!
-for i in range(10):
-    # (but not *too* quick)
-    time.sleep(0.5)
-    print i
+<pre><code class="lang-python">import <span class="hljs-keyword">time</span>
+<span class="hljs-comment"># Quick, count to ten!</span>
+<span class="hljs-keyword">for</span> i in range(<span class="hljs-number">10</span>):
+    <span class="hljs-comment"># (but not *too* quick)</span>
+    <span class="hljs-keyword">time</span>.<span class="hljs-keyword">sleep</span>(<span class="hljs-number">0</span>.<span class="hljs-number">5</span>)
+    <span class="hljs-keyword">print</span> i
 </code></pre>
 <h3 id="an-h3-header">An h3 header</h3>
 <p>Now a nested list:</p>
@@ -61,9 +61,9 @@ this algorithm:</p>
 uncover pot
 stir
 cover pot
-balance wooden spoon precariously on pot handle
-wait 10 minutes
-goto first step (or shut off burner when done)
+balance wooden spoon precariously <span class="hljs-keyword">on</span> pot handle
+wait <span class="hljs-number">10</span> minutes
+<span class="hljs-keyword">goto</span> first <span class="hljs-keyword">step</span> (<span class="hljs-keyword">or</span> shut <span class="hljs-keyword">off</span> burner <span class="hljs-keyword">when</span> done)
 </code></pre><p>Do not bump wooden spoon or it will fall.</p>
 </li>
 </ol>
@@ -114,41 +114,41 @@ math should get its own line and be put in in double-dollarsigns:</p>
 <p>$$I = \int \rho R^{2} dV$$</p>
 <p>And note that you can backslash-escape any punctuation characters
 which you wish to be displayed literally, ex.: `foo`, *bar*, etc.</p>
-]]></description><link>http://acyort.github.io/2016/03/138196161.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138196161.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 02 Mar 2016 16:00:00 GMT</pubDate></item><item><title><![CDATA[View More Test]]></title><description><![CDATA[<p>In my previous post many were telling me I was missing the point about task runners - they&#39;re for wiring up complex sets of tasks, not just running odd tasks. So I thought I&#39;d wrap up this piece with a complex set of tasks typical of a multi-hundred-line Gruntfile. For this example I want to do the following:</p>
-<pre><code class="lang-js">  &quot;scripts&quot;: {
-    &quot;clean&quot;: &quot;rimraf dist/*&quot;,
+]]></description><link>http://acyort.github.io/2016/03/138196161.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138196161.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 16 Mar 2016 14:56:28 GMT</pubDate></item><item><title><![CDATA[No title]]></title><description><![CDATA[<p>In my previous post many were telling me I was missing the point about task runners - they&#39;re for wiring up complex sets of tasks, not just running odd tasks. So I thought I&#39;d wrap up this piece with a complex set of tasks typical of a multi-hundred-line Gruntfile. For this example I want to do the following:</p>
+<pre><code class="lang-js">  <span class="hljs-string">"scripts"</span>: {
+    <span class="hljs-string">"clean"</span>: <span class="hljs-string">"rimraf dist/*"</span>,
 
-    &quot;prebuild&quot;: &quot;npm run clean -s&quot;,
-    &quot;build&quot;: &quot;npm run build:scripts -s &amp;&amp; npm run build:styles -s &amp;&amp; npm run build:markup -s&quot;,
-    &quot;build:scripts&quot;: &quot;browserify -d assets/scripts/main.js -p [minifyify --compressPath . --map main.js.map --output dist/main.js.map] | hashmark -n dist/main.js -s -l 8 -m assets.json &#39;dist/{name}{hash}{ext}&#39;&quot;,
-    &quot;build:styles&quot;: &quot;stylus assets/styles/main.styl -m -o dist/ &amp;&amp; hashmark -s -l 8 -m assets.json dist/main.css &#39;dist/{name}{hash}{ext}&#39;&quot;,
-    &quot;build:markup&quot;: &quot;jade assets/markup/index.jade --obj assets.json -o dist&quot;,
+    <span class="hljs-string">"prebuild"</span>: <span class="hljs-string">"npm run clean -s"</span>,
+    <span class="hljs-string">"build"</span>: <span class="hljs-string">"npm run build:scripts -s &amp;&amp; npm run build:styles -s &amp;&amp; npm run build:markup -s"</span>,
+    <span class="hljs-string">"build:scripts"</span>: <span class="hljs-string">"browserify -d assets/scripts/main.js -p [minifyify --compressPath . --map main.js.map --output dist/main.js.map] | hashmark -n dist/main.js -s -l 8 -m assets.json '</span>dist/{name}{hash}{ext}<span class="hljs-string">'"</span>,
+    <span class="hljs-string">"build:styles"</span>: <span class="hljs-string">"stylus assets/styles/main.styl -m -o dist/ &amp;&amp; hashmark -s -l 8 -m assets.json dist/main.css '</span>dist/{name}{hash}{ext}<span class="hljs-string">'"</span>,
+    <span class="hljs-string">"build:markup"</span>: <span class="hljs-string">"jade assets/markup/index.jade --obj assets.json -o dist"</span>,
 
-    &quot;test&quot;: &quot;karma start --singleRun&quot;,
+    <span class="hljs-string">"test"</span>: <span class="hljs-string">"karma start --singleRun"</span>,
 
-    &quot;watch&quot;: &quot;parallelshell &#39;npm run watch:test -s&#39; &#39;npm run watch:build -s&#39;&quot;,
-    &quot;watch:test&quot;: &quot;karma start&quot;,
-    &quot;watch:build&quot;: &quot;nodemon -q -w assets/ --ext &#39;.&#39; --exec &#39;npm run build&#39;&quot;,
+    <span class="hljs-string">"watch"</span>: <span class="hljs-string">"parallelshell '</span>npm run watch:test -s' <span class="hljs-string">'npm run watch:build -s'</span><span class="hljs-string">",
+    "</span>watch:test<span class="hljs-string">": "</span>karma start<span class="hljs-string">",
+    "</span>watch:build<span class="hljs-string">": "</span>nodemon -q -w assets/ --ext <span class="hljs-string">'.'</span> --<span class="hljs-built_in">exec</span> <span class="hljs-string">'npm run build'</span><span class="hljs-string">",
 
-    &quot;open:prod&quot;: &quot;opener http://example.com&quot;,
-    &quot;open:stage&quot;: &quot;opener http://staging.example.internal&quot;,
-    &quot;open:dev&quot;: &quot;opener http://localhost:9090&quot;,
+    "</span>open:<span class="hljs-built_in">prod</span><span class="hljs-string">": "</span>opener http:<span class="hljs-comment">//example.com",</span>
+    <span class="hljs-string">"open:stage"</span>: <span class="hljs-string">"opener http://staging.example.internal"</span>,
+    <span class="hljs-string">"open:dev"</span>: <span class="hljs-string">"opener http://localhost:9090"</span>,
 
-    &quot;deploy:prod&quot;: &quot;s3-cli sync ./dist/ s3://example-com/prod-site/&quot;,
-    &quot;deploy:stage&quot;: &quot;s3-cli sync ./dist/ s3://example-com/stage-site/&quot;,
+    <span class="hljs-string">"deploy:prod"</span>: <span class="hljs-string">"s3-cli sync ./dist/ s3://example-com/prod-site/"</span>,
+    <span class="hljs-string">"deploy:stage"</span>: <span class="hljs-string">"s3-cli sync ./dist/ s3://example-com/stage-site/"</span>,
 
-    &quot;serve&quot;: &quot;http-server -p 9090 dist/&quot;,
-    &quot;live-reload&quot;: &quot;live-reload --port 9091 dist/&quot;,
+    <span class="hljs-string">"serve"</span>: <span class="hljs-string">"http-server -p 9090 dist/"</span>,
+    <span class="hljs-string">"live-reload"</span>: <span class="hljs-string">"live-reload --port 9091 dist/"</span>,
 
-    &quot;dev&quot;: &quot;npm run open:dev -s &amp; parallelshell &#39;npm run live-reload -s&#39; &#39;npm run serve -s&#39; &#39;npm run watch -s&#39;&quot;
-  }
+    <span class="hljs-string">"dev"</span>: <span class="hljs-string">"npm run open:dev -s &amp; parallelshell '</span>npm run live-reload -s' <span class="hljs-string">'npm run serve -s'</span> <span class="hljs-string">'npm run watch -s'</span><span class="hljs-string">"
+  }</span>
 </code></pre>
-]]></description><link>http://acyort.github.io/2016/03/138195947.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138195947.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 02 Mar 2016 16:00:00 GMT</pubDate></item><item><title><![CDATA[中文测试]]></title><description><![CDATA[<p>善我王上魚、產生資西員合兒臉趣論。畫衣生這著爸毛親可時，安程幾？合學作。觀經而作建。都非子作這！法如言子你關！手師也。</p>
+]]></description><link>http://acyort.github.io/2016/03/138195947.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138195947.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Thu, 03 Mar 2016 14:39:53 GMT</pubDate></item><item><title><![CDATA[No title]]></title><description><![CDATA[<p>善我王上魚、產生資西員合兒臉趣論。畫衣生這著爸毛親可時，安程幾？合學作。觀經而作建。都非子作這！法如言子你關！手師也。</p>
 <p>以也座論頭室業放。要車時地變此親不老高小是統習直麼調未，行年香一？</p>
 <p>就竟在，是我童示讓利分和異種百路關母信過明驗有個歷洋中前合著區亮風值新底車有正結，進快保的行戰從：弟除文辦條國備當來際年每小腳識世可的的外的廣下歌洲保輪市果底天影；全氣具些回童但倒影發狀在示，數上學大法很，如要我……月品大供這起服滿老？應學傳者國：山式排只不之然清同關；細車是！停屋常間又，資畫領生，相們制在？公別的人寫教資夠。資再我我！只臉夫藝量不路政吃息緊回力之；兒足灣電空時局我怎初安。意今一子區首者微陸現際安除發連由子由而走學體區園我車當會，經時取頭，嚴了新科同？很夫營動通打，出和導一樂，查旅他。坐是收外子發物北看蘭戰坐車身做可來。道就學務。</p>
 <p>國新故。</p>
 <p>工步他始能詩的，裝進分星海演意學值例道……於財型目古香亮自和這乎？化經溫詩。只賽嚴大一主價世哥受的沒有中年即病行金拉麼河。主小路了種就小為廣不？</p>
-]]></description><link>http://acyort.github.io/2016/03/138195195.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138195195.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 02 Mar 2016 16:00:00 GMT</pubDate></item><item><title><![CDATA[Markdown Cheatsheet]]></title><description><![CDATA[<p>Emphasis, aka italics, with <em>asterisks</em> or <em>underscores</em>.</p>
+]]></description><link>http://acyort.github.io/2016/03/138195195.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138195195.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Thu, 03 Mar 2016 14:38:10 GMT</pubDate></item><item><title><![CDATA[No title]]></title><description><![CDATA[<p>Emphasis, aka italics, with <em>asterisks</em> or <em>underscores</em>.</p>
 <p>Strong emphasis, aka bold, with <strong>asterisks</strong> or <strong>underscores</strong>.</p>
 <p>Combined emphasis with <strong>asterisks and <em>underscores</em></strong>.</p>
 <p>Strikethrough uses two tildes. <del>Scratch this.</del></p>
@@ -182,15 +182,15 @@ which you wish to be displayed literally, ex.: `foo`, *bar*, etc.</p>
 <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="alt text" title="Logo Title Text 1"></p>
 <p>Reference-style: 
 <img src="https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png" alt="alt text" title="Logo Title Text 2"></p>
-<pre><code class="lang-javascript">var s = &quot;JavaScript syntax highlighting&quot;;
-alert(s);
+<pre><code class="lang-javascript">var <span class="hljs-keyword">s</span> = <span class="hljs-string">"JavaScript syntax highlighting"</span><span class="hljs-comment">;</span>
+alert(<span class="hljs-keyword">s</span>)<span class="hljs-comment">;</span>
 </code></pre>
-<pre><code class="lang-python">s = &quot;Python syntax highlighting&quot;
-print s
+<pre><code class="lang-python"><span class="hljs-keyword">s</span> = <span class="hljs-string">"Python syntax highlighting"</span>
+<span class="hljs-keyword">print</span> <span class="hljs-keyword">s</span>
 </code></pre>
-<pre><code>No language indicated, so no syntax highlighting. 
-But let&#39;s throw in a &lt;b&gt;tag&lt;/b&gt;.
-</code></pre>]]></description><link>http://acyort.github.io/2016/03/138194595.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138194595.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 02 Mar 2016 16:00:00 GMT</pubDate></item><item><title><![CDATA[CSS with Superpowers]]></title><description><![CDATA[<p>Sass is completely compatible with all versions of CSS. We take this compatibility seriously, so that you can seamlessly use any available CSS libraries.</p>
+<pre><code><span class="hljs-keyword">No</span> language indicated, <span class="hljs-keyword">so</span> <span class="hljs-keyword">no</span> <span class="hljs-keyword">syntax</span> highlighting. 
+But let's throw <span class="hljs-keyword">in</span> a &lt;b&gt;tag&lt;/b&gt;.
+</code></pre>]]></description><link>http://acyort.github.io/2016/03/138194595.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138194595.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 16 Mar 2016 14:59:01 GMT</pubDate></item><item><title><![CDATA[No title]]></title><description><![CDATA[<p>Sass is completely compatible with all versions of CSS. We take this compatibility seriously, so that you can seamlessly use any available CSS libraries.</p>
 <p>Sass boasts more features and abilities than any other CSS extension language out there. The Sass Core Team has worked endlessly to not only keep up, but stay ahead.</p>
 <p>Mature
 Sass has been actively supported for about 8 years by its loving Core</p>
@@ -201,10 +201,10 @@ Sass is actively supported and developed by a consortium of several tech compani
 <p>Frameworks
 There are endless number of frameworks built with Sass. Compass, Bourbon, and Susy just to name a few.</p>
 <p>Dreamcatcher cold-pressed American Apparel, post-ironic Carles Shoreditch craft beer Banksy PBR retro distillery before they sold out freegan asymmetrical kogi. Food truck Schlitz direct trade, deep v ethical yr sriracha mumblecore freegan. Tattooed occupy pork belly, letterpress typewriter cold-pressed viral swag farm-to-table flexitarian. +1 hashtag put a bird on it authentic. 3 wolf moon locavore Vice, normcore actually meggings leggings cornhole brunch. Four loko vinyl trust fund, Intelligentsia wolf Bushwick lo-fi sriracha. Deep v vegan forage selvage.</p>
-]]></description><link>http://acyort.github.io/2016/03/138194267.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138194267.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 02 Mar 2016 16:00:00 GMT</pubDate></item><item><title><![CDATA[A Great Story Never Told]]></title><description><![CDATA[<p>I’ve never told this to anyone. Sit yourself down and strap yourself in, you will experience some turbulence before you reach a steady altitude.</p>
+]]></description><link>http://acyort.github.io/2016/03/138194267.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138194267.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 16 Mar 2016 14:56:55 GMT</pubDate></item><item><title><![CDATA[No title]]></title><description><![CDATA[<p>I’ve never told this to anyone. Sit yourself down and strap yourself in, you will experience some turbulence before you reach a steady altitude.</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam nihil eum cum quas! Consectetur aliquam molestias quos voluptatum recusandae accusantium eaque sed architecto esse. Ut obcaecati, porro numquam sed. Odio.</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quam provident accusamus vero autem culpa illum quo enim maiores eius error, sapiente inventore cum hic earum. Libero porro quisquam harum.</p>
 <p>iceland</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam nihil eum cum quas! Consectetur aliquam molestias quos voluptatum recusandae accusantium eaque sed architecto esse. Ut obcaecati, porro numquam sed. Odio.</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quam provident accusamus vero autem culpa illum quo enim maiores eius error, sapiente inventore cum hic earum. Libero porro quisquam harum.</p>
-]]></description><link>http://acyort.github.io/2016/03/138194101.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138194101.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 02 Mar 2016 16:00:00 GMT</pubDate></item></channel></rss>
+]]></description><link>http://acyort.github.io/2016/03/138194101.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/138194101.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Thu, 03 Mar 2016 14:35:43 GMT</pubDate></item></channel></rss>

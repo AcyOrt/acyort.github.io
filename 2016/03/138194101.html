@@ -5,8 +5,15 @@
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="google" content="notranslate" />
 <link rel="icon" href="/images/icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
 <title>A Great Story Never Told - AcyOrt </title>
-<link rel="stylesheet" href="/css/acyort.css" />
+<script>
+var c = {
+    name: 'acyort',
+    url: '//acyort.disqus.com/embed.js'
+}
+</script>
 </head>
 <body>
 
@@ -17,15 +24,22 @@
     </div>
     <div class="menu">
         <a href="/">home</a>
-        <a href="/about/">about</a>
-        <a href="/archives/">archives</a>
+        <a href="/about">about</a>
+        <a href="/archives">archives</a>
+        <a href="/tags">tags</a>
+        <a href="/categories">categories</a>
     </div>
 </div>
+
 
 <div id="post" class="center">
 
     <h1>A Great Story Never Told</h1>
-    <p><a href="https://github.com/LoeiFy">LoeiFy</a> Updated at Mar 03, 2016</p>
+    <p><a href="https://github.com/LoeiFy">LoeiFy</a> Posted at Mar 03, 2016 . -
+    <a href="/category/duplicate/">duplicate</a> -
+    <a href="/category/help wanted/">help wanted</a> -
+    <a href="/category/invalid/">invalid</a> -
+    </p>
 
     <div class="content"><p>I’ve never told this to anyone. Sit yourself down and strap yourself in, you will experience some turbulence before you reach a steady altitude.</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam nihil eum cum quas! Consectetur aliquam molestias quos voluptatum recusandae accusantium eaque sed architecto esse. Ut obcaecati, porro numquam sed. Odio.</p>
@@ -36,9 +50,6 @@
 </div>
 
     <div class="label">
-    <div><a href="/tags/duplicate/">#duplicate</a></div>
-    <div><a href="/tags/help wanted/">#help wanted</a></div>
-    <div><a href="/tags/invalid/">#invalid</a></div>
     </div>
 
     <div class="comment_list hide" id="disqus_thread"></div>
@@ -50,50 +61,11 @@
 
 <div class="footer">
     <div class="center">
-        © 2016 AcyOrt . <a target="_blank" href="https://github.com/LoeiFy/AcyOrt">AcyOrt</a> . <a target="_blank" href="/rss.xml">RSS</a>
+        © 2016 AcyOrt . <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> . <a target="_blank" href="/rss.xml">RSS</a>
     </div>
 </div>
 
-<script>
 
-if ('acyort'.length > 0) {
-    document.getElementById('comment').classList.remove('hide')
-}
-
-var duoshuoQuery = {short_name: 'acyort'};
-
-document.getElementById('comment').addEventListener('click', function() {
-
-    this.style.display = 'none';
-
-    var identifier = this.getAttribute('data-id'),
-        title = document.title,
-        url = location.href.split('?')[0];
-
-    document.getElementById('duoshuo_thread').setAttribute('data-title', title)
-    document.getElementById('duoshuo_thread').setAttribute('data-url', url)
-
-    var disqus_config = function () {
-        this.page.url = url;
-        this.page.identifier = identifier;
-    };
-
-    var sc = document.createElement('script'); 
-    sc.async = true;
-    sc.src = (location.protocol == 'https:' ? 'https:' : 'http:') + '//acyort.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(sc);
-
-    if ('//acyort.disqus.com/embed.js'.indexOf('disqus') > -1) {
-        document.getElementById('disqus_thread').classList.remove('hide')
-    }
-
-    if ('//acyort.disqus.com/embed.js'.indexOf('duoshuo') > -1) {
-        document.getElementById('duoshuo_thread').classList.remove('hide')
-    }
-
-}, false)
-
-</script>
-
+<script src="/js/comment.js"></script>
 </body>
 </html>
