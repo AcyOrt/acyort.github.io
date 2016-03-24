@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="google" content="notranslate" />
+<link rel="icon" href="/images/icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+<title>AcyOrt 介绍与安装 - AcyOrt </title>
+<script>
+var c = {
+    name: 'acyort',
+    url: '//acyort.disqus.com/embed.js'
+}
+</script>
+</head>
+<body>
+
+<div class="header">
+    <div class="center">
+        <h1><a href="/">AcyOrt</a></h1>
+        <p>A Node.js blog tool powered by GitHub.</p>
+    </div>
+    <div class="menu">
+        <a href="/">home</a>
+        <a href="/about">about</a>
+        <a href="/archives">archives</a>
+        <a href="/tags">tags</a>
+        <a href="/categories">categories</a>
+    </div>
+</div>
+
+
+<div id="post" class="center">
+
+    <h1>AcyOrt 介绍与安装</h1>
+    <p><a href="https://github.com/LoeiFy">LoeiFy</a> Posted at Mar 24, 2016 . -
+    <a href="/category/uncategorized/">uncategorized</a> -
+    </p>
+
+    <div class="content"><p>AcyOrt 是一个基于 Node.js 的博客工具。通过 GitHub API 获取 GitHub issues 的相关内容生成静态页面，从而生成一个博客。用户只要在 issues 上写自己的博客文章，然后一个简单命令就可以发布自己的博客了。包括自定义自己域名。</p>
+<h2 id="-">支持/功能</h2>
+<ul>
+<li>文章</li>
+<li>评论</li>
+<li>归档</li>
+<li>Rss</li>
+<li>页面 </li>
+<li>标签 </li>
+<li>分类</li>
+<li>主题</li>
+<li>菜单</li>
+</ul>
+<h2 id="-">安装</h2>
+<p>安装 AcyOrt 之前确保已经安装 <code>Node.js</code> 以及一个 <code>GitHub</code> 账号</p>
+<p>接下来只需要通过 <code>npm</code> 安装 AcyOrt</p>
+<pre><code class="lang-bash">$ npm install acyort-<span class="hljs-keyword">cli</span> -<span class="hljs-keyword">g</span>
+</code></pre>
+<h2 id="-">创建网站</h2>
+<p>安装 AcyOrt 完成后，执行下列命令，将会在指定文件夹中创建网站</p>
+<pre><code class="lang-bash"><span class="hljs-variable">$ </span>acyort create &lt;folder&gt;
+<span class="hljs-variable">$ </span>cd &lt;folder&gt;
+<span class="hljs-variable">$ </span>npm install
+</code></pre>
+<p>生成网站的主要文件及文件夹主要是：<code>config.yml</code>, <code>themes</code>, <code>public</code></p>
+<h3 id="config-yml">config.yml</h3>
+<p>网站的配置信息</p>
+<pre><code class="lang-yml"><span class="hljs-comment"># 标题，网站地址，描述，rss 链接</span>
+<span class="hljs-attr">title:</span> AcyOrt
+<span class="hljs-attr">url:</span> http://acyort.github.io
+<span class="hljs-attr">description:</span> A Node.js blog tool powered by GitHub.
+<span class="hljs-attr">rss:</span> rss.xml
+
+<span class="hljs-comment"># 主题</span>
+<span class="hljs-attr">theme:</span> ccc45
+
+<span class="hljs-comment"># 分页</span>
+<span class="hljs-attr">per_page:</span> <span class="hljs-number">2</span>
+
+<span class="hljs-comment"># 菜单信息</span>
+<span class="hljs-attr">menu:</span>
+<span class="hljs-attr">  - name:</span> home
+<span class="hljs-attr">    url:</span> /
+<span class="hljs-attr">  - name:</span> about
+<span class="hljs-attr">    url:</span> /about
+<span class="hljs-attr">  - name:</span> archives
+<span class="hljs-attr">    url:</span> /archives
+<span class="hljs-attr">  - name:</span> tags
+<span class="hljs-attr">    url:</span> /tags
+<span class="hljs-attr">  - name:</span> categories
+<span class="hljs-attr">    url:</span> /categories
+
+<span class="hljs-comment"># 默认分类</span>
+<span class="hljs-attr">default_category:</span> uncategorized
+
+<span class="hljs-comment"># 评论相关用户名（多说 或者 disqus）</span>
+<span class="hljs-attr">duoshuo:</span>
+<span class="hljs-attr">disqus:</span> acyort
+
+<span class="hljs-comment"># 作者过滤，避免其他用户在 issues 上写无关内容</span>
+<span class="hljs-attr">authors:</span>
+<span class="hljs-bullet">  -</span> LoeiFy
+<span class="hljs-bullet">  -</span> author0
+<span class="hljs-bullet">  -</span> author1
+
+<span class="hljs-comment"># 网站内容来源 issues 地址</span>
+<span class="hljs-comment"># 格式为：用户名/项目名</span>
+<span class="hljs-attr">issue_repo:</span> AcyOrt/acyort.github.io
+
+<span class="hljs-comment"># GitHub access token(Optional)</span>
+<span class="hljs-comment"># token should be separated by whitespace</span>
+
+<span class="hljs-comment"># token: sd46a6d65a asd8sdbn</span>
+</code></pre>
+<h3 id="themes">themes</h3>
+<p>主题文件夹，可以自定义主题，默认主题是：<code>ccc45</code></p>
+<h3 id="public">public</h3>
+<p>网站静态文件生成路径</p>
+<h2 id="-">生成网站</h2>
+<p>通过一个简单命令即可生成网站</p>
+<pre><code class="lang-bash"><span class="hljs-variable">$ </span>acyort build
+</code></pre>
+<p>查看 <code>public</code> 可以看到相关网站文件，你可以通过 <code>git</code> 方式提交网站到 <code>GitHub</code> 或者直接将里面文件发布到其他地方</p>
+<h2 id="-">本地测试</h2>
+<p>AcyOrt 提供本地测试，只需运行</p>
+<pre><code class="lang-bash">$ acyort <span class="hljs-keyword">server</span>
+</code></pre>
+<p>这时候访问 <code>http://127.0.0.1:2222</code> 就能够看到网站</p>
+</div>
+
+    <div class="label">
+    <div><a href="/tag/about/">#about</a></div>
+    <div><a href="/tag/教程/">#教程</a></div>
+    </div>
+
+    <div class="comment_list hide" id="disqus_thread"></div>
+    <div id="duoshuo_thread" class="comment_list hide ds-thread" data-thread-key="143240507" data-title="" data-url=""></div>
+
+    <button class="hide" data-id="143240507" id="comment">Add Comments</button>
+
+</div>
+
+<div class="footer">
+    <div class="center">
+        © 2016 AcyOrt . <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> . <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+
+<script src="/js/comment.js"></script>
+</body>
+</html>

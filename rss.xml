@@ -1,4 +1,110 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[AcyOrt]]></title><description><![CDATA[A Node.js blog tool powered by GitHub.]]></description><link>http://acyort.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sun, 20 Mar 2016 06:13:26 GMT</lastBuildDate><atom:link href="http://acyort.github.io/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 20 Mar 2016 06:13:26 GMT</pubDate><item><title><![CDATA[No title]]></title><description><![CDATA[<h1 id="an-h1-header">An h1 header</h1>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[AcyOrt]]></title><description><![CDATA[A Node.js blog tool powered by GitHub.]]></description><link>http://acyort.github.io</link><generator>RSS for Node</generator><lastBuildDate>Thu, 24 Mar 2016 13:47:31 GMT</lastBuildDate><atom:link href="http://acyort.github.io/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 24 Mar 2016 13:47:31 GMT</pubDate><item><title><![CDATA[No title]]></title><description><![CDATA[<p>AcyOrt 文章写作很简单，只需要在对应项目上写相关 issues 就可以了。如果原来就有在 issues 上写博客的就更好了。</p>
+<h2 id="-">基本文章</h2>
+<p>简单的 issue 书写即可</p>
+<ul>
+<li>标题：issue 标题</li>
+<li>内容：issue 内容</li>
+<li>分类：issue labels</li>
+</ul>
+<p>标签添加方法：只需要在 issue 正文添加一个 <code>html</code> 注释即可，例如添加 <code>tag1</code> 和 <code>tag2</code> 两个标签：
+<code>&lt;!-- tags: tag1, tag2 --&gt;</code></p>
+<p>添加摘要方法：同样添加一个特殊 <code>html</code> 注释
+<code>&lt;!-- more --&gt;</code></p>
+<p><img src="https://cloud.githubusercontent.com/assets/2193211/14018425/b5fd1438-f208-11e5-9a1f-91a2262bc127.jpg" alt="intr"></p>
+<h2 id="-">新建页面</h2>
+<p>新建页面也很简单，只需要在 issue 标题改称 <code>[页面地址]页面标题</code>
+例如添加一个 <code>关于</code> 页面，然后路径为 <code>about</code>，标题为：<code>[about]关于</code></p>
+<h2 id="-">图片相关</h2>
+<p>得益于 GitHub issues 的上传图片功能，你只要复制图片，黏贴进来即可。或者拖图片进来</p>
+]]></description><link>http://acyort.github.io/2016/03/143249315.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/143249315.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Thu, 24 Mar 2016 13:47:17 GMT</pubDate></item><item><title><![CDATA[No title]]></title><description><![CDATA[<p>AcyOrt 是一个基于 Node.js 的博客工具。通过 GitHub API 获取 GitHub issues 的相关内容生成静态页面，从而生成一个博客。用户只要在 issues 上写自己的博客文章，然后一个简单命令就可以发布自己的博客了。包括自定义自己域名。</p>
+<h2 id="-">支持/功能</h2>
+<ul>
+<li>文章</li>
+<li>评论</li>
+<li>归档</li>
+<li>Rss</li>
+<li>页面 </li>
+<li>标签 </li>
+<li>分类</li>
+<li>主题</li>
+<li>菜单</li>
+</ul>
+<h2 id="-">安装</h2>
+<p>安装 AcyOrt 之前确保已经安装 <code>Node.js</code> 以及一个 <code>GitHub</code> 账号</p>
+<p>接下来只需要通过 <code>npm</code> 安装 AcyOrt</p>
+<pre><code class="lang-bash">$ npm install acyort-<span class="hljs-keyword">cli</span> -<span class="hljs-keyword">g</span>
+</code></pre>
+<h2 id="-">创建网站</h2>
+<p>安装 AcyOrt 完成后，执行下列命令，将会在指定文件夹中创建网站</p>
+<pre><code class="lang-bash"><span class="hljs-variable">$ </span>acyort create &lt;folder&gt;
+<span class="hljs-variable">$ </span>cd &lt;folder&gt;
+<span class="hljs-variable">$ </span>npm install
+</code></pre>
+<p>生成网站的主要文件及文件夹主要是：<code>config.yml</code>, <code>themes</code>, <code>public</code></p>
+<h3 id="config-yml">config.yml</h3>
+<p>网站的配置信息</p>
+<pre><code class="lang-yml"><span class="hljs-comment"># 标题，网站地址，描述，rss 链接</span>
+<span class="hljs-attr">title:</span> AcyOrt
+<span class="hljs-attr">url:</span> http://acyort.github.io
+<span class="hljs-attr">description:</span> A Node.js blog tool powered by GitHub.
+<span class="hljs-attr">rss:</span> rss.xml
+
+<span class="hljs-comment"># 主题</span>
+<span class="hljs-attr">theme:</span> ccc45
+
+<span class="hljs-comment"># 分页</span>
+<span class="hljs-attr">per_page:</span> <span class="hljs-number">2</span>
+
+<span class="hljs-comment"># 菜单信息</span>
+<span class="hljs-attr">menu:</span>
+<span class="hljs-attr">  - name:</span> home
+<span class="hljs-attr">    url:</span> /
+<span class="hljs-attr">  - name:</span> about
+<span class="hljs-attr">    url:</span> /about
+<span class="hljs-attr">  - name:</span> archives
+<span class="hljs-attr">    url:</span> /archives
+<span class="hljs-attr">  - name:</span> tags
+<span class="hljs-attr">    url:</span> /tags
+<span class="hljs-attr">  - name:</span> categories
+<span class="hljs-attr">    url:</span> /categories
+
+<span class="hljs-comment"># 默认分类</span>
+<span class="hljs-attr">default_category:</span> uncategorized
+
+<span class="hljs-comment"># 评论相关用户名（多说 或者 disqus）</span>
+<span class="hljs-attr">duoshuo:</span>
+<span class="hljs-attr">disqus:</span> acyort
+
+<span class="hljs-comment"># 作者过滤，避免其他用户在 issues 上写无关内容</span>
+<span class="hljs-attr">authors:</span>
+<span class="hljs-bullet">  -</span> LoeiFy
+<span class="hljs-bullet">  -</span> author0
+<span class="hljs-bullet">  -</span> author1
+
+<span class="hljs-comment"># 网站内容来源 issues 地址</span>
+<span class="hljs-comment"># 格式为：用户名/项目名</span>
+<span class="hljs-attr">issue_repo:</span> AcyOrt/acyort.github.io
+
+<span class="hljs-comment"># GitHub access token(Optional)</span>
+<span class="hljs-comment"># token should be separated by whitespace</span>
+
+<span class="hljs-comment"># token: sd46a6d65a asd8sdbn</span>
+</code></pre>
+<h3 id="themes">themes</h3>
+<p>主题文件夹，可以自定义主题，默认主题是：<code>ccc45</code></p>
+<h3 id="public">public</h3>
+<p>网站静态文件生成路径</p>
+<h2 id="-">生成网站</h2>
+<p>通过一个简单命令即可生成网站</p>
+<pre><code class="lang-bash"><span class="hljs-variable">$ </span>acyort build
+</code></pre>
+<p>查看 <code>public</code> 可以看到相关网站文件，你可以通过 <code>git</code> 方式提交网站到 <code>GitHub</code> 或者直接将里面文件发布到其他地方</p>
+<h2 id="-">本地测试</h2>
+<p>AcyOrt 提供本地测试，只需运行</p>
+<pre><code class="lang-bash">$ acyort <span class="hljs-keyword">server</span>
+</code></pre>
+<p>这时候访问 <code>http://127.0.0.1:2222</code> 就能够看到网站</p>
+]]></description><link>http://acyort.github.io/2016/03/143240507.html</link><guid isPermaLink="true">http://acyort.github.io/2016/03/143240507.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Thu, 24 Mar 2016 13:44:44 GMT</pubDate></item><item><title><![CDATA[No title]]></title><description><![CDATA[<h1 id="an-h1-header">An h1 header</h1>
 <p>Paragraphs are separated by a blank line.</p>
 <p>2nd paragraph. <em>Italic</em>, <strong>bold</strong>, and <code>monospace</code>. Itemized lists
 look like:</p>
