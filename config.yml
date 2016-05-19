@@ -1,0 +1,62 @@
+
+# site
+title: AcyOrt
+subtitle: A Node.js blog tool powered by GitHub.
+description: A Node.js blog tool powered by GitHub. 
+rss: rss.xml
+
+# site url. can set as 'http://yoursite.com/child' if you need
+# please add 'http://' or 'https://'
+url: http://acyort.github.io
+
+# theme
+theme: ccc45
+
+# pagination
+per_page: 5
+archives_per_page: 30
+
+# menu
+menu:
+  - name: home
+    url: /
+  - name: about
+    url: /about
+  - name: archives
+    url: /archives
+  - name: tags
+    url: /tags
+  - name: categories
+    url: /categories
+
+# category
+default_category: uncategorized
+
+# html output directory or child directory e.g. 'child'
+public_dir: /
+
+# thumbnail mode 
+# 1: use the first image as thumbnail and remove the image
+# 2: use the first image as thumbnail but not remove the image
+thumbnail_mode: 2
+
+# comment
+duoshuo:
+disqus: acyort
+
+# site post authors filter
+authors:
+    - LoeiFy
+    - author0
+    - author1
+
+# site content issue
+# username/repository
+issue_repo: AcyOrt/acyort.github.io
+
+# GitHub access token(Optional)
+# token should be separated by whitespace if you push this file to GitHub 
+# token: sd46a6d65a asd8sdbn
+
+# dev mode
+dev: false
