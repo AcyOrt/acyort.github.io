@@ -10,25 +10,31 @@ favicon: /icon.png
 # please add 'http://' or 'https://'
 url: http://acyort.github.io
 
+# site permalink
+# id, time or category
+# e.g.
+# id: 'posts/id.html'
+# time: 'year/month/id.html'
+# category: 'category_dir/category_name/id.html'
+permalink: id
+
 # comment
 comment:
     disqus: acyort
-#    duoshuo:
+    duoshuo:
 
 # theme
-theme: ccc45
+theme: donob
 
 # pagination
-per_page: 3
+per_page: 20
 archives_per_page: 30
 
 #menu
 menu:
     home: /
-    about: /about
-    archives: /archives
-    tags: /tags
-    categories: /categories
+    about: /
+    archives: /
 
 # category
 default_category: uncategorized
@@ -44,7 +50,7 @@ tag_dir:
 
 # site content issue
 # username/repository
-issue_repo: AcyOrt/acyort.github.io
+issue_repo: lifesinger/blog
 
 # thumbnail mode 
 # 1: use the first image as thumbnail and remove the image
@@ -60,11 +66,6 @@ authors:
 #    - LoeiFy
 #    - author0
 #    - author1
-
-# custom fields
-customs: 
-#    - test
-#    - title
 
 # GitHub access token(Optional)
 # token should be separated by whitespace if you push this file to GitHub 
