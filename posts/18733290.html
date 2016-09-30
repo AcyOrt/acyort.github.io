@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="//icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+又是一年校招时 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <div class="center">
+        <a class="logo" href="/">AcyOrt</a>
+
+        <div class="menu">
+            <div class="menuicon"></div>
+
+            <div class="menuitem">
+            
+            <a href="/">home</a>
+            
+            <a href="/">about</a>
+            
+            <a href="/">archives</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">August 29, 2013</p> 
+
+    <h1 class="title">又是一年校招时</h1>
+
+    <div class="content"><p><img src="https://f.cloud.github.com/assets/97227/1050128/dd35d900-10b4-11e3-8861-6bfcea9385d7.png" alt="image"></p>
+<p>最近有两条消息：一条是说阿里对应届生很大方，去年招的技术年薪 20 万起，同比百度约 17 万左右，腾讯硕士 14 万起。华为今年刚调薪，本科月薪 8000 元至 9000 元，硕士 1 万。</p>
+<p>还有一条消息是说，阿里今年推出了 A-star 计划，拟招 10 名左右技术牛人，年薪 60 万，并解决北京户口。</p>
+<p>微博私信和邮件上，不少人询问我是不是真的。这个不太好回答，我只提供一些分析。</p>
+<p>对于优秀应届生，技能基础好、综合素质高、发展潜力足的，年薪 20 万在阿里是完全有可能的。注意年薪里包含了年终奖、期权等。月薪，是不能用 20 / 12 去算的，大家都懂，我不多说。</p>
+<p>对于今年的 A-star 计划，可以说完全是真的。但这就如彩票一样，人人都有机会中 500 万，但结果往往是无人中奖，奖金累积到下一期。至于为什么要搞 A-star 计划，大家也都懂，我不多说。</p>
+<p>年薪 20 万起也好，A-star 计划也好，所有这些招聘策略，核心目的只有一个：希望更多人选择阿里。如果能吸引到真正的技术大牛，也绝对会给得起高薪。这是一种对人才的态度，如果你牛，你敢来，阿里就敢给。</p>
+<p>关键的问题是： <strong>你是否够牛？</strong></p>
+<p>如果答案是肯定的，你去哪，高薪对你来说都是迟早的事情。别成为方仲永就好。</p>
+<p>如果答案是否定的，那么所有公司吸引眼球的招聘广告，对你来说意义都不大。我更建议你参考我的微博来做出选择：</p>
+<blockquote>
+<p>如果你对影视、书籍等文艺范的东西感兴趣，别犹豫，尝试去豆瓣等公司。如果你对社交网络感兴趣，去腾讯就好。如果对 iOS 感兴趣，去小米或锤子手机等等公司。如果哪一天，你突然发现自己还是对钱感兴趣时，来支付宝就好。</p>
+</blockquote>
+<p><strong>真正对什么产品感兴趣，就去哪吧。刚毕业，年轻着呢，别一开始就在乎哪点钱的差距。</strong></p>
+<p>（完）</p>
+<p>最近超忙，WTP 更新缓慢，非常抱歉。我会尝试写点短小的文章，保证一定的更新频率。也欢迎回复交流，以及提供想讨论的话题。</p>
+<hr>
+<p>欢迎订阅 WTP（Web 技术与产品交流）微信公众帐号。WTP 关注技术、产品、自由梦，会偶尔推送一些原创文字。欢迎扫描二维码订阅：</p>
+<p><img src="http://ww4.sinaimg.cn/thumbnail/68361562gw1e2iehwolnpj.jpg" alt=""></p>
+</div>
+
+    <div class="cat">
+    
+    <p><span>#</span> <a href="/category/blog/">blog</a></p>
+    
+    </div>
+
+    <div class="relate">
+        
+        
+        <p><span>PREV: </span><a rel="prev" href="/posts/18908108.html">关于 Sea.js、开源与前端之路</a></p>
+        
+
+        
+        
+        <p><span>NEXT: </span><a rel="next" href="/posts/17375000.html">Sea.js 源码解析（三）</a></p>
+        
+
+        <p><span></span><a rel="all" href="/">VIEW ALL POSTS</a></p>
+    </div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        made by AcyOrt / powered by <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> / <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+var menu = document.querySelector('.menu');
+
+document.querySelector('.main').addEventListener('click', function(e) {
+    if (e.target.classList.toString().indexOf('menuicon') > -1) {
+        return menu.classList.toggle('active')
+    } 
+
+    return menu.classList.remove('active')
+})
+
+</script>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>

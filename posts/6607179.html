@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="//icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+WebReBuild 上的扯淡 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <div class="center">
+        <a class="logo" href="/">AcyOrt</a>
+
+        <div class="menu">
+            <div class="menuicon"></div>
+
+            <div class="menuitem">
+            
+            <a href="/">home</a>
+            
+            <a href="/">about</a>
+            
+            <a href="/">archives</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">September 03, 2012</p> 
+
+    <h1 class="title">WebReBuild 上的扯淡</h1>
+
+    <div class="content"><p>9月15日参加了 WebReBuild 上海站，下面这些话题挺有意思的，记录一二。</p>
+<hr>
+<h3 id="会-html-和-css-的是程序员吗？">会 HTML 和 CSS 的是程序员吗？</h3><p>最后讨论环节时，一位资深开发同学提到了这个问题。很认同他的回答：从严格意思上说，HTML 和 CSS 仅是一门描述语言，不能算是程序语言，因此会 HTML 和 CSS 的不是程序员。这就和会写 INI 或 XML 配置文件一样，光会写这些，不能算是程序员。</p>
+<p>问题的核心是：什么是程序？</p>
+<p>程序其实无处不在。比如去银行取钱，我们要遵守一定的“程序”：取号、等待叫号、掏身份证、数钱……。将这过程写下来，贴在墙上，就是取钱程序。</p>
+<blockquote>
+<p>程序是完成某件事情的过程和顺序。</p>
+</blockquote>
+<p>在计算机领域，通俗的定义是：</p>
+<blockquote>
+<p>程序是为了让计算机执行某些操作或者解决某个问题而编写的一系列有序指令的集合。</p>
+</blockquote>
+<p>一段 JavaScript 代码是<strong>有序指令</strong>，编译后可执行。一段 HTML 或 CSS 代码更类似于一段配置信息，提供给浏览器读取，之后解析成 DOM 树、渲染树之类的数据，并不会转换成可执行的指令，因此算不得是程序。</p>
+<p>如果只会 HTML 或 CSS，其实不用沮丧，因为你们是设计师，比程序员好听多了。</p>
+<h3 id="前端工程师究竟是什么？">前端工程师究竟是什么？</h3><p>在我看来，前端工程师就是解决前端需求的软件工程师。</p>
+<p>前端需求是指：与用户界面相关的代码需求，主要是指视觉设计和交互设计的代码实现。包括 HTML / CSS / JS 代码实现，也包括 iOS /  Android 等 Mobile 端的 App 开发。CS 端的 C 和 BS 端的 B 都是前端需求，所用的技术在随着时间而变迁，但不变的是前端解决的永远是与用户界面相关的代码需求。</p>
+<p>软件工程师是指：好难定义。在我的概念里，软件工程师是能够用软件的方式系统解决问题的人。用软件的方式意味着要有编码能力，能把设计转换成代码。能系统解决问题意味着有规划、有设计、有流程、可复制、可维护等等。这和传统工程师的概念没什么区别，只是所用的工具不同。</p>
+<p>前端工程师经常是对界面设计有爱的人。一堆前端工程师在一起，经常会对某个网站的视觉和交互设计品舌论足。前端工程师经常天生或经过后天培养具备了一种对“界面美”的感觉，这种细致的感觉，一般后端工程师体会不到。当然，后端工程师能体会到其他美。</p>
+<p>前端是对界面之美有特殊感觉的工程师。（注：这里的界面不仅是视觉，还包括交互，是 Interface. 优秀的后端对 Interface 也会有特殊感觉，但那是接口之美。）</p>
+<h3 id="性能">性能</h3><p>性能在没有成为问题之前，不是一个问题。无论后端还是前端，在性能上过早优化都是万恶之源。</p>
+<p>对于传统编译型语言来说，compiler 一般可以主动控制为只有一种。性能更多的取决于 compiler 的优化，而不取决于代码写得怎么样。除非代码设计得太糟糕了。</p>
+<p>在前端，如果只有一种 compiler，比如 V8，那我们前端也不用太在乎性能。我们辛辛苦苦优化一年代码，或许还不如升级一个 V8 版本来得实在。但是在前端，compiler 不是我们控制的，这一点和后端有很大的不一样，这导致我们在写前端代码时，还是得小心的把已知的性能问题给绕过去，比如在 IE6 的低效写法等等。这更多是 DOM 操作上的性能陷阱，JS 语言本身的性能问题并不多。</p>
+<p>对于性能来说，更重要的是建立起一套有效的监测体系。在检测到性能出问题时，能快速定位到问题所在。这样，往往修改一小段代码，就能带来大幅度的性能提升。这种经验最值得沉淀和推广。</p>
+<h3 id="可维护性">可维护性</h3><p>可维护性非常非常重要。对于前端代码来说，在 99% 的情况下，可维护性的重要程度，远远高于性能。</p>
+<p>怎么提高可维护性？多向后端取经。后端沉淀非常多的宝藏，比如《设计模式》、《重构 - 改善既有代码的设计》等等。</p>
+<p>注意前端和后端的区别，注意 JavaScript 与 Java 的区别。借鉴后端的现有经验，同时做到独立思考，不盲从，选择性吸收。目前前端业界这方面的沉淀还比较有限。路漫漫其修远兮，不过路走对了就不怕远兮。</p>
+<h3 id="前端该不该学-nodejs">前端该不该学 NodeJS</h3><p>从后端工程师的角度来看，NodeJS 的亮点是异步 IO. 如果不是这一点，也就没什么可玩的，还不如继续用 Java 等。</p>
+<p>但从前端工程师的角度来看，NodeJS 的异步 IO 反而是其次的，可运行在服务端才是亮点。这样，前端可以把 JavaScript 当 Shell 脚本用，也可以把 JavaScript 当 Python 用，想怎么用就怎么用，反而就是一门已经会了的语言。比如 UglifyJS 等玩法，跟异步 IO 没半毛钱关系，但前端玩得热火朝天，而且很有意义。</p>
+<p>有时间就多学点，Try to learn something about everything and everything about something.  对于前端来说，JavaScript 是后面这个 something.</p>
+<h3 id="兴趣是什么">兴趣是什么</h3><p>兴趣是什么？有多少人真的知道自己的兴趣？或许很多人走完一生都没弄清楚。但是我们能确定的是，当你完成某一件事情之后会莫名其妙地高兴或者两眼放光，那就说明这其中必定有一种东西是你的兴趣，虽然不一定是这件事情本身。</p>
+<p>真正的兴趣往往需要往上抽象一层。比如星巴克的创造人之一XX（我永远记不住名字和时间），之前是卖家俱的，卖得很开心，很成功，但后来他发现自己的兴趣压根儿不在卖家俱这件事上，而在于通过卖家俱服务他人，满足他人，看到他人脸上幸福的笑。于是XX舍弃了卖家俱，加盟了星巴克，开始卖咖啡。由于他的兴趣是让客户满意，因此一个卖家俱的开始卖咖啡后，依旧能做得风生水起，做得非常成功。</p>
+<p>永运不要小觑兴趣的魔力，同时永远不要停止对兴趣的探寻，除非你已经每天两眼放光了。</p>
+<h3 id="英语口语">英语口语</h3><p>和老外交流的诀窍是，不要担心自己的口语不好，而要相信对方的听力很棒。然后大胆说就好了。</p>
+<hr>
+<p>好像还落了好多话题，比如佛学、瓶颈的突破、什么是总结等等，以后有机会再分享下这些水货。</p>
+</div>
+
+    <div class="cat">
+    
+    <p><span>#</span> <a href="/category/blog/">blog</a></p>
+    
+    </div>
+
+    <div class="relate">
+        
+        
+        <p><span>PREV: </span><a rel="prev" href="/posts/7402771.html">从 Vim 与 IDE 的讨论说起</a></p>
+        
+
+        
+        
+        <p><span>NEXT: </span><a rel="next" href="/posts/6082264.html">前端的归宿与价值</a></p>
+        
+
+        <p><span></span><a rel="all" href="/">VIEW ALL POSTS</a></p>
+    </div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        made by AcyOrt / powered by <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> / <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+var menu = document.querySelector('.menu');
+
+document.querySelector('.main').addEventListener('click', function(e) {
+    if (e.target.classList.toString().indexOf('menuicon') > -1) {
+        return menu.classList.toggle('active')
+    } 
+
+    return menu.classList.remove('active')
+})
+
+</script>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>

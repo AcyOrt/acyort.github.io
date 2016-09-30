@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="//icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+测试工具设计的一个细节 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <div class="center">
+        <a class="logo" href="/">AcyOrt</a>
+
+        <div class="menu">
+            <div class="menuicon"></div>
+
+            <div class="menuitem">
+            
+            <a href="/">home</a>
+            
+            <a href="/">about</a>
+            
+            <a href="/">archives</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">October 15, 2013</p> 
+
+    <h1 class="title">测试工具设计的一个细节</h1>
+
+    <div class="content"><p><img src="https://f.cloud.github.com/assets/97227/1332880/91a21fe4-3585-11e3-913c-2542c5e1b2ea.jpeg" alt="b8e55353aa4f44fb514e7a1400185adbf7e900f137bf1-4tmwnr_fw580"></p>
+<p>每次发文，都会有人回复能否来点「干货」。但干货一般真的很干，适合睡前阅读的不多。</p>
+<p>幸运的是，今天组内妹子写了一篇博客，从浅入深，很清晰地讲述了前端测试工具开发时遇到的一些问题和解决方案。很精彩，地址如下：</p>
+<p><a href="https://github.com/fool2fish/blog/issues/3">测试工具设计的一个细节：iframe 还是 window ？</a></p>
+<p>阅读完成后，可以回来听我继续唠叨：</p>
+<ol>
+<li><p>微信不适合发技术文章，特别是含大量代码的。原本想将上面的文章编辑过来，但上帝饶了我吧，这活比叫我出去跑十圈还难。</p>
+</li>
+<li><p>最近看到一句话，说 <strong>「浮躁是源自内心的一种不安全感」</strong>。房子、车子、妹子等社会问题导致的浮躁，我这里就不说了。对于我们码农来说，内心的不安全感，往往来自对自身技术的不自信。很多社区的吵架，PHP 好还是 Java 好、ROR 转型 Node.js 等，很多参与口水仗的码农们，内心或多或少都是「浮躁」的。 <strong>摆脱浮躁的妙方，就是「静」字。</strong> 唯有安静下来，内求于心，踏实地去学去用，才能自信起来。比如沉鱼上面这篇文章，心若静不下来，是不大可能有心情写这么多文字的。对女程序来说，心静、自信，还有美容养颜的功效。不信的话，你可以来看看沉鱼哦。</p>
+</li>
+<li><p>最近在微博上发了条关于 <strong>「全端工程师」</strong> 的微博。我对全端工程师的理解，不是说后端、数据库、甚至设计、产品什么的都一锅端。分工细化是提高效率和推动社会进步的重要因素。 <strong>全端不是全才，全端的依托点依旧在端上。</strong> 只是这个「端」，不再局限于传统的 PC 端，需要包括目前兴起的 Phone 端、Pad 端、TV 端、各种 Screen 端等等。这些端，需要前端扩展自己的技能，对 iOS 开发、Android 开发等都要涉猎。至于 Node.js，扩展的也是端，一是数据库上面的服务端，二是当工具语言用，让前端可以游刃于各种 Shell 端。前端就如木匠，优秀的木匠，不会把自己局限在只会用一种工具上。</p>
+</li>
+</ol>
+<p>（完）</p>
+<p>题图：细节之美。</p>
+<hr>
+<p>欢迎订阅 WTP（Web 技术与产品交流）微信公众帐号。WTP 关注技术、产品、自由梦，会偶尔推送一些原创文字。欢迎扫描二维码订阅：</p>
+<p><img src="http://ww4.sinaimg.cn/thumbnail/68361562gw1e2iehwolnpj.jpg" alt=""></p>
+</div>
+
+    <div class="cat">
+    
+    <p><span>#</span> <a href="/category/blog/">blog</a></p>
+    
+    </div>
+
+    <div class="relate">
+        
+        
+        <p><span>PREV: </span><a rel="prev" href="/posts/21279947.html">可爱的孩子们</a></p>
+        
+
+        
+        
+        <p><span>NEXT: </span><a rel="next" href="/posts/20683200.html">知识与知道</a></p>
+        
+
+        <p><span></span><a rel="all" href="/">VIEW ALL POSTS</a></p>
+    </div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        made by AcyOrt / powered by <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> / <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+var menu = document.querySelector('.menu');
+
+document.querySelector('.main').addEventListener('click', function(e) {
+    if (e.target.classList.toString().indexOf('menuicon') > -1) {
+        return menu.classList.toggle('active')
+    } 
+
+    return menu.classList.remove('active')
+})
+
+</script>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>

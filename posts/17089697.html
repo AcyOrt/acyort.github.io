@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="//icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+Sea.js 源码解析（一） - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <div class="center">
+        <a class="logo" href="/">AcyOrt</a>
+
+        <div class="menu">
+            <div class="menuicon"></div>
+
+            <div class="menuitem">
+            
+            <a href="/">home</a>
+            
+            <a href="/">about</a>
+            
+            <a href="/">archives</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">July 23, 2013</p> 
+
+    <h1 class="title">Sea.js 源码解析（一）</h1>
+
+    <div class="content"><p><img src="https://f.cloud.github.com/assets/97227/840467/7fc21882-f373-11e2-85a3-e8885bff283f.png" alt="image"></p>
+<h2 id="缘由">缘由</h2><p>重构 Sea.js 2.1 时，有个很重要的目标：让大家都能简单清晰地看明白 Sea.js 的源码。清楚源码，好处很多：</p>
+<ol>
+<li>遇到使用上的问题，可以快速定位和解决。</li>
+<li>可以根据个性需求，定制 Sea.js，比如特定场合下的精简版。</li>
+<li>能明白设计和实现细节，可以讨论、改进，为社区做贡献。</li>
+</ol>
+<p>在深入源码之前，依旧希望各位能「达成以下成就」：</p>
+<ol>
+<li>有看过「<a href="http://seajs.org/docs/#quick-start">5 分钟上手 Sea.js</a>」</li>
+<li>有阅读过至少一遍「<a href="http://seajs.org/docs/#docs">Sea.js 使用文档</a>」</li>
+<li>有在实际项目中使用过 Sea.js</li>
+</ol>
+<p>很多源码细节，都离不开使用场景，只有真实放入场景中，才会清晰明白。下面会从整体结构，到实现细节，逐一阐述 Sea.js 源码中的所有秘密。</p>
+<h2 id="目录结构">目录结构</h2><p>Sea.js 的所有代码都通过 GitHub 管理，项目地址：</p>
+<blockquote>
+<p><a href="https://github.com/seajs/seajs">https://github.com/seajs/seajs</a></p>
+</blockquote>
+<p>各个目录的内容为：</p>
+<pre><code>dist              --  构建好的文件
+docs              --  文档
+<span class="hljs-class"><span class="hljs-keyword">lib</span>               --  <span class="hljs-title">Node</span>.<span class="hljs-title">js</span> 版源码</span>
+src               --  源码
+tests             --  测试文件
+tools             --  构建工具相关文件
+Gruntfile.js      --  grunt 配置
+Makefile          --  make 配置
+package.json      --  包的配置信息
+</code></pre><p>还有些文件暂时不用关心，后续有必要时会提及。作为一个有追求的程序员，经常会为各种细节烦恼，目录结构就是其中之一。定目录结构时，经常会纠结：</p>
+<ol>
+<li><p>源码有必要单独放在 src 目录里吗？还是直接放在根目标就好？很多开源小类库，比如 underscore 等，源码都是直接放在根目录，简单明了。但当源文件非常多时，放根目录会很混乱，因此在 YUI3 等大项目中，源码会分门别类放得比较深。对于 Sea.js 来说，源码文件还是有点多，因此特意建了一层目录来存放。至于 lib 目录，则是 Node.js 模块的标配了，有业界潜规则的，一般直接遵守就好。</p>
+</li>
+<li><p>docs 目录和 tests 目录也是标配，一个放文档，一个放测试。这两个目录，最常纠结的是，应该用单数（doc、test）还是复数（docs、tests）？这个没有定论，不同社区的习惯不同，即便同一个社区，经常也能看见混用的情形。我个人受 YUI 社区的影响比较大，当初选择了复数形式，现在觉得无论复数、单数，都行。</p>
+</li>
+<li><p>tools 目前有些特殊，是 Sea.js 历史遗留下来的。Sea.js 一直采用 Google Closure Compiler（简称 GCC） 来压缩。GCC 不光能压缩代码，还能检查代码错误、风格等等。这需要一些配置文件，当初就全放 tools 目录了。最起初，Sea.js 采用 Ant 作为构建工具，Ant 需要用到的一些三方库，也被放在这里。从 2.0 开始，Sea.js 采用 Grunt 来构建，因此这个目录就变成了 Grunt 相关文件的存放地。等讲到 Sea.js 的构建时，会再详细说说。</p>
+</li>
+<li><p>dist 目录，也是源自 YUI 社区的习惯。在 YUI 的项目里，会有一个 build 目录，用来存放合并压缩好的可部署文件。dist 目录应不应该出现在源码里，一直存在争议。理想主义派觉得，这东东压根儿不应该出现在源码里，源码库应该纯粹简单，只存放源码。实用主义派则觉得，另搞一台服务器存放构建好的文件太麻烦了，无论是对开发者，还是使用者。在硬盘空间如此廉价的时代，牺牲点空间，抹去点洁癖，保留 dist 目录最简单使用。Sea.js 是实用主义派，因此保留了 dist 目录。dist 是 distribution 的缩写，用来存放构建好的可部署文件，也是业界的一个准规范。</p>
+</li>
+<li><p>其他都是单个文件，其中 package.json 最值得一提，这源自 CommonJS 社区的 Packages 规范。在 CommonJS 的视角，任何项目，都可以看成一个或多个包，每个包都有一些基本信息，这些信息统一放在 package.json 中描述。目前 package.json 已遍布各种开源项目，里面的信息，看一下就明白。</p>
+</li>
+</ol>
+<h2 id="最后">最后</h2><p>本以为目录结构没什么可讲的，一不小心写了这么多，真心有些感慨，看来是我老了。</p>
+<p>今天就说这么多，关于目录结构，也希望听听各位的建议，欢迎留言。下一篇会开始讲述 src 目录下的源码。</p>
+<p>（完）</p>
+<p>题图：那卷起的海浪，是永不逝的花呀。</p>
+<hr>
+<p>欢迎订阅 WTP（Web 技术与产品交流）微信公众帐号。WTP 关注技术、产品、自由梦，会偶尔推送一些原创文字。欢迎扫描二维码订阅：</p>
+<p><img src="http://ww4.sinaimg.cn/thumbnail/68361562gw1e2iehwolnpj.jpg" alt=""></p>
+</div>
+
+    <div class="cat">
+    
+    <p><span>#</span> <a href="/category/blog/">blog</a></p>
+    
+    </div>
+
+    <div class="relate">
+        
+        
+        <p><span>PREV: </span><a rel="prev" href="/posts/17149008.html">Sea.js 源码解析（二）</a></p>
+        
+
+        
+        
+        <p><span>NEXT: </span><a rel="next" href="/posts/16846559.html">什么是开源精神</a></p>
+        
+
+        <p><span></span><a rel="all" href="/">VIEW ALL POSTS</a></p>
+    </div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        made by AcyOrt / powered by <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> / <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+var menu = document.querySelector('.menu');
+
+document.querySelector('.main').addEventListener('click', function(e) {
+    if (e.target.classList.toString().indexOf('menuicon') > -1) {
+        return menu.classList.toggle('active')
+    } 
+
+    return menu.classList.remove('active')
+})
+
+</script>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>

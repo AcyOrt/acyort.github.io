@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="//icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+事件触发的一个细节设计（上） - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <div class="center">
+        <a class="logo" href="/">AcyOrt</a>
+
+        <div class="menu">
+            <div class="menuicon"></div>
+
+            <div class="menuitem">
+            
+            <a href="/">home</a>
+            
+            <a href="/">about</a>
+            
+            <a href="/">archives</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">April 22, 2013</p> 
+
+    <h1 class="title">事件触发的一个细节设计（上）</h1>
+
+    <div class="content"><p><img src="https://f.cloud.github.com/assets/97227/409298/81d61a4a-ab4f-11e2-991e-bd8c3ed68cb6.png" alt="Screen Shot 2013-04-22 at 9 20 41 PM"></p>
+<p>前端开发过程中，事件机制无处不在。比如使用 jQuery 添加 DOM 事件：</p>
+<pre><code class="lang-js">$(<span class="hljs-built_in">document</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>);
+});
+
+$(<span class="hljs-built_in">document</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);
+});
+</code></pre>
+<p>当点击 document 时，控制台中会按照预期输出 1 和 2 。</p>
+<p>问题来了：</p>
+<pre><code class="lang-js">$(<span class="hljs-built_in">document</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>);
+  DOES_NOT_EXIST++;
+});
+
+$(<span class="hljs-built_in">document</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);
+});
+</code></pre>
+<p>以上代码，点击 document 时，控制台中会输出：</p>
+<pre><code><span class="hljs-number">1</span>
+Uncaught ReferenceError: DOES_NOT_EXIST <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> defined
+</code></pre><p>输出了 1，然后抛了一个异常，没有输出 2 。</p>
+<p>如果使用浏览器自身的 <code>addEventListener</code> 注册：</p>
+<pre><code class="lang-js"><span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>);
+  DOES_NOT_EXIST++;
+}, <span class="hljs-literal">false</span>);
+
+<span class="hljs-built_in">document</span>.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>);
+}, <span class="hljs-literal">false</span>);
+</code></pre>
+<p>当点击 document 时，在 Chrome 下，控制台中会输出：</p>
+<pre><code><span class="hljs-number">1</span>
+Uncaught ReferenceError: DOES_NOT_EXIST <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> defined
+<span class="hljs-number">2</span>
+</code></pre><p>很明显，当 handler 中有异常时，浏览器的 addEventListener 与 jQuery 的处理方式不一样：</p>
+<ul>
+<li><strong>继续执行策略</strong>：浏览器会抛出异常，然后继续执行其他 handlers 。</li>
+<li><strong>停止执行策略</strong>：jQuery 会抛出异常，然后停止执行其他 handlers 。</li>
+</ul>
+<p>继续讨论前，先留一个小作业：大家可以研究下 YUI、MooTools、Prototype、Dojo 等等类库框架的处理策略。回复给我，全答对者，明天有惊喜。</p>
+<p>对于继续执行策略，核心理念是： <strong>事件 handlers 之间应该彼此无依赖，即便有异常也不能影响其他 handlers 的执行</strong>。实现上可以通过 <code>try catch</code> 或 <code>setTimeout</code> 等方式，来确保一粒老鼠屎不会坏掉一锅汤。这个理念有很多人、很多类库框架支持。</p>
+<p>对于停止执行策略，核心理念是： <strong>事件 handlers 之间应该彼此无依赖，但当某个 handler 异常时，不应该假装没事一样，继续执行其他 handlers</strong> 。这个理念也有很多人、很多类库框架支持。因为掉进锅里的老鼠屎很可能有毒，一旦发现了，最明智的做法是别让大家喝了。</p>
+<p>无论是继续执行还是停止执行，都同意事件 handlers 之间应该彼此无依赖，这一点上无分歧。但涉及异常时，两种理念下的策略迥异。</p>
+<p>这两种处理策略，究竟哪种更好呢？你的想法是怎样的？欢迎留言给我。明天我再详细说说我的想法。</p>
+<p>记得做前面留的小作业哦，以及回复我你的选择。</p>
+<p>（文 / 玉伯）</p>
+<p>题图：一幅充满事件的抽象画。</p>
+<p>题外话：昨天有人问 WTP 怎么没更新。WTP 默认情况下只在工作日更新。非工作日，鼓励大家忘掉手机、忘掉网络，好好去沐浴阳光、享受生活。</p>
+<hr>
+<p>欢迎订阅 WTP（Web 技术与产品交流）微信公众帐号。WTP 关注技术、产品、自由梦，在每个工作日（偶尔休息日）会定期推送一篇原创文字。欢迎扫描二维码订阅：</p>
+<p><img src="http://ww4.sinaimg.cn/thumbnail/68361562gw1e2iehwolnpj.jpg" alt=""></p>
+</div>
+
+    <div class="cat">
+    
+    <p><span>#</span> <a href="/category/blog/">blog</a></p>
+    
+    </div>
+
+    <div class="relate">
+        
+        
+        <p><span>PREV: </span><a rel="prev" href="/posts/13534870.html">事件触发的一个细节设计（下）</a></p>
+        
+
+        
+        
+        <p><span>NEXT: </span><a rel="next" href="/posts/13189315.html">6个残酷的人生事实</a></p>
+        
+
+        <p><span></span><a rel="all" href="/">VIEW ALL POSTS</a></p>
+    </div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        made by AcyOrt / powered by <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> / <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+var menu = document.querySelector('.menu');
+
+document.querySelector('.main').addEventListener('click', function(e) {
+    if (e.target.classList.toString().indexOf('menuicon') > -1) {
+        return menu.classList.toggle('active')
+    } 
+
+    return menu.classList.remove('active')
+})
+
+</script>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>

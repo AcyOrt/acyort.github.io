@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="//icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+会议工具分享 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <div class="center">
+        <a class="logo" href="/">AcyOrt</a>
+
+        <div class="menu">
+            <div class="menuicon"></div>
+
+            <div class="menuitem">
+            
+            <a href="/">home</a>
+            
+            <a href="/">about</a>
+            
+            <a href="/">archives</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">March 29, 2013</p> 
+
+    <h1 class="title">会议工具分享</h1>
+
+    <div class="content"><p><img src="https://f.cloud.github.com/assets/97227/317140/a06b5d24-985a-11e2-9e18-0a49002e80ec.jpg" alt="d8e41a5d46ba030bb9057eacf0152417"></p>
+<p>在公司开会，会议室是个大麻烦，涉及远程会议时，更麻烦。今天没什么心情，只分享些与会议相关的小工具。</p>
+<p>如果公司财大气粗，有充足的视频会议室，可以用思科那一整套解决方案，下面就不用看了。然而实际情况是，视频会议室永远不够用，甚至投影仪都不够用。</p>
+<p>对技术人员来说，远程会议最需要解决的只有两个：</p>
+<ol>
+<li>声音。</li>
+<li>屏幕共享。</li>
+</ol>
+<p>第一个问题，解决方案一堆，个人推荐微信的对讲机。</p>
+<p>第二个问题，也有很多解决方案。个人最喜欢的是一个免费方案：<a href="https://join.me/">join.me</a> 下载安装后，就可以分享屏幕，对方通过浏览器查看。</p>
+<p>如冯大辉说的一样，大部分会议有毒。最好的方式还是尽可能减少会议，非开不可，也一定要严格控制时间。很多时候，特别是需要思考的东西，通过邮件、GitHub 等方式会更有效。真的，我从不骗人。</p>
+<p>（完）</p>
+<p>题图：完全看不懂，但觉得很贴题。</p>
+<p>最后来个广告：4 月 1 日会正式发布 seajs 2.0 和 spm 2.0，信不信由你。</p>
+<hr>
+<p>欢迎订阅 WTP（Web 技术与产品交流）微信公众帐号。WTP 关注技术、产品、自由梦，在每个工作日（偶尔休息日）会定期推送一篇原创文字。欢迎扫描二维码订阅：</p>
+<p><img src="http://ww4.sinaimg.cn/thumbnail/68361562gw1e2iehwolnpj.jpg" alt=""></p>
+</div>
+
+    <div class="cat">
+    
+    <p><span>#</span> <a href="/category/blog/">blog</a></p>
+    
+    </div>
+
+    <div class="relate">
+        
+        
+        <p><span>PREV: </span><a rel="prev" href="/posts/12662051.html">前端业界聚焦（3月刊）</a></p>
+        
+
+        
+        
+        <p><span>NEXT: </span><a rel="next" href="/posts/12564844.html">晋升面试的几点心得</a></p>
+        
+
+        <p><span></span><a rel="all" href="/">VIEW ALL POSTS</a></p>
+    </div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        made by AcyOrt / powered by <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> / <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+var menu = document.querySelector('.menu');
+
+document.querySelector('.main').addEventListener('click', function(e) {
+    if (e.target.classList.toString().indexOf('menuicon') > -1) {
+        return menu.classList.toggle('active')
+    } 
+
+    return menu.classList.remove('active')
+})
+
+</script>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>

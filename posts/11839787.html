@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="//icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+放开你的思路 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <div class="center">
+        <a class="logo" href="/">AcyOrt</a>
+
+        <div class="menu">
+            <div class="menuicon"></div>
+
+            <div class="menuitem">
+            
+            <a href="/">home</a>
+            
+            <a href="/">about</a>
+            
+            <a href="/">archives</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">March 09, 2013</p> 
+
+    <h1 class="title">放开你的思路</h1>
+
+    <div class="content"><h1 id="放开你的思路">放开你的思路</h1><p>前些天，陈皓在微博上抛出了异步请求的一个问题：</p>
+<blockquote>
+<p>coolshell 网站提供了 10 进制转 16 进制的 JSONP 服务，即 
+GET 请求 <a href="http://coolshell.cn/t.php?n=10&amp;callback=xxx">http://coolshell.cn/t.php?n=10&amp;callback=xxx</a>
+会返回 xxx(&#39;0xa&#39;);</p>
+<p>问题：
+使用 JavaScript 调用上面的 API 输出 1 - 30 的 16 进制表示（最好按顺序打印）</p>
+</blockquote>
+<h2 id="我的直觉方案">我的直觉方案</h2><p>首先封装下 JSONP 的调用接口：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getScript</span>(<span class="hljs-params">url</span>) </span>{
+  <span class="hljs-built_in">var</span> script = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'script'</span>)
+  script.src = <span class="hljs-built_in">url</span>
+  <span class="hljs-built_in">document</span>.documentElement.appendChild(script)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decimal2Hex</span>(<span class="hljs-params">n, callback</span>) </span>{
+  <span class="hljs-built_in">window</span>[<span class="hljs-string">'callback'</span> + n] = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">result</span>) </span>{
+    callback(n, result)
+  }
+  getScript(<span class="hljs-string">'http://coolshell.cn/t.php?n='</span>
+      + n + <span class="hljs-string">'&amp;callback=callback'</span> + n)
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span>(<span class="hljs-params">n, result</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(n, result)
+}
+</code></pre>
+<p>然后，对于陈皓提出的问题，一个循环就能解决：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-title">for</span><span class="hljs-params">(var i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">31</span>; i++)</span></span> {
+  decimal2Hex(<span class="hljs-selector-tag">i</span>, print)
+}
+</code></pre>
+<p>好像很简单。</p>
+<h2 id="可是，大家在讨论什么">可是，大家在讨论什么</h2><p>这条微博很火，涌现出各种方案。比如</p>
+<pre><code class="lang-js">
+ <span class="hljs-comment">// 闭包法</span>
+ <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">1</span>; i &lt; <span class="hljs-number">31</span>; i++) {
+  (<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(n)</span> </span>{
+    xss_rpc_call2(n, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(result)</span> </span>{
+      <span class="hljs-keyword">print</span>(n, result)
+    })
+  })(i)
+}
+
+<span class="hljs-comment">// 递归法</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">recursive_solution</span><span class="hljs-params">(n)</span> </span>{
+  <span class="hljs-keyword">if</span> (i === <span class="hljs-number">31</span>) <span class="hljs-keyword">return</span>
+  xss_rpc_call(n, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(result)</span> </span>{
+    <span class="hljs-keyword">print</span>(n, result)
+    recursive_solution(i + <span class="hljs-number">1</span>)
+  })
+}
+recursive_solution(<span class="hljs-number">1</span>)
+
+<span class="hljs-comment">// 数组法</span>
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// 自制 Async 法</span>
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// 数组优化法</span>
+<span class="hljs-comment">// ...</span>
+
+<span class="hljs-comment">// 性能加超时法</span>
+<span class="hljs-comment">// ...</span>
+</code></pre>
+<p>详见陈皓的总结：<a href="http://coolshell.cn/t.html">http://coolshell.cn/t.html</a></p>
+<p>性能加超时法另当别论，这是另一个话题。前面的递归法、数组法、Async 法等等，看得直让让我纳闷。这是在玩什么呢？</p>
+<p>仔细探究了一番源码后，发现罪魁祸首是那两个命名怪异的方法：<code>xss_rpc_call</code> 和 <code>xss_rpc_call2</code>。看其中一个：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">xss_rpc_call2</span>(<span class="hljs-params">n, callback</span>) </span>{
+  <span class="hljs-built_in">var</span> t = <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">100000</span>)
+  <span class="hljs-built_in">var</span> callbackName = <span class="hljs-string">"xss_rpc_callback"</span> + n + t
+  <span class="hljs-built_in">var</span> <span class="hljs-built_in">url</span> = <span class="hljs-string">"http://coolshell.cn/t.php?n="</span> + n
+      + <span class="hljs-string">"&amp;callback="</span> + callbackName
+
+  xss_ajax(<span class="hljs-built_in">url</span>)
+
+  <span class="hljs-built_in">window</span>[callbackName] = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">result</span>) </span>{
+    <span class="hljs-built_in">var</span> timeout = <span class="hljs-built_in">Math</span>.round(<span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">1000</span>)
+    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      callback(result)
+    }, timeout)
+  }
+}
+</code></pre>
+<p>为了排版，上面的代码稍有修改。其中 <code>xss_ajax</code> 类似 <code>getScript</code> 方法。</p>
+<p>还记得前面的 decimal2Hex 方法不？来对比看下：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">decimal2Hex</span><span class="hljs-params">(n, callback)</span> </span>{
+  window[<span class="hljs-string">'callback'</span> + n] = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(result)</span> </span>{
+    <span class="hljs-keyword">callback</span>(n, result)
+  }
+  getScript(<span class="hljs-string">'http://coolshell.cn/t.php?n='</span>
+      + n + <span class="hljs-string">'&amp;callback=callback'</span> + n)
+}
+</code></pre>
+<p>除了面试官故弄玄虚的 <code>setTimeout</code>，以上两个方法的核心区别是给 <code>window</code> 添加的全局回调函数有差异。<code>decimal2Hex</code> 里，直接 <code>callback(n, result)</code>，这就避免了闭包陷进。</p>
+<p>进一步看源码，可以看出大家对题目中的</p>
+<blockquote>
+<p>最好按顺序打印</p>
+</blockquote>
+<p>非常在乎。大部分方案是在解决这个问题。</p>
+<h2 id="顺序输出">顺序输出</h2><p>顺序输出，最好的解决方式是，打电话给陈皓，让 JSONP 接口更强大，比如：</p>
+<pre><code>http://coolshell.<span class="hljs-keyword">cn</span>/t.php?<span class="hljs-built_in">min</span>=<span class="hljs-number">1</span>&amp;<span class="hljs-built_in">max</span>=<span class="hljs-number">30</span>&amp;callback=xxx
+</code></pre><p>如果真要解决，修改 <code>print</code> 方法，到最后再统一显示：</p>
+<pre><code class="lang-js">var <span class="hljs-keyword">cache</span> = []
+<span class="hljs-keyword">var</span> <span class="hljs-keyword">count</span> = <span class="hljs-number">0</span>
+
+<span class="hljs-keyword">function</span> print(n, <span class="hljs-keyword">result</span>) {
+  <span class="hljs-keyword">cache</span>[n] = <span class="hljs-keyword">result</span>
+  <span class="hljs-keyword">if</span> (++<span class="hljs-keyword">count</span> === <span class="hljs-number">30</span>) {
+    cache.forEach(<span class="hljs-keyword">function</span>(<span class="hljs-keyword">result</span>, n) {
+      console.log(n, <span class="hljs-keyword">result</span>)
+    })
+  }
+}
+</code></pre>
+<p>类似问题，在 npm 等命令行工具里，都是忽略掉，谁先到达谁先显示就行。还可以进一步优化成尽快显示，但对于陈皓这个面试题来说，真心没必要。如果在其他场景中有需要，很可能有其他更好的解决方案。</p>
+<p>上面是引子，下面是我觉得有意思的。</p>
+<h2 id="放开你的思路">放开你的思路</h2><p>在微博上的所有解决方案中，好像没看到修改 <code>xss_rpc_call2</code> 的。陈皓只是限定不能修改服务端接口，并没限定 JS 代码。</p>
+<p>无论是面试题，还是工作中遇到的真实问题，我们往往会局限在舒适区。比如对于页面性能优化，后端会从后端的角度去思考，前端会从前端的角度去分析。这种分工细化，可以将页面性能优化得不错，但却很难达到优秀，很难产生出类似 Facebook BigPipe 式的创新类优化。</p>
+<p>陈皓说，你无权修改我的 API。</p>
+<p>很多人又很听话了，开始乖乖地在这种假设的限制下去想解决方案。可是，为什么无权修改呢？在工作中，类似的话太多了：</p>
+<blockquote>
+<p>PD 说：这个需求一定要实现，不能去掉。
+设计说：这个按钮必须这样，不能修改。
+PM 说：周五必须上线，不能延期。
+...</p>
+</blockquote>
+<p>可是 TMD，作为直接为代码负责的你，为什么不能说：</p>
+<blockquote>
+<p>你无权剥夺我合理拒绝的权力。</p>
+</blockquote>
+<p>这个话题点到为止。在《程序员的职业素养》里专门有章节阐述此话题，推荐大家购买阅读并真实实践之。如果你学不会说“不”，如果你不懂得拒绝，你永远无法成为专业的程序员。</p>
+<p>有任何不同看法，欢迎讨论。</p>
+<p>（完）</p>
+<p>这是 WTP（Web 技术与产品交流）微信公众帐号的第一篇文章。WTP 在每个工作日（偶尔休息日）会定期给大家推送一篇原创文字。请搜索 WTP 关键字，或扫描二维码订阅：</p>
+<p><img src="http://ww4.sinaimg.cn/thumbnail/68361562gw1e2iehwolnpj.jpg" alt=""></p>
+</div>
+
+    <div class="cat">
+    
+    <p><span>#</span> <a href="/category/blog/">blog</a></p>
+    
+    </div>
+
+    <div class="relate">
+        
+        
+        <p><span>PREV: </span><a rel="prev" href="/posts/11878823.html">聊聊 JSONP 的 P</a></p>
+        
+
+        
+        
+        <p><span>NEXT: </span><a rel="next" href="/posts/11459832.html">毕业十年与我的三个梦</a></p>
+        
+
+        <p><span></span><a rel="all" href="/">VIEW ALL POSTS</a></p>
+    </div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        made by AcyOrt / powered by <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> / <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+var menu = document.querySelector('.menu');
+
+document.querySelector('.main').addEventListener('click', function(e) {
+    if (e.target.classList.toString().indexOf('menuicon') > -1) {
+        return menu.classList.toggle('active')
+    } 
+
+    return menu.classList.remove('active')
+})
+
+</script>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>

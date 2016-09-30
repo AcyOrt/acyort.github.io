@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="//icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+简单还是一致 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <div class="center">
+        <a class="logo" href="/">AcyOrt</a>
+
+        <div class="menu">
+            <div class="menuicon"></div>
+
+            <div class="menuitem">
+            
+            <a href="/">home</a>
+            
+            <a href="/">about</a>
+            
+            <a href="/">archives</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">April 02, 2013</p> 
+
+    <h1 class="title">简单还是一致</h1>
+
+    <div class="content"><p><img src="https://i.alipayobjects.com/e/201304/2WWTNwVz6S.jpeg" alt=""></p>
+<p>今天要讨论的问题挺有意思，来自 SeaJS 中的一个实现细节。描述如下：</p>
+<pre><code class="lang-js">seajs.<span class="hljs-keyword">use</span>(<span class="hljs-string">'a'</span>, callback)
+</code></pre>
+<p>假设模块 a 对应文件 a.js，上面的代码，会先下载 a.js，下载并执行完成后，再调用 callback 方法。</p>
+<p>问题来了：</p>
+<pre><code class="lang-html"><span class="hljs-comment">&lt;!-- 提先加载好模块 a --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"a.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+<span class="hljs-comment">// use 时，模块 a 已就绪</span>
+seajs.use(<span class="hljs-string">'a'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-number">1</span>)
+})
+
+<span class="hljs-built_in">console</span>.log(<span class="hljs-number">2</span>)
+
+<span class="hljs-comment">// 请问 console 中先输出 1 还是 2 ？</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>问题可以简述为： <strong>对于已经就绪的模块，在 use 时，callback 是同步执行还是异步执行。</strong></p>
+<h2 id="现状">现状</h2><p>不同 loader 的处理策略不同：</p>
+<ol>
+<li>在 SeaJS 2.0 中，输出 1 2</li>
+<li>在 RequireJS 2.1.5 中，输出 2 1</li>
+<li>在 YUI 3.9.1 中，输出 1 2</li>
+<li>在 KISSY 1.3 中，输出 2 1</li>
+</ol>
+<p>测试代码：<a href="https://github.com/lifesinger/lifesinger.github.com/tree/master/lab/2013/callback-order">callback-order</a></p>
+<h2 id="一致认可的观点">一致认可的观点</h2><p>与同事讨论后，一致认可的是：</p>
+<p><strong>无论同步还是异步执行 callback，都不应该影响最终结果。</strong></p>
+<p>即</p>
+<pre><code class="lang-js">seajs.<span class="hljs-keyword">use</span>(<span class="hljs-symbol">'a</span>', callback)
+
+<span class="hljs-comment">// 这里的代码，不应该依赖上面 callback 的执行结果</span>
+</code></pre>
+<h2 id="异步执行的观点">异步执行的观点</h2><p>在 KISSY 1.3 之前，当模块已就绪时，callback 是同步执行的。1.3 时，调整成了异步执行，考虑点为：</p>
+<ol>
+<li><p><strong>保持一致性</strong>。无论模块是否就绪，始终让 callback 保持异步执行。</p>
+</li>
+<li><p>在 KISSY 1.2 的实际使用中，会有人让 use 后面的代码依赖 callback 的执行，当把前面的 script 引入去掉时，就出错了。为了避免这种误用，改成了异步，强制使得 use 后面的代码不能依赖 callback 的执行。</p>
+</li>
+</ol>
+<p>具体实现原理，是在调用 callback 时，始终放在 setTimeout 中执行。</p>
+<h2 id="同步执行的观点">同步执行的观点</h2><p>在模块已就绪时，SeaJS 和 YUI3 中 callback 是同步执行的。考虑点是：</p>
+<ol>
+<li><p><strong>保持简单性</strong>。因为代码本就不应该依赖 callback 的执行时机，因此加一个 setTimeout 显得多余，增加了复杂性。</p>
+</li>
+<li><p>同步性还是有用的，只要用户了解这一规则。比如可以提前引入打包好的关键模块，这样在 use 时，可以确保立刻执行，有利于页面 TTI （Time to Interact）时间的优化。setTimeout 的话，执行时机变得不可控。</p>
+</li>
+</ol>
+<h2 id="两种观点的背后">两种观点的背后</h2><p>这个问题，让我想起了一篇经典老文：<a href="http://forum.pusuo.net/posts/list/2312.page">简单之美——系统设计黄金法则</a></p>
+<p>文章中提及两种经典的设计哲学：</p>
+<pre><code><span class="hljs-number">1</span>）MIT Approach
+
+　　简单性：设计必须简单，这既是对实现的要求，也是对接口的要求。接口的简单要比实现的简单更加重要。
+　　正确性：设计在任何值得注意的方面都要保证正确。不正确是绝对不允许的。
+　　一致性：设计必须保持一致兼容。设计可以允许轻微少量的不简单和不完整，来避免不一致。一致性和正确性同等重要。
+　　完整性：设计必须覆盖到实际应用的各种重要场景。所有可预料到的情况都必须覆盖到。简单性不能过度的损害完整性。
+</code></pre><p>来看另一个世界：</p>
+<pre><code><span class="hljs-number">2</span>）<span class="hljs-keyword">New</span> Jersey Approach
+
+　　简单性：设计必须简单，这既是对实现的要求，也是对接口的要求。实现的简单要比接口的简单更加重要。简单是设计中需要第一重视的因素。
+　　正确性：设计在任何值得注意的方面都要求正确。为了简单性，正确性可以做轻微的让步。
+　　一致性：设计不能过度不兼容一致。为了简单，一致性可以在某些方面做些牺牲，但与其允许设计中的这些处理不常见情况的部分去增加实现的复杂性和不一致性，不如丢掉它们。
+　　完整性：设计必须覆盖到实际应用的各种重要场景。所有可预料到的情况都应该覆盖到。为了保证其它几种特征的品质，完整性可以作出牺牲。事实上，一旦简单性受到危害，完整性必须做出牺牲。一致性可以为实现的完整性作出牺牲；最不重要的是接口上的一致性。
+</code></pre><p>回到我们的问题，可以看出 RequireJS、KISSY 的背后是 MIT 理念，强调一致性，可以牺牲简单性。SeaJS、YUI 的背后则是 New Jersey 理念，追求简单性，可以放弃部分一致性。</p>
+<h2 id="最后">最后</h2><p>你的观点是什么？</p>
+<p>（完）</p>
+<p>文 / 玉伯</p>
+<p>题图：最爱的莲花，即简单，又一致。</p>
+<p>PS：爱丽丝那篇文章还没写好，太多思绪。</p>
+<hr>
+<p>欢迎订阅 WTP（Web 技术与产品交流）微信公众帐号。WTP 关注技术、产品、自由梦，在每个工作日（偶尔休息日）会定期推送一篇原创文字。欢迎扫描二维码订阅：</p>
+<p><img src="http://ww4.sinaimg.cn/large/68361562gw1e2xqaox0asj.jpg" alt=""></p>
+</div>
+
+    <div class="cat">
+    
+    <p><span>#</span> <a href="/category/blog/">blog</a></p>
+    
+    </div>
+
+    <div class="relate">
+        
+        
+        <p><span>PREV: </span><a rel="prev" href="/posts/12806408.html">简单还是一致（续）</a></p>
+        
+
+        
+        
+        <p><span>NEXT: </span><a rel="next" href="/posts/12662051.html">前端业界聚焦（3月刊）</a></p>
+        
+
+        <p><span></span><a rel="all" href="/">VIEW ALL POSTS</a></p>
+    </div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        made by AcyOrt / powered by <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> / <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+var menu = document.querySelector('.menu');
+
+document.querySelector('.main').addEventListener('click', function(e) {
+    if (e.target.classList.toString().indexOf('menuicon') > -1) {
+        return menu.classList.toggle('active')
+    } 
+
+    return menu.classList.remove('active')
+})
+
+</script>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>

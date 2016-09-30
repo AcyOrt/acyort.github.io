@@ -1,0 +1,319 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="//icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+从 JavaScript 数组去重谈性能优化 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <div class="center">
+        <a class="logo" href="/">AcyOrt</a>
+
+        <div class="menu">
+            <div class="menuicon"></div>
+
+            <div class="menuitem">
+            
+            <a href="/">home</a>
+            
+            <a href="/">about</a>
+            
+            <a href="/">archives</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">February 04, 2013</p> 
+
+    <h1 class="title">从 JavaScript 数组去重谈性能优化</h1>
+
+    <div class="content"><h2 id="缘由">缘由</h2><p>JavaScript 数组去重经常出现在前端招聘的笔试题里，比如：</p>
+<blockquote>
+<p>有数组 <code>var arr = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, &#39;c&#39;, 1, &#39;&#39;, 1, 0]</code>，请用 JavaScript 实现去重函数 <code>unqiue</code>，使得 <code>unique(arr)</code> 返回 <code>[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;1&#39;, 0, 1, &#39;&#39;]</code></p>
+</blockquote>
+<p>作为笔试题，考点有二：</p>
+<ol>
+<li><p><strong>正确</strong>。别小看这个考点，考虑到 JavaScript 经常要在浏览器上运行，在千姿百态的各种浏览器环境下要保障一个函数的正确性可不是一件简单的事，不信你继续读完这篇博客。</p>
+</li>
+<li><p><strong>性能</strong>。虽然大部分情况下 JavaScript 语言本身（狭义范畴，不包含 DOM 等延拓）不会导致性能问题，但很不幸这是一道考题，因此面试官们还是会把性能作为一个考点。</p>
+</li>
+</ol>
+<p>在继续往下阅读之前，建议先实现一个自己认为最好的版本。</p>
+<h2 id="直觉方案">直觉方案</h2><p>对于数组去重，只要写过程序的，立刻就能得到第一个解法：</p>
+<pre><code class="lang-js">function unique(arr) {
+  <span class="hljs-keyword">var</span> <span class="hljs-keyword">ret</span> = []
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = 0; i &lt; arr.length; i++) {
+    <span class="hljs-keyword">var</span> item = arr[i]
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">ret</span>.indexOf(item) === -1) {
+      <span class="hljs-keyword">ret</span>.push(item)
+    }
+  }
+
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">ret</span>
+}
+</code></pre>
+<p>直觉往往很靠谱，在现代浏览器下，上面这个函数很正确，性能也不错。但前端最大的悲哀也是挑战之处在于，要支持各种运行环境。在 IE6-8 下，数组的 <code>indexOf</code> 方法还不存在。直觉方案要稍微改造一下：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> indexOf = [].indexOf ?
+    <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(arr, item)</span> </span>{
+      <span class="hljs-keyword">return</span> arr.indexOf(item)
+    } :
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">indexOf</span><span class="hljs-params">(arr, item)</span> </span>{
+      <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++) {
+        <span class="hljs-keyword">if</span> (arr[i] === item) {
+          <span class="hljs-keyword">return</span> i
+        }
+      }
+      <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>
+    }
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">unique</span><span class="hljs-params">(arr)</span> </span>{
+  <span class="hljs-keyword">var</span> ret = []
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++) {
+    <span class="hljs-keyword">var</span> item = arr[i]
+    <span class="hljs-keyword">if</span> (indexOf(ret, item) === <span class="hljs-number">-1</span>) {
+      ret.push(item)
+    }
+  }
+
+  <span class="hljs-keyword">return</span> ret
+}
+</code></pre>
+<p>写到这一步，正确性已没问题，但性能上，两重循环会让面试官们看了不爽。</p>
+<h2 id="优化方案">优化方案</h2><p>一谈到优化，往往就是八仙过海、百花齐放。但八仙往往不接地气，百花则很容易招来臭虫。数组去重的各种优化方案在此不一一讨论，下面只说最常用效果也很不错的一种。</p>
+<pre><code class="lang-js">function <span class="hljs-built_in">unique</span>(arr) {
+  <span class="hljs-built_in">var</span> ret = []
+  <span class="hljs-built_in">var</span> hash = {}
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-built_in">var</span> i = <span class="hljs-number">0</span>; i &lt; arr.<span class="hljs-built_in">length</span>; i++) {
+    <span class="hljs-built_in">var</span> item = arr[i]
+    <span class="hljs-built_in">var</span> <span class="hljs-built_in">key</span> = typeof(item) + item
+    <span class="hljs-keyword">if</span> (hash[<span class="hljs-built_in">key</span>] !== <span class="hljs-number">1</span>) {
+      ret.<span class="hljs-built_in">push</span>(item)
+      hash[<span class="hljs-built_in">key</span>] = <span class="hljs-number">1</span>
+    }
+  }
+
+  <span class="hljs-built_in">return</span> ret
+}
+</code></pre>
+<p>核心是构建了一个 <code>hash</code> 对象来替代 <code>indexOf</code>. 注意在 JavaScript 里，对象的键值只能是字符串，因此需要 <code>var key = typeof(item) + item</code> 来区分数值 <code>1</code> 和字符串 <code>&#39;1&#39;</code> 等情况。</p>
+<p>但优化真的很容易带来坑，比如上面的实现，对下面这种输入就无法判断：</p>
+<pre><code class="lang-js"><span class="hljs-built_in">unique</span>([ <span class="hljs-keyword">new</span> <span class="hljs-keyword">String</span>(<span class="hljs-number">1</span>), <span class="hljs-keyword">new</span> Number(<span class="hljs-number">1</span>) ])
+</code></pre>
+<p>可以继续修改代码，做到性能和正确性都很好。但往往，这带来的结果并不好。</p>
+<h2 id="真实需求">真实需求</h2><p>写到这里，这篇博客才算进入正题。程序员心中都会有一些梦想，比如写出又通用性能又好的普适函数。这种梦想是让程序员变得卓越的重要内驱力，但倘若不加以控制，也很容易走入迷途。</p>
+<p>回到性能优化。这年头有各种各样优化，核心系统、数据库、网络、前端等等，所有这些优化，都必须回答下面这个问题：</p>
+<ol>
+<li><p><strong>当前有什么</strong>。在什么场景下进行优化，场景下有哪些具体限制。理清限制很重要，限制往往带来自由。</p>
+</li>
+<li><p><strong>究竟要什么</strong>。优化的目的是什么。是提高稳定性，还是增大吞吐量，抑或减少用户等待时间。在回答这个问题之前，优化都是徒劳。对这个问题的准确回答，能为优化带来具体可测量的参数，这样优化才有目标。</p>
+</li>
+<li><p><strong>可以放弃什么</strong>。鱼与熊掌不可兼得。优化的本质是在具体场景下的取舍、权衡。什么都不愿意放弃的话，优化往往会举步维艰。</p>
+</li>
+</ol>
+<p>写这篇博客，不是为了解答一到笔试题，这道笔试题有点无聊。写这篇博客的原始驱动力是因为最近在做 SeaJS 的性能调优，其中有一个需求是：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-title">define</span><span class="hljs-params">(function(require, exports)</span></span> {
+  <span class="hljs-selector-tag">var</span> <span class="hljs-selector-tag">a</span> = require(<span class="hljs-string">'./a'</span>)
+  <span class="hljs-selector-tag">var</span> <span class="hljs-selector-tag">b</span> = require(<span class="hljs-string">'./b'</span>)
+  ...
+  require(<span class="hljs-string">'./a'</span>).fn(...)
+})
+</code></pre>
+<p>上面是一个模块，通过解析函数字符串，可以拿到模块的依赖数组：<code>[&#39;./a&#39;, &#39;./b&#39;, &#39;./a&#39;]</code>，这个依赖信息有可能会出现重复字段，因此要做去重。</p>
+<p>针对这个具体场景，来回答上面三个问题：</p>
+<ol>
+<li><p><strong>当前有什么</strong>。有的是输入限制，只需要考虑字符串。</p>
+</li>
+<li><p><strong>究竟要什么</strong>。这个问题比较简单，希望 unique 方法尽可能快，指标是用 Chrome 调试工具中的 Profiles 面板查看指定测试页面中 unique 方法的耗时，目标是 5ms 以内。</p>
+</li>
+<li><p><strong>可以放弃什么</strong>。只需处理字符串，其他类型的都可以不支持。谈到放弃往往很有意思，这个问题不那么简单，接下来再说。</p>
+</li>
+</ol>
+<h2 id="seajs-下的解决方案">SeaJS 下的解决方案</h2><p>一旦分析清楚了具体场景，解决方案就相对简单：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">unique</span><span class="hljs-params">(arr)</span> </span>{
+  <span class="hljs-keyword">var</span> obj = {}
+
+  <span class="hljs-keyword">forEach</span>(arr, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(item)</span> </span>{
+    obj[item] = <span class="hljs-number">1</span>
+  })
+
+  <span class="hljs-keyword">return</span> keys(obj)
+}
+</code></pre>
+<p>上面的代码依赖 <code>forEach</code> 和 <code>keys</code>，离不开上下文环境（环境很重要很重要），完整代码：<a href="https://github.com/seajs/seajs/blob/master/src/util-lang.js">util-lang.js</a></p>
+<p>上面这个方案，无论从代码体积、正确性、还是各种浏览器下的综合性能来考量，都很不错。</p>
+<p>直到有一天出现这样一个测试用例：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-title">define</span><span class="hljs-params">(function(require, exports)</span></span> {
+  <span class="hljs-selector-tag">var</span> <span class="hljs-selector-tag">a</span> = require(<span class="hljs-string">'toString'</span>)
+  <span class="hljs-selector-tag">var</span> <span class="hljs-selector-tag">b</span> = require(<span class="hljs-string">'hasOwnProperty'</span>)
+  ...
+})
+</code></pre>
+<h2 id="“完美”解决方案">“完美”解决方案</h2><p>上面的测试用例，会调用</p>
+<pre><code class="lang-js">unique([ <span class="hljs-string">'toString'</span>, <span class="hljs-string">'hasOwnProperty'</span> ]) // 期待返回 [ <span class="hljs-string">'toString'</span>, <span class="hljs-string">'hasOwnProperty'</span> ]
+</code></pre>
+<p>IE 有各种各样的 bug，下面是不怎么著名但真实存在的一个：</p>
+<pre><code class="lang-js"><span class="hljs-selector-tag">var</span> obj = { toString: <span class="hljs-number">1</span>, hasOwnProperty: <span class="hljs-number">1</span> }
+<span class="hljs-keyword">for</span> (<span class="hljs-selector-tag">var</span> <span class="hljs-selector-tag">p</span> <span class="hljs-keyword">in</span> obj) {
+  console.log(p)
+}
+</code></pre>
+<p>在现代浏览器下，上面会正确输出两个值，但在 Old IE 下不会输出。这是 IE 的枚举 bug：<a href="http://whattheheadsaid.com/2010/10/a-safer-object-keys-compatibility-implementation">A safer Object.keys compatibility implementation</a> “完美”的解决方案如下：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> keys = <span class="hljs-built_in">Object</span>.keys || (<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> hasOwnProperty = <span class="hljs-built_in">Object</span>.prototype.hasOwnProperty,
+        hasDontEnumBug = !{<span class="hljs-attr">toString</span>:<span class="hljs-literal">null</span>}.propertyIsEnumerable(<span class="hljs-string">"toString"</span>),
+        DontEnums = [
+            <span class="hljs-string">'toString'</span>,
+            <span class="hljs-string">'toLocaleString'</span>,
+            <span class="hljs-string">'valueOf'</span>,
+            <span class="hljs-string">'hasOwnProperty'</span>,
+            <span class="hljs-string">'isPrototypeOf'</span>,
+            <span class="hljs-string">'propertyIsEnumerable'</span>,
+            <span class="hljs-string">'constructor'</span>
+        ],
+        DontEnumsLength = DontEnums.length;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">o</span>) </span>{
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> o != <span class="hljs-string">"object"</span> &amp;&amp; <span class="hljs-keyword">typeof</span> o != <span class="hljs-string">"function"</span> || o === <span class="hljs-literal">null</span>)
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">"Object.keys called on a non-object"</span>);
+
+        <span class="hljs-keyword">var</span> result = [];
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> name <span class="hljs-keyword">in</span> o) {
+            <span class="hljs-keyword">if</span> (hasOwnProperty.call(o, name))
+                result.push(name);
+        }
+
+        <span class="hljs-keyword">if</span> (hasDontEnumBug) {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; DontEnumsLength; i++) {
+                <span class="hljs-keyword">if</span> (hasOwnProperty.call(o, DontEnums[i]))
+                    result.push(DontEnums[i]);
+            }   
+        }
+
+        <span class="hljs-keyword">return</span> result;
+    };
+})();
+</code></pre>
+<p>除了 <code>DontEnums</code> 数组，还可以特别注意 <code>hasOwnProperty</code> 的处理方式。<strong>对于前端来说，要保障“正确”是一件多么不容易的事。</strong></p>
+<p>注意：行文至此，已经不是在讨论 <code>unique</code> 的实现问题，比如上面实际上在讨论的是 <code>Object.keys</code> 的实现问题。</p>
+<h2 id="我可以放弃什么">我可以放弃什么</h2><p>我有什么、我要什么、我可以放弃什么，这其实是马云在回答内网一个神贴时的回复，那个神贴是我发的，因此马云这几句话让我印象非常深刻。</p>
+<p><strong>优化的本质是做减法，做减法最困难的是选择放弃。</strong></p>
+<p>对于 SeaJS 来说，真的需要上面那个“完美”的解决方案吗？</p>
+<p>程序员心中的完美主义、理想主义情结曾一度让我非常不能容忍代码中有 “bug” 存在。</p>
+<p>可是，大家都懂的：</p>
+<p><img src="http://www.ce.cn/ceph/home/pjxw/200511/15/W020051115640119779360.jpg" alt=""></p>
+<p>还有红楼梦……</p>
+<p>知道道理容易，比如很怀念小时候的《思想品德》课，要扶老奶奶过马路、要诚实等等，绝大部分人都懂得这些道理，可做到的，发现没几个。</p>
+<h2 id="让场景说话">让场景说话</h2><p>如果你听了我上面一通知易行难的扯淡就决定赶紧“放弃”，那也有悖程序员的职业素养。</p>
+<p>依旧得回到具体场景。在 SeaJS 里，适当调整代码逻辑：</p>
+<pre><code class="lang-js">  // Remove duplicated <span class="hljs-built_in">dependencies</span>
+  <span class="hljs-built_in">mod</span>.<span class="hljs-built_in">dependencies</span> = <span class="hljs-built_in">unique</span>(resolve(meta.<span class="hljs-built_in">dependencies</span>))
+</code></pre>
+<p>上面的代码，能保证传给 unique 方法的输入是：</p>
+<pre><code class="lang-js">[
+  <span class="hljs-symbol">'http</span>:<span class="hljs-comment">//path/to/a.js',</span>
+  <span class="hljs-symbol">'http</span>:<span class="hljs-comment">//path/to/toString.js',</span>
+  <span class="hljs-symbol">'http</span>:<span class="hljs-comment">//path/to/hasOwnProperty.js'</span>
+]
+</code></pre>
+<p>因此 DontEnums bug 在 SeaJS 里通过这么一调整就不存在了。</p>
+<p><strong>仔细分析，控制好输入，会让代码更简单同时可靠。</strong></p>
+<p>其实不控制 unique 的输入参数，DontEnums 在 SeaJS 里也可以忽略。只要心理上迈过那道完美主义设置的槛就好。</p>
+<h2 id="小结">小结</h2><p>2010 年时，总结过性能优化的 ROBI 法则：</p>
+<ol>
+<li><strong>Reduce（减少）</strong>。减少可减少的。</li>
+<li><strong>Organize（组织）</strong>。妥善组织剩下的。</li>
+<li><strong>Balance（权衡）</strong>。权衡所失与所得。</li>
+<li><strong>Invent（创新）</strong>。这是更高的要求，比如 SPDY、Chrome 等。</li>
+</ol>
+<p>当时忽略了一个重要因素是： <strong>所有这些点，都必须脚踏实地在具体应用场景下去分析、去选择，要让场景说话。</strong></p>
+<p>因为浏览器的多样性，前端的应用场景经常很复杂，性能优化充满挑战，也充满机遇。</p>
+</div>
+
+    <div class="cat">
+    
+    <p><span>#</span> <a href="/category/blog/">blog</a></p>
+    
+    </div>
+
+    <div class="relate">
+        
+        
+        <p><span>PREV: </span><a rel="prev" href="/posts/11221460.html">jQuery 为什么优秀兼谈库与框架的设计</a></p>
+        
+
+        
+        
+        <p><span>NEXT: </span><a rel="next" href="/posts/9850642.html">GitHub活跃用户数据</a></p>
+        
+
+        <p><span></span><a rel="all" href="/">VIEW ALL POSTS</a></p>
+    </div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        made by AcyOrt / powered by <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> / <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+var menu = document.querySelector('.menu');
+
+document.querySelector('.main').addEventListener('click', function(e) {
+    if (e.target.classList.toString().indexOf('menuicon') > -1) {
+        return menu.classList.toggle('active')
+    } 
+
+    return menu.classList.remove('active')
+})
+
+</script>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>

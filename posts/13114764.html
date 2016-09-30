@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="//icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+简单还是一致（再续） - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <div class="center">
+        <a class="logo" href="/">AcyOrt</a>
+
+        <div class="menu">
+            <div class="menuicon"></div>
+
+            <div class="menuitem">
+            
+            <a href="/">home</a>
+            
+            <a href="/">about</a>
+            
+            <a href="/">archives</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">April 12, 2013</p> 
+
+    <h1 class="title">简单还是一致（再续）</h1>
+
+    <div class="content"><p><img src="https://f.cloud.github.com/assets/97227/372586/6834e5ec-a363-11e2-9873-21edd2eff3a8.jpeg" alt="421b88b85ccd5b23b2f611c1915f2ba8a82970e0744a-3rCEIQ_fw580"></p>
+<p>拔赤发完「<a href="https://github.com/lifesinger/lifesinger.github.com/issues/140">简单还是一致（续）</a>」一文后，一直想回复一篇，今天得空，回下。</p>
+<h2 id="抛错时机">抛错时机</h2><pre><code class="lang-js">seajs.use(<span class="hljs-string">'a'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">A</span>) </span>{
+  A.doSth();
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a'</span>);
+});
+
+<span class="hljs-comment">// some logic...</span>
+
+seajs.use(<span class="hljs-string">'b'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">B</span>) </span>{
+  B.doSth();
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'b'</span>);
+});
+</code></pre>
+<p>上面这段代码，在正常使用情况下，当 a 的 callback 里发生了错误，不会影响 b 的 callback 执行。因为正常情况下，a.js 和 b.js 并不会提前同步加载好，<code>seajs.use</code> 依旧是异步行为。和拔赤的预期是一样的。</p>
+<p>假设出于某种考虑，提前加载了 a.js 和 b.js，比如：</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"a.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"b.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+seajs.use(<span class="hljs-string">'a'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">A</span>) </span>{
+  A.doSth();
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a'</span>);
+});
+
+<span class="hljs-comment">// some logic...</span>
+
+seajs.use(<span class="hljs-string">'b'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">B</span>) </span>{
+  B.doSth();
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'b'</span>);
+});
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>上面这种情况下，<code>seajs.use</code> 的 callback 才是同步执行的，这时 a 的 callback 倘若出错，会影响 b 的 callback 执行。</p>
+<p>但实际上，拔赤提到的那种分模块开发，绝大部分情况下是：</p>
+<pre><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+seajs.use(<span class="hljs-string">'a'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">A</span>) </span>{
+  A.doSth();
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a'</span>);
+});
+<span class="hljs-comment">// some logic...</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+seajs.use('b', function(B) {
+  B.doSth();
+  console.log('b');
+});
+<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+</code></pre>
+<p>上面这种使用方式下，即便是同步执行，a 的 callback 执行错误，也不会影响 b 的 callback 执行。</p>
+<p>也就是说，拔赤的担心，反而是一种理论派的担心，实际开发过程中，根本不用管 <code>seajs.use</code> 的 callback 执行是同步还是异步，使用者本就不应该关注这个内部机制。</p>
+<p>这就和 Sub-Pub 事件机制一样，最朴实简单的事件机制是，天女散花式，可以理解为所有订阅者同时并发收到消息，而不要去理会是先进先出，还是先进后出。一个事件机制里，订阅者应该互相隔离，不依赖顺序，不依赖内部机制。</p>
+<p>即便是同步执行情况，又把多个 <code>use</code> 写在了同一个 <code>script</code> 标签里，这时抛错个人觉得也是合理的。同一个 <code>script</code> 下，可以认为是同一段业务逻辑，当前面已经出错了，再执行后面已经意义不大，停下来不执行，抛出错误，反而简单，更容易发现和定位问题。特别是对稳定性要求很高的产品来说，及早抛错往往是更明智的选择。</p>
+<h2 id="顺序">顺序</h2><pre><code class="lang-js">seajs.<span class="hljs-keyword">use</span>([<span class="hljs-string">'a'</span>, <span class="hljs-string">'b'</span>, <span class="hljs-string">'c'</span>], callback)
+</code></pre>
+<p>这个，拔赤理解错了哦。<code>use</code> 多个模块，是并发下载的，全部下载完成后，才执行 callback 函数。</p>
+<p>a、b、c 之间如果有依赖，在模块定义里自己去指定就好，不需要 loader 层关心。</p>
+<p>拔赤提到的 <code>sequential</code> 等参数设计，是把简单的问题搞得复杂了。loader 应该关注什么，什么应该交给 module 自身确定，职责的边界等等，这些问题，越明显越简单越好。</p>
+<p>以上是顺带提下，下面说说今天最想说的。</p>
+<h2 id="懂业务的框架">懂业务的框架</h2><p>拔赤这段话：</p>
+<blockquote>
+<p>这时，seajs就和旧有的类库有所不同，seajs提供“方法”和“思路”，而jquery、yui、mootools等则提供“工具”。两种思路直接决定了类库所面向的“问题集合”。因此，seajs需要“学习”，而jquery更多的则是需要“查阅”。</p>
+</blockquote>
+<p>seajs 其实是提供工具，是剪刀、锤子一样的工具，职责非常单一，能做什么，不做什么，很明确。这跟 jquery 是一样的。</p>
+<blockquote>
+<p>对于具体的场景来说，“一致”的约定难免单薄，相比之下，“工具”则更易于被大众接受。理论最终是要和业务结合，这也是为什么一个“懂”业务的框架看起来不美的原因。“懂业务”带来的复杂性和“强约定”带来的优雅的编程体验，两者之间，你会选择哪个？</p>
+</blockquote>
+<p>真正懂业务的框架是美的。看起来不美的业务框架，往往是因为抽象层次还不够，还未能真正抓住问题的本质，未能真正把业务中的各种纠缠梳理清楚。比如 Backbone 挺美的，AngularJS 也挺优雅，他们的背后，都是繁复的业务，各种各种业务，但是合理的抽象，不断的重构前行，让这些直接从业务中诞生的框架，依旧保持了优雅美丽。</p>
+<p>最后，吐个槽。前端界的大部分讨论，都会比较肤浅的停留在表层。比如拔赤的文章，其实我很高兴看到这么一篇对 seajs 带点批判的文章，真的很高兴很高兴，我相信我当初给 OzJS 提交一些建议时，豆瓣的哥们虽然忙，但内心也是感激我的。可是，这种本来就非常少的交流背后，可以看出，拔赤对 seajs 基本还处于不了解状态，我对 ozjs 的了解，也还远远不够。在这种状态下，很多分析，都相当乏力，能给彼此带来的促进很有限。</p>
+<p>一样的，也能看到不少对 jQuery、对 Backbone、对 xxx 的吐槽。在国内，我经常看见的情况是，这些吐槽的背后，并没有真的深入过，比如只看过 Backbone 的源码，跑过几个 demo 后，就开始吐槽了，说 Backbone 这不好那不好。这种吐槽，真心无力。个人觉得真正的吐槽，应该是在深入使用过之后，才有发言权。</p>
+<p>就说这些吧。周末快乐。</p>
+<p>（完）文 / 玉伯</p>
+<hr>
+<p>欢迎订阅 WTP（Web 技术与产品交流）微信公众帐号。WTP 关注技术、产品、自由梦，在每个工作日（偶尔休息日）会定期推送一篇原创文字。欢迎扫描二维码订阅：</p>
+<p><img src="http://ww4.sinaimg.cn/thumbnail/68361562gw1e2iehwolnpj.jpg" alt=""></p>
+</div>
+
+    <div class="cat">
+    
+    <p><span>#</span> <a href="/category/blog/">blog</a></p>
+    
+    </div>
+
+    <div class="relate">
+        
+        
+        <p><span>PREV: </span><a rel="prev" href="/posts/13156769.html">推荐两首歌</a></p>
+        
+
+        
+        
+        <p><span>NEXT: </span><a rel="next" href="/posts/13060206.html">舞技与舞台</a></p>
+        
+
+        <p><span></span><a rel="all" href="/">VIEW ALL POSTS</a></p>
+    </div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        made by AcyOrt / powered by <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> / <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+var menu = document.querySelector('.menu');
+
+document.querySelector('.main').addEventListener('click', function(e) {
+    if (e.target.classList.toString().indexOf('menuicon') > -1) {
+        return menu.classList.toggle('active')
+    } 
+
+    return menu.classList.remove('active')
+})
+
+</script>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>

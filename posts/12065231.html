@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="//icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+用 JavaScript 检测 CPU 占比和内存泄露 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <div class="center">
+        <a class="logo" href="/">AcyOrt</a>
+
+        <div class="menu">
+            <div class="menuicon"></div>
+
+            <div class="menuitem">
+            
+            <a href="/">home</a>
+            
+            <a href="/">about</a>
+            
+            <a href="/">archives</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">March 15, 2013</p> 
+
+    <h1 class="title">用 JavaScript 检测 CPU 占比和内存泄露</h1>
+
+    <div class="content"><p>最近在项目中碰到 IE6-7 下的内存泄露，通过 Drip 能探测出来，问题也解决了。最近小组成员同时有在做前端质量工具，通过性能检测，可以排查出一些耗时较长的代码，但对内存泄露想不到好的自动化探测方式。本着集思广益的初衷，发了条微博：</p>
+<blockquote>
+<p>通过 setTimeout 等方式，可以检测当前页面所在操作系统 CPU 的大体情况。请教万能的微博：有没有什么办法，通过 JavaScript 检测到当前页面所在操作系统的内存使用情况（比如是否持续上涨、存在内存泄露）？</p>
+</blockquote>
+<h2 id="cpu-占比探测">CPU 占比探测</h2><p>通过 setTimeout 的方式探测 CPU 已经不是秘密，去年腾讯的朋友在 Velocity 上分享过，北京有朋友还通过这个原理，几年前就实现了网页游戏中动画等耗时操作的自动调节。原理很简单：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> data = []
+<span class="hljs-keyword">var</span> t
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pulse</span>(<span class="hljs-params"></span>) </span>{
+  t &amp;&amp; data.push(<span class="hljs-built_in">Date</span>.now() - t)
+  t = <span class="hljs-built_in">Date</span>.now()
+  setTimeout(pulse, <span class="hljs-number">50</span>)
+}
+
+pulse()
+</code></pre>
+<p>就是每隔 50ms 打一下点。理想情况下，data 的值应该是</p>
+<pre><code class="lang-js">data = [<span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, <span class="hljs-number">50</span>, ...]
+</code></pre>
+<p>但实际情况，data 会是</p>
+<pre><code class="lang-js">data = [<span class="hljs-number">51</span>, <span class="hljs-number">52</span>, <span class="hljs-number">50</span>, <span class="hljs-number">52</span>, ...]
+</code></pre>
+<p>当 CPU 比较忙时，data 的数据变成</p>
+<pre><code class="lang-js">data = [<span class="hljs-number">81</span>, <span class="hljs-number">102</span>, <span class="hljs-number">90</span>, <span class="hljs-number">62</span>, ...]
+</code></pre>
+<p>即 CPU 越忙，data 数据项会越大。这样，记录一系列 data 值，就可以绘制出 CPU 占比趋势图，和通过任务管理器看到的 CPU 趋势图非常接近。</p>
+<p>上面只是原理说明，实际情况没这么简单。但很明显，通过这么一个简单的规律，就能实现用纯 JavaScript 来探测 CPU 占比了。</p>
+<h2 id="内存泄露探测">内存泄露探测</h2><p>回到那条微博，是否也存在某种规律，使得可以用 JavaScript 来间接探测到内存泄露情况？</p>
+<p>从微博的回复里还没看到有价值的信息。今天回家时，想到一种思路：</p>
+<ol>
+<li>如果存在内存泄露，意味着浏览器在 GC 时，没有进行某些操作。</li>
+<li>没有进行某些操作，意味着会节省一些 CPU 时间。</li>
+<li>CPU 耗时的变化，可以通过合理的打点探测出来。</li>
+</ol>
+<p>似乎有点希望，回到家后，立刻写了点代码验证。但发现干扰因素太多，基线也很难确定。折腾了一个多小时，有些死结，很难突破。</p>
+<p>于是停下来写这篇文章，看看大家有没有更好的思路。我们以为不可能的事情多了去，但不可能的事情往往存在可能，思路是无限的。</p>
+<p>最后描述下我的具体需求：</p>
+<blockquote>
+<p>有一个 a.html 页面，里面有 JS 业务代码，以及单元测试代码。
+通过前端测试系统，我们可以把 a.html 自动跑在各个浏览器上，比如 IE6/7/8/9。
+现在已经可以自动得到 a.html 在各个浏览器下的单元测试结果，以及一些性能指标。
+现在想进一步，想通过单元测试代码，也能探测出当前页面是否存在内存泄露。</p>
+</blockquote>
+<p>页面存在内存泄露时，典型的现象是，不断刷新当前页面，内存占用不会归位，而会一直往上涨。</p>
+<p>集思广益下，看看是否有可能实现内存泄露的自动探测？或者有其他自动化探测方案。如果有朋友有类似经验，请不吝赐教。</p>
+<p>最后，推荐一条消息，前端的朋友，可以访问下 <a href="http://aliceui.org/">aliceui.org</a>，这是支付宝最近推出的一套样式解决方案，有些类似 Twitter 的 Bootstrap，但定位更基础些。有兴趣的可前往关注，欢迎指点。</p>
+<p>（完）</p>
+<hr>
+<p>欢迎订阅 WTP（Web 技术与产品交流）微信公众帐号。WTP 关注技术、产品、自由梦，在每个工作日（偶尔休息日）会定期推送一篇原创文字。欢迎订阅：</p>
+<p><img src="http://ww4.sinaimg.cn/thumbnail/68361562gw1e2iehwolnpj.jpg" alt=""></p>
+</div>
+
+    <div class="cat">
+    
+    <p><span>#</span> <a href="/category/blog/">blog</a></p>
+    
+    </div>
+
+    <div class="relate">
+        
+        
+        <p><span>PREV: </span><a rel="prev" href="/posts/12092185.html">博客是什么</a></p>
+        
+
+        
+        
+        <p><span>NEXT: </span><a rel="next" href="/posts/12003258.html">时间管理之道</a></p>
+        
+
+        <p><span></span><a rel="all" href="/">VIEW ALL POSTS</a></p>
+    </div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        made by AcyOrt / powered by <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> / <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+var menu = document.querySelector('.menu');
+
+document.querySelector('.main').addEventListener('click', function(e) {
+    if (e.target.classList.toString().indexOf('menuicon') > -1) {
+        return menu.classList.toggle('active')
+    } 
+
+    return menu.classList.remove('active')
+})
+
+</script>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>

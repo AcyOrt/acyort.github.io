@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="//icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+CSS 学习之我观 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <div class="center">
+        <a class="logo" href="/">AcyOrt</a>
+
+        <div class="menu">
+            <div class="menuicon"></div>
+
+            <div class="menuitem">
+            
+            <a href="/">home</a>
+            
+            <a href="/">about</a>
+            
+            <a href="/">archives</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">May 11, 2013</p> 
+
+    <h1 class="title">CSS 学习之我观</h1>
+
+    <div class="content"><p><img src="https://f.cloud.github.com/assets/97227/491649/d0dca6fa-ba49-11e2-8a61-6f546d132e75.jpeg" alt="710319d981adaa47b423519a689727dd1f9e774b3f74e-ieucos_fw580"></p>
+<p>winter 今天发了一篇博文：<a href="http://www.cnblogs.com/winter-cn/archive/2013/05/11/3072929.html">CSS 布局（一）</a></p>
+<p>个人觉得，让前端工程师从浏览器的技术细节上去了解 CSS 的内部实现，对 CSS 技能的掌握并不会有太多帮助。</p>
+<p><strong>CSS 是一门感性的语言，从技术上去深挖 CSS 在浏览器上的实现原理（How），个人觉得还不如从设计上去思考为什么会有这些现象（Why）。</strong></p>
+<p>比如 winter 今天文章中提及的几个概念，从设计上来理解的话，是很简单的，同时不需要涉及 XFC 等渲染引擎实现者才需要关心的名词。</p>
+<h2 id="最基础的">最基础的</h2><p>CSS 的基本功能是排版布局，我们拿出一张报纸，或一本书，会找出一些基本元素：</p>
+<ol>
+<li>标题</li>
+<li>段落</li>
+<li>图片</li>
+<li>加粗的文字</li>
+<li>……</li>
+</ol>
+<p>稍微抽象以下，以上各种元素可分为两类：块元素（标题、段落等）和行内元素（图片、粗体等）。</p>
+<p>排版布局，首先要搞定的是多个块元素的排列。段落是个典型的块元素，多个段落之间，一般一段一段往下排就好了。这就是块元素排列的默认规律。（winter 用 BFC 解释了半天-.-）</p>
+<p>块元素默认垂直竖排，对应的，行内元素默认水平横排。</p>
+<p>基础概念就这么简单。</p>
+<h2 id="复杂一点点">复杂一点点</h2><p>在实际需求中，两个块元素有时也需要横向并排。这就引出了浮动（float）概念。通过给块元素设定宽度，并指定浮动方向，就可以实现块元素的横向并排。当然，还有很多其他技巧来实现块元素的横向并排。但只要你从感性上理解了「浮动」和「定位」的画面，其他一些布局技巧，比如负边距等，就都是 hack for fun 了。</p>
+<p>HTML 有很好的包容性，比如允许块元素和行内元素混排，这时可以直观的理解成浏览器自动创建了一些匿名块元素来包裹行内元素。这种感性的图像化理解，对设计师非常友好。</p>
+<p>overflow 也是解决非常实在的问题：文字溢出时，怎么处理。并不需要扯上什么 BFC 才能理解。</p>
+<p>再举一个列子：「外边距合并」。基本规律是，在同一个布局层级里，当两个外边距相遇时，会「大鱼吃小鱼」，合并成一个。与其去研究浏览器是怎么实现的，个人觉得不如从设计层面上想想为什么会有这个需求：</p>
+<p><img src="https://f.cloud.github.com/assets/97227/491639/c0c0895e-ba48-11e2-859f-6ab0b819fdbb.png" alt="screen shot 2013-05-11 at 10 23 32 pm"></p>
+<p>从上图中可以看出，外边距合并，是为了让排版看起来更一致、更舒服。有了这层认识，不合并才奇怪呢。同时也能理解为什么水平方向上，也需要存在外边距合并。一切为了排版更美观。</p>
+<p>其他不多说，CSS 的绝大部分概念，都可以从设计的需求上去理解。用设计的眼光去看很多技术细节，对 CSS 来说，更自然、舒服，个人觉得也更容易理解。</p>
+<h2 id="最后">最后</h2><p>重复下我的观点：</p>
+<p><strong>CSS 是一门感性的语言，从技术上去深挖 CSS 在浏览器上的实现原理（How），个人觉得还不如从设计上去思考为什么会有这些现象（Why）。</strong></p>
+<p>这与是学院派还是实践派没关系。我不是学院派，也不是实践派。作为前端，很喜欢 <a href="https://speakerdeck.com/josephj/f2e-the-keystone">F2E, The Keystone</a> 中的一张图：</p>
+<p><img src="https://f.cloud.github.com/assets/97227/491579/697b8882-ba3f-11e2-9173-18490f900492.png" alt="screen shot 2013-05-11 at 8 53 48 pm"></p>
+<p>不排斥在上图的技术部分深挖，但个人觉得，对于前端来说，要把技术做好，设计部分也非常非常重要。</p>
+<p>最后，致所有希望我和 winter 吵起来的观众，非常遗憾地告诉你们：我很欣赏 winter，就和 winter 也欣赏我一样。我更希望你也加入进来和我们一起把前端做好做精，而不要仅仅是观众。舞台永远不属于观众。</p>
+<p>文 / 玉伯</p>
+<p>题图：爱因斯坦的一句名言，非常耐人寻味。你可以滚上去再看一下，然后将你的翻译回复给我。</p>
+<hr>
+<p>欢迎订阅 WTP（Web 技术与产品交流）微信公众帐号。WTP 关注技术、产品、自由梦，在每个工作日（偶尔休息日）会定期推送一篇原创文字。欢迎扫描二维码订阅：</p>
+<p><img src="http://ww4.sinaimg.cn/thumbnail/68361562gw1e2iehwolnpj.jpg" alt=""></p>
+</div>
+
+    <div class="cat">
+    
+    <p><span>#</span> <a href="/category/blog/">blog</a></p>
+    
+    </div>
+
+    <div class="relate">
+        
+        
+        <p><span>PREV: </span><a rel="prev" href="/posts/14260214.html">怀念晓旭</a></p>
+        
+
+        
+        
+        <p><span>NEXT: </span><a rel="next" href="/posts/14130403.html">就近原则浅探</a></p>
+        
+
+        <p><span></span><a rel="all" href="/">VIEW ALL POSTS</a></p>
+    </div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        made by AcyOrt / powered by <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> / <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+var menu = document.querySelector('.menu');
+
+document.querySelector('.main').addEventListener('click', function(e) {
+    if (e.target.classList.toString().indexOf('menuicon') > -1) {
+        return menu.classList.toggle('active')
+    } 
+
+    return menu.classList.remove('active')
+})
+
+</script>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>

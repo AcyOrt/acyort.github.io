@@ -1,0 +1,231 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="//icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+jQuery 为什么优秀兼谈库与框架的设计 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <div class="center">
+        <a class="logo" href="/">AcyOrt</a>
+
+        <div class="menu">
+            <div class="menuicon"></div>
+
+            <div class="menuitem">
+            
+            <a href="/">home</a>
+            
+            <a href="/">about</a>
+            
+            <a href="/">archives</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">February 21, 2013</p> 
+
+    <h1 class="title">jQuery 为什么优秀兼谈库与框架的设计</h1>
+
+    <div class="content"><p>从 @wintercn 的这篇文章说起：<a href="http://www.cnblogs.com/winter-cn/archive/2013/02/20/2919855.html">从 jQuery 谈库与框架的设计之优劣</a></p>
+<p>先去读一读哦，不长的，winter 写得很幽默。</p>
+<p>好了，看下文。</p>
+<h2 id="解决什么问题">解决什么问题</h2><p>拿 winter 的代码入手：</p>
+<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">traversal</span>(<span class="hljs-params">node, f</span>) </span>{
+    f(node);
+    <span class="hljs-keyword">if</span>(node.children.length) {
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i&lt;node.children.length;i++)
+            traversal(node.children[i],f);
+    }
+}
+
+traversal(<span class="hljs-built_in">document</span>.body,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">element</span>)</span>{
+    <span class="hljs-keyword">if</span>(element.tagName==<span class="hljs-string">"button"</span> &amp;&amp; element.className.match(<span class="hljs-regexp">/continue/</span>)) {
+        element.innerHTML = <span class="hljs-string">"Next Step..."</span>;
+    }
+})
+</code></pre>
+<p>这段代码很酷，看见了递归没？还有传说中的函数式编程！也不长，只有 166 个字符。考虑 jQuery 那庞大的 97K 代码，完全可以自己写啊，真心用不着什么类库。</p>
+<p>可是，各位看官，在中国，有两种东西需要小心：一是 CCAV 的新闻，二是程序员的代码。你信前者就幸福了，后者嘛，请看：</p>
+<blockquote>
+<p>尼玛，winter 坑我，复制过来的 traversal 方法工作有点不正常呀</p>
+</blockquote>
+<p>为了节约笔墨（精彩在后面），先不说 <code>children</code> 的坑（不说是因为 winter 刚好绕过去了），来说说下面这个：</p>
+<pre><code class="lang-html">&lt;button <span class="hljs-keyword">class</span>=<span class="hljs-string">"continued"</span>&gt;
+</code></pre>
+<p>这可不是故意挑刺，我们在讨论类库哦。上面的 <code>button</code> 也会被 <code>traversal</code> 命中。好吧，我帮 winter 修改下：</p>
+<pre><code class="lang-js">traversal(<span class="hljs-name">document</span>.body,function(<span class="hljs-name">element</span>){
+    if(<span class="hljs-name">element</span>.tagName==<span class="hljs-string">"button"</span> <span class="hljs-symbol">&amp;&amp;</span> element.className.match(<span class="hljs-name">/</span>(?:^|\s)continue(?:\s|$)/)) {
+        element.innerHTML = <span class="hljs-string">"Next Step..."</span><span class="hljs-comment">;</span>
+    }
+})
+</code></pre>
+<p>修改后，正则看起来很酷。师兄下次 review 代码时，应该会觉得我技术有进步，加薪、晋升有望了……</p>
+<p>继续节约笔墨（精彩在后面），不说代码的优化空间。只想问呀，这么一个简单的功能，值得如此折腾吗？为何不用一行搞定：</p>
+<pre><code class="lang-js"><span class="hljs-variable">$(</span> <span class="hljs-string">"button.continue"</span> ).html( <span class="hljs-string">"Next Step..."</span> )
+</code></pre>
+<p>好了，各位看官，你还同意 winter 说的 jQuery 是 <strong>“没有问题创造问题也要解决问题”</strong> 吗？</p>
+<p>调侃结束，言归正传。jQuery 解决什么问题，jQuery 能做什么，来看官网：</p>
+<blockquote>
+<p>jQuery is a fast, small, and feature-rich JavaScript library. It makes things like HTML document traversal and manipulation, event handling, animation, and Ajax much simpler with an easy-to-use API that works across a multitude of browsers. With a combination of versatility and extensibility, jQuery has changed the way that millions of people write JavaScript.</p>
+</blockquote>
+<p>云译一下：</p>
+<blockquote>
+<p>jQuery …… 让 DOM 操作简单 …… 跨浏览器 ……</p>
+</blockquote>
+<p>翻译有直译、意译、神译，但在云时代，得用云译。诠释如下：</p>
+<ul>
+<li><p><strong>jQuery 是 DOM 操作类库，非常专注。</strong> 这很重要很重要。正是这种 <strong>专注做小</strong> 的心态，让 jQuery 在 DOM 操作领域所向披靡。这比野心勃勃想着做大的 Prototype、YUI、Dojo 等不知强多少呢。jQuery 的流行证明了专注的力量。找老公也可以用 jQuery 去衡量。</p>
+</li>
+<li><p><strong>jQuery 真的很专注。</strong> 常见的 <code>each</code>，尼玛的 <code>Deferred</code> 等看起来和 DOM 无关的东东，实际上跟 DOM 方法的实现很有关系，暴露出来挺有用，因此才暴露。此外，与 DOM 操作实现无关的 <code>cookie</code>、<code>localStorage</code> 等等，jQuery 一律不提供。（注：个人觉得如果这些内部方法不暴露，只暴露与 DOM 操作相关的方法，jQuery 会更完美。注2：别跟我较真说动画和 Ajax 不是 DOM 操作。）</p>
+</li>
+<li><p><strong>jQuery 非常关注用户</strong>。专注于 DOM 操作及其兼容性，让普通用户包括设计师都可以快速写出代码，这是 jQuery 的巨大价值。</p>
+</li>
+</ul>
+<p>预测：苏宁电器会改名叫苏宁云商，但 jQuery 不会改名为 jLibrary。和 jQuery 同样专注的还有 Evernote、Amazon、Dropbox 等等牛逼的东东。</p>
+<p>（精彩已讲完，下面可以不看。 <strong>在类库界，解决了 What，解决了定位问题后，基本上已经决定了生死存亡。</strong> 至于 How，也重要但往往不是关键。最近看 Grunt 类库，也有同感。）</p>
+<h2 id="也谈命名">也谈命名</h2><p>命名非常重要。比如决定 winter 牛逼的，不是 1024，而是 winter 这个名字。</p>
+<p>不过没看懂 winter 说什么，因为 winter 说的和 jQuery 没什么关系。可能跟 jQuery 的早期版本有关系，但任何事物都会有历史局限性，就如我就一直期待传送门，但不能嘲讽当代的汽车。</p>
+<p>至于 <code>$</code> 的选择，这就如 <code>码农</code>、<code>屌丝</code> 等词汇一样，winter 好像也经常用，并不反感。<code>$</code> 的选择也像 <code>QWERT</code> 键盘，或者系统中用 <code>~</code> 表示 Home 目录一样。为什么很少见 *nix 用户不爽 <code>~</code> 呢？</p>
+<p>不评论了。要谈命名，不如谈 jQuery 的方法名，简洁明了。YUI3 等类库抄得不亦乐乎，这是一种认可与致敬。</p>
+<h2 id="接口设计">接口设计</h2><p>泛义上讲，完全同意 winter 的说法。我也非常讨厌一个方法职责不清、身兼数职。比如 RequireJS 里，最让我不能忍受的重要原因之一就是，天杀的 <code>require</code> 方法一会是全局方法，一会是函数变量，一会是云，一会是风……  </p>
+<p>不过， <strong>谈任何设计，都离不开场景。</strong></p>
+<p>jQuery 是 DOM 操作类库。jQuery 首要要解决的是： <strong>如何高效方便地操作 DOM？</strong> 在这个真实需求下，jQuery 选择了一句话：</p>
+<blockquote>
+<p>找到 DOM 元素，然后再操作、继续操作。</p>
+</blockquote>
+<p>上面这句话，不是 jQuery 凭空设计出来的，而是千万前端工程师们在写代码时实际上会干的事情：</p>
+<pre><code class="lang-js">var foo = document.getElementById(<span class="hljs-string">"foo"</span>)<span class="hljs-comment">;</span>
+
+foo.setAttribute(<span class="hljs-string">"data-bar"</span>, <span class="hljs-string">"bar"</span>)<span class="hljs-comment">;</span>
+foo.innerHTML = <span class="hljs-string">"..."</span><span class="hljs-comment">;</span>
+</code></pre>
+<p>上面的代码挺不错的，但有坑。jQuery 将上面这种常见代码，通过链式操作简化成了：</p>
+<pre><code class="lang-js"><span class="hljs-variable">$(</span><span class="hljs-string">"#foo"</span>).attr(<span class="hljs-string">"data-bar"</span>, <span class="hljs-string">"bar"</span>).html(<span class="hljs-string">"..."</span>);
+</code></pre>
+<p>这就如我们一般不会说：</p>
+<pre><code>我是 winter
+我喜欢编码
+我喜欢妹子
+</code></pre><p>而会说：</p>
+<pre><code>我是 winter，喜欢编码，也喜欢妹子。
+</code></pre><p>至于 getter 和 setter 的统一，可以类比：</p>
+<pre><code class="lang-js">var host = { a: <span class="hljs-string">"a"</span> };
+
+<span class="hljs-comment">// 获取值</span>
+alert<span class="hljs-comment">(host.a)</span>;
+
+<span class="hljs-comment">// 设置值</span>
+host.a = <span class="hljs-string">"aa"</span>;
+</code></pre>
+<p>别跟我说一定要：</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> host = {
+  a: <span class="hljs-string">"a"</span>,
+  getA: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.a; },
+  setA: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(val)</span> </span>{ <span class="hljs-keyword">this</span>.a = val; }
+}
+</code></pre>
+<p>不直接通过属性，而通过方法来搞定 getter 和 setter，个中缘由 winter 比我更清楚，有兴趣的可以看：<a href="https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/defineProperty">defineProperty</a></p>
+<p>其实上面说的跟 winter 反驳的没什么关系，winter 主要反对职责不单一。不过，职责不单一的方法，在 jQuery 里有，但并不多。至于 <code>$</code> 的功能，这是入口方法，为了用户的便利性， <strong>适当放下程序员的完美情节</strong>，个人觉得是一种 <strong>面向用户的权衡</strong>。很多产品也如此，在屌丝用户看来很糟糕，但普通用户还真喜欢，因为方便。</p>
+<h2 id="耦合">耦合</h2><p>举例子来说说：</p>
+<ol>
+<li><p>YUI3 最初的理念中，有一个很重要的是 <strong>颗粒化</strong>。颗粒化使得 winter 可以单独调用 ajax 模块。然而，YUI3 发展至今，虽然颗粒化极细，但你若去看使用 YUI3 的页面，稍稍 <code>YUI().use(&quot;node&quot;)</code> 一下，加载过来的文件大小就超过 jQuery 了。</p>
+</li>
+<li><p><strong>颗粒化必须考虑颗粒的大小、范畴。</strong> 在 DOM 操作领域，能够保持功能与 jQuery 近似，大小又比 jQuery 小的，目前我好像还从来没有看到过。除非把定位缩小，比如只支持 webkit，砍功能后，才有可能比 jQuery 更小。同等功能下，能做到 jQuery 这么优秀的 DOM 操作类库，如果你发现了一定要告诉我。</p>
+</li>
+<li><p><strong>一个文件。</strong> 能用一个文件解决的，不用两个文件来做。超过一个文件就意味着依赖关系的管理。这里拿老赵的 Wind.js 来说，够屌丝了，但普通用户真不愿意去搞清楚那几个文件怎么引，还要分谁先谁后，天哪。所以后来 Wind.js 也有了 aio 版本（All in One）。方便用户，而不是满足自己。</p>
+</li>
+<li><p><strong>历史与未来。</strong> 当然，上面说了这么多，但场景在飞速变化。比如 IE6 的市场份额在国外已经到了可以忽略的地步。场景的变化，使得 jQuery 开始朝向 2.0 发展。Animation 和 Ajax 等模块在设想中也都可以独立出来，还有很多很多变化。但最大的变化，个人觉得不是理念更先进了（模块化老掉牙了），而是 <strong>顺势而为</strong>。这个“势”是场景的变化。设计架构的演变，离不开场景。场景的变化经常推动着设计的进化。很多公司的架构之所以牛，并非牛人使然，而是公司业务场景的需要。快跑题了，这个另一个蛮有意思的话题……</p>
+</li>
+</ol>
+<h2 id="写在最后">写在最后</h2><p>jQuery 的专注，不三心二意， <strong>非常有利于生态圈的形成</strong>。君不见，jQuery 社区目前就是前端界的阿里巴巴呀，winter 你来一淘了，应该认可阿里的大方向哦。反观 YUI3 等框架，不是京东又是什么呢？</p>
+<p>最后，来点煽情的。jQuery 在我心中，是一尊女神。她温柔、细腻，她火辣、傲娇，一定会有人骂她，但真了解她的，会爱上她。</p>
+<p><img src="https://f.cloud.github.com/assets/97227/178726/dd398e6e-7bc8-11e2-8c39-cb2977c21f90.jpg" alt="zhanghua"></p>
+<p>（全文完）</p>
+</div>
+
+    <div class="cat">
+    
+    <p><span>#</span> <a href="/category/blog/">blog</a></p>
+    
+    </div>
+
+    <div class="relate">
+        
+        
+        <p><span>PREV: </span><a rel="prev" href="/posts/11459832.html">毕业十年与我的三个梦</a></p>
+        
+
+        
+        
+        <p><span>NEXT: </span><a rel="next" href="/posts/10595204.html">从 JavaScript 数组去重谈性能优化</a></p>
+        
+
+        <p><span></span><a rel="all" href="/">VIEW ALL POSTS</a></p>
+    </div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        made by AcyOrt / powered by <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> / <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+var menu = document.querySelector('.menu');
+
+document.querySelector('.main').addEventListener('click', function(e) {
+    if (e.target.classList.toString().indexOf('menuicon') > -1) {
+        return menu.classList.toggle('active')
+    } 
+
+    return menu.classList.remove('active')
+})
+
+</script>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>

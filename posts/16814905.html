@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="//icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+谈谈编码风格与编码规范 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <div class="center">
+        <a class="logo" href="/">AcyOrt</a>
+
+        <div class="menu">
+            <div class="menuicon"></div>
+
+            <div class="menuitem">
+            
+            <a href="/">home</a>
+            
+            <a href="/">about</a>
+            
+            <a href="/">archives</a>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">July 16, 2013</p> 
+
+    <h1 class="title">谈谈编码风格与编码规范</h1>
+
+    <div class="content"><p><img src="https://f.cloud.github.com/assets/97227/805593/ec1b4aa2-ee29-11e2-8719-ce1465b7ad15.png" alt="image"></p>
+<h2 id="引子">引子</h2><p>上一篇文章提到 <a href="https://github.com/lifesinger/lifesinger.github.com/issues/165">「习惯与变化」</a>，收到了比较有意思的一些反馈：</p>
+<blockquote>
+<p>我很好奇，如果你的团队中有人以“习惯”的名义打破编码规范会怎样？于我而言，不写四直接写五就是这种感觉，这并不是习惯，而是规范。</p>
+</blockquote>
+<p>还有一封很长的邮件，截取一二：</p>
+<blockquote>
+<p>玉伯哥，我经常会为一些事情纠结，比如创建文件夹的时候会想是首字母大写好看呢还是全小写来保持统一呢（Movie，movie，mytest，MyTest），当写程序注释的时候我会想是写 // this function proves that... 好呢还是 // This function proves that...  我不知道我这种对大小写在意的习惯是一种好习惯还是一种坏习惯……</p>
+</blockquote>
+<p>微博上，一提到编码风格时，往往也会引起腥风血雨，比如</p>
+<ol>
+<li>JavaScript 语句后面应该加分号吗？</li>
+<li>缩进应该用 Tab、四空格还是两空格？</li>
+<li>变量应该统一提前声明好还是就近声明？</li>
+<li>变量名应该用驼峰风格还是下划线风格？</li>
+<li>注释应该采用 JSDoc 风格还是 Markdown 风格？</li>
+<li>私有属性约定用下划线开头吗？</li>
+<li>函数最好不要超过多少行？</li>
+<li>……</li>
+</ol>
+<p>这类问题不仅在程序员中普遍存在，文字工作者也常常纠结：</p>
+<ol>
+<li>中英文混排时，中文与英文之间应该加空格吗？</li>
+<li>中英文混排时，英文字母后面应该用全角还是半角标点符号？</li>
+<li>段落前面真有必要空两格吗？</li>
+<li>引号是否应该用 『』和「」？</li>
+<li>破折号是一杠还是两杠？</li>
+<li>例如、参考等词汇后，究竟需不需要加冒号？</li>
+<li>……</li>
+</ol>
+<h2 id="风格">风格</h2><p>我们日常说的编码规范，经常指的是 Style Guide，正确的翻译是编码风格。</p>
+<p>既然是风格，就没有对错。就如现实生活中，我们每个人都有自己的穿着打扮一样。可能有些人打扮土一点，但土就土，并不影响什么。</p>
+<p>很有意思的是，风格也没有孰优孰劣。比如郭敬明的打扮，很多人很喜欢，会为其尖叫为其疯狂。但在我看来，郭敬明的相貌让我非常讨厌，这还是男人吗？太锉啦。</p>
+<p>别去争辩，喜欢和对错无关，风格亦无高低之别。</p>
+<p>编码风格如此，文字排版风格也是一样。</p>
+<h2 id="规范">规范</h2><p>风格之外，也有规范。比如穿着打扮，光怪陆离都没问题，但在公众场合不能不穿。规范经常很少很少，但的的确确存在。</p>
+<p>对于 JavaScript 语言来说，通用的编码规范基本没有，有的话只有一条：要能运行。除此之外，还会有一些：</p>
+<ol>
+<li>JavaScript 文件的编码必须是 UTF-8 。</li>
+<li>JavaScript 中不能出现 URL 硬编码。</li>
+<li>……</li>
+</ol>
+<p>以上规范都是针对具体公司具体场景下的要求，除了以上这些规范，其他都是编码风格问题。</p>
+<p>社会中的规范，是为了维护基本秩序和道德底线。编码规范，则是为了避免错误。</p>
+<h2 id="态度">态度</h2><p>程序员经常有个坏习惯：拿到别人的代码，喜欢首先按照自己的风格格式化一下。特别是用 Vim 的程序员，有些 Vim 程序员不光喜欢格式化他人的代码，还会在文件头留下作案凭证。</p>
+<p>好的习惯是这样的：</p>
+<blockquote>
+<p>@agentzh: 给他人的开源项目提交补丁也是一样：尽可能多地做足功课，弄清楚该项目使用的代码风格和测试集的组织，甚至是 git 提交日志的书面格式，尽量让我写的东西酷似项目作者本人写出的东西，这样可以节约对方的时间，是对他的最大尊重。</p>
+</blockquote>
+<p>这就如我们去朋友家里做客，你可能会很不喜欢朋友家里的装修风格，但你最好不要自带颜料桶去帮朋友重新装修。道理不用多说，对他人的风格我们要懂得尊重，无论是在现实生活中，还是在写代码时。</p>
+<p>当然，认可的规范还是得遵守。比如别在公共场合裸奔，别在一个 UTF-8 团队把文件存成 GBK 编码。</p>
+<p>对待规范，要严格遵守。对待风格，要懂得尊重。</p>
+<h2 id="关键">关键</h2><p>一旦你拥有了开放的心态，一旦你开始懂得去欣赏他人的风格，你会发现世界是五彩缤纷的，你会开始越过一些表象，关注起一些真正值得关注的。</p>
+<p>比如一个长得很丑的人，当你不再去看外表时，你会发现某些情况下丑人是会发光的，那种光十分漂亮，比很多帅哥漂亮百倍千倍。你会开始懂得生活，懂得真爱。</p>
+<p>编码也如此。不再去纠结四空格还是两空格后，你会看到</p>
+<ol>
+<li>代码的逻辑抽象是否正确？</li>
+<li>代码背后的数据模型是否可以优化？</li>
+<li>这段代码是否应该放在这个文件里？</li>
+<li>这个模块的职责是否过大？</li>
+<li>这个设计模式是否用得太僵硬？</li>
+<li>某个功能点是否应该用 CSS 而不是 JS 来实现？</li>
+<li>这段代码是否忘了写单元测试？</li>
+<li>……</li>
+</ol>
+<p>一旦你开始能从他人的代码中，去纠结以上各种问题而不是代码风格时，你的功力经常就会大增。牛逼的程序员有个不怎么对外说的秘密：</p>
+<blockquote>
+<p>去更多地看代码，看优秀的代码。迫不得已才自己去写少量代码。</p>
+</blockquote>
+<h2 id="最后">最后</h2><p>代码如人，风格的差异很正常，彼此尊重。相爱是灵魂的碰触，别停留在表象。</p>
+<p>（完）</p>
+<p>题图：Style Guide 无处无在。</p>
+<hr>
+<p>欢迎订阅 WTP（Web 技术与产品交流）微信公众帐号。WTP 关注技术、产品、自由梦，会偶尔推送一些原创文字。欢迎扫描二维码订阅：</p>
+<p><img src="http://ww4.sinaimg.cn/thumbnail/68361562gw1e2iehwolnpj.jpg" alt=""></p>
+</div>
+
+    <div class="cat">
+    
+    <p><span>#</span> <a href="/category/blog/">blog</a></p>
+    
+    </div>
+
+    <div class="relate">
+        
+        
+        <p><span>PREV: </span><a rel="prev" href="/posts/16846559.html">什么是开源精神</a></p>
+        
+
+        
+        
+        <p><span>NEXT: </span><a rel="next" href="/posts/16632814.html">习惯与变化</a></p>
+        
+
+        <p><span></span><a rel="all" href="/">VIEW ALL POSTS</a></p>
+    </div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        made by AcyOrt / powered by <a target="_blank" href="https://github.com/AcyOrt/acyort">AcyOrt</a> / <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+<script>
+
+var menu = document.querySelector('.menu');
+
+document.querySelector('.main').addEventListener('click', function(e) {
+    if (e.target.classList.toString().indexOf('menuicon') > -1) {
+        return menu.classList.toggle('active')
+    } 
+
+    return menu.classList.remove('active')
+})
+
+</script>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>
