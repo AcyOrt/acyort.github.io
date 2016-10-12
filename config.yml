@@ -4,7 +4,7 @@ title: AcyOrt
 description: A Node.js blog tool powered by GitHub. 
 keywords: acyort, nodejs, blog
 rss: rss.xml
-favicon: /icon.png
+favicon: icon.png
 
 # site url. you can set as 'http://yoursite.com/child' if need
 # please add 'http://' or 'https://'
