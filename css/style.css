@@ -128,28 +128,22 @@ a {
     margin-top: 100px;
     padding-bottom: 50px;
 }
-#posts .year:nth-child(1) {
-    border-top: none;
-}
 .year {
-    border-top: 1px solid #eee;
-    font-size: 16px;
-    padding-top: 30px;
-    margin-top: 60px;
-    margin-bottom: -16px;
+    border-bottom: 1px solid #eee;
+    font-size: 18px;
+    padding-bottom: 20px;
     color: #999;
+    margin: 40px 0 20px;
 }
 .entry {
-    margin-left: 20%;
-    width: 80%;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-size: 16px;
 }
 .entry a {
     color: #333;
 }
 .entry a:hover {
-    text-decoration: underline;
+    background: #fff4cc;
 }
 .entry span {
     color: #999;
@@ -193,9 +187,11 @@ a {
 }
 .title {
     color: #222;
-    font-size: 40px;
+    font-size: 36px;
     line-height: 1.4;
     margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
 }
 .time {
     color: #999;
@@ -222,6 +218,9 @@ a {
 .relate p {
     margin-bottom: 16px;
 }
+.relate p:last-child {
+    margin-top: 30px;
+}
 .relate a {
     color: #333;
 }
@@ -233,7 +232,7 @@ a {
     display: inline-block;
 }
 .comments {
-    margin: 100px 0 0;
+    margin: 70px 0 0;
 }
 
 /* article content */
@@ -245,7 +244,6 @@ a {
     font-size: 16px;
     line-height: 1.8;
     margin-bottom: 16px;
-    text-align: justify;
 }
 .content p:first-child {
     margin-top: 20px;
@@ -269,12 +267,10 @@ a {
 .content h2 {
     font-size: 22px;
     padding-bottom: 6px;
-    border-bottom: 1px solid #eee;
 }
 .content h1 {
     font-size: 24px;
     padding-bottom: 12px;
-    border-bottom: 1px solid #eee;
 }
 .content blockquote {
     margin: 36px 0;
@@ -315,6 +311,8 @@ a {
 .content li {
     margin-top: 4px;
     line-height: 1.6;
+}
+.content ol > li {
     counter-increment: counter;
 }
 .content ul li:before {
@@ -324,7 +322,7 @@ a {
     font-weight: bold;
     color: #333;
 }
-.content ol li:before {
+.content ol > li:before {
     content: counter(counter);
     float: left;
     margin-right: 10px;
@@ -338,11 +336,7 @@ a {
     line-height: 1.6;
 }
 .content img {
-    margin-top: 14px;
-    margin-bottom: 14px;
-    display: block;
     max-width: 100%;
-    height: auto;
 }
 code {
     background: #f7f7f7;
@@ -490,19 +484,8 @@ pre code {
     #posts {
         margin-top: 0;
     }
-    .year {
-        margin-bottom: 30px;
-        margin-top: 30px;
-    }
-    .entry {
-        margin-left: 0;
-        width: 100%;
-    }
     #pagination {
         margin-top: 0;
-    }
-    .footer {
-        margin-top: 50px;
     }
     .footer .center {
         padding: 30px 0;

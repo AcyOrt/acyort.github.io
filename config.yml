@@ -33,7 +33,7 @@ archives_per_page: 30
 #menu
 menu:
     home: /
-    about: /
+    about: /about
     archives: /
 
 # category
