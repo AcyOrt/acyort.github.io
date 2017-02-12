@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="/icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+Mirror - 基于 issues 的博客工具 | AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="center">
+        <h1><a href="/">AcyOrt</a></h1>
+        <p>A Node.js blog tool powered by GitHub.</p>
+    </div>
+    <div class="menu">
+    
+    <a href="/">首页</a>
+    
+    <a href="/archives/">归档</a>
+    
+    <a href="/tag/">所有标签</a>
+    
+    <a href="/category/">所有分类</a>
+    
+
+    
+    
+    <a href="/en/">English</a>
+    
+    </div>
+</div>
+
+
+
+<div id="post" class="center">
+    <h1>Mirror - 基于 issues 的博客工具</h1>
+    <p><a href="https://github.com/LoeiFy">LoeiFy</a> 发表于 2016-01-15 . - <a href="/category/0/">uncategorized</a>
+    </p>
+
+    <div class="content">
+        
+        <div class="toc">
+            <h3>文章目录</h3>
+            <ul>
+<li><a href="#预览地址">预览地址</a></li>
+<li><a href="#项目地址">项目地址</a></li>
+<li><a href="#如何安装">如何安装</a></li>
+<li><a href="#使用">使用</a><ul>
+<li><a href="#新建">新建</a></li>
+<li><a href="#配置你的-blog">配置你的 blog</a></li>
+<li><a href="#生成博客">生成博客</a></li>
+<li><a href="#发布你的-blog">发布你的 blog</a></li>
+</ul>
+</li>
+<li><a href="#另一种安装方式">另一种安装方式</a></li>
+<li><a href="#名字来源">名字来源</a></li>
+</ul>
+
+        </div>
+        
+        <p>Mirror 是一个简单的博客工具，基于 GitHub API 获取 issues 数据，然后展示在页面上。</p>
+<p>该工具的方便之处在于只需要在 issue 上写你的博客文章，你的网站会自动更新博客内容。</p>
+<p>借助 GitHub，你可以轻松的用 markdown 书写你的博客内容，永久保存，不用担心数据丢失问题。还可以非常方便上传博客图片，拖入编辑器即可。</p>
+<p>该博客工具非常适合以 issue 作为自己博客的用户，无痛生成博客网站，对原来内容毫无影响</p>
+<p>Mirror 还支持多用户协作，你可以方便的设置哪些用户写的内容可以显示在博客网站上，避免无关内容</p>
+<p>Mirror 生成的博客网站很小，整体大小 <code>60kb</code> 左右（未 gzip 压缩情况），所以访问起来也很快。项目依赖： <code>axios</code>, <code>smoothscroll-polyfill</code>, <code>github-markdown-css</code></p>
+<p>Mirror 在移动端同时有很好的浏览体验</p>
+<h2 id="预览地址">预览地址</h2><p><a href="http://mirror.am0200.com/">http://mirror.am0200.com/</a></p>
+<p>你可以点击底部的 <code>SandBox</code> 按钮，然后写入你需要测试的项目 issues，然后就可以直接看到博客内容，例如可以输入 玉伯 的博客地址：</p>
+<div class="hljs">
+                    
+                    <table><tbody><tr>
+                    <td class="line"><pre><code><span>1</span><br /><span>2</span><br /><span>3</span><br /><span>4</span><br /><span>5</span><br /><span>6</span><br /><span>7</span><br /></code></pre></td>
+                    <td class="code"><pre><code>title: blog
+
+user: lifesinger
+
+repo: blog
+
+per page: 10</code></pre></td>
+                    </tr></tbody></table>
+                    </div><p>点击 <code>Start</code>，你就可以看到 玉伯 的博客了。同样方法你可以测试你的 issue 博客</p>
+<h2 id="项目地址">项目地址</h2><p><a href="https://github.com/LoeiFy/Mirror">https://github.com/LoeiFy/Mirror</a></p>
+<p>更详细的介绍可以看项目说明</p>
+<h2 id="如何安装">如何安装</h2><p>安装很简单，需要一个 nodejs 环境，一个简单的命令即可，如果没有 nodejs 环境，可以直接下载资源包自己配置，后面会有说明</p>
+<div class="hljs bash">
+                    <span class="mark">bash</span>
+                    <table><tbody><tr>
+                    <td class="line"><pre><code><span>1</span><br /></code></pre></td>
+                    <td class="code"><pre><code>$ sudo npm <span class="hljs-keyword">install</span> Mirror -g</code></pre></td>
+                    </tr></tbody></table>
+                    </div><h2 id="使用">使用</h2><h3 id="新建">新建</h3><div class="hljs bash">
+                    <span class="mark">bash</span>
+                    <table><tbody><tr>
+                    <td class="line"><pre><code><span>1</span><br /><span>2</span><br /></code></pre></td>
+                    <td class="code"><pre><code><span class="hljs-variable">$ </span>cd newblog
+<span class="hljs-variable">$ </span>mirror init</code></pre></td>
+                    </tr></tbody></table>
+                    </div><p>或者</p>
+<div class="hljs bash">
+                    <span class="mark">bash</span>
+                    <table><tbody><tr>
+                    <td class="line"><pre><code><span>1</span><br /></code></pre></td>
+                    <td class="code"><pre><code><span class="hljs-variable">$ </span>mirror init newblog</code></pre></td>
+                    </tr></tbody></table>
+                    </div><p>完成后你的 blog 就在 newblog 这里</p>
+<h3 id="配置你的-blog">配置你的 blog</h3><p>修改 <code>config.yml</code></p>
+<div class="hljs yml">
+                    <span class="mark">yml</span>
+                    <table><tbody><tr>
+                    <td class="line"><pre><code><span>1</span><br /><span>2</span><br /><span>3</span><br /><span>4</span><br /><span>5</span><br /><span>6</span><br /><span>7</span><br /><span>8</span><br /><span>9</span><br /><span>10</span><br /><span>11</span><br /><span>12</span><br /><span>13</span><br /><span>14</span><br /><span>15</span><br /><span>16</span><br /><span>17</span><br /><span>18</span><br /><span>19</span><br /></code></pre></td>
+                    <td class="code"><pre><code><span class="hljs-meta"># 标题</span>
+title: Mirror
+
+<span class="hljs-meta"># github 用户名</span>
+user: LoeiFy
+
+<span class="hljs-meta"># blog 内容来源 repo</span>
+repo: Recordum
+
+<span class="hljs-meta"># 多用户，设定哪些用户写的 issue 内容可以展示出来，项目的用户名会自动包括进来</span>
+<span class="hljs-meta"># 多个用户用逗号（英文逗号）隔开，例如：user0,user1</span>
+authors: 
+
+<span class="hljs-meta"># 分页</span>
+per_page: <span class="hljs-number">10</span>
+
+<span class="hljs-meta"># 是否显示 sandbox，设置是否允许用户手动写入 issue 地址进行快速预览</span>
+<span class="hljs-meta"># 默认 false</span>
+sandbox: <span class="hljs-literal">false</span></code></pre></td>
+                    </tr></tbody></table>
+                    </div><p>获取你的 token，复制进 <code>token.txt</code>。这个 token 只有只读权限，用于提高 api 访问次数，不会有其他问题。</p>
+<p><a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a></p>
+<p><img src="https://cloud.githubusercontent.com/assets/2193211/20244206/d4d72a80-a9b2-11e6-9c0d-bb557cab90ec.png" alt="token"></p>
+<h3 id="生成博客">生成博客</h3><div class="hljs bash">
+                    <span class="mark">bash</span>
+                    <table><tbody><tr>
+                    <td class="line"><pre><code><span>1</span><br /></code></pre></td>
+                    <td class="code"><pre><code><span class="hljs-variable">$ </span>mirror build</code></pre></td>
+                    </tr></tbody></table>
+                    </div><h3 id="发布你的-blog">发布你的 blog</h3><p>你可以添加域名到 <code>CNAME</code></p>
+<p>push 文件到一个 repo 的 <code>gh-pages</code> 分支</p>
+<p>参考例子：<a href="https://github.com/LoeiFy/Mirror/tree/gh-pages">https://github.com/LoeiFy/Mirror/tree/gh-pages</a></p>
+<p>好了，现在你可以在 github issue  上写博客了，内容会同步更新</p>
+<h2 id="另一种安装方式">另一种安装方式</h2><p>你可以直接下载资源包，下载最新的 release，然后打开 <code>index.html</code> 进行配置，按照例子进行配置即可</p>
+<p><a href="https://github.com/LoeiFy/Mirror/releases">https://github.com/LoeiFy/Mirror/releases</a></p>
+<div class="hljs html">
+                    <span class="mark">html</span>
+                    <table><tbody><tr>
+                    <td class="line"><pre><code><span>1</span><br /><span>2</span><br /><span>3</span><br /><span>4</span><br /><span>5</span><br /><span>6</span><br /><span>7</span><br /><span>8</span><br /><span>9</span><br /><span>10</span><br /><span>11</span><br /></code></pre></td>
+                    <td class="code"><pre><code>&lt;!-- index.html<span class="hljs-function"> --&gt;</span>
+
+&lt;script&gt;
+
+<span class="hljs-regexp">// blog config here
+//</span> token should be separated <span class="hljs-keyword">by</span> <span class="hljs-string">'#'</span>. example: <span class="hljs-number">5</span><span class="hljs-comment">#c31bffc137f44faf7efc4a84da827g7ca2cfeaa</span>
+<span class="hljs-regexp">// example:
+//</span> <span class="hljs-built_in">window</span>.config = {<span class="hljs-string">"title"</span>:<span class="hljs-string">"rorriM"</span>,<span class="hljs-string">"user"</span>:<span class="hljs-string">"acyortjs"</span>,<span class="hljs-string">"repo"</span>:<span class="hljs-string">"acyortjs.github.io"</span>,<span class="hljs-string">"token"</span>:<span class="hljs-string">"5<span class="hljs-subst">#c31bffc137f44faf7efc4a84da827g7ca2cfeaa</span>"</span>,<span class="hljs-string">"authors"</span>:<span class="hljs-string">"LoeiFy,User0"</span>,<span class="hljs-string">"per_page"</span>:<span class="hljs-number">1</span>,<span class="hljs-string">"sandbox"</span>:<span class="hljs-literal">false</span>}
+<span class="hljs-built_in">window</span>.config = {<span class="hljs-string">"title"</span>:<span class="hljs-string">""</span>,<span class="hljs-string">"user"</span>:<span class="hljs-string">""</span>,<span class="hljs-string">"repo"</span>:<span class="hljs-string">""</span>,<span class="hljs-string">"token"</span>:<span class="hljs-string">""</span>,<span class="hljs-string">"authors"</span>:<span class="hljs-string">""</span>,<span class="hljs-string">"per_page"</span>:<span class="hljs-string">""</span>, <span class="hljs-string">"sandbox"</span>:<span class="hljs-literal">false</span>}
+
+&lt;/script&gt;</code></pre></td>
+                    </tr></tbody></table>
+                    </div><p>配置好后，可以先尝试本地预览，需要一个本地服务器，放上去访问 <code>index.html</code> 即可，测试没问题就可以把全部文件上传到对应地址即可，也可以放到 GitHub pages 上</p>
+<h2 id="名字来源">名字来源</h2><p><code>Mirror</code> 是 <code>DJ Okawari</code> 所作的专辑</p>
+<p><img src="https://cloud.githubusercontent.com/assets/2193211/12321915/c66d8b12-baeb-11e5-9612-b188f5272e3b.jpg" alt="mirror"></p>
+
+    </div>
+
+    
+    <div class="label">
+    
+    <div><a href="/tag/534950544/">#Blog</a></div>
+    
+    <div><a href="/tag/534950402/">#Github</a></div>
+    
+    <div><a href="/tag/534950261/">#Nodejs</a></div>
+    
+    </div>
+    
+
+    <div class="relate">
+    
+    
+    <a rel="prev" href="/posts/196350551.html">← Adobe CEP 扩展相关</a>
+    
+
+    
+    </div>
+
+    
+    
+    <div id="disqus_thread"></div>
+    
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        &copy; 2017 AcyOrt . <a target="_blank" href="https://github.com/AcyOrt/acyort">由 AcyOrt 强力驱动</a> . <a target="_blank" href="/rss.xml">RSS</a>
+    </div>
+</div>
+
+
+
+
+
+<script>
+var disqus_config = function() {
+    this.page.url = location.href.split('?')[0]
+    this.page.identifier = 126817142
+}
+;(function() {
+var d = document, s = d.createElement('script');
+s.src = '//acyort.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</body>
+</html>

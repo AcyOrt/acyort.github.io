@@ -3,3 +3,4 @@ Thumbs.db
 *.swp
 .cache/
 themes/
+config.sample.yml

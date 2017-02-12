@@ -1,46 +1,61 @@
-
 # site
 title: AcyOrt
-description: A Node.js blog tool powered by GitHub. 
+description: A Node.js blog tool powered by GitHub.
 keywords: acyort, nodejs, blog
 rss: rss.xml
 favicon: icon.png
 
 # site url. you can set as 'http://yoursite.com/child' if need
 # please add 'http://' or 'https://'
-url: http://acyort.github.io
-
-# site permalink
-# id, time or category
-# e.g.
-# id: 'posts/id.html'
-# time: 'year/month/id.html'
-# category: 'category_dir/category_name/id.html'
-permalink: id
+url: http://acyortjs.github.io
 
 # comment
-comment:
-    disqus: acyort
-    duoshuo:
+disqus: acyort
+duoshuo:
+
+# language
+languages:
+  - zh-CN
+  - en
 
 # theme
-theme: donob
+theme: ccc45
 
 # pagination
-per_page: 20
+# set 0 if not paging
+per_page: 3
 archives_per_page: 30
+
+# thumbnail mode
+# 1: use the first image as thumbnail and remove the image
+# 2: use the first image as thumbnail but not remove the image
+thumbnail_mode: 2
+
+# table of content
+toc: true
 
 #menu
 menu:
-    home: /
-    about: /about
-    archives: /
+  home: /
+  archives: /archives/
+  tags: /tag/
+  categories: /category/
 
 # category
 default_category: uncategorized
 
+# blogroll
+blogroll:
+  GitHub: https://github.com
+  Google: https://www.google.com
+
+# social
+social:
+  email: LoeiFy@gmail.com
+  github: https://github.com
+
 # html output directory or child directory e.g. 'child'
-public_dir: /
+public_dir:
 
 # category directory
 category_dir:
@@ -48,30 +63,36 @@ category_dir:
 # tag directory
 tag_dir:
 
-# site content issue
-# username/repository
-issue_repo: lifesinger/blog
+# post directory
+post_dir:
 
-# thumbnail mode 
-# 1: use the first image as thumbnail and remove the image
-# 2: use the first image as thumbnail but not remove the image
-thumbnail_mode: 2
+# archives directory
+archives_dir:
 
-# thumbnail size
-# whether to get the thumbnail size
-thumbnail_size: false
+# source
+# site content source
+# your github username/repository
+# username
+user: LoeiFy
+# repository
+repository: Recordum
 
 # site post authors filter
 authors:
-#    - LoeiFy
-#    - author0
-#    - author1
+  - LoeiFy
+#  - author0
+#  - author1
 
-# GitHub access token(Optional)
-# token should be separated by whitespace if you push this file to GitHub 
-# token: sd46a6d65a asd8sdbn
+# GitHub access token(optional)
+# token should be separated by '#' if you push this file to GitHub
+# token: s#d46a6d65aasd8sdbn
+
+# json output
+# boolean or string
+# you can set json output path
+json: false
 
 # dev mode
-# boolean / string
-# you can set test json path: test/test.json 
+# boolean or string
+# you can set test json path: test/test.json
 dev: false
