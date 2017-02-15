@@ -1,6 +1,5 @@
 Thumbs.db
 .DS_Store
 *.swp
-.cache/
 themes/
 config.sample.yml
