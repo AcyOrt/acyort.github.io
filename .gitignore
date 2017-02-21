@@ -3,3 +3,4 @@ Thumbs.db
 *.swp
 themes/
 config.sample.yml
+ISSUE_DATA.json
