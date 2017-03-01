@@ -37,10 +37,9 @@ menu:
   home: /
   archives: /archives/
   tags: /tag/
-  categories: /category/
 
 # category
-default_category: uncategorized
+default_category: blog
 
 # blogroll
 blogroll:
