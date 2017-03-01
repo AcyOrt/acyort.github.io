@@ -1,0 +1,270 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="/icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+记录一下折腾黑苹果过程 | AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="center">
+        <h1><a href="/">AcyOrt</a></h1>
+        <p>A Node.js blog tool powered by GitHub.</p>
+    </div>
+    <div class="menu">
+    
+    <a href="/">首页</a>
+    
+    <a href="/archives/">归档</a>
+    
+    <a href="/tag/">所有标签</a>
+    
+    </div>
+</div>
+
+
+
+<div id="post" class="center">
+    <h1>记录一下折腾黑苹果过程</h1>
+    <p><a href="https://github.com/LoeiFy">LoeiFy</a> 发表于 2017-02-04 . - <a href="/category/0/">blog</a>
+    </p>
+
+    <div class="content">
+        
+        <div class="toc">
+            <h3>文章目录</h3>
+            <ul>
+<li><a href="#黑苹果情况">黑苹果情况</a><ul>
+<li><a href="#正常部分">正常部分</a></li><li><a href="#问题">问题</a></li></ul>
+</li><li><a href="#机器配置">机器配置</a></li><li><a href="#安装过程">安装过程</a><ul>
+<li><a href="#bios-设置">BIOS 设置</a></li><li><a href="#unibeast-制作安装启动盘">UniBeast 制作安装启动盘</a></li><li><a href="#安装系统">安装系统</a></li><li><a href="#系统设置">系统设置</a></li></ul>
+</li></ul>
+
+        </div>
+        
+        <p>也算是完成了读书时候的心愿，以前读书时候老想着弄个黑苹果，但是一直没有成功。最近折腾安装前后花的时间就两三天那样，参考了一堆前人经验，所以不会很折腾，总体上算是完美的</p>
+<h2 id="黑苹果情况">黑苹果情况</h2><p><img src="https://cloud.githubusercontent.com/assets/2193211/22615077/d8cde9de-eac7-11e6-98be-6531cc36bc61.png" alt="screen shot 2017-02-04 at 10 30 35 am"></p>
+<h3 id="正常部分">正常部分</h3><ul>
+<li>显卡(HD530)，声卡，网卡驱动正常</li><li>USB 3 识别正常</li><li>CPU 可以变频</li><li>SSD TRIM 正常</li></ul>
+<h3 id="问题">问题</h3><ul>
+<li>不能休眠/睡眠，因为是台式机，不理会</li><li>开机偶尔会出现禁止符号，拔掉/换接口 usb 就可以，应该是 usb 驱动问题吧，经常不关机不理会</li><li>开机过程会有一瞬间花屏现象，不影响使用，不理会</li></ul>
+<h2 id="机器配置">机器配置</h2><ul>
+<li>CPU: i5-6500 散 </li><li>主板: 微星 B150i GAMING PRO </li><li>内存: 金士顿 8G*2 </li><li>显卡: 内置集显</li><li>机箱: 迎广肖邦</li><li>电源: 机箱内置 </li><li>SSD: Crucial_CT960M500 (之前没有用到的) </li></ul>
+<h2 id="安装过程">安装过程</h2><p>主要参考：<a href="https://www.tonymacx86.com/threads/unibeast-install-macos-sierra-on-any-supported-intel-based-pc.200564/">https://www.tonymacx86.com/threads/unibeast-install-macos-sierra-on-any-supported-intel-based-pc.200564/</a></p>
+<p>需要 3 个软件 <code>UniBeast</code>, <code>MultiBeast</code>, <code>Clover Configurator</code></p>
+<p>usb 启动盘相关都是在 MacBook air 上操作的，教程上制作软件需要在英文系统下操作</p>
+<h3 id="bios-设置">BIOS 设置</h3><ul>
+<li><p>settings\高级\整合周边设备： SATA模式 - AHCI模式</p>
+</li><li><p>settings\高级\USB设置： XHCI Hand-off - 允许</p>
+</li><li><p>settings\高级\超级IO配置\串口0配置： 串口0 - 禁止</p>
+</li><li><p>settings\启动： 启动模式选择 - UEFI</p>
+</li><li><p>Overclocking\CPU 特征： CFG 锁定 - 禁止</p>
+</li><li><p><del>Overclocking\CPU 特征： Intel 虚拟化技术 - 禁止 ／ Intel VT-D 技术 - 禁止</del></p>
+</li></ul>
+<h3 id="unibeast-制作安装启动盘">UniBeast 制作安装启动盘</h3><ul>
+<li>格式化 U 盘：USB/OS X Extended (Journaled)/GUID Partition Map</li><li>写入 macOS Sierra 镜像，过程有点长，慢慢等</li></ul>
+<p>安装完成将需要的设置软件 <code>MultiBeast</code>, <code>Clover Configurator</code> 拖入 U 盘保存，后续需要</p>
+<h3 id="安装系统">安装系统</h3><ul>
+<li>开机 F11 选择 U 盘启动</li><li>磁盘工具格式化硬盘：Sierra/OS X Extended (Journaled)/GUID Partition Map</li><li>安装，然后提示重启</li><li>重启后选择 U 盘启动，启动刚刚安装的 Sierra，继续完成安装</li></ul>
+<h3 id="系统设置">系统设置</h3><p>完成安装后，这时候系统还没有相关驱动，打开相应软件进行设置</p>
+<blockquote>
+<p>使用 <code>MutiBeast</code> 进行驱动相关设置</p>
+</blockquote>
+<ul>
+<li>Quick Start: UEFI Boot Mode</li><li>Audio: Realtek ALCxxx - ALC887/888b, Optional HD 3000/HD 4000/HD 530 HDMI Audio</li><li>Network: Realtek - RealtekRTL8111 v2.2.1</li><li>Graphics Configuration: Intel HD 530</li><li>SSDT Options: Sandy Bridge Core i5</li></ul>
+<blockquote>
+<p>plist 设置</p>
+</blockquote>
+<p>使用 <code>Clover Configurator</code> mount EFI 分区，用 sublime 打开 EFI/CLOVER/config.plist，添加对应字段</p>
+<div class="hljs xml">
+      <span class="mark">xml</span>
+      <table><tbody><tr>
+      <td class="line"><pre><code><span>1</span><br /><span>2</span><br /><span>3</span><br /><span>4</span><br /><span>5</span><br /><span>6</span><br /><span>7</span><br /><span>8</span><br /><span>9</span><br /><span>10</span><br /><span>11</span><br /><span>12</span><br /><span>13</span><br /><span>14</span><br /><span>15</span><br /><span>16</span><br /><span>17</span><br /><span>18</span><br /><span>19</span><br /><span>20</span><br /><span>21</span><br /><span>22</span><br /><span>23</span><br /><span>24</span><br /><span>25</span><br /><span>26</span><br /><span>27</span><br /><span>28</span><br /><span>29</span><br /><span>30</span><br /><span>31</span><br /><span>32</span><br /><span>33</span><br /><span>34</span><br /><span>35</span><br /><span>36</span><br /><span>37</span><br /><span>38</span><br /><span>39</span><br /><span>40</span><br /><span>41</span><br /><span>42</span><br /><span>43</span><br /><span>44</span><br /><span>45</span><br /><span>46</span><br /><span>47</span><br /><span>48</span><br /><span>49</span><br /><span>50</span><br /><span>51</span><br /><span>52</span><br /><span>53</span><br /><span>54</span><br /><span>55</span><br /><span>56</span><br /><span>57</span><br /><span>58</span><br /><span>59</span><br /><span>60</span><br /><span>61</span><br /><span>62</span><br /><span>63</span><br /><span>64</span><br /><span>65</span><br /><span>66</span><br /><span>67</span><br /><span>68</span><br /><span>69</span><br /><span>70</span><br /><span>71</span><br /><span>72</span><br /><span>73</span><br /><span>74</span><br /><span>75</span><br /><span>76</span><br /><span>77</span><br /><span>78</span><br /><span>79</span><br /><span>80</span><br /><span>81</span><br /><span>82</span><br /><span>83</span><br /><span>84</span><br /><span>85</span><br /><span>86</span><br /><span>87</span><br /><span>88</span><br /><span>89</span><br /><span>90</span><br /><span>91</span><br /><span>92</span><br /><span>93</span><br /><span>94</span><br /><span>95</span><br /><span>96</span><br /><span>97</span><br /><span>98</span><br /><span>99</span><br /><span>100</span><br /></code></pre></td>
+      <td class="code"><pre><code><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span><span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">plist</span> <span class="hljs-attr">version</span>=<span class="hljs-string">"1.0"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Devices<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>AddProperties<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">array</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Device<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>IntelGFX<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Key<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>AAPL,Gfx324<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Value<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">data</span>&gt;</span>
+                AQAAAA==
+                <span class="hljs-tag">&lt;/<span class="hljs-name">data</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Device<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>IntelGFX<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Key<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>AAPL,GfxYTile<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Value<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">data</span>&gt;</span>
+                AQAAAA==
+                <span class="hljs-tag">&lt;/<span class="hljs-name">data</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Device<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>IntelGFX<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Key<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>AAPL00,PanelCycleDelay<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Value<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">data</span>&gt;</span>
+                +gAAAA==
+                <span class="hljs-tag">&lt;/<span class="hljs-name">data</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Device<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>IntelGFX<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Key<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>AAPL00,PanelPowerDown<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Value<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">data</span>&gt;</span>
+                PAAAAA==
+                <span class="hljs-tag">&lt;/<span class="hljs-name">data</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Device<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>IntelGFX<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Key<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>AAPL00,PanelPowerOff<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Value<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">data</span>&gt;</span>
+                EQAAAA==
+                <span class="hljs-tag">&lt;/<span class="hljs-name">data</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Device<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>IntelGFX<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Key<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>AAPL00,PanelPowerOn<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Value<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">data</span>&gt;</span>
+                GQEAAA==
+                <span class="hljs-tag">&lt;/<span class="hljs-name">data</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Device<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>IntelGFX<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Key<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>AAPL00,PanelPowerUp<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Value<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">data</span>&gt;</span>
+                MAAAAA==
+                <span class="hljs-tag">&lt;/<span class="hljs-name">data</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Device<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>IntelGFX<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Key<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>graphic-options<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Value<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">data</span>&gt;</span>
+                DAAAAA==
+                <span class="hljs-tag">&lt;/<span class="hljs-name">data</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">dict</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Device<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>IntelGFX<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Key<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>hda-gfx<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">key</span>&gt;</span>Value<span class="hljs-tag">&lt;/<span class="hljs-name">key</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>onboard-1<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">array</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dict</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">plist</span>&gt;</span></code></pre></td>
+      </tr></tbody></table>
+      </div><blockquote>
+<p>kexts</p>
+</blockquote>
+<p>复制 <code>FakeSMC.kext</code>, <code>RealtekRTL8111.kext</code>, <code>VoodooHDA.kext</code> 到 EFI/CLOVER／kexts／other</p>
+<blockquote>
+<p>ssd trim</p>
+</blockquote>
+<p>输入相关命令重启即可</p>
+<div class="hljs bash">
+      <span class="mark">bash</span>
+      <table><tbody><tr>
+      <td class="line"><pre><code><span>1</span><br /></code></pre></td>
+      <td class="code"><pre><code>sudo trimforce <span class="hljs-built_in">enable</span></code></pre></td>
+      </tr></tbody></table>
+      </div><blockquote>
+<p>默认启动 </p>
+</blockquote>
+<p>config.plist／Boot/DefaultVolume 的 ‘值’ 改成你的启动盘(Sierra)，默认为 macHDD</p>
+
+    </div>
+
+    
+    <div class="label">
+    
+    <div><a href="/tag/531939314/">#CustoMac</a></div>
+    
+    <div><a href="/tag/531938577/">#Sierra</a></div>
+    
+    </div>
+    
+
+    <div class="relate">
+    
+    
+    <a rel="prev" href="/posts/210285498.html">← 不依赖服务端实现 react-router 的 browserHistory</a>
+    
+
+    
+    
+    <a rel="next" href="/posts/196350551.html">Adobe CEP 扩展相关 →</a>
+    
+    </div>
+
+    
+    
+    <div id="disqus_thread"></div>
+    
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        &copy; 2017 AcyOrt . <a target="_blank" href="https://github.com/acyortjs/acyort">由 Github | AcyOrt 强力驱动</a> . <a target="_blank" href="/rss.xml">RSS</a> . <a target="_blank" href="https://github.com/LoeiFy/Recordum/issues">Source</a>
+    </div>
+</div>
+
+
+
+
+
+<script>
+var disqus_config = function() {
+    this.page.url = location.href.split('?')[0]
+    this.page.identifier = 205319771
+}
+;(function() {
+var d = document, s = d.createElement('script');
+s.src = '//acyort.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</body>
+</html>

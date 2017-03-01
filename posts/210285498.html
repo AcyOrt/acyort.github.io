@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="/icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+不依赖服务端实现 react-router 的 browserHistory | AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+    <div class="center">
+        <h1><a href="/">AcyOrt</a></h1>
+        <p>A Node.js blog tool powered by GitHub.</p>
+    </div>
+    <div class="menu">
+    
+    <a href="/">首页</a>
+    
+    <a href="/archives/">归档</a>
+    
+    <a href="/tag/">所有标签</a>
+    
+    </div>
+</div>
+
+
+
+<div id="post" class="center">
+    <h1>不依赖服务端实现 react-router 的 browserHistory</h1>
+    <p><a href="https://github.com/LoeiFy">LoeiFy</a> 发表于 2017-02-26 . - <a href="/category/0/">blog</a>
+    </p>
+
+    <div class="content">
+        
+        <div class="toc">
+            <h3>文章目录</h3>
+            <ul>
+<li><a href="#一般方式">一般方式</a></li><li><a href="#另一种方式">另一种方式</a></li><li><a href="#问题">问题</a></li></ul>
+
+        </div>
+        
+        <p>SPA 项目基本上都会用到路由 <code>router</code>。react 还有 vue 对应有其路由插件。 react-router 还有 vue-router 都有 hashHistory 和 browserHistory 模式。这里大概说一下两者区别</p>
+<ul>
+<li>hashHistory: 不需要服务器配置，在 URL 生成一个 hash 来跟踪状态，通常在测试环境使用，也可以作为发布环境使用</li><li>browserHistory: 需要服务器端做配置，路径是真实的URL，是 react-router 官方推荐首选</li></ul>
+<p>大多数情况下，browserHistory 模式明显是优于 hashHistory 模式的，但 browserHistory 需要一定的配置</p>
+<h3 id="一般方式">一般方式</h3><p>可以看出，hashHistory 不需要什么配置，但 browserHistory 需要服务端支持，这里简单说一下两种方式做支持，其它方式基本上都是类似</p>
+<blockquote>
+<p>使用 express</p>
+</blockquote>
+<div class="hljs js">
+      <span class="mark">javascript</span>
+      <table><tbody><tr>
+      <td class="line"><pre><code><span>1</span><br /><span>2</span><br /><span>3</span><br /><span>4</span><br /></code></pre></td>
+      <td class="code"><pre><code><span class="hljs-keyword">const</span> app = express()
+app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(request, response)</span></span>{
+  response.sendFile(path.resolve(__dirname, <span class="hljs-string">'index.html'</span>))
+})</code></pre></td>
+      </tr></tbody></table>
+      </div><blockquote>
+<p>使用 nginx</p>
+</blockquote>
+<div class="hljs perl">
+      <span class="mark">perl</span>
+      <table><tbody><tr>
+      <td class="line"><pre><code><span>1</span><br /><span>2</span><br /><span>3</span><br /><span>4</span><br /><span>5</span><br /><span>6</span><br /></code></pre></td>
+      <td class="code"><pre><code>server {
+  ...
+  <span class="hljs-keyword">location</span> <span class="hljs-title">/ {
+    try_files</span> $uri /index.html
+  }
+}</code></pre></td>
+      </tr></tbody></table>
+      </div><p>这里说明一下为什么要这样设置，browserHistory 模式下，URL 是指向真实 URL 的资源路径，当通过真实 URL 访问网站的时候（首页），这个时候可以正常加载我们的网站资源，而用户在非首页下手动刷新网页时，由于路径是指向服务器的真实路径，但该路径下并没有相关资源，用户访问的资源不存在，返回给用户的是 404 错误</p>
+<h3 id="另一种方式">另一种方式</h3><p>通过上面所说的原理，简单起来说就是 browserHistory 模式下，需要每个路由下都要有对应的资源存在，就不会产生 404 错误，所以如果不借助服务端的话，又要实现这种模式，这种场景在自己不能配置服务器时候会碰到，例如把项目部署到 <code>GitHub pages</code> 上。那该怎么办呢</p>
+<blockquote>
+<p>那么就产生 <strong>对应资源</strong> </p>
+</blockquote>
+<p>所以，我们的做法就是在每个 <strong>路由路径</strong> 下，都放置一个跟首页一样的 <code>index.html</code></p>
+<p>下面是做法，当然也是有各种方式的，都是可以类推的</p>
+<p>假定我们有以下的路由设定，这里以 react-router 为例子</p>
+<div class="hljs js">
+      <span class="mark">javascript</span>
+      <table><tbody><tr>
+      <td class="line"><pre><code><span>1</span><br /><span>2</span><br /><span>3</span><br /><span>4</span><br /><span>5</span><br /><span>6</span><br /><span>7</span><br /><span>8</span><br /><span>9</span><br /><span>10</span><br /><span>11</span><br /><span>12</span><br /></code></pre></td>
+      <td class="code"><pre><code>export default (
+  <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"/"</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{App}</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">IndexRoute</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{HomePage}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"contact-us"</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{ContactPage}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"dashboard"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">IndexRoute</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{Verify(Dashboard)}</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"inbox"</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{Verify(Inbox)}</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"conversation"</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{Verify(ComposeMessage)}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"*"</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{NotFound}</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span>
+)</code></pre></td>
+      </tr></tbody></table>
+      </div><p>那么就可以路由路径为</p>
+<div class="hljs js">
+      <span class="mark">javascript</span>
+      <table><tbody><tr>
+      <td class="line"><pre><code><span>1</span><br /><span>2</span><br /><span>3</span><br /><span>4</span><br /><span>5</span><br /><span>6</span><br /><span>7</span><br /><span>8</span><br /><span>9</span><br /></code></pre></td>
+      <td class="code"><pre><code><span class="hljs-comment">// routes.js</span>
+<span class="hljs-keyword">const</span> routes = [
+  <span class="hljs-string">'contact-us'</span>,
+  <span class="hljs-string">'dashboard'</span>,
+  <span class="hljs-string">'dashborad/inbox'</span>,
+  <span class="hljs-string">'dashboard/conversation'</span>
+]
+
+<span class="hljs-keyword">module</span>.<span class="hljs-keyword">exports</span> = routes</code></pre></td>
+      </tr></tbody></table>
+      </div><p>接下来我们就把生成的 <code>index.html</code> 复制到这几个路径下就可以了</p>
+<div class="hljs js">
+      <span class="mark">javascript</span>
+      <table><tbody><tr>
+      <td class="line"><pre><code><span>1</span><br /><span>2</span><br /><span>3</span><br /><span>4</span><br /><span>5</span><br /><span>6</span><br /><span>7</span><br /></code></pre></td>
+      <td class="code"><pre><code><span class="hljs-comment">// deploy.js</span>
+<span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs-extra'</span>)
+<span class="hljs-keyword">const</span> routes = <span class="hljs-built_in">require</span>(<span class="hljs-string">'routes.js'</span>)
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>)
+routes.forEach(<span class="hljs-function">(<span class="hljs-params">route</span>) =&gt;</span> {
+  fs.copySync(<span class="hljs-string">'index.html'</span>, path.join(route, <span class="hljs-string">'index.html'</span>))
+})</code></pre></td>
+      </tr></tbody></table>
+      </div><p>这样用户访问就不会出现 404 了，SPA 的功能也不受影响，为了方便我们可以把这个生成工具集成到 <code>package.json</code></p>
+<div class="hljs json">
+      <span class="mark">json</span>
+      <table><tbody><tr>
+      <td class="line"><pre><code><span>1</span><br /><span>2</span><br /><span>3</span><br /><span>4</span><br /><span>5</span><br /></code></pre></td>
+      <td class="code"><pre><code>{
+  <span class="hljs-attr">"script"</span>: {
+    <span class="hljs-attr">"build"</span>: <span class="hljs-string">"NODE_ENV=production webpack --progress &amp;&amp; node deploy.js"</span>
+  }
+}</code></pre></td>
+      </tr></tbody></table>
+      </div><p>ok, 当我们运行 <code>npm run build</code> 时候，就会同时生成对应路径下的 <code>index.html</code>，这样就可以了完成我们所需要的功能了</p>
+<h3 id="问题">问题</h3><blockquote>
+<p>404 路由怎么生成路径</p>
+</blockquote>
+<p>这个就直接使用服务端 404 页面了，如果是用 <code>GitHub pages</code> 的话，我们可以直接生成一个 <code>404.html</code> 即可。或者是将 404 路由跳转到首页</p>
+
+    </div>
+
+    
+    <div class="label">
+    
+    <div><a href="/tag/534950261/">#Nodejs</a></div>
+    
+    <div><a href="/tag/548037617/">#React</a></div>
+    
+    <div><a href="/tag/548037602/">#Router</a></div>
+    
+    <div><a href="/tag/548037646/">#Vue</a></div>
+    
+    </div>
+    
+
+    <div class="relate">
+    
+
+    
+    
+    <a rel="next" href="/posts/205319771.html">记录一下折腾黑苹果过程 →</a>
+    
+    </div>
+
+    
+    
+    <div id="disqus_thread"></div>
+    
+</div>
+
+
+<div class="footer">
+    <div class="center">
+        &copy; 2017 AcyOrt . <a target="_blank" href="https://github.com/acyortjs/acyort">由 Github | AcyOrt 强力驱动</a> . <a target="_blank" href="/rss.xml">RSS</a> . <a target="_blank" href="https://github.com/LoeiFy/Recordum/issues">Source</a>
+    </div>
+</div>
+
+
+
+
+
+<script>
+var disqus_config = function() {
+    this.page.url = location.href.split('?')[0]
+    this.page.identifier = 210285498
+}
+;(function() {
+var d = document, s = d.createElement('script');
+s.src = '//acyort.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</body>
+</html>
