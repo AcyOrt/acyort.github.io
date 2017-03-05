@@ -10,17 +10,16 @@ favicon: icon.png
 url: http://acyortjs.github.io
 
 # comment
-disqus: acyort
-duoshuo:
+disqus:
 
 # language
 language: zh-CN
 
 # theme
-theme: ccc45
+theme: donob
 
 # pagination
-# set 0 if not paging
+# set 0 if no need paging
 per_page: 3
 archives_per_page: 30
 
@@ -28,9 +27,6 @@ archives_per_page: 30
 # 1: use the first image as thumbnail and remove the image
 # 2: use the first image as thumbnail but not remove the image
 thumbnail_mode: 2
-
-# table of content
-toc: true
 
 #menu
 menu:
@@ -40,16 +36,6 @@ menu:
 
 # category
 default_category: blog
-
-# blogroll
-blogroll:
-  GitHub: https://github.com
-  Google: https://www.google.com
-
-# social
-social:
-  email: LoeiFy@gmail.com
-  github: https://github.com
 
 # html output directory or child directory e.g. 'child'
 public_dir:
@@ -69,9 +55,7 @@ archives_dir:
 # source
 # site content source
 # your github username/repository
-# username
 user: LoeiFy
-# repository
 repository: Recordum
 
 # site post authors filter
@@ -90,4 +74,11 @@ authors:
 json: false
 
 # dev mode
-dev: false
+dev: true
+
+# other
+# customize some settings if you need
+
+# duoshuo:
+# blogroll:
+#  GitHub: https://github.com
