@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[AcyOrt]]></title><description><![CDATA[A Node.js blog tool powered by GitHub.]]></description><link>http://acyortjs.github.io</link><generator>RSS for Node</generator><lastBuildDate>Tue, 14 Mar 2017 12:48:05 GMT</lastBuildDate><atom:link href="http:/acyortjs.github.io/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Tue, 14 Mar 2017 12:48:05 GMT</pubDate><item><title><![CDATA[不依赖服务端实现 react-router 的 browserHistory]]></title><description><![CDATA[<p>SPA 项目基本上都会用到路由 <code>router</code>。react 还有 vue 对应有其路由插件。 react-router 还有 vue-router 都有 hashHistory 和 browserHistory 模式。这里大概说一下两者区别</p>
+<ul>
+<li>hashHistory: 不需要服务器配置，在 URL 生成一个 hash 来跟踪状态，通常在测试环境使用，也可以作为发布环境使用</li>
+<li>browserHistory: 需要服务器端做配置，路径是真实的URL，是 react-router 官方推荐首选</li>
+</ul>
+<p>大多数情况下，browserHistory 模式明显是优于 hashHistory 模式的，但 browserHistory 需要一定的配置</p>
+<h3>一般方式</h3><p>可以看出，hashHistory 不需要什么配置，但 browserHistory 需要服务端支持，这里简单说一下两种方式做支持，其它方式基本上都是类似</p>
+<blockquote>
+<p>使用 express</p>
+</blockquote>
+<pre><code>const app = express()
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'index.html'))
+})</code></pre><blockquote>
+<p>使用 nginx</p>
+</blockquote>
+<pre><code>server {
+  ...
+  location / {
+    try_files $uri /index.html
+  }
+}</code></pre><p>这里说明一下为什么要这样设置，browserHistory 模式下，URL 是指向真实 URL 的资源路径，当通过真实 URL 访问网站的时候（首页），这个时候可以正常加载我们的网站资源，而用户在非首页下手动刷新网页时，由于路径是指向服务器的真实路径，但该路径下并没有相关资源，用户访问的资源不存在，返回给用户的是 404 错误</p>
+<h3>另一种方式</h3><p>通过上面所说的原理，简单起来说就是 browserHistory 模式下，需要每个路由下都要有对应的资源存在，就不会产生 404 错误，所以如果不借助服务端的话，又要实现这种模式，这种场景在自己不能配置服务器时候会碰到，例如把项目部署到 <code>GitHub pages</code> 上。那该怎么办呢</p>
+<blockquote>
+<p>那么就产生 <strong>对应资源</strong> </p>
+</blockquote>
+<p>所以，我们的做法就是在每个 <strong>路由路径</strong> 下，都放置一个跟首页一样的 <code>index.html</code></p>
+<p>下面是做法，当然也是有各种方式的，都是可以类推的</p>
+<p>假定我们有以下的路由设定，这里以 react-router 为例子</p>
+<pre><code>export default (
+  <Route path="/" component={App}>
+    <IndexRoute component={HomePage} />
+    <Route path="contact-us" component={ContactPage} />
+    <Route path="dashboard">
+      <IndexRoute component={Verify(Dashboard)} />
+      <Route path="inbox" component={Verify(Inbox)} />
+      <Route path="conversation" component={Verify(ComposeMessage)} />
+    </Route>
+    <Route path="*" component={NotFound} />
+  </Route>
+)</code></pre><p>那么就可以路由路径为</p>
+<pre><code>// routes.js
+const routes = [
+  'contact-us',
+  'dashboard',
+  'dashborad/inbox',
+  'dashboard/conversation'
+]
+
+module.exports = routes</code></pre><p>接下来我们就把生成的 <code>index.html</code> 复制到这几个路径下就可以了</p>
+<pre><code>// deploy.js
+const fs = require('fs-extra')
+const routes = require('routes.js')
+const path = require('path')
+routes.forEach((route) => {
+  fs.copySync('index.html', path.join(route, 'index.html'))
+})</code></pre><p>这样用户访问就不会出现 404 了，SPA 的功能也不受影响，为了方便我们可以把这个生成工具集成到 <code>package.json</code></p>
+<pre><code>{
+  "script": {
+    "build": "NODE_ENV=production webpack --progress && node deploy.js"
+  }
+}</code></pre><p>ok, 当我们运行 <code>npm run build</code> 时候，就会同时生成对应路径下的 <code>index.html</code>，这样就可以了完成我们所需要的功能了</p>
+<h3>问题</h3><blockquote>
+<p>404 路由怎么生成路径</p>
+</blockquote>
+<p>这个就直接使用服务端 404 页面了，如果是用 <code>GitHub pages</code> 的话，我们可以直接生成一个 <code>404.html</code> 即可。或者是将 404 路由跳转到首页</p>
+]]></description><link>http:/acyortjs.github.io/posts/210285498.html</link><guid isPermaLink="true">http:/acyortjs.github.io/posts/210285498.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Sun, 26 Feb 2017 05:02:49 GMT</pubDate></item><item><title><![CDATA[记录一下折腾黑苹果过程]]></title><description><![CDATA[<p>也算是完成了读书时候的心愿，以前读书时候老想着弄个黑苹果，但是一直没有成功。最近折腾安装前后花的时间就两三天那样，参考了一堆前人经验，所以不会很折腾，总体上算是完美的</p>
+<h2>黑苹果情况</h2><p><img src="https://cloud.githubusercontent.com/assets/2193211/22615077/d8cde9de-eac7-11e6-98be-6531cc36bc61.png" alt="screen shot 2017-02-04 at 10 30 35 am"></p>
+<h3>正常部分</h3><ul>
+<li>显卡(HD530)，声卡，网卡驱动正常</li>
+<li>USB 3 识别正常</li>
+<li>CPU 可以变频</li>
+<li>SSD TRIM 正常</li>
+</ul>
+<h3>问题</h3><ul>
+<li>不能休眠/睡眠，因为是台式机，不理会</li>
+<li>开机偶尔会出现禁止符号，拔掉/换接口 usb 就可以，应该是 usb 驱动问题吧，经常不关机不理会</li>
+<li>开机过程会有一瞬间花屏现象，不影响使用，不理会</li>
+</ul>
+<h2>机器配置</h2><ul>
+<li>CPU: i5-6500 散 </li>
+<li>主板: 微星 B150i GAMING PRO </li>
+<li>内存: 金士顿 8G*2 </li>
+<li>显卡: 内置集显</li>
+<li>机箱: 迎广肖邦</li>
+<li>电源: 机箱内置 </li>
+<li>SSD: Crucial_CT960M500 (之前没有用到的) </li>
+</ul>
+<h2>安装过程</h2><p>主要参考：<a href="https://www.tonymacx86.com/threads/unibeast-install-macos-sierra-on-any-supported-intel-based-pc.200564/">https://www.tonymacx86.com/threads/unibeast-install-macos-sierra-on-any-supported-intel-based-pc.200564/</a></p>
+<p>需要 3 个软件 <code>UniBeast</code>, <code>MultiBeast</code>, <code>Clover Configurator</code></p>
+<p>usb 启动盘相关都是在 MacBook air 上操作的，教程上制作软件需要在英文系统下操作</p>
+<h3>BIOS 设置</h3><ul>
+<li><p>settings\高级\整合周边设备： SATA模式 - AHCI模式</p>
+</li>
+<li><p>settings\高级\USB设置： XHCI Hand-off - 允许</p>
+</li>
+<li><p>settings\高级\超级IO配置\串口0配置： 串口0 - 禁止</p>
+</li>
+<li><p>settings\启动： 启动模式选择 - UEFI</p>
+</li>
+<li><p>Overclocking\CPU 特征： CFG 锁定 - 禁止</p>
+</li>
+<li><p><del>Overclocking\CPU 特征： Intel 虚拟化技术 - 禁止 ／ Intel VT-D 技术 - 禁止</del></p>
+</li>
+</ul>
+<h3>UniBeast 制作安装启动盘</h3><ul>
+<li>格式化 U 盘：USB/OS X Extended (Journaled)/GUID Partition Map</li>
+<li>写入 macOS Sierra 镜像，过程有点长，慢慢等</li>
+</ul>
+<p>安装完成将需要的设置软件 <code>MultiBeast</code>, <code>Clover Configurator</code> 拖入 U 盘保存，后续需要</p>
+<h3>安装系统</h3><ul>
+<li>开机 F11 选择 U 盘启动</li>
+<li>磁盘工具格式化硬盘：Sierra/OS X Extended (Journaled)/GUID Partition Map</li>
+<li>安装，然后提示重启</li>
+<li>重启后选择 U 盘启动，启动刚刚安装的 Sierra，继续完成安装</li>
+</ul>
+<h3>系统设置</h3><p>完成安装后，这时候系统还没有相关驱动，打开相应软件进行设置</p>
+<blockquote>
+<p>使用 <code>MutiBeast</code> 进行驱动相关设置</p>
+</blockquote>
+<ul>
+<li>Quick Start: UEFI Boot Mode</li>
+<li>Audio: Realtek ALCxxx - ALC887/888b, Optional HD 3000/HD 4000/HD 530 HDMI Audio</li>
+<li>Network: Realtek - RealtekRTL8111 v2.2.1</li>
+<li>Graphics Configuration: Intel HD 530</li>
+<li>SSDT Options: Sandy Bridge Core i5</li>
+</ul>
+<blockquote>
+<p>plist 设置</p>
+</blockquote>
+<p>使用 <code>Clover Configurator</code> mount EFI 分区，用 sublime 打开 EFI/CLOVER/config.plist，添加对应字段</p>
+<pre><code><?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Devices</key>
+    <dict>
+        <key>AddProperties</key>
+        <array>
+            <dict>
+                <key>Device</key>
+                <string>IntelGFX</string>
+                <key>Key</key>
+                <string>AAPL,Gfx324</string>
+                <key>Value</key>
+                <data>
+                AQAAAA==
+                </data>
+            </dict>
+            <dict>
+                <key>Device</key>
+                <string>IntelGFX</string>
+                <key>Key</key>
+                <string>AAPL,GfxYTile</string>
+                <key>Value</key>
+                <data>
+                AQAAAA==
+                </data>
+            </dict>
+            <dict>
+                <key>Device</key>
+                <string>IntelGFX</string>
+                <key>Key</key>
+                <string>AAPL00,PanelCycleDelay</string>
+                <key>Value</key>
+                <data>
+                +gAAAA==
+                </data>
+            </dict>
+            <dict>
+                <key>Device</key>
+                <string>IntelGFX</string>
+                <key>Key</key>
+                <string>AAPL00,PanelPowerDown</string>
+                <key>Value</key>
+                <data>
+                PAAAAA==
+                </data>
+            </dict>
+            <dict>
+                <key>Device</key>
+                <string>IntelGFX</string>
+                <key>Key</key>
+                <string>AAPL00,PanelPowerOff</string>
+                <key>Value</key>
+                <data>
+                EQAAAA==
+                </data>
+            </dict>
+            <dict>
+                <key>Device</key>
+                <string>IntelGFX</string>
+                <key>Key</key>
+                <string>AAPL00,PanelPowerOn</string>
+                <key>Value</key>
+                <data>
+                GQEAAA==
+                </data>
+            </dict>
+            <dict>
+                <key>Device</key>
+                <string>IntelGFX</string>
+                <key>Key</key>
+                <string>AAPL00,PanelPowerUp</string>
+                <key>Value</key>
+                <data>
+                MAAAAA==
+                </data>
+            </dict>
+            <dict>
+                <key>Device</key>
+                <string>IntelGFX</string>
+                <key>Key</key>
+                <string>graphic-options</string>
+                <key>Value</key>
+                <data>
+                DAAAAA==
+                </data>
+            </dict>
+            <dict>
+                <key>Device</key>
+                <string>IntelGFX</string>
+                <key>Key</key>
+                <string>hda-gfx</string>
+                <key>Value</key>
+                <string>onboard-1</string>
+            </dict>
+        </array>
+    </dict>
+</dict>
+</plist></code></pre><blockquote>
+<p>kexts</p>
+</blockquote>
+<p>复制 <code>FakeSMC.kext</code>, <code>RealtekRTL8111.kext</code>, <code>VoodooHDA.kext</code> 到 EFI/CLOVER／kexts／other</p>
+<blockquote>
+<p>ssd trim</p>
+</blockquote>
+<p>输入相关命令重启即可</p>
+<pre><code>sudo trimforce enable</code></pre><blockquote>
+<p>默认启动 </p>
+</blockquote>
+<p>config.plist／Boot/DefaultVolume 的 ‘值’ 改成你的启动盘(Sierra)，默认为 macHDD</p>
+]]></description><link>http:/acyortjs.github.io/posts/205319771.html</link><guid isPermaLink="true">http:/acyortjs.github.io/posts/205319771.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Sat, 18 Feb 2017 03:12:50 GMT</pubDate></item><item><title><![CDATA[Adobe CEP 扩展相关]]></title><description><![CDATA[<p>Adobe 系列通常情况下宿主应用是不会运行未经签名扩展的，只有打包并签名才可以运行。但是可以打开开发者模式</p>
+<h2>启用开发者模式</h2><blockquote>
+<p>Windows</p>
+</blockquote>
+<p>打开到注册表定位到: ( 高版本类推 )</p>
+<ul>
+<li>CC 2014: <code>HKEY_CURRENT_USER\Software\Adobe\CSXS.5</code></li>
+<li>CC 2015: <code>HKEY_CURRENT_USER\Software\Adobe\CSXS.6</code></li>
+</ul>
+<p>将 <code>PlayerDebugMode</code> 设置为 <code>1</code></p>
+<blockquote>
+<p>macOS</p>
+</blockquote>
+<p>终端输入: ( 同样高版本类推 )</p>
+<p><code>defaults write com.adobe.CSXS.6 PlayerDebugMode 1</code></p>
+<h2>扩展签名打包</h2><p>使用 Adobe 官方提供的 ZXPSignCmd
+<a href="https://github.com/Adobe-CEP/CEP-Resources/tree/master/ZXPSignCMD">https://github.com/Adobe-CEP/CEP-Resources/tree/master/ZXPSignCMD</a></p>
+<p><img src="https://cloud.githubusercontent.com/assets/2193211/21304385/cae9241a-c5ff-11e6-98fb-1ef0e84ee80e.png" alt="71097-6671c44f605ce86a"></p>
+<p>以下为 macOS 下操作，Windows 类似。先进入文件目录</p>
+<h3>创建证书</h3><pre><code>./ZXPSignCmd -selfSignedCert <countryCode> <stateOrProvince> <organization> <commonName> <password> <outputPath.p12>
+./ZXPSignCmd -selfSignedCert <国家代码> <地区> <组织名> <证书所有者名称> <证书密码> <证书名.p12>
+
+# example
+./ZXPSignCmd -selfSignedCert CN guangzhou lorem.in loeify aksdj4 lorem.p12</code></pre><h3>签名并打包</h3><pre><code>./ZXPSignCmd -sign <inputDirectory> <outputZxp> <p12> <p12Password>
+./ZXPSignCmd -sign <要打包的项目目录> <输出文件路径> <证书路径> <证书密码>
+
+# example
+./ZXPSignCmd -sign xxx xxx.zxp lorem.p12 aksdj4</code></pre><p>打包生成后的 <code>zxp</code> 是 <code>zip</code> 一样的可以解压</p>
+<h2>手动安装插件</h2><h3>目录</h3><p>将插件解压，放进目录</p>
+<blockquote>
+<p>Windows</p>
+</blockquote>
+<p><code>C:\Program Files\Common Files\Adobe\CEP\extensions\</code></p>
+<blockquote>
+<p>macOS ( 注意是全局 Library，不是用户的 )</p>
+</blockquote>
+<p><code>/Library/Application Support/Adobe/CEP/extensions/</code></p>
+<p>注意最终插件 xxx 放入目录最终应该存在 <code>/extensions/xxx/index.html</code></p>
+<h3>启用</h3><p>重启 photoshop，选择 &quot;Window&quot; → &quot;Extensions&quot; → &quot;xxx&quot; 启用 </p>
+<h2>参考文章</h2><ul>
+<li><a href="http://nullice.com/archives/1741">Adobe CEP 扩展开发教程 「 4 」签名与打包</a></li>
+<li><a href="http://nullice.com/archives/1665">Adobe CEP 扩展开发教程 「 1 」Hello World!</a></li>
+</ul>
+]]></description><link>http:/acyortjs.github.io/posts/196350551.html</link><guid isPermaLink="true">http:/acyortjs.github.io/posts/196350551.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Sun, 12 Feb 2017 11:58:28 GMT</pubDate></item><item><title><![CDATA[Mirror - 基于 issues 的博客工具]]></title><description><![CDATA[<p>Mirror 是一个简单的博客工具，基于 GitHub API 获取 issues 数据，然后展示在页面上。</p>
+<p>该工具的方便之处在于只需要在 issue 上写你的博客文章，你的网站会自动更新博客内容。</p>
+<p>借助 GitHub，你可以轻松的用 markdown 书写你的博客内容，永久保存，不用担心数据丢失问题。还可以非常方便上传博客图片，拖入编辑器即可。</p>
+<p>该博客工具非常适合以 issue 作为自己博客的用户，无痛生成博客网站，对原来内容毫无影响</p>
+<p>Mirror 还支持多用户协作，你可以方便的设置哪些用户写的内容可以显示在博客网站上，避免无关内容</p>
+<p>Mirror 生成的博客网站很小，整体大小 <code>60kb</code> 左右（未 gzip 压缩情况），所以访问起来也很快。项目依赖： <code>axios</code>, <code>smoothscroll-polyfill</code>, <code>github-markdown-css</code>, <code>es6-promise</code></p>
+<p>Mirror 在移动端同时有很好的浏览体验</p>
+<h2>预览地址</h2><p><a href="http://mirror.am0200.com/">http://mirror.am0200.com/</a></p>
+<p>你可以点击底部的 <code>SandBox</code> 按钮，然后写入你需要测试的项目 issues，然后就可以直接看到博客内容，例如可以输入 玉伯 的博客地址：</p>
+<pre><code>title: blog
+
+user: lifesinger
+
+repo: blog
+
+per page: 10</code></pre><p>点击 <code>Start</code>，你就可以看到 玉伯 的博客了。同样方法你可以测试你的 issue 博客</p>
+<h2>项目地址</h2><p><a href="https://github.com/LoeiFy/Mirror">https://github.com/LoeiFy/Mirror</a></p>
+<p>更详细的介绍可以看项目说明</p>
+<h2>如何安装</h2><p>安装很简单，需要一个 nodejs 环境，一个简单的命令即可，如果没有 nodejs 环境，可以直接下载资源包自己配置，后面会有说明</p>
+<pre><code>$ sudo npm install Mirror -g</code></pre><h2>使用</h2><h3>新建</h3><pre><code>$ cd newblog
+$ mirror init</code></pre><p>或者</p>
+<pre><code>$ mirror init newblog</code></pre><p>完成后你的 blog 就在 newblog 这里</p>
+<h3>配置你的 blog</h3><p>修改 <code>config.yml</code></p>
+<pre><code># 标题
+title: Mirror
+
+# github 用户名
+user: LoeiFy
+
+# blog 内容来源 repo
+repo: Recordum
+
+# 多用户，设定哪些用户写的 issue 内容可以展示出来，项目的用户名会自动包括进来
+# 多个用户用逗号（英文逗号）隔开，例如：user0,user1
+authors: 
+
+# 分页
+per_page: 10
+
+# 是否显示 sandbox，设置是否允许用户手动写入 issue 地址进行快速预览
+# 默认 false
+sandbox: false</code></pre><p>获取你的 token，复制进 <code>token.txt</code>。这个 token 只有只读权限，用于提高 api 访问次数，不会有其他问题。</p>
+<p><a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a></p>
+<p><img src="https://cloud.githubusercontent.com/assets/2193211/20244206/d4d72a80-a9b2-11e6-9c0d-bb557cab90ec.png" alt="token"></p>
+<h3>生成博客</h3><pre><code>$ mirror build</code></pre><h3>发布你的 blog</h3><p>你可以添加域名到 <code>CNAME</code></p>
+<p>push 文件到一个 repo 的 <code>gh-pages</code> 分支</p>
+<p>参考例子：<a href="https://github.com/LoeiFy/Mirror/tree/gh-pages">https://github.com/LoeiFy/Mirror/tree/gh-pages</a></p>
+<h3>最后</h3><p>现在你可以在 github issue  上写博客了，内容会同步更新</p>
+<blockquote>
+<p>一个例子</p>
+</blockquote>
+<p>在 <a href="https://github.com/LoeiFy/Recordum/issues">https://github.com/LoeiFy/Recordum/issues</a> 这个 issue 上写博客内容，对应网站 <a href="http://mirror.am0200.com/">http://mirror.am0200.com/</a> 会自动同步更新内容</p>
+<h2>另一种安装方式</h2><p>你可以直接下载资源包，下载最新的 release，然后打开 <code>index.html</code> 进行配置，按照例子进行配置即可</p>
+<p><a href="https://github.com/LoeiFy/Mirror/raw/master/mirror.zip">https://github.com/LoeiFy/Mirror/raw/master/mirror.zip</a></p>
+<pre><code><!-- index.html -->
+
+<script>
+
+// blog config here
+// token should be separated by '#'. example: 5#c31bffc137f44faf7efc4a84da827g7ca2cfeaa
+// example:
+// window.config = {"title":"rorriM","user":"acyortjs","repo":"acyortjs.github.io","token":"5#c31bffc137f44faf7efc4a84da827g7ca2cfeaa","authors":"LoeiFy,User0","per_page":1,"sandbox":false}
+window.config = {"title":"","user":"","repo":"","token":"","authors":"","per_page":"", "sandbox":false}
+
+</script></code></pre><p>配置好后，可以先尝试本地预览，需要一个本地服务器，放上去访问 <code>index.html</code> 即可，测试没问题就可以把全部文件上传到对应地址即可，也可以放到 GitHub pages 上</p>
+<h2>名字来源</h2><p><code>Mirror</code> 是 <code>DJ Okawari</code> 所作的专辑</p>
+<p><img src="https://cloud.githubusercontent.com/assets/2193211/12321915/c66d8b12-baeb-11e5-9612-b188f5272e3b.jpg" alt="mirror"></p>
+]]></description><link>http:/acyortjs.github.io/posts/126817142.html</link><guid isPermaLink="true">http:/acyortjs.github.io/posts/126817142.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 01 Mar 2017 12:46:11 GMT</pubDate></item><item><title><![CDATA[创建类似 http://ithinkimight.com/ 随机大小排布界面]]></title><description><![CDATA[<p><a href="http://ithinkimight.com">http://ithinkimight.com</a> 这个网站图片来自 Instagram，图片随机大小，位置也是随机，图片可以重叠，但是并没有 <strong>过分</strong> 重叠。这种随机大小，位置排版页面元素跟平常的整齐 <code>grid</code> 或者 <code>瀑布流</code> 风格很不一样，下面我们尝试一下实现类似效果</p>
+<p>从网站源文件上看并不能看出网站是如何随机排布这些图片，因为是后端直接输出图片的位置参数，并不是前端实现的位置计算。不过这里有一种简单方法，可以实现类似效果。先看一下具体效果</p>
+<h3>例子以及实际运用效果</h3><p><a href="http://jsfiddle.net/am0200/1mn5xbf8/">http://jsfiddle.net/am0200/1mn5xbf8/</a></p>
+<p><a href="http://stone.am0200.com/">http://stone.am0200.com/</a></p>
+<h3>实现思路</h3><p>首先把 container 划分为 4 个块，然后需要随机定位的 4 个块分别放到这 4 个区域，最后定义这 4 个块距离左边跟上边的最远，最近距离即可</p>
+<h3>实现代码</h3><p>html 部分，我们只是生成 4 个容器，每个容器都可以放置一张图片</p>
+<pre><code><section>
+    <div id="d0"></div>
+    <div id="d1"></div>
+    <div id="d2"></div>
+    <div id="d3"></div>
+</section></code></pre><p>css 部分，我们使用绝对定位来设置每个容器的主要位置</p>
+<pre><code>section {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+section div {
+    position: absolute;
+}
+#d0 {
+    left: 50%;
+    top: 0;
+}
+#d1 {
+    top: 50%;
+    left: 50%;
+}
+#d2 {
+    left: 0;
+    top: 50%;
+}
+#d3 {
+    left: 0;
+    top: 0;
+}</code></pre><p>js 部分，我们设置 4 个块随机大小，并且随机上下左右距离，需要注意的是，这个距离是有一定的范围的</p>
+<pre><code>function rd(n,m){
+    var c = m-n+1;  
+    return Math.floor(Math.random() * c + n);
+}
+
+var w = parseInt($('section').width()),
+    h = parseInt($('section').height());
+
+$('div').each(function() {
+    var wh = rd(150, 200)
+    $(this).css({
+        width: wh,
+        height: wh
+    })
+})
+
+var d0 = parseInt($('#d0').width()),
+    d1 = parseInt($('#d1').width()),
+    d2 = parseInt($('#d2').width()),
+    d3 = parseInt($('#d3').width());
+
+var a1 = rd(-(d0 / 4), w / 2 - d0),
+    a2 = rd(0, h / 2 - d0 / 4 * 3);
+
+var b1 = rd(-(d1 / 4), w / 2 - d1),
+    b2 = rd(-(d1 / 4), h / 2 - d1);
+
+var c1 = rd(0, w / 2 - d2 / 4 * 3),
+    c2 = rd(-(d2 / 4), h / 2 - d2);    
+
+var e1 = rd(0, w / 2 - d3 / 4 * 3),
+    e2 = rd(0, h / 2 - d3 / 4 * 3); 
+
+
+$('#d0').css('margin-left', a1 +'px')
+$('#d0').css('margin-top', a2 +'px')
+
+$('#d1').css('margin-left', b1 +'px')
+$('#d1').css('margin-top', b2 +'px')
+
+$('#d2').css('margin-left', c1 +'px')
+$('#d2').css('margin-top', c2 +'px')
+
+$('#d3').css('margin-left', e1 +'px')
+$('#d3').css('margin-top', e2 +'px')</code></pre><h3>其他问题</h3><p>这种定位简单方便，但是如果是单数块的时候，就要做一下相关处理了</p>
+]]></description><link>http:/acyortjs.github.io/posts/71329290.html</link><guid isPermaLink="true">http:/acyortjs.github.io/posts/71329290.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Sun, 26 Feb 2017 06:31:15 GMT</pubDate></item></channel></rss>

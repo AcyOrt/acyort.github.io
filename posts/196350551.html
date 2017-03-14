@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="keywords" content="acyort, nodejs, blog" />
+<meta name="description" content="A Node.js blog tool powered by GitHub." />
+<link rel="icon" href="/icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+
+  <title>
+Adobe CEP 扩展相关 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="main">
+
+<div class="header">
+    <a class="logo" href="/">AcyOrt</a><!--
+
+ --><div class="menu">
+        <a href="/archives/">Archives</a>
+    </div>
+
+    <div class="social">
+        <a target="_blank" href="https://github.com/LoeiFy/Recordum/issues"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z"></path>
+</svg></a><!--
+    --><a target="_blank" href="/rss.xml"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+<path d="M6.18,15.64A2.18,2.18 0 0,1 8.36,17.82C8.36,19 7.38,20 6.18,20C5,20 4,19 4,17.82A2.18,2.18 0 0,1 6.18,15.64M4,4.44A15.56,15.56 0 0,1 19.56,20H16.73A12.73,12.73 0 0,0 4,7.27V4.44M4,10.1A9.9,9.9 0 0,1 13.9,20H11.07A7.07,7.07 0 0,0 4,12.93V10.1Z"></path>
+</svg></a>
+    </div>
+</div>
+
+
+
+
+<div id="post" class="center">
+
+    <p class="time">December 19, 2016</p> 
+
+    <h1 class="title">Adobe CEP 扩展相关</h1>
+
+    <div class="content"><p>Adobe 系列通常情况下宿主应用是不会运行未经签名扩展的，只有打包并签名才可以运行。但是可以打开开发者模式</p>
+<h2 id="启用开发者模式">启用开发者模式</h2><blockquote>
+<p>Windows</p>
+</blockquote>
+<p>打开到注册表定位到: ( 高版本类推 )</p>
+<ul>
+<li>CC 2014: <code>HKEY_CURRENT_USER\Software\Adobe\CSXS.5</code></li><li>CC 2015: <code>HKEY_CURRENT_USER\Software\Adobe\CSXS.6</code></li></ul>
+<p>将 <code>PlayerDebugMode</code> 设置为 <code>1</code></p>
+<blockquote>
+<p>macOS</p>
+</blockquote>
+<p>终端输入: ( 同样高版本类推 )</p>
+<p><code>defaults write com.adobe.CSXS.6 PlayerDebugMode 1</code></p>
+<h2 id="扩展签名打包">扩展签名打包</h2><p>使用 Adobe 官方提供的 ZXPSignCmd
+<a href="https://github.com/Adobe-CEP/CEP-Resources/tree/master/ZXPSignCMD">https://github.com/Adobe-CEP/CEP-Resources/tree/master/ZXPSignCMD</a></p>
+<p><img src="https://cloud.githubusercontent.com/assets/2193211/21304385/cae9241a-c5ff-11e6-98fb-1ef0e84ee80e.png" alt="71097-6671c44f605ce86a"></p>
+<p>以下为 macOS 下操作，Windows 类似。先进入文件目录</p>
+<h3 id="创建证书">创建证书</h3><div class="hljs bash">
+      <div class="mark">bash</div>
+      <table><tbody><tr>
+      <td class="line"><pre><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div></pre></td>
+      <td class="code"><pre>./ZXPSignCmd -selfSignedCert <span class="hljs-variable">&lt;countryCode&gt;</span> <span class="hljs-variable">&lt;stateOrProvince&gt;</span> <span class="hljs-variable">&lt;organization&gt;</span> <span class="hljs-variable">&lt;commonName&gt;</span> <span class="hljs-variable">&lt;password&gt;</span> <span class="hljs-variable">&lt;outputPath.p12&gt;</span>
+./ZXPSignCmd -selfSignedCert <span class="hljs-variable">&lt;国家代码&gt;</span> <span class="hljs-variable">&lt;地区&gt;</span> <span class="hljs-variable">&lt;组织名&gt;</span> <span class="hljs-variable">&lt;证书所有者名称&gt;</span> <span class="hljs-variable">&lt;证书密码&gt;</span> <span class="hljs-variable">&lt;证书名.p12&gt;</span>
+
+<span class="hljs-comment"># example</span>
+./ZXPSignCmd -selfSignedCert CN guangzhou lorem.<span class="hljs-keyword">in</span> loeify aksdj4 lorem.p12</pre></td>
+      </tr></tbody></table>
+      </div><h3 id="签名并打包">签名并打包</h3><div class="hljs bash">
+      <div class="mark">bash</div>
+      <table><tbody><tr>
+      <td class="line"><pre><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div></pre></td>
+      <td class="code"><pre>./ZXPSignCmd -sign <span class="hljs-params">&lt;inputDirectory&gt;</span> <span class="hljs-params">&lt;outputZxp&gt;</span> <span class="hljs-params">&lt;p12&gt;</span> <span class="hljs-params">&lt;p12Password&gt;</span>
+./ZXPSignCmd -sign <span class="hljs-params">&lt;要打包的项目目录&gt;</span> <span class="hljs-params">&lt;输出文件路径&gt;</span> <span class="hljs-params">&lt;证书路径&gt;</span> <span class="hljs-params">&lt;证书密码&gt;</span>
+
+<span class="hljs-meta"># example</span>
+./ZXPSignCmd -sign xxx xxx.zxp lorem.p12 aksdj4</pre></td>
+      </tr></tbody></table>
+      </div><p>打包生成后的 <code>zxp</code> 是 <code>zip</code> 一样的可以解压</p>
+<h2 id="手动安装插件">手动安装插件</h2><h3 id="目录">目录</h3><p>将插件解压，放进目录</p>
+<blockquote>
+<p>Windows</p>
+</blockquote>
+<p><code>C:\Program Files\Common Files\Adobe\CEP\extensions\</code></p>
+<blockquote>
+<p>macOS ( 注意是全局 Library，不是用户的 )</p>
+</blockquote>
+<p><code>/Library/Application Support/Adobe/CEP/extensions/</code></p>
+<p>注意最终插件 xxx 放入目录最终应该存在 <code>/extensions/xxx/index.html</code></p>
+<h3 id="启用">启用</h3><p>重启 photoshop，选择 &quot;Window&quot; → &quot;Extensions&quot; → &quot;xxx&quot; 启用 </p>
+<h2 id="参考文章">参考文章</h2><ul>
+<li><a href="http://nullice.com/archives/1741">Adobe CEP 扩展开发教程 「 4 」签名与打包</a></li><li><a href="http://nullice.com/archives/1665">Adobe CEP 扩展开发教程 「 1 」Hello World!</a></li></ul>
+</div>
+
+    <div class="comments">
+        <div id="disqus_thread"></div>
+    </div>
+
+</div>
+
+
+<div class="footer">
+    <div class="center">AcyOrt / Powered by <a target="_blank" href="https://github.com/acyortjs/acyort">AcyOrt</a> & <a target="_blank" href="https://github.com">GitHub</a></div>
+</div>
+
+
+
+
+<script>
+(function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//acyort.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+
+
+
+</div>
+
+</body>
+</html>
