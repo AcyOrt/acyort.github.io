@@ -22,7 +22,7 @@
     <a class="logo" href="/">Recordum</a><!--
 
  --><div class="menu">
-        <a href="/archives/">Archives</a>
+        <a href="/archives/">Archives</a><a href="/about/">About</a>
     </div>
 
     <div class="social">
@@ -44,7 +44,7 @@
 
     <h1 class="title">创建类似 http://ithinkimight.com/ 随机大小排布界面</h1>
 
-    <div class="content"><p><a href="http://ithinkimight.com">http://ithinkimight.com</a> 这个网站图片来自 Instagram，图片随机大小，位置也是随机，图片可以重叠，但是并没有 <strong>过分</strong> 重叠。这种随机大小，位置排版页面元素跟平常的整齐 <code>grid</code> 或者 <code>瀑布流</code> 风格很不一样，下面我们尝试一下实现类似效果</p>
+    <div class="content"><p><code>ithinkimight.com</code> 这个网站图片来自 Instagram，图片随机大小，位置也是随机，图片可以重叠，但是并没有 <strong>过分</strong> 重叠。这种随机大小，位置排版页面元素跟平常的整齐 <code>grid</code> 或者 <code>瀑布流</code> 风格很不一样，下面我们尝试一下实现类似效果</p>
 <p>从网站源文件上看并不能看出网站是如何随机排布这些图片，因为是后端直接输出图片的位置参数，并不是前端实现的位置计算。不过这里有一种简单方法，可以实现类似效果。先看一下具体效果</p>
 <h3 id="例子以及实际运用效果">例子以及实际运用效果</h3><p><a href="http://jsfiddle.net/am0200/1mn5xbf8/">http://jsfiddle.net/am0200/1mn5xbf8/</a></p>
 <p><a href="http://stone.am0200.com/">http://stone.am0200.com/</a></p>
@@ -53,7 +53,13 @@
 <div class="hljs html">
       <div class="mark">html</div>
       <table><tbody><tr>
-      <td class="line"><pre><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div></pre></td>
+      <td class="line"><pre><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+</pre></td>
       <td class="code"><pre>&lt;section&gt;
     &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">id</span>=<span class="hljs-string">"d0"</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
     &lt;<span class="hljs-keyword">div</span> <span class="hljs-built_in">id</span>=<span class="hljs-string">"d1"</span>&gt;&lt;/<span class="hljs-keyword">div</span>&gt;
@@ -65,7 +71,31 @@
 <div class="hljs css">
       <div class="mark">css</div>
       <table><tbody><tr>
-      <td class="line"><pre><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div>22</div><div>23</div><div>24</div></pre></td>
+      <td class="line"><pre><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+</pre></td>
       <td class="code"><pre><span class="hljs-selector-tag">section</span> {
     <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
     <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;
@@ -95,7 +125,52 @@
 <div class="hljs js">
       <div class="mark">javascript</div>
       <table><tbody><tr>
-      <td class="line"><pre><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div><div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div>28</div><div>29</div><div>30</div><div>31</div><div>32</div><div>33</div><div>34</div><div>35</div><div>36</div><div>37</div><div>38</div><div>39</div><div>40</div><div>41</div><div>42</div><div>43</div><div>44</div><div>45</div></pre></td>
+      <td class="line"><pre><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+<span>13</span>
+<span>14</span>
+<span>15</span>
+<span>16</span>
+<span>17</span>
+<span>18</span>
+<span>19</span>
+<span>20</span>
+<span>21</span>
+<span>22</span>
+<span>23</span>
+<span>24</span>
+<span>25</span>
+<span>26</span>
+<span>27</span>
+<span>28</span>
+<span>29</span>
+<span>30</span>
+<span>31</span>
+<span>32</span>
+<span>33</span>
+<span>34</span>
+<span>35</span>
+<span>36</span>
+<span>37</span>
+<span>38</span>
+<span>39</span>
+<span>40</span>
+<span>41</span>
+<span>42</span>
+<span>43</span>
+<span>44</span>
+<span>45</span>
+</pre></td>
       <td class="code"><pre><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rd</span>(<span class="hljs-params">n,m</span>)</span>{
     <span class="hljs-keyword">var</span> c = m-n+<span class="hljs-number">1</span>;  
     <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * c + n);

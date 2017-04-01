@@ -31,6 +31,7 @@ thumbnail_mode: 2
 #menu
 menu:
   Archives: /archives/
+  About: /about/
 
 # category
 default_category: blog

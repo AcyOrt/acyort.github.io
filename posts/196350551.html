@@ -22,7 +22,7 @@ Adobe CEP 扩展相关 - Recordum
     <a class="logo" href="/">Recordum</a><!--
 
  --><div class="menu">
-        <a href="/archives/">Archives</a>
+        <a href="/archives/">Archives</a><a href="/about/">About</a>
     </div>
 
     <div class="social">
@@ -64,7 +64,12 @@ Adobe CEP 扩展相关 - Recordum
 <h3 id="创建证书">创建证书</h3><div class="hljs bash">
       <div class="mark">bash</div>
       <table><tbody><tr>
-      <td class="line"><pre><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div></pre></td>
+      <td class="line"><pre><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+</pre></td>
       <td class="code"><pre>./ZXPSignCmd -selfSignedCert <span class="hljs-variable">&lt;countryCode&gt;</span> <span class="hljs-variable">&lt;stateOrProvince&gt;</span> <span class="hljs-variable">&lt;organization&gt;</span> <span class="hljs-variable">&lt;commonName&gt;</span> <span class="hljs-variable">&lt;password&gt;</span> <span class="hljs-variable">&lt;outputPath.p12&gt;</span>
 ./ZXPSignCmd -selfSignedCert <span class="hljs-variable">&lt;国家代码&gt;</span> <span class="hljs-variable">&lt;地区&gt;</span> <span class="hljs-variable">&lt;组织名&gt;</span> <span class="hljs-variable">&lt;证书所有者名称&gt;</span> <span class="hljs-variable">&lt;证书密码&gt;</span> <span class="hljs-variable">&lt;证书名.p12&gt;</span>
 
@@ -74,7 +79,12 @@ Adobe CEP 扩展相关 - Recordum
       </div><h3 id="签名并打包">签名并打包</h3><div class="hljs bash">
       <div class="mark">bash</div>
       <table><tbody><tr>
-      <td class="line"><pre><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div></pre></td>
+      <td class="line"><pre><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+</pre></td>
       <td class="code"><pre>./ZXPSignCmd -sign <span class="hljs-params">&lt;inputDirectory&gt;</span> <span class="hljs-params">&lt;outputZxp&gt;</span> <span class="hljs-params">&lt;p12&gt;</span> <span class="hljs-params">&lt;p12Password&gt;</span>
 ./ZXPSignCmd -sign <span class="hljs-params">&lt;要打包的项目目录&gt;</span> <span class="hljs-params">&lt;输出文件路径&gt;</span> <span class="hljs-params">&lt;证书路径&gt;</span> <span class="hljs-params">&lt;证书密码&gt;</span>
 

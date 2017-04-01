@@ -22,7 +22,7 @@
     <a class="logo" href="/">Recordum</a><!--
 
  --><div class="menu">
-        <a href="/archives/">Archives</a>
+        <a href="/archives/">Archives</a><a href="/about/">About</a>
     </div>
 
     <div class="social">
@@ -55,7 +55,11 @@
 <div class="hljs js">
       <div class="mark">javascript</div>
       <table><tbody><tr>
-      <td class="line"><pre><div>1</div><div>2</div><div>3</div><div>4</div></pre></td>
+      <td class="line"><pre><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+</pre></td>
       <td class="code"><pre><span class="hljs-keyword">const</span> app = express()
 app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(request, response)</span></span>{
   response.sendFile(path.resolve(__dirname, <span class="hljs-string">'index.html'</span>))
@@ -67,7 +71,13 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 <div class="hljs perl">
       <div class="mark">perl</div>
       <table><tbody><tr>
-      <td class="line"><pre><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div></pre></td>
+      <td class="line"><pre><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+</pre></td>
       <td class="code"><pre>server {
   ...
   <span class="hljs-keyword">location</span> <span class="hljs-title">/ {
@@ -86,7 +96,19 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 <div class="hljs js">
       <div class="mark">javascript</div>
       <table><tbody><tr>
-      <td class="line"><pre><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div></pre></td>
+      <td class="line"><pre><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+<span>10</span>
+<span>11</span>
+<span>12</span>
+</pre></td>
       <td class="code"><pre>export default (
   <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"/"</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{App}</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">IndexRoute</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{HomePage}</span> /&gt;</span>
@@ -104,7 +126,16 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 <div class="hljs js">
       <div class="mark">javascript</div>
       <table><tbody><tr>
-      <td class="line"><pre><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div></pre></td>
+      <td class="line"><pre><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+<span>8</span>
+<span>9</span>
+</pre></td>
       <td class="code"><pre><span class="hljs-comment">// routes.js</span>
 <span class="hljs-keyword">const</span> routes = [
   <span class="hljs-string">'contact-us'</span>,
@@ -119,7 +150,14 @@ app.get(<span class="hljs-string">'*'</span>, <span class="hljs-function"><span 
 <div class="hljs js">
       <div class="mark">javascript</div>
       <table><tbody><tr>
-      <td class="line"><pre><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div></pre></td>
+      <td class="line"><pre><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+<span>6</span>
+<span>7</span>
+</pre></td>
       <td class="code"><pre><span class="hljs-comment">// deploy.js</span>
 <span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs-extra'</span>)
 <span class="hljs-keyword">const</span> routes = <span class="hljs-built_in">require</span>(<span class="hljs-string">'routes.js'</span>)
@@ -132,7 +170,12 @@ routes.forEach(<span class="hljs-function">(<span class="hljs-params">route</spa
 <div class="hljs json">
       <div class="mark">json</div>
       <table><tbody><tr>
-      <td class="line"><pre><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div></pre></td>
+      <td class="line"><pre><span>1</span>
+<span>2</span>
+<span>3</span>
+<span>4</span>
+<span>5</span>
+</pre></td>
       <td class="code"><pre>{
   <span class="hljs-attr">"script"</span>: {
     <span class="hljs-attr">"build"</span>: <span class="hljs-string">"NODE_ENV=production webpack --progress &amp;&amp; node deploy.js"</span>
@@ -140,10 +183,11 @@ routes.forEach(<span class="hljs-function">(<span class="hljs-params">route</spa
 }</pre></td>
       </tr></tbody></table>
       </div><p>ok, 当我们运行 <code>npm run build</code> 时候，就会同时生成对应路径下的 <code>index.html</code>，这样就可以了完成我们所需要的功能了</p>
-<h3 id="问题">问题</h3><blockquote>
-<p>404 路由怎么生成路径</p>
+<h3 id="问题amp思考">问题 &amp; 思考</h3><blockquote>
+<p>404 页面问题</p>
 </blockquote>
 <p>这个就直接使用服务端 404 页面了，如果是用 <code>GitHub pages</code> 的话，我们可以直接生成一个 <code>404.html</code> 即可。或者是将 404 路由跳转到首页</p>
+<p>还有一种做法，直接把 404 页面弄成跟 index 内容一样，404 时候就是正常的内容页面，这时候页面功能是正常的，并且不需要前面的一对做法了。</p>
 </div>
 
     <div class="comments">
