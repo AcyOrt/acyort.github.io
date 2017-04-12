@@ -20,7 +20,7 @@ theme: donob
 
 # pagination
 # set 0 if no need paging
-per_page: 7
+per_page: 5
 archives_per_page: 30
 
 # thumbnail mode

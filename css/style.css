@@ -118,6 +118,7 @@ a {
 }
 .list {
     margin-top: 100px;
+    min-height: 500px;
 }
 .list li {
     margin-bottom: 70px;
@@ -441,8 +442,6 @@ table tr th :last-child, table tr td :last-child {
     color: #c0c5ce;
     background: #262a33;
     padding: 10px;
-}
-.hljs pre div {
     line-height: 1.6;
 }
 .hljs .code {
