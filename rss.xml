@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Recordum]]></title><description><![CDATA[A Node.js blog tool powered by GitHub.]]></description><link>http://acyortjs.github.io</link><generator>RSS for Node</generator><lastBuildDate>Wed, 12 Apr 2017 09:28:39 GMT</lastBuildDate><atom:link href="http:/acyortjs.github.io/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Wed, 12 Apr 2017 09:28:39 GMT</pubDate><item><title><![CDATA[不依赖服务端实现 react-router 的 browserHistory]]></title><description><![CDATA[<p>SPA 项目基本上都会用到路由 <code>router</code>。react 还有 vue 对应有其路由插件。 react-router 还有 vue-router 都有 hashHistory 和 browserHistory 模式。这里大概说一下两者区别</p>
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Recordum]]></title><description><![CDATA[A Node.js blog tool powered by GitHub.]]></description><link>http://acyortjs.github.io</link><generator>RSS for Node</generator><lastBuildDate>Sun, 16 Apr 2017 08:42:13 GMT</lastBuildDate><atom:link href="http:/acyortjs.github.io/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 16 Apr 2017 08:42:13 GMT</pubDate><item><title><![CDATA[不依赖服务端实现 react-router 的 browserHistory]]></title><description><![CDATA[<p>SPA 项目基本上都会用到路由 <code>router</code>。react 还有 vue 对应有其路由插件。 react-router 还有 vue-router 都有 hashHistory 和 browserHistory 模式。这里大概说一下两者区别</p>
 <ul>
 <li>hashHistory: 不需要服务器配置，在 URL 生成一个 hash 来跟踪状态，通常在测试环境使用，也可以作为发布环境使用</li>
 <li>browserHistory: 需要服务器端做配置，路径是真实的URL，是 react-router 官方推荐首选</li>
@@ -327,7 +327,7 @@ per_page: 10
 # 默认 false
 sandbox: false</code></pre><p>获取你的 token，复制进 <code>token.txt</code>。这个 token 只有只读权限，用于提高 api 访问次数，不会有其他问题。</p>
 <p><a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a></p>
-<p><img src="https://cloud.githubusercontent.com/assets/2193211/20244206/d4d72a80-a9b2-11e6-9c0d-bb557cab90ec.png" alt="token"></p>
+<p><strong>不要</strong>勾选任何权限，只需要只读权限即可</p>
 <h3>生成博客</h3><pre><code>$ mirror build</code></pre><h3>发布你的 blog</h3><p>你可以添加域名到 <code>CNAME</code></p>
 <p>push 文件到一个 repo 的 <code>gh-pages</code> 分支</p>
 <p>参考例子：<a href="https://github.com/LoeiFy/Mirror/tree/gh-pages">https://github.com/LoeiFy/Mirror/tree/gh-pages</a></p>
@@ -351,7 +351,7 @@ window.config = {"title":"","user":"","repo":"","token":"","authors":"","per_pag
 </script></code></pre><p>配置好后，可以先尝试本地预览，需要一个本地服务器，放上去访问 <code>index.html</code> 即可，测试没问题就可以把全部文件上传到对应地址即可，也可以放到 GitHub pages 上</p>
 <h2>名字来源</h2><p><code>Mirror</code> 是 <code>DJ Okawari</code> 所作的专辑</p>
 <p><img src="https://cloud.githubusercontent.com/assets/2193211/12321915/c66d8b12-baeb-11e5-9612-b188f5272e3b.jpg" alt="mirror"></p>
-]]></description><link>http:/acyortjs.github.io/posts/126817142.html</link><guid isPermaLink="true">http:/acyortjs.github.io/posts/126817142.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Wed, 01 Mar 2017 12:46:11 GMT</pubDate></item><item><title><![CDATA[输入框输入值自动格式化]]></title><description><![CDATA[<p>这里说的自动格式化是指当用户在输入框里面输入数字，例如银行卡号，为了方便用户输入，希望在输入过程中对输入数字进行加空格处理，优化用户体验</p>
+]]></description><link>http:/acyortjs.github.io/posts/126817142.html</link><guid isPermaLink="true">http:/acyortjs.github.io/posts/126817142.html</guid><dc:creator><![CDATA[LoeiFy]]></dc:creator><pubDate>Sat, 15 Apr 2017 08:15:44 GMT</pubDate></item><item><title><![CDATA[输入框输入值自动格式化]]></title><description><![CDATA[<p>这里说的自动格式化是指当用户在输入框里面输入数字，例如银行卡号，为了方便用户输入，希望在输入过程中对输入数字进行加空格处理，优化用户体验</p>
 <p>先看一下例子: <a href="http://jsfiddle.net/am0200/qugp8tvL/">http://jsfiddle.net/am0200/qugp8tvL/</a></p>
 <p>注意例子里面的输入框的类型是 <code>tel</code>，而不是 <code>number</code>，主要原因是 <code>number</code> 类型</p>
 <ul>
