@@ -80,7 +80,7 @@ per page: 10</pre></td>
       <div class="mark">bash</div>
       <table><tbody><tr>
       
-      <td class="code"><pre>$ sudo npm <span class="hljs-keyword">install</span> Mirror -g</pre></td>
+      <td class="code"><pre><span class="hljs-meta">$</span><span class="bash"> sudo npm install Mirror -g</span></pre></td>
       </tr></tbody></table>
       </div><h2 id="使用">使用</h2><h3 id="新建">新建</h3><div class="hljs bash">
       <div class="mark">bash</div>
@@ -88,15 +88,15 @@ per page: 10</pre></td>
       <td class="line"><pre><span>1</span>
 <span>2</span>
 </pre></td>
-      <td class="code"><pre><span class="hljs-variable">$ </span>cd newblog
-<span class="hljs-variable">$ </span>mirror init</pre></td>
+      <td class="code"><pre><span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> newblog</span>
+<span class="hljs-meta">$</span><span class="bash"> mirror init</span></pre></td>
       </tr></tbody></table>
       </div><p>或者</p>
 <div class="hljs bash">
       <div class="mark">bash</div>
       <table><tbody><tr>
       
-      <td class="code"><pre><span class="hljs-variable">$ </span>mirror init newblog</pre></td>
+      <td class="code"><pre><span class="hljs-meta">$</span><span class="bash"> mirror init newblog</span></pre></td>
       </tr></tbody></table>
       </div><p>完成后你的 blog 就在 newblog 这里</p>
 <h3 id="配置你的blog">配置你的 blog</h3><p>修改 <code>config.yml</code></p>
@@ -123,25 +123,25 @@ per page: 10</pre></td>
 <span>18</span>
 <span>19</span>
 </pre></td>
-      <td class="code"><pre><span class="hljs-meta"># 标题</span>
+      <td class="code"><pre><span class="hljs-meta">#</span><span class="bash"> 标题</span>
 title: Mirror
-
-<span class="hljs-meta"># github 用户名</span>
+<span class="hljs-meta">
+#</span><span class="bash"> github 用户名</span>
 user: LoeiFy
-
-<span class="hljs-meta"># blog 内容来源 repo</span>
+<span class="hljs-meta">
+#</span><span class="bash"> blog 内容来源 repo</span>
 repo: Recordum
-
-<span class="hljs-meta"># 多用户，设定哪些用户写的 issue 内容可以展示出来，项目的用户名会自动包括进来</span>
-<span class="hljs-meta"># 多个用户用逗号（英文逗号）隔开，例如：user0,user1</span>
+<span class="hljs-meta">
+#</span><span class="bash"> 多用户，设定哪些用户写的 issue 内容可以展示出来，项目的用户名会自动包括进来</span>
+<span class="hljs-meta">#</span><span class="bash"> 多个用户用逗号（英文逗号）隔开，例如：user0,user1</span>
 authors: 
-
-<span class="hljs-meta"># 分页</span>
-per_page: <span class="hljs-number">10</span>
-
-<span class="hljs-meta"># 是否显示 sandbox，设置是否允许用户手动写入 issue 地址进行快速预览</span>
-<span class="hljs-meta"># 默认 false</span>
-sandbox: <span class="hljs-literal">false</span></pre></td>
+<span class="hljs-meta">
+#</span><span class="bash"> 分页</span>
+per_page: 10
+<span class="hljs-meta">
+#</span><span class="bash"> 是否显示 sandbox，设置是否允许用户手动写入 issue 地址进行快速预览</span>
+<span class="hljs-meta">#</span><span class="bash"> 默认 <span class="hljs-literal">false</span></span>
+sandbox: false</pre></td>
       </tr></tbody></table>
       </div><p>获取你的 token，复制进 <code>token.txt</code>。这个 token 只有只读权限，用于提高 api 访问次数，不会有其他问题。</p>
 <p><a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a></p>
@@ -150,7 +150,7 @@ sandbox: <span class="hljs-literal">false</span></pre></td>
       <div class="mark">bash</div>
       <table><tbody><tr>
       
-      <td class="code"><pre><span class="hljs-variable">$ </span>mirror build</pre></td>
+      <td class="code"><pre><span class="hljs-meta">$</span><span class="bash"> mirror build</span></pre></td>
       </tr></tbody></table>
       </div><h3 id="发布你的blog">发布你的 blog</h3><p>你可以添加域名到 <code>CNAME</code></p>
 <p>push 文件到一个 repo 的 <code>gh-pages</code> 分支</p>
