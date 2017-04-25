@@ -1,5 +1,3 @@
-# AcyOrt
-
-A Node.js blog tool powered by GitHub
+# The Wesite for AcyOrt
 
 https://acyortjs.github.io
