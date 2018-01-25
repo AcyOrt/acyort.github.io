@@ -1,0 +1,24 @@
+body, div, h1, h2, h3, h4, h5, p, ul, pre {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-weight: normal;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+html, body {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-font-smoothing: antialiased;
+  background: #fff;
+}
+body {
+  font-family: apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, PingFang SC, Microsoft YaHei, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+a {
+  cursor: pointer;
+  text-decoration: none;
+}

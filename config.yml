@@ -1,0 +1,107 @@
+# Base
+
+# site
+title: AcyOrt
+description: A simple blog framework. Powered by GitHub and NodeJS
+
+# url
+# you can set as "http://yoursite.com/child" if necessary
+# don not forget to add "http://" or "https://"
+url:
+
+# theme
+# default is "ccc45"
+theme: Pavane
+
+# pagination
+# Number
+# set 0 if not need
+# default is 10
+per_page:
+
+# menu
+menu:
+  docs: /docs/
+  api: /api/
+  deploy: /deploy/
+
+# default category
+# default is "uncategorized"
+default_category:
+
+# content
+# the repository's issues
+# GitHub user/repository
+user: acyortjs
+repository: acyortjs.github.io
+
+
+# Advance
+
+# scripts
+# script file name
+scripts:
+  # - example.js
+
+# plugins
+plugins:
+  # - xxx module
+
+# output
+# html output directory
+# you can set child directory e.g. "child"
+public_dir: /
+
+# authors
+# GitHub user
+authors:
+  - LoeiFy
+#  - author0
+#  - author1
+
+# timezone
+# example: "America/New_York", "Japan", "UTC", or "Asia/Shanghai"
+# default is local system timezone
+timezone: Asia/Shanghai
+
+# language
+# requires theme support
+# default is "default"
+language:
+
+# code line numbers
+# Boolean
+# whether to dispaly code line numbers
+# default is true
+line_numbers: false
+
+# order
+# order by issues create time" or "update time"
+# created: use "create time"
+# updated: use "update time"
+# default is "created"
+order:
+
+# directory
+# default is "categories", "tags", "posts"
+category_dir:
+tag_dir:
+post_dir:
+
+# token
+# github access token
+# token should be separated by '#' if you push this file to github
+# example: 5#c31bffc137f44faf7efc4a84da827g7ca2cfeaa
+token: 5#c21bffc137f44faf7e9c4a84da827f7cc2cfeaa
+
+# cache
+# Boolean
+# cache github issues data
+# for development
+cache: true
+
+# Other
+# customize some settings if necessary
+
+# disqus:
+# favicon:

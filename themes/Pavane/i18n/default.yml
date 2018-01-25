@@ -1,0 +1,6 @@
+powered: Powered by %2$s | %1$s
+
+menu:
+  docs: Docs
+  api: API
+  deploy: Deploy
