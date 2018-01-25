@@ -45,12 +45,12 @@ scripts:
 
 # plugins
 plugins:
-  # - xxx module
+  - acyort-toc
 
 # output
 # html output directory
 # you can set child directory e.g. "child"
-public_dir: /
+public_dir: public
 
 # authors
 # GitHub user

@@ -5,8 +5,9 @@
 {% endblock %}
 
 {% block content %}
-<div id="post" class="center">
+<div class="center">
   <h1>{{ page.name }}</h1>
   <div class="content">{{ page.content }}</div>
+  <div class="toc">{{ _toc(page) }}</div>
 </div>
 {% endblock %}
