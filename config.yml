@@ -41,7 +41,7 @@ repository: acyortjs.github.io
 # scripts
 # script file name
 scripts:
-  # - example.js
+  - nav.js
 
 # plugins
 plugins:
@@ -103,5 +103,25 @@ cache: true
 # Other
 # customize some settings if necessary
 
-# disqus:
-# favicon:
+docs_nav:
+  Getting Started:
+    - Overview
+    - Setup
+    - Configuration
+  Basic Usage:
+    - Writing
+    - Commands
+  Customization:
+    - Permalink
+    - Themes
+    - Variables
+    - Helpers
+    - Plugins
+
+api_nav:
+  API:
+    - Overview
+    - Filter
+    - Helper
+    - Methods
+

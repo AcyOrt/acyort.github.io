@@ -6,6 +6,7 @@
 
 {% block content %}
 <div class="center">
+  <div class="nav">{{ _docsNav() }}</div>
   <h1>{{ page.name }}</h1>
   <div class="content">{{ page.content }}</div>
   <div class="toc">{{ _toc(page) }}</div>
