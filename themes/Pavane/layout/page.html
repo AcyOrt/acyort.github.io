@@ -6,7 +6,14 @@
 
 {% block content %}
 <div class="center">
+  {% if page.category === 'API' %}
+  <div class="nav">{{ _apiNav() }}</div>
+  {% endif %}
+
+  {% if (['Customization', 'Getting Started', 'Basic Usage']).indexOf(page.category) > -1 %}
   <div class="nav">{{ _docsNav() }}</div>
+  {% endif %}
+
   <h1>{{ page.name }}</h1>
   <div class="content">{{ page.content }}</div>
   <div class="toc">{{ _toc(page) }}</div>

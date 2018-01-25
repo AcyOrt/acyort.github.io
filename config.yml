@@ -42,6 +42,7 @@ repository: acyortjs.github.io
 # script file name
 scripts:
   - nav.js
+  - category.js
 
 # plugins
 plugins:
