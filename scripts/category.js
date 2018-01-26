@@ -25,6 +25,4 @@ acyort.extend.register('after_process', function (data) {
       }
     }
   })
-
-  data.pages.forEach(page => console.log(page.category))
 })

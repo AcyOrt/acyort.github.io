@@ -43,6 +43,7 @@ repository: acyortjs.github.io
 scripts:
   - nav.js
   - category.js
+  - home.js
 
 # plugins
 plugins:
