@@ -6,9 +6,10 @@
   "dependencies": {
     "acyort-toc": "^0.1.0"
   },
-  "devDependencies": {},
-  "scripts": {
+  "devDependencies": {
+    "cssmin": "^0.4.3"
   },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/acyortjs/acyortjs.github.io.git"

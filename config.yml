@@ -44,6 +44,7 @@ scripts:
   - nav.js
   - category.js
   - home.js
+  - min.js
 
 # plugins
 plugins:
