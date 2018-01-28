@@ -1,6 +1,9 @@
 <div class="footer">
   <div class="center">
-    &copy; {{ _time(Date.now(), 'YYYY') }} {{ config.title }} .
-    <a target="_blank" href="https://github.com/acyortjs/acyort">{{ __('powered', 'AcyOrt', 'Github') }}</a> .
+    <div class="copy">
+      &copy; {{ _time(Date.now(), 'YYYY') }} {{ config.title }} .
+      <span>{{ __('powered', 'AcyOrt') }}</span>
+    </div>
+    <a target="_blank" href="https://github.com/{{ config.user }}/{{ config.repository }}/issues">{{ __('source') }}</a>
   </div>
 </div>

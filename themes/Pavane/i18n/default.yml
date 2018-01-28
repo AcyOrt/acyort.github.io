@@ -1,4 +1,5 @@
-powered: Powered by %2$s | %1$s
+powered: Powered by %s
+source: Source
 
 menu:
   docs: Docs

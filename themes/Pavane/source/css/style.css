@@ -45,6 +45,21 @@ ul {
 }
 */
 
+.footer {
+  margin-top: 70px;
+  color: #333;
+  font-size: 16px;
+}
+.footer .center {
+  border-top: 1px solid #eee;
+  padding: 50px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.footer a {
+  color: #FE6A6B;
+}
+
 .header {
   background: #fff;
   border-bottom: 1px solid #eee;
@@ -75,6 +90,23 @@ ul {
 
 .nav {
   width: 220px;
+  box-sizing: border-box;
+  padding-right: 20px;
+}
+.nav li {
+  margin-bottom: 20px;
+}
+.nav a {
+  display: block;
+  color: #444;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.nav p {
+  color: #333;
+  margin: 0 0 20px 0;
+  font-weight: 600;
+  font-size: 16px;
 }
 
 .content {
@@ -83,8 +115,8 @@ ul {
 
 .toc {
   width: 220px;
-  position: sticky;
-  top: 10px;
+  box-sizing: border-box;
+  padding-left: 20px;
 }
 .toc > p {
   color: #FE6A6B;
