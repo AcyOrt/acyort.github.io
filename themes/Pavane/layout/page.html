@@ -4,8 +4,14 @@
 {{ page.name }} | {{ config.title }}
 {% endblock %}
 
-{% block content %}
+{% block banner %}
 <div class="center">
+  <h1>{{ page.name }}</h1>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="center main">
   {% if page.category === 'API' %}
   <div class="nav">{{ _apiNav() }}</div>
   {% endif %}
@@ -14,8 +20,14 @@
   <div class="nav">{{ _docsNav() }}</div>
   {% endif %}
 
-  <h1>{{ page.name }}</h1>
-  <div class="content">{{ page.content }}</div>
-  <div class="toc">{{ _toc(page) }}</div>
+  {% if !page.category %}
+  <div class="nav"></div>
+  {% endif %}
+
+  <div class="content markdown">{{ page.content }}</div>
+  <div class="toc">
+    <p>{{ __('toc') }}</p>
+    {{ _toc(page) }}
+  </div>
 </div>
 {% endblock %}

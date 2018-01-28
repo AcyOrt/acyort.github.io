@@ -1,24 +1,389 @@
-body, div, h1, h2, h3, h4, h5, p, ul, pre {
-  margin: 0;
-  padding: 0;
-  line-height: 1;
-  font-weight: normal;
-}
-html {
-  -webkit-text-size-adjust: 100%;
-}
-html, body {
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  -webkit-font-smoothing: antialiased;
-  background: #fff;
-}
 body {
-  font-family: apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, PingFang SC, Microsoft YaHei, sans-serif;
+  font-family: Roboto Slab, Roboto, PingFang SC, Microsoft YaHei, sans-serif;
   position: relative;
   overflow-x: hidden;
   overflow-y: scroll;
+  margin: 0;
+  line-height: 1;
 }
 a {
   cursor: pointer;
   text-decoration: none;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1200px;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.banner {
+  min-height: 150px;
+  background-color: #d6d6d6;
+  background-image: linear-gradient(45deg, #d6d6d6 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, #d6d6d6 75%, #d6d6d6), linear-gradient(45deg, #d6d6d6 25%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, #d6d6d6 75%, #d6d6d6);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  position: relative;
+}
+/*
+.banner:before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: #FE6A6B;
+  opacity: .7;
+  position: absolute;
+}
+.banner > * {
+  position: relative;
+}
+*/
+
+.header {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 20px 0;
+}
+.header .center {
+  display: flex;
+  justify-content: space-between;
+}
+.menu a {
+  display: inline-block;
+  color: #333;
+  font-size: 16px;
+  margin-right: 10px;
+}
+.menu a:hover {
+  color: #FE6A6B;
+}
+.menu .logo {
+  margin-right: 30px;
+}
+
+.main {
+  display: flex;
+  align-items: stretch;
+  margin-top: 30px;
+}
+
+.nav {
+  width: 220px;
+}
+
+.content {
+  flex: 1;
+}
+
+.toc {
+  width: 220px;
+  position: sticky;
+  top: 10px;
+}
+.toc > p {
+  color: #FE6A6B;
+  font-size: 14px;
+  margin: 0 0 20px 0;
+}
+.toc a {
+  color: #777;
+  font-size: 14px;
+}
+.toc a:hover {
+  color: #FE6A6B;
+}
+.toc li ul {
+  margin: 10px 0 0 10px;
+}
+.toc li {
+  margin-bottom: 10px;
+}
+
+
+.markdown {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  line-height: 1.6;
+  color: #24292e;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+.markdown p,
+.markdown blockquote,
+.markdown ul,
+.markdown ol,
+.markdown dl,
+.markdown table,
+.markdown pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+.markdown a {
+  background-color: transparent;
+  color: #0366d6;
+  text-decoration: none;
+}
+.markdown a:not([href]) {
+  color: inherit;
+  text-decoration: none;
+}
+.markdown a:active,
+.markdown a:hover {
+  outline-width: 0;
+  text-decoration: underline;
+}
+.markdown strong {
+  font-weight: 600;
+}
+.markdown img {
+  border-style: none;
+  max-width: 100%;
+  box-sizing: content-box;
+  background-color: #fff;
+}
+.markdown input {
+  font: inherit;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+}
+.markdown [type="checkbox"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+.markdown blockquote {
+  margin: 0;
+}
+.markdown ul,
+.markdown ol {
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.markdown ol ol,
+.markdown ul ol {
+  list-style-type: lower-roman;
+}
+.markdown ul ul ol,
+.markdown ul ol ol,
+.markdown ol ul ol,
+.markdown ol ol ol {
+  list-style-type: lower-alpha;
+}
+.markdown ul,
+.markdown ol {
+  padding-left: 2em;
+}
+.markdown ul ul,
+.markdown ul ol,
+.markdown ol ol,
+.markdown ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.markdown li {
+  word-wrap: break-all;
+}
+.markdown li > p {
+  margin-top: 16px;
+}
+.markdown li + li {
+  margin-top: 0.25em;
+}
+.markdown pre {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 1em;
+  margin-top: 0;
+  margin-bottom: 0;
+  word-wrap: normal;
+  padding: 0.2em 0.4em;
+  background-color: rgba(27,31,35,0.05);
+  border-radius: 3px;
+}
+.markdown > *:first-child {
+  margin-top: 0 !important;
+}
+.markdown-body > *:last-child {
+  margin-bottom: 0 !important;
+}
+.markdown dd {
+  margin-left: 0;
+}
+.markdown h1 {
+  font-weight: 600;
+  padding-bottom: 0.3em;
+  font-size: 2em;
+  border-bottom: 1px solid #eaecef;
+}
+.markdown h2 {
+  font-weight: 600;
+  padding-bottom: 0.3em;
+  font-size: 1.5em;
+  border-bottom: 1px solid #eaecef;
+}
+.markdown h3 {
+  font-size: 1.25em;
+  font-weight: 600;
+}
+.markdown h4 {
+  font-size: 1em;
+  font-weight: 600;
+}
+.markdown h5 {
+  font-size: 0.875em;
+  font-weight: 600;
+}
+.markdown h6 {
+  font-size: 0.85em;
+  color: #6a737d;
+  font-weight: 600;
+}
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.markdown p {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.markdown hr {
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: #e1e4e8;
+  border: 0;
+}
+.markdown table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+.markdown table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+}
+.markdown table th {
+  font-weight: 600;
+}
+.markdown table th,
+.markdown table td {
+  padding: 6px 13px;
+  border: 1px solid #dfe2e5;
+}
+.markdown table tr {
+  background-color: #fff;
+  border-top: 1px solid #c6cbd1;
+}
+.markdown table tr:nth-child(2n) {
+  background-color: #f6f8fa;
+}
+.markdown blockquote {
+  padding: 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+}
+.markdown blockquote > :first-child {
+  margin-top: 0;
+}
+.markdown blockquote > :last-child {
+  margin-bottom: 0;
+}
+.markdown dl {
+  padding: 0;
+}
+.markdown dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 600;
+}
+.markdown dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+/**
+ * GitHub Gist Theme
+ * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro
+ */
+
+.hljs {
+  display: block;
+  background: white;
+  padding: 0.5em;
+  color: #333333;
+  overflow-x: auto;
+}
+
+.hljs-comment,
+.hljs-meta {
+  color: #969896;
+}
+
+.hljs-string,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-strong,
+.hljs-emphasis,
+.hljs-quote {
+  color: #df5000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+  color: #a71d5d;
+}
+
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attribute {
+  color: #0086b3;
+}
+
+.hljs-section,
+.hljs-name {
+  color: #63a35c;
+}
+
+.hljs-tag {
+  color: #333333;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #795da3;
+}
+
+.hljs-addition {
+  color: #55a532;
+  background-color: #eaffea;
+}
+
+.hljs-deletion {
+  color: #bd2c00;
+  background-color: #ffecec;
+}
+
+.hljs-link {
+  text-decoration: underline;
 }

@@ -1,13 +1,15 @@
 <div class="header">
   <div class="center">
-    <h1>
-      <a href="{{ _url() }}">{{ config.title }}</a>
-    </h1>
-    <p>{{ config.description }}</p>
     <div class="menu">
-    {% for u in config.menu %}
+      <a class="logo" href="{{ _url() }}">{{ config.title }}</a>
+      {% for u in config.menu %}
       <a href="{{ _url(u) }}">{{ __('menu.' + loop.key) }}</a>
-    {% endfor %}
+      {% endfor %}
+    </div>
+    <div class="language">
+      <select>
+        <option>English</option>
+      </select>
     </div>
   </div>
 </div>
