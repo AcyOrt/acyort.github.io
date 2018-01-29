@@ -1,16 +1,14 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-{{ page.name }} | {{ config.title }}
-{% endblock %}
-
-{% block banner %}
-<div class="center">
-  <h1>{{ page.name }}</h1>
-</div>
+{{ page.title }} | {{ config.title }}
 {% endblock %}
 
 {% block content %}
+<div class="banner">
+  <div class="center">{{ page.title }}</div>
+</div>
+
 <div class="center main">
   {% if page.category === 'API' %}
   <div class="nav">{{ _apiNav() }}</div>
