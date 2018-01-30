@@ -39,17 +39,19 @@ ul {
 
 .footer {
   margin-top: 70px;
-  color: #333;
-  font-size: 16px;
+  color: #acb1ca;
+  font-size: 13px;
+  letter-spacing: 1px;
 }
 .footer .center {
-  border-top: 1px solid #eee;
+  border-top: 1px solid #e9ebf8;
   padding: 50px 0;
   display: flex;
   justify-content: space-between;
 }
 .footer a {
-  color: #FE6A6B;
+  font-size: 14px;
+  color: #223464;
 }
 
 .header {
