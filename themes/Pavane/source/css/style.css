@@ -54,7 +54,7 @@ ul {
 
 .header {
   background: #fff;
-  padding: 20px 0;
+  padding: 20px 0 19px;
 }
 .header .center {
   display: flex;
@@ -62,23 +62,32 @@ ul {
 }
 .menu a {
   display: inline-block;
-  color: #333;
-  font-size: 16px;
-  margin-right: 10px;
+  color: #223464;
+  font-size: 14px;
+  font-weight: 600;
+  margin-right: 40px;
+  letter-spacing: 1px;
 }
 .menu a:hover {
-  color: #FE6A6B;
+  color: #f24e4e;
 }
 .menu .logo {
-  margin-right: 30px;
+  background: #223464;
+  color: #fff;
+  padding: 7px;
+  border-radius: 3px;
+  font-size: 17px;
+  letter-spacing: 2px;
 }
 
 .language select {
   -webkit-appearance: none;
   appearance: none;
-  font-size: 16px;
-  color: #333;
-  border: none;
+  font-size: 14px;
+  color: #3870df;
+  padding: 7px 14px;
+  border: 1px solid rgba(56, 112, 223, .7);
+  border-radius: 3px;
   background: none;
   outline: none;
   cursor: pointer;
