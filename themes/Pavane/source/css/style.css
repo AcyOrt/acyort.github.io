@@ -39,18 +39,17 @@ ul {
 
 .footer {
   margin-top: 70px;
-  color: #acb1ca;
-  font-size: 13px;
-  letter-spacing: 1px;
+  color: #5d648e;
+  font-size: 14px;
+  border-top: 1px solid #e9ebf8;
 }
 .footer .center {
-  border-top: 1px solid #e9ebf8;
   padding: 50px 0;
   display: flex;
   justify-content: space-between;
 }
 .footer a {
-  font-size: 14px;
+  font-weight: 600;
   color: #223464;
 }
 
@@ -93,6 +92,7 @@ ul {
   background: none;
   outline: none;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .main {
@@ -171,7 +171,7 @@ ul {
 }
 .markdown a {
   background-color: transparent;
-  color: #0366d6;
+  color: #3870df;
   text-decoration: none;
 }
 .markdown a:not([href]) {
@@ -206,10 +206,8 @@ ul {
   margin: 0;
 }
 .markdown code {
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
-  margin: 0;
-  font-size: 85%;
+  padding: .1em .2em;
+  font-size: .9em;
   background-color: rgba(27, 31, 35, .05);
   border-radius: 3px;
 }
@@ -259,8 +257,8 @@ ul {
   margin-bottom: 0;
   word-wrap: normal;
   padding: 1em;
-  background-color: rgba(27,31,35,0.05);
-  border-radius: 3px;
+  background-color: #f9fafd;
+  border-radius: 5px;
 }
 .markdown > *:first-child {
   margin-top: 0 !important;
@@ -275,13 +273,13 @@ ul {
   font-weight: 600;
   padding-bottom: 0.3em;
   font-size: 2em;
-  border-bottom: 1px solid #eaecef;
+  border-bottom: 1px solid #e9ebf8;
 }
 .markdown h2 {
   font-weight: 600;
   padding-bottom: 0.3em;
   font-size: 1.5em;
-  border-bottom: 1px solid #eaecef;
+  border-bottom: 1px solid #e9ebf8;
 }
 .markdown h3 {
   font-size: 1.25em;
@@ -306,6 +304,7 @@ ul {
 .markdown h4,
 .markdown h5,
 .markdown h6 {
+  color: #223464;
   margin-top: 24px;
   margin-bottom: 16px;
   font-weight: 600;
