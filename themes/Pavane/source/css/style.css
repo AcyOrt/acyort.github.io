@@ -105,21 +105,21 @@ ul {
   width: 220px;
   box-sizing: border-box;
   padding-right: 20px;
+  padding-top: 5px;
+  font-size: 14px;
 }
 .nav li {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .nav a {
   display: block;
-  color: #444;
-  margin-bottom: 10px;
-  font-size: 14px;
+  color: #3870df;
+  margin-top: 12px;
 }
 .nav p {
-  color: #333;
+  color: #acb1ca;
   margin: 0 0 20px 0;
-  font-weight: 600;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .content {
