@@ -1,13 +1,12 @@
 powered: Powered by %s
 source: Source
 updated: Last updated
+toc: Contents
 
 menu:
   docs: Docs
   api: API
   deploy: Deploy
-
-toc: Contents
 
 paginator:
   prev: Previous

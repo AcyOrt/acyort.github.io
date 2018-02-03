@@ -10,29 +10,32 @@
 </div>
 
 <div class="center main">
-  {% if page.category === 'API' %}
-  <div class="nav">{{ _apiNav() }}</div>
-  {% endif %}
+  <div class="nav">
+    {% if page.category === 'API' %}
+    {{ _apiNav() }}
+    {% endif %}
 
-  {% if (['Customization', 'Getting Started', 'Basic Usage']).indexOf(page.category) > -1 %}
-  <div class="nav">{{ _docsNav() }}</div>
-  {% endif %}
-
-  {% if !page.category %}
-  <div class="nav"></div>
-  {% endif %}
+    {% if (['Customization', 'Getting Started', 'Basic Usage']).indexOf(page.category) > -1 %}
+    {{ _docsNav() }}
+    {% endif %}
+  </div>
 
   <div class="content markdown">
     {{ page.content }}
 
+    {% if page.category %}
     <div class="paginator">
       {{ _paginator(page) }}
     </div>
+    {% endif %}
   </div>
 
   <div class="toc">
+    {% set toc = _toc(page) %}
+   {% if toc %}
     <p>{{ __('toc') }}</p>
-    {{ _toc(page) }}
+    {{ toc }}
+    {% endif %}
   </div>
 </div>
 {% endblock %}
