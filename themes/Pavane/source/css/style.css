@@ -46,11 +46,20 @@ ul {
 .footer .center {
   padding: 50px 0;
   display: flex;
+  position: relative;
   justify-content: space-between;
 }
 .footer a {
   font-weight: 600;
   color: #223464;
+}
+.footer p {
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 50px;
+  color: #acb1ca;
 }
 
 .header {
@@ -79,6 +88,9 @@ ul {
   border-radius: 3px;
   font-size: 17px;
   letter-spacing: 2px;
+}
+.menu .logo:hover {
+  color: #fff;
 }
 
 .language select {

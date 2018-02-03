@@ -45,6 +45,7 @@ scripts:
   - category.js
   - home.js
   - min.js
+  - updated.js
 
 # plugins
 plugins:
@@ -83,7 +84,7 @@ line_numbers: false
 # created: use "create time"
 # updated: use "update time"
 # default is "created"
-order:
+order: updated
 
 # directory
 # default is "categories", "tags", "posts"
