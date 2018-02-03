@@ -22,7 +22,14 @@
   <div class="nav"></div>
   {% endif %}
 
-  <div class="content markdown">{{ page.content }}</div>
+  <div class="content markdown">
+    {{ page.content }}
+
+    <div class="paginator">
+      {{ _paginator(page) }}
+    </div>
+  </div>
+
   <div class="toc">
     <p>{{ __('toc') }}</p>
     {{ _toc(page) }}
