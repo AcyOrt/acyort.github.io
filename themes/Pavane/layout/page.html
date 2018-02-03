@@ -11,13 +11,15 @@
 
 <div class="center main">
   <div class="nav">
-    {% if page.category === 'API' %}
-    {{ _apiNav() }}
-    {% endif %}
+    <div class="stay">
+      {% if page.category === 'API' %}
+      {{ _apiNav() }}
+      {% endif %}
 
-    {% if (['Customization', 'Getting Started', 'Basic Usage']).indexOf(page.category) > -1 %}
-    {{ _docsNav() }}
-    {% endif %}
+      {% if (['Customization', 'Getting Started', 'Basic Usage']).indexOf(page.category) > -1 %}
+      {{ _docsNav() }}
+      {% endif %}
+    </div>
   </div>
 
   <div class="content markdown">
@@ -31,11 +33,17 @@
   </div>
 
   <div class="toc">
-    {% set toc = _toc(page) %}
-   {% if toc %}
-    <p>{{ __('toc') }}</p>
-    {{ toc }}
-    {% endif %}
+    <div class="stay">
+      {% set toc = _toc(page) %}
+      {% if toc %}
+      <p>{{ __('toc') }}</p>
+      {{ toc }}
+      {% endif %}
+    </div>
   </div>
 </div>
+{% endblock %}
+
+{% block script %}
+<script src="{{ _url('js/script.js') }}"></script>
 {% endblock %}
