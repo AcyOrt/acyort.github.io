@@ -5,6 +5,7 @@
       {% for u in config.menu %}
       <a href="{{ _url(u) }}">{{ __('menu.' + loop.key) }}</a>
       {% endfor %}
+      <a target="_blank" href="https://github.com/{{ config.user }}/{{ config.repository }}/issues">{{ __('source') }}</a>
     </div>
     <div class="language">
       <select>

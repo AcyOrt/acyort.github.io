@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
     .max()
 
   function ifFixed() {
-    if (window.scrollY > 280 && window.scrollY < bh - wh + (wh - height - 150)) {
+    if (window.scrollY > 280) {
       stay.forEach(function (d) {
         d.classList.add('fixed')
       })
@@ -33,5 +33,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     requestAnimationFrame(ifFixed)
   }
-  ifFixed()
+  // ifFixed()
 })
