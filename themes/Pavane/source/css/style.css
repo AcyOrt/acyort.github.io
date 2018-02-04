@@ -37,6 +37,16 @@ ul {
   letter-spacing: 1px;
 }
 
+.github {
+  width: 20px;
+  height: 20px;
+  background-image: url(../image/github.svg);
+  background-size: cover;
+  position: relative;
+  top: 5px;
+  left: -10px;
+}
+
 .home {
   padding-top: 230px;
   line-height: 1;
@@ -61,7 +71,46 @@ ul {
 .features {
   margin-top: 170px;
   border-top: 1px solid #e9ebf8;
-  padding-top: 30px;
+  padding-top: 100px;
+  text-align: center;
+}
+.feature {
+  text-align: left;
+  margin: 0 2% 50px 2%;
+  width: 44%;
+  display: inline-block;
+  height: 150px;
+  vertical-align: top;
+}
+.feature h3 {
+  color: #223464;
+  font-size: 24px;
+  line-height: 1;
+  margin: 0;
+}
+.feature h3:before {
+  vertical-align: bottom;
+  content: '';
+  display: inline-block;
+  margin-right: 20px;
+  width: 30px;
+  height: 30px;
+  background-image: url(../image/ci.svg);
+  background-size: cover;
+}
+.feature.writing h3:before {
+  background-image: url(../image/write.svg);
+}
+.feature.multiple h3:before {
+  background-image: url(../image/author.svg);
+}
+.feature.plugin h3:before {
+  background-image: url(../image/plugin.svg);
+}
+.feature p {
+  margin: 20px 0 0 50px;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 #typer {
@@ -78,6 +127,21 @@ ul {
   line-height: 1.4;
   font-size: 13px;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.start {
+  display: block;
+  width: 160px;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 14px;
+  padding: 14px 0;
+  font-weight: 600;
+  color: #223464;
+  border: 1px solid rgba(34, 52, 100, 0.2);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px 0 rgba(21, 30, 70, 0.1);
+  line-height: 1;
 }
 
 .stay {

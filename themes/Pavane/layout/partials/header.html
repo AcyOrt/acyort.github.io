@@ -2,6 +2,7 @@
   <div class="center">
     <div class="menu">
       <a class="logo" href="{{ _url() }}">{{ config.title }}</a>
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
       {% for u in config.menu %}
       <a href="{{ _url(u) }}">{{ __('menu.' + loop.key) }}</a>
       {% endfor %}
