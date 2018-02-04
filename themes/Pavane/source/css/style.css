@@ -39,11 +39,11 @@ ul {
 
 .stay {
   top: 20px;
-  overflow: auto;
-  max-height: 300px;
+  width: 200px;
 }
 .stay.fixed {
   position: fixed;
+  overflow-y: auto;
 }
 
 .footer {
@@ -59,8 +59,9 @@ ul {
   justify-content: space-between;
 }
 .footer a {
-  font-weight: 600;
+  position: relative;
   color: #223464;
+  font-weight: 600;
   display: block;
 }
 .footer p {
@@ -150,6 +151,7 @@ ul {
   padding-right: 20px;
   padding-top: 5px;
   font-size: 14px;
+  flex-shrink: 0;
 }
 .nav li {
   margin-bottom: 30px;
@@ -170,9 +172,11 @@ ul {
 
 .content {
   flex: 1;
+  overflow: hidden;
 }
 
 .toc {
+  flex-shrink: 0;
   width: 220px;
   box-sizing: border-box;
   padding-left: 20px;
@@ -307,6 +311,7 @@ ul {
   padding: 1em;
   background-color: #f9fafd;
   border-radius: 5px;
+  overflow-x: auto;
 }
 .markdown > *:first-child {
   margin-top: 0 !important;
