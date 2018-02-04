@@ -10,6 +10,7 @@ acyort.extend.register('after_build', function (data) {
     !status                                     ||
     status.path.indexOf('home.html') > -1       ||
     status.path.indexOf('/partials/') > -1      ||
+    status.path.indexOf('.yml') > -1            ||
     status.path.indexOf('/layout.html') > -1
   ) {
     acyort.builder.compile('home')

@@ -1,11 +1,18 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-{{ page.name }} | {{ config.title }}
+{{ config.title }}
 {% endblock %}
 
 {% block content %}
-<div class="center">
-  <div>{{ page.content }}</div>
+<div class="center home">
+  <pre id="typer"></pre>
+  <div class="features">
+    {{ page.content }}
+  </div>
 </div>
+{% endblock %}
+
+{% block script %}
+<script src="{{ _url('js/script.js') }}"></script>
 {% endblock %}

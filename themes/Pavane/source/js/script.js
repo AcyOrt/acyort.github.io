@@ -1,3 +1,33 @@
+var steps = [
+  'Spin up Environment',
+  '...',
+  '',
+  'npm i acyort -g',
+  '...',
+  '+ acyort@2.0.13',
+  'added 239 packages in 9.412s',
+  '',
+  'acyort init',
+  '...',
+  '✔ Configure "config.yml" to start your blog',
+  '',
+  'acyort build',
+  '...',
+  'i Use plugin: acyort-toc',
+  'i Getting data from GitHub (LoeiFy/Recordum)  ... 1',
+  '✔ /posts/244718742.html',
+  '✔ /index.html',
+  '',
+  'git commit -m "Updated by circleci"',
+  '...',
+  '[gh-pages fd05522] Updated by circleci',
+  '',
+  'git push https://github.com/LoeiFy/Recordum.git gh-pages:gh-pages',
+  '...',
+  'To https://github.com/LoeiFy/Recordum.git',
+  '7359d0f..b5e0a56  gh-pages -> gh-pages'
+]
+
 window.requestAnimFrame = (function () {
   return  window.requestAnimationFrame       ||
           window.webkitRequestAnimationFrame ||
@@ -52,5 +82,46 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     requestAnimationFrame(ifFixed)
   }
-  ifFixed()
+
+  if (stay.length) {
+    ifFixed()
+  }
+
+  var current = 0
+  var typer = document.querySelector('#typer')
+  function type() {
+    if (current < steps.length) {
+      var step = steps[current]
+      var time = 1000
+
+      if (!step) {
+        typer.innerHTML += '\n'
+        current += 1
+        return setTimeout(type, 800)
+      }
+
+      if (step === '...') {
+        function dot(t) {
+          typer.innerHTML += t ? '.\n' : '.'
+        }
+        dot()
+        setTimeout(function () {
+          dot()
+          setTimeout(function () {
+            dot(true)
+            current += 1
+            setTimeout(type, 500)
+          }, 300)
+        }, 300)
+      } else {
+        typer.innerHTML += step + (steps[current + 1] === '...' ? '' : '\n')
+        current += 1
+        setTimeout(type, 500)
+      }
+    }
+  }
+
+  if (typer) {
+    type()
+  }
 })
