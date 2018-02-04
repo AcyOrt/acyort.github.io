@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="A simple blog framework. Powered by GitHub and NodeJS" />
+<link rel="stylesheet" href="/css/style.css" />
+
+<title>
+Filter | AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a class="logo" href="/">AcyOrt</a>
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      <a href="/docs/">Docs</a>
+      
+      <a href="/api/">API</a>
+      
+      <a href="/deploy/">Deploy</a>
+      
+      <a target="_blank" href="https://github.com/acyortjs/acyortjs.github.io/issues">Source</a>
+    </div>
+    <div class="language">
+      <select>
+        <option>English</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">Filter</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/filter/">Filter</a><a href="/api/helper/">Helper</a><a href="/api/methods/">Methods</a></li></ul>
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>A filter is used to modify some specified data. AcyOrt passes data to filters in sequence and the filters then modify the data one after the other.</p>
+<p>Here are list of filters used by AcyOrt.</p>
+<h2 id="supportlist">Support list</h2><h3 id="afterinit">after_init</h3><p>Executed after AcyOrt initialize</p>
+
+        <div class="hljs javascript">
+          <pre>acyort.extend.register(<span class="hljs-string">'after_init'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// ...</span>
+})</pre>
+        </div>
+      <h3 id="afterfetch">after_fetch</h3><p>Executed after getting issues data form GitHub</p>
+
+        <div class="hljs javascript">
+          <pre>acyort.extend.register('after_fetch', function(data) {
+  // data is<span class="hljs-built_in"> array </span>of github issues data
+  // ...
+})</pre>
+        </div>
+      <h3 id="afterprocess">after_process</h3><p>Executed after processing the posts data</p>
+
+        <div class="hljs javascript">
+          <pre>acyort.<span class="hljs-built_in">extend</span>.register(<span class="hljs-string">'after_process'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
+/*
+{
+  post<span class="hljs-variable">s:</span> [...],
+  page<span class="hljs-variable">s:</span> [...],
+  categorie<span class="hljs-variable">s:</span> [...],
+  <span class="hljs-keyword">tag</span><span class="hljs-variable">s:</span> [...],
+  <span class="hljs-built_in">index</span>: [...],
+  category: {
+    ...: [...]
+  },
+  <span class="hljs-keyword">ta</span><span class="hljs-variable">g:</span> {
+    ...: [...]
+  }
+}
+*/
+})</pre>
+        </div>
+      <h3 id="afterbuild">after_build</h3><p>Executed after generating the static files</p>
+
+        <div class="hljs javascript">
+          <pre>acyort.<span class="hljs-built_in">extend</span>.register(<span class="hljs-string">'after_build'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
+/*
+{
+  post<span class="hljs-variable">s:</span> [...],
+  page<span class="hljs-variable">s:</span> [...],
+  categorie<span class="hljs-variable">s:</span> [...],
+  <span class="hljs-keyword">tag</span><span class="hljs-variable">s:</span> [...],
+  <span class="hljs-built_in">index</span>: [...],
+  category: {
+    ...: [...]
+  },
+  <span class="hljs-keyword">ta</span><span class="hljs-variable">g:</span> {
+    ...: [...]
+  }
+}
+*/
+})</pre>
+        </div>
+      <h2 id="promiseuse">Promise use</h2><p>Filters support <code>Promise</code></p>
+
+        <div class="hljs javascript">
+          <pre>acyort.extend.register(<span class="hljs-string">'after_init'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> {
+    <span class="hljs-comment">// ...</span>
+    setTimeout(resolve, <span class="hljs-number">1000</span>)
+  })
+})</pre>
+        </div>
+      
+
+    
+    <div class="paginator">
+      <a class="prev" href="/api/">Previous</a><a class="next" href="/api/helper/">Next</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      
+      <p>Contents</p>
+      <ul>
+<li><a href="#supportlist">Support list</a><ul>
+<li><a href="#afterinit">after_init</a></li><li><a href="#afterfetch">after_fetch</a></li><li><a href="#afterprocess">after_process</a></li><li><a href="#afterbuild">after_build</a></li></ul>
+</li><li><a href="#promiseuse">Promise use</a></li></ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2018 .
+      <span>Made by AcyOrt</span> .
+      <span>Inspiration by Hexo</span>
+    </div>
+    <p>Last updated: February 04, 2018</p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

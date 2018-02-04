@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="A simple blog framework. Powered by GitHub and NodeJS" />
+<link rel="stylesheet" href="/css/style.css" />
+
+<title>
+Themes | AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a class="logo" href="/">AcyOrt</a>
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      <a href="/docs/">Docs</a>
+      
+      <a href="/api/">API</a>
+      
+      <a href="/deploy/">Deploy</a>
+      
+      <a target="_blank" href="https://github.com/acyortjs/acyortjs.github.io/issues">Source</a>
+    </div>
+    <div class="language">
+      <select>
+        <option>English</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">Themes</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+
+      
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a></li><li><p>Basic Usage</p><a href="/docs/writing/">Writing</a><a href="/docs/commands/">Commands</a></li><li><p>Customization</p><a href="/docs/permalink/">Permalink</a><a href="/docs/themes/">Themes</a><a href="/docs/variables/">Variables</a><a href="/docs/helpers/">Helpers</a><a href="/docs/plugins/">Plugins</a></li></ul>
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>AcyOrt use <a href="https://github.com/node-swig/swig-templates">Swig</a> as theme Template Engine. Visit <a href="http://node-swig.github.io/swig-templates/">http://node-swig.github.io/swig-templates/</a> for more information.</p>
+<p>A theme should have the following structure</p>
+
+        <div class="hljs">
+          <pre>.
+├─ layout
+├─ i18n
+└─ source</pre>
+        </div>
+      <h3 id="layout">layout</h3><p>The theme’s template files</p>
+<table>
+<thead>
+<tr>
+<th>Template</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>index</td>
+<td>home</td>
+</tr>
+<tr>
+<td>post</td>
+<td>posts </td>
+</tr>
+<tr>
+<td>page</td>
+<td>pages</td>
+</tr>
+<tr>
+<td>category</td>
+<td>single category</td>
+</tr>
+<tr>
+<td>tag</td>
+<td>single tag</td>
+</tr>
+<tr>
+<td>categories</td>
+<td>all categories</td>
+</tr>
+<tr>
+<td>tags</td>
+<td>all tags</td>
+</tr>
+</tbody>
+</table>
+<h3 id="i18n">i18n</h3><p>Theme language files. YAML config files. </p>
+<h3 id="source">source</h3><p>Place your assets (e.g. CSS and JavaScript files) here. AcyOrt will process and save all files to the <code>public_dir</code> folder.</p>
+
+
+    
+    <div class="paginator">
+      <a class="prev" href="/docs/permalink/">Previous</a><a class="next" href="/docs/variables/">Next</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      
+      <p>Contents</p>
+      <ul>
+<li><a href="#layout">layout</a></li><li><a href="#i18n">i18n</a></li><li><a href="#source">source</a></li></ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2018 .
+      <span>Made by AcyOrt</span> .
+      <span>Inspiration by Hexo</span>
+    </div>
+    <p>Last updated: February 04, 2018</p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

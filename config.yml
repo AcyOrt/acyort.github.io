@@ -54,7 +54,7 @@ plugins:
 # output
 # html output directory
 # you can set child directory e.g. "child"
-public_dir: public
+public_dir:
 
 # authors
 # GitHub user

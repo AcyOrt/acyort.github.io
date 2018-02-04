@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="A simple blog framework. Powered by GitHub and NodeJS" />
+<link rel="stylesheet" href="/css/style.css" />
+
+<title>
+CI deploy | AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a class="logo" href="/">AcyOrt</a>
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      <a href="/docs/">Docs</a>
+      
+      <a href="/api/">API</a>
+      
+      <a href="/deploy/">Deploy</a>
+      
+      <a target="_blank" href="https://github.com/acyortjs/acyortjs.github.io/issues">Source</a>
+    </div>
+    <div class="language">
+      <select>
+        <option>English</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">CI deploy</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>AcyOrt support <code>CI</code> auto deploy. You blog can be deployed automatically via GitHub <code>webhook</code> and <a href="https://circleci.com">CircleCI</a></p>
+<p>Auto deploy <strong>do not</strong> need any installation or environment. Just need a browser.</p>
+<h2 id="howitworks">How it works</h2><p>The schematic</p>
+<p><img src="https://user-images.githubusercontent.com/2193211/35319242-eebaa61a-0119-11e8-87ee-339d984d4f05.png" alt="ci"></p>
+<p>And there is a demo <a href="https://github.com/LoeiFy/Recordum/">repository</a></p>
+<h2 id="howtodo">How to do</h2><p>What You Need</p>
+<ul>
+<li><strong>one</strong> CircleCI Personal API Tokens</li><li><strong>two</strong> GitHub Personal access tokens</li><li><strong>one</strong> GitHub repository</li><li>CirclleCI settings</li><li>Repository settings</li></ul>
+<h3 id="circlecitoken">CircleCI Token</h3><p>Login to <a href="https://circleci.com">CircleCI</a> via GitHub. and get your CircleCI <a href="https://circleci.com/account/api">token</a> . Name this token <code>ci-token</code></p>
+<h3 id="githubtokens">GitHub Tokens</h3><p>Login GitHub, access <a href="https://github.com/settings/tokens">token</a> page, and create <strong>two</strong> tokens.</p>
+<ul>
+<li>first <strong>without</strong> any rights. Name <code>read-token</code></li><li>last width <code>public_repo</code> rights. Name <code>repo-token</code></li></ul>
+<h3 id="githubrepository">GitHub repository</h3><p>Setup a new repository with <strong>two</strong> branch</p>
+<ul>
+<li><strong>master</strong>: <code>CircleCi</code>** and <code>AcyOrt</code> config files</li><li><strong>gh-pages</strong>: <code>AcyOrt</code> generated static files</li></ul>
+<p><strong>master</strong></p>
+<p>Folders structure</p>
+
+        <div class="hljs">
+          <pre>.
+├─ .circleci
+├  └─ config.yml
+└─ config.yml</pre>
+        </div>
+      
+        <div class="hljs yml">
+          <pre><span class="hljs-comment"># .circleci/config.yml</span>
+version: <span class="hljs-number">2</span>
+jobs:
+  build:
+    docker:
+      - image: node:latest
+
+    working_directory: ~/acyort
+
+    branches:
+      only:
+        - master <span class="hljs-comment"># config branch</span>
+
+    steps:
+      - checkout
+      - <span class="hljs-keyword">run</span><span class="bash">: npm install acyort -g
+</span>      - <span class="hljs-keyword">run</span><span class="bash">: acyort init 
+</span>      - <span class="hljs-keyword">run</span><span class="bash">: cp config.bak.yml config.yml 
+</span>      - <span class="hljs-keyword">run</span><span class="bash">: acyort build  
+</span>      - <span class="hljs-keyword">run</span><span class="bash">: git checkout .  
+</span>      - <span class="hljs-keyword">run</span><span class="bash">: git checkout gh-pages <span class="hljs-comment"># static files branch</span>
+</span>      - <span class="hljs-keyword">run</span><span class="bash">: git reset --hard origin/gh-pages
+</span>      - <span class="hljs-keyword">run</span><span class="bash">: cp -R public/* . 
+</span>      - <span class="hljs-keyword">run</span><span class="bash">: rm config.bak.yml 
+</span>      - <span class="hljs-keyword">run</span><span class="bash">: rm -R scripts themes public 
+</span>      - <span class="hljs-keyword">run</span><span class="bash">: git add .
+</span>      - <span class="hljs-keyword">run</span><span class="bash">: git config user.name <span class="hljs-string">"username"</span> <span class="hljs-comment"># your GitHub username</span>
+</span>      - <span class="hljs-keyword">run</span><span class="bash">: git config user.email <span class="hljs-string">"email"</span> <span class="hljs-comment"># your GitHub email</span>
+</span>      - <span class="hljs-keyword">run</span><span class="bash">: git commit -m <span class="hljs-string">"Updated by circleci - `date`"</span>
+</span>      <span class="hljs-comment"># fill your usename, repository below </span>
+      - <span class="hljs-keyword">run</span><span class="bash">: git push -q https://<span class="hljs-variable">${gh_token}</span>@github.com/username/repository.git gh-pages:gh-pages</span></pre>
+        </div>
+      <hr>
+
+        <div class="hljs yml">
+          <pre><span class="hljs-comment"># config.yml</span>
+<span class="hljs-comment"># only show important fields</span>
+
+<span class="hljs-attr">user:</span>  <span class="hljs-comment"># set your GitHub username</span>
+<span class="hljs-attr">repository:</span>  <span class="hljs-comment"># set your GitHub repository</span>
+
+<span class="hljs-attr">public_dir:</span> <span class="hljs-string">public</span> <span class="hljs-comment"># important, same as CircleCi config: public</span>
+<span class="hljs-attr">timezone:</span>  <span class="hljs-comment"># set your timezone</span>
+<span class="hljs-attr">token:</span>  <span class="hljs-comment"># your `read-token` from github</span></pre>
+        </div>
+      <p><strong>gh-pages</strong></p>
+<p>This branch is used to store AcyOrt generated static files. It <strong>must</strong> exist, you can add <code>CNAME</code> file to this branch</p>
+<h3 id="circlecisettings">CircleCI settings</h3><p>Login in CircleCI, click <code>PROJECTS</code>, Add the repository you just created. select the platform <code>Linux &amp; Node</code>, then click <code>Start building</code>. (it will build fail. this is normal because of missing <code>token</code>)</p>
+<p>Set the config below</p>
+<p><strong>Environment Variables</strong></p>
+<p>add <code>gh_token</code> variable, value is <code>repo-token</code></p>
+<p><strong>Advanced Settings</strong></p>
+<ul>
+<li>set <code>GitHub Status updates</code> off</li><li>set <code>Build forked pull requests</code> off</li></ul>
+<h3 id="repositorysettings">Repository settings</h3><p>Login GitHub, go to repository settings, add the <code>webhooks</code></p>
+<p><strong>Payload URL</strong></p>
+<p>The CircleCI trigger build API is <code>/project/:vcs-type/:username/:project/tree/:branch</code>.
+So the <code>webhooks</code> URL is <code>https://circleci.com/api/v1.1/project/github/username/repository/tree/master?circle-token=ci-token</code>. you need to change the fields of this URL</p>
+<ul>
+<li><code>username</code>: your GitHub username</li><li><code>repository</code>: your GitHub repository</li><li><code>ci-token</code>: the <code>ci-token</code> you get just now</li></ul>
+<p><strong>Content type</strong></p>
+<p>Use <code>application/json</code></p>
+<p><strong>Let me select individual events</strong></p>
+<p>Only check the <code>Issues</code> field</p>
+<h2 id="done">Done</h2><p>Now you can write your blog on GitHub issues, and you blog website will updated automatically</p>
+
+
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      
+      <p>Contents</p>
+      <ul>
+<li><a href="#howitworks">How it works</a></li><li><a href="#howtodo">How to do</a><ul>
+<li><a href="#circlecitoken">CircleCI Token</a></li><li><a href="#githubtokens">GitHub Tokens</a></li><li><a href="#githubrepository">GitHub repository</a></li><li><a href="#circlecisettings">CircleCI settings</a></li><li><a href="#repositorysettings">Repository settings</a></li></ul>
+</li><li><a href="#done">Done</a></li></ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2018 .
+      <span>Made by AcyOrt</span> .
+      <span>Inspiration by Hexo</span>
+    </div>
+    <p>Last updated: February 04, 2018</p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

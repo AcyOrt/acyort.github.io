@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="A simple blog framework. Powered by GitHub and NodeJS" />
+<link rel="stylesheet" href="/css/style.css" />
+
+<title>
+Plugins | AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a class="logo" href="/">AcyOrt</a>
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      <a href="/docs/">Docs</a>
+      
+      <a href="/api/">API</a>
+      
+      <a href="/deploy/">Deploy</a>
+      
+      <a target="_blank" href="https://github.com/acyortjs/acyortjs.github.io/issues">Source</a>
+    </div>
+    <div class="language">
+      <select>
+        <option>English</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">Plugins</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+
+      
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a></li><li><p>Basic Usage</p><a href="/docs/writing/">Writing</a><a href="/docs/commands/">Commands</a></li><li><p>Customization</p><a href="/docs/permalink/">Permalink</a><a href="/docs/themes/">Themes</a><a href="/docs/variables/">Variables</a><a href="/docs/helpers/">Helpers</a><a href="/docs/plugins/">Plugins</a></li></ul>
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>It is easy to extend AcyOrt without modifying core module. There are two ways of plugins in AcyOrt
+Also you should enable the scripts/plugins in <code>config.yml</code></p>
+<h2 id="script">Script</h2><p>If your plugin is simply. Put your JavaScript files in the scripts folder and AcyOrt will load them during initialization.</p>
+<h2 id="plugin">Plugin</h2><p>You can publish the plugin to NPM. Plugins must contain at least two files <code>index.js</code>, <code>package.json</code></p>
+<p>You should set the name, version and main entries in <code>package.json</code></p>
+
+        <div class="hljs json">
+          <pre>{
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"acyort plugin"</span>,
+  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"0.1.0"</span>,
+  <span class="hljs-attr">"main"</span>: <span class="hljs-string">"index.js"</span>
+}</pre>
+        </div>
+      
+
+    
+    <div class="paginator">
+      <a class="prev" href="/docs/helpers/">Previous</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      
+      <p>Contents</p>
+      <ul>
+<li><a href="#script">Script</a></li><li><a href="#plugin">Plugin</a></li></ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2018 .
+      <span>Made by AcyOrt</span> .
+      <span>Inspiration by Hexo</span>
+    </div>
+    <p>Last updated: February 04, 2018</p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

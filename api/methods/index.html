@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="A simple blog framework. Powered by GitHub and NodeJS" />
+<link rel="stylesheet" href="/css/style.css" />
+
+<title>
+Methods | AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a class="logo" href="/">AcyOrt</a>
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      <a href="/docs/">Docs</a>
+      
+      <a href="/api/">API</a>
+      
+      <a href="/deploy/">Deploy</a>
+      
+      <a target="_blank" href="https://github.com/acyortjs/acyortjs.github.io/issues">Source</a>
+    </div>
+    <div class="language">
+      <select>
+        <option>English</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">Methods</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/filter/">Filter</a><a href="/api/helper/">Helper</a><a href="/api/methods/">Methods</a></li></ul>
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>AcyOrt provides some APIs and will be particularly helpful for people who want to write new plugins</p>
+<p>Plugin will get a global variable <code>acyort</code> when loaded by AcyOrt</p>
+<h2 id="fs">fs</h2>
+        <div class="hljs javascript">
+          <pre><span class="hljs-keyword">const</span> <span class="hljs-comment">{ fs }</span> = acyort
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">file</span> = <span class="hljs-string">'/tmp/file.txt'</span>
+fs.outputFileSync(<span class="hljs-keyword">file</span>, <span class="hljs-string">'hello!'</span>)</pre>
+        </div>
+      <p><code>fs</code> use <a href="https://github.com/jprichardson/node-fs-extra">fs-extra</a>. Visit the <a href="https://github.com/jprichardson/node-fs-extra/blob/master/README.md">documentation</a> for more information</p>
+<h2 id="version">version</h2>
+        <div class="hljs javascript">
+          <pre>console.<span class="hljs-built_in">log</span>(acyort.<span class="hljs-built_in">version</span>)<span class="hljs-comment">
+// 2.0.12</span></pre>
+        </div>
+      <p>Get the AcyOrt version</p>
+<h2 id="logger">logger</h2>
+        <div class="hljs javascript">
+          <pre><span class="hljs-section">const</span> { <span class="hljs-attribute">logger</span> } = acyort
+
+logger.success(<span class="hljs-string">'success'</span>)
+// ✔ success
+
+logger.<span class="hljs-literal">info</span>(<span class="hljs-string">'info'</span>)
+// i <span class="hljs-literal">info</span>
+
+logger.<span class="hljs-literal">error</span>(<span class="hljs-string">'error'</span>)
+// ✖ <span class="hljs-literal">error</span></pre>
+        </div>
+      <p>Print some information on console</p>
+<h2 id="renderer">renderer</h2>
+        <div class="hljs javascript">
+          <pre><span class="hljs-keyword">const</span> { renderer } = acyort
+<span class="hljs-keyword">const</span> <span class="hljs-built_in">config</span> = renderer.render(<span class="hljs-string">'yaml'</span>, { path: <span class="hljs-string">'path/to/config.yml'</span> })
+<span class="hljs-comment">// { title: 'AcyOrt' ... }</span></pre>
+        </div>
+      <p><code>swig</code>, <code>yaml</code> parser. use <a href="https://github.com/acyortjs/acyort-render">acyort-render</a></p>
+<h2 id="config">config</h2>
+        <div class="hljs javascript">
+          <pre>const { <span class="hljs-built_in">config</span> } = acyort
+console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">config</span>)
+// { title: <span class="hljs-string">'acyort'</span>, post_dir: <span class="hljs-string">'posts'</span> ... }</pre>
+        </div>
+      <p>Get your blog config</p>
+<h2 id="markeder">markeder</h2>
+        <div class="hljs javascript">
+          <pre><span class="xml">const </span><span class="hljs-template-variable">{ markeder }</span><span class="xml"> = acyort
+const heading = '# An h1 header'
+
+console.log(markeder.mark(heading))
+// <span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"anh1header"</span>&gt;</span>An h1 header<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+markeder.lineNumbers = true
+const _code = '\`\`\`\n<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>h1<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>\n\`\`\`'
+
+markeder.mark(_code)
+/*
+<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"hljs"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">table</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">tbody</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"line"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>1<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">td</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"code"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span>&amp;lt;h1&amp;gt;h1&amp;lt;&amp;#x2F;h1&amp;gt;<span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+*/</span></pre>
+        </div>
+      <p><code>markdown</code> parser. use <a href="https://github.com/acyortjs/acyort-marked">acyort-marked</a></p>
+<h2 id="helper">helper</h2>
+        <div class="hljs javascript">
+          <pre>const {
+<span class="hljs-built_in">  _pages,</span>
+<span class="hljs-built_in">  _posts,</span>
+<span class="hljs-built_in">  _categories,</span>
+<span class="hljs-built_in">  _tags,</span>
+<span class="hljs-built_in">  _url,</span>
+<span class="hljs-built_in">  _time,</span>
+<span class="hljs-built_in">  __,</span>
+<span class="hljs-built_in">  _n,</span>
+} = acyort.helper.methods</pre>
+        </div>
+      <p>Helper functions you can use on custom plugins. use <a href="https://github.com/acyortjs/acyort-helper">acyort-helper</a></p>
+<p><strong>Special</strong></p>
+
+        <div class="hljs javascript">
+          <pre>const fn = s =&gt; s.split(<span class="hljs-string">''</span>).join(<span class="hljs-string">'.'</span>)
+
+<span class="hljs-comment">// add custom helper function</span>
+acyort<span class="hljs-selector-class">.helper</span><span class="hljs-selector-class">.addMethod</span>(<span class="hljs-string">'_js'</span>, fn)
+console.log(helper<span class="hljs-selector-class">.methods</span>._js(<span class="hljs-string">'ab'</span>))   <span class="hljs-comment">// a.b</span>
+
+<span class="hljs-comment">// reset the language files</span>
+acyort<span class="hljs-selector-class">.helper</span><span class="hljs-selector-class">.resetLocales</span>()</pre>
+        </div>
+      <h2 id="server">server</h2>
+        <div class="hljs javascript">
+          <pre>const { <span class="hljs-built_in">status</span>, <span class="hljs-built_in">running</span> } = acyort.server
+
+console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">running</span>)    // <span class="hljs-literal">true</span>
+console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">status</span>)      // { e: <span class="hljs-string">'change'</span>, <span class="hljs-built_in">path</span>: <span class="hljs-string">'path/to/file.html'</span> }
+
+acyort.server.start([port])</pre>
+        </div>
+      <p>Get current <code>liveReload</code> server file status(when the server is running). Or start a <code>liveReload</code> server. use <a href="https://github.com/acyortjs/acyort-server">acyort-server</a></p>
+<h2 id="builder">builder</h2>
+        <div class="hljs javascript">
+          <pre>acyort<span class="hljs-selector-class">.builder</span><span class="hljs-selector-class">.addTags</span>([<span class="hljs-string">'archives'</span>])
+acyort<span class="hljs-selector-class">.builder</span><span class="hljs-selector-class">.compile</span>(<span class="hljs-string">'archives'</span>)
+acyort<span class="hljs-selector-class">.builder</span><span class="hljs-selector-class">.output</span>(<span class="hljs-string">'archives'</span>, <span class="hljs-string">'path/to/file'</span>, { data })</pre>
+        </div>
+      <p><code>builder</code> method can help you compile custom template, render and output rendered files.
+The custom template you should put it to theme <code>layout</code> folder</p>
+
+
+    
+    <div class="paginator">
+      <a class="prev" href="/api/helper/">Previous</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      
+      <p>Contents</p>
+      <ul>
+<li><a href="#fs">fs</a></li><li><a href="#version">version</a></li><li><a href="#logger">logger</a></li><li><a href="#renderer">renderer</a></li><li><a href="#config">config</a></li><li><a href="#markeder">markeder</a></li><li><a href="#helper">helper</a></li><li><a href="#server">server</a></li><li><a href="#builder">builder</a></li></ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2018 .
+      <span>Made by AcyOrt</span> .
+      <span>Inspiration by Hexo</span>
+    </div>
+    <p>Last updated: February 04, 2018</p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

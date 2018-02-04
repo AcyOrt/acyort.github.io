@@ -1,0 +1,369 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="A simple blog framework. Powered by GitHub and NodeJS" />
+<link rel="stylesheet" href="/css/style.css" />
+
+<title>
+Variables | AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a class="logo" href="/">AcyOrt</a>
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      <a href="/docs/">Docs</a>
+      
+      <a href="/api/">API</a>
+      
+      <a href="/deploy/">Deploy</a>
+      
+      <a target="_blank" href="https://github.com/acyortjs/acyortjs.github.io/issues">Source</a>
+    </div>
+    <div class="language">
+      <select>
+        <option>English</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">Variables</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+
+      
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a></li><li><p>Basic Usage</p><a href="/docs/writing/">Writing</a><a href="/docs/commands/">Commands</a></li><li><p>Customization</p><a href="/docs/permalink/">Permalink</a><a href="/docs/themes/">Themes</a><a href="/docs/variables/">Variables</a><a href="/docs/helpers/">Helpers</a><a href="/docs/plugins/">Plugins</a></li></ul>
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>Variables can be used in theme templates. </p>
+<h3 id="config">Config</h3><p>Global config variables</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>config.title</td>
+<td>blog title</td>
+</tr>
+<tr>
+<td>config.description</td>
+<td>blog description</td>
+</tr>
+<tr>
+<td>config.url</td>
+<td>blog url</td>
+</tr>
+<tr>
+<td>config.user</td>
+<td>GitHub username</td>
+</tr>
+<tr>
+<td>config.repository</td>
+<td>GitHub repository</td>
+</tr>
+</tbody>
+</table>
+<h3 id="page">Page</h3><p>Post template variables</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>page.id</td>
+<td>post id</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>page.created</td>
+<td>post created date</td>
+<td>Time String</td>
+</tr>
+<tr>
+<td>page.updated</td>
+<td>post updated date</td>
+<td>Time String</td>
+</tr>
+<tr>
+<td>page.prev</td>
+<td>previous post id</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>page.next</td>
+<td>next post id</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>page.title</td>
+<td>post title</td>
+<td>String</td>
+</tr>
+<tr>
+<td>page.url</td>
+<td>post url</td>
+<td>URL String</td>
+</tr>
+<tr>
+<td>page.author</td>
+<td>post author <code>name</code>, <code>avatar</code>, <code>url</code></td>
+<td>Object</td>
+</tr>
+<tr>
+<td>page.excerpt</td>
+<td>post excerpt</td>
+<td>html String</td>
+</tr>
+<tr>
+<td>page.raw</td>
+<td>post origin markdown data</td>
+<td>markdown String</td>
+</tr>
+<tr>
+<td>page.content</td>
+<td>post content</td>
+<td>html String</td>
+</tr>
+<tr>
+<td>page.category</td>
+<td>post category <code>id</code>, <code>name</code>, <code>url</code></td>
+<td>Object</td>
+</tr>
+<tr>
+<td>page.tags</td>
+<td>post tags <code>id</code>, <code>name</code>, <code>url</code></td>
+<td>Array  </td>
+</tr>
+</tbody>
+</table>
+<p>Page template variables</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>page.id</td>
+<td>page id</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>page.created</td>
+<td>page created date</td>
+<td>Time String</td>
+</tr>
+<tr>
+<td>page.updated</td>
+<td>page updated date</td>
+<td>Time String</td>
+</tr>
+<tr>
+<td>page.title</td>
+<td>page title</td>
+<td>String</td>
+</tr>
+<tr>
+<td>page.url</td>
+<td>page url</td>
+<td>URL String</td>
+</tr>
+<tr>
+<td>page.name</td>
+<td>page name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>page.raw</td>
+<td>page origin markdown data</td>
+<td>markdown String</td>
+</tr>
+<tr>
+<td>page.content</td>
+<td>page content</td>
+<td>html String</td>
+</tr>
+</tbody>
+</table>
+<p>Pagination template variables</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>page.base</td>
+<td>base url</td>
+<td>URL String</td>
+</tr>
+<tr>
+<td>page.title</td>
+<td>current page title</td>
+<td>String</td>
+</tr>
+<tr>
+<td>page.prev</td>
+<td>previous page url</td>
+<td>URL String</td>
+</tr>
+<tr>
+<td>page.next</td>
+<td>next page url</td>
+<td>URL String</td>
+</tr>
+<tr>
+<td>page.posts</td>
+<td>page posts list</td>
+<td>Array</td>
+</tr>
+<tr>
+<td>page.current</td>
+<td>current page number</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>page.total</td>
+<td>total page number</td>
+<td>Number</td>
+</tr>
+</tbody>
+</table>
+<p>Categories template variable <code>page</code> is an <code>Array</code>. Item variables</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>category id</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>name</td>
+<td>category name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>category url</td>
+<td>URL String</td>
+</tr>
+<tr>
+<td>posts</td>
+<td>all posts id belong to current category</td>
+<td>Array</td>
+</tr>
+</tbody>
+</table>
+<p>Tags template variable <code>page</code> is an <code>Array</code>. Item variables</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>tag id</td>
+<td>Number</td>
+</tr>
+<tr>
+<td>name</td>
+<td>tag name</td>
+<td>String</td>
+</tr>
+<tr>
+<td>url</td>
+<td>tag url</td>
+<td>URL String</td>
+</tr>
+<tr>
+<td>posts</td>
+<td>all posts id belong to current tag</td>
+<td>Array</td>
+</tr>
+</tbody>
+</table>
+
+
+    
+    <div class="paginator">
+      <a class="prev" href="/docs/themes/">Previous</a><a class="next" href="/docs/helpers/">Next</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      
+      <p>Contents</p>
+      <ul>
+<li><a href="#config">Config</a></li><li><a href="#page">Page</a></li></ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2018 .
+      <span>Made by AcyOrt</span> .
+      <span>Inspiration by Hexo</span>
+    </div>
+    <p>Last updated: February 04, 2018</p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

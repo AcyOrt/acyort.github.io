@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="A simple blog framework. Powered by GitHub and NodeJS" />
+<link rel="stylesheet" href="/css/style.css" />
+
+<title>
+API | AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a class="logo" href="/">AcyOrt</a>
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      <a href="/docs/">Docs</a>
+      
+      <a href="/api/">API</a>
+      
+      <a href="/deploy/">Deploy</a>
+      
+      <a target="_blank" href="https://github.com/acyortjs/acyortjs.github.io/issues">Source</a>
+    </div>
+    <div class="language">
+      <select>
+        <option>English</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">API</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/filter/">Filter</a><a href="/api/helper/">Helper</a><a href="/api/methods/">Methods</a></li></ul>
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>You can use AcyOrt as a module for plugin or script test. In addition, you can use <code>acyort-config</code> module for getting default config values</p>
+<p><strong>example</strong></p>
+
+        <div class="hljs javascript">
+          <pre><span class="hljs-keyword">const</span> Acyort = <span class="hljs-built_in">require</span>(<span class="hljs-string">'acyort'</span>)
+<span class="hljs-keyword">const</span> { defaults } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'acyort-config'</span>)
+
+<span class="hljs-keyword">const</span> config = defaults
+
+config.base = __dirname
+config.cache =  <span class="hljs-literal">true</span>
+config.scripts = [<span class="hljs-string">'archives.js'</span>]
+config.scripts_dir = <span class="hljs-string">'/'</span>
+
+<span class="hljs-keyword">const</span> acyort = <span class="hljs-keyword">new</span> Acyort(config)
+
+;<span class="hljs-function">(<span class="hljs-params"><span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; {
+  <span class="hljs-keyword">await</span> acyort.build(<span class="hljs-params"></span>)
+  <span class="hljs-comment">// After generate the static files </span>
+
+  <span class="hljs-keyword">await</span> acyort.start(<span class="hljs-params"></span>)
+  <span class="hljs-comment">// After start local server</span>
+}</span>)<span class="hljs-params">()</span></span></pre>
+        </div>
+      <h3 id="build">build</h3>
+        <div class="hljs javascript">
+          <pre><span class="hljs-selector-tag">acyort</span><span class="hljs-selector-class">.build</span>()</pre>
+        </div>
+      <p>Get the posts data and generate the static files.</p>
+<h3 id="server">server</h3>
+        <div class="hljs javascript">
+          <pre><span class="hljs-selector-tag">acyort</span><span class="hljs-selector-class">.server</span>(<span class="hljs-selector-attr">[port]</span>)</pre>
+        </div>
+      <p>Run <code>build</code> task and create a liveReload web server</p>
+
+
+    
+    <div class="paginator">
+      <a class="next" href="/api/filter/">Next</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      
+      <p>Contents</p>
+      <ul>
+<li><a href="#build">build</a></li><li><a href="#server">server</a></li></ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2018 .
+      <span>Made by AcyOrt</span> .
+      <span>Inspiration by Hexo</span>
+    </div>
+    <p>Last updated: February 04, 2018</p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

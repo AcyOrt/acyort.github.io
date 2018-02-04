@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="description" content="A simple blog framework. Powered by GitHub and NodeJS" />
+<link rel="stylesheet" href="/css/style.css" />
+
+<title>
+Helper | AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a class="logo" href="/">AcyOrt</a>
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      <a href="/docs/">Docs</a>
+      
+      <a href="/api/">API</a>
+      
+      <a href="/deploy/">Deploy</a>
+      
+      <a target="_blank" href="https://github.com/acyortjs/acyortjs.github.io/issues">Source</a>
+    </div>
+    <div class="language">
+      <select>
+        <option>English</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">Helper</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/filter/">Filter</a><a href="/api/helper/">Helper</a><a href="/api/methods/">Methods</a></li></ul>
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>Custom helper makes it easy to quickly add snippets to your templates.</p>
+
+        <div class="hljs javascript">
+          <pre>acyort.extend.helper(<span class="hljs-string">'_toc'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> </span>{
+   <span class="hljs-comment">// ...</span>
+   <span class="hljs-keyword">return</span> <span class="hljs-string">'something'</span>
+})</pre>
+        </div>
+      <p><strong>example</strong></p>
+
+        <div class="hljs javascript">
+          <pre>acyort.extend.helper(<span class="hljs-string">'_js'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(path)</span></span> {  
+  <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;script src="'</span> + <span class="hljs-built_in">path</span> + <span class="hljs-string">'"&gt;&lt;/script&gt;'</span>
+})</pre>
+        </div>
+      
+        <div class="hljs javascript">
+          <pre><span class="xml"></span><span class="hljs-template-variable">{{ _js('script.js') }}</span><span class="xml">
+// <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"script.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span></pre>
+        </div>
+      
+
+    
+    <div class="paginator">
+      <a class="prev" href="/api/filter/">Previous</a><a class="next" href="/api/methods/">Next</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2018 .
+      <span>Made by AcyOrt</span> .
+      <span>Inspiration by Hexo</span>
+    </div>
+    <p>Last updated: February 04, 2018</p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>
