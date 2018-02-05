@@ -55,20 +55,20 @@ Methods | AcyOrt
   <div class="content markdown">
     <p>AcyOrt provides some APIs and will be particularly helpful for people who want to write new plugins</p>
 <p>Plugin will get a global variable <code>acyort</code> when loaded by AcyOrt</p>
-<h2 id="fs">fs</h2>
+<h3 id="fs">fs</h3>
         <div class="hljs javascript">
           <pre><span class="hljs-keyword">const</span> <span class="hljs-comment">{ fs }</span> = acyort
 <span class="hljs-keyword">const</span> <span class="hljs-keyword">file</span> = <span class="hljs-string">'/tmp/file.txt'</span>
 fs.outputFileSync(<span class="hljs-keyword">file</span>, <span class="hljs-string">'hello!'</span>)</pre>
         </div>
       <p><code>fs</code> use <a href="https://github.com/jprichardson/node-fs-extra">fs-extra</a>. Visit the <a href="https://github.com/jprichardson/node-fs-extra/blob/master/README.md">documentation</a> for more information</p>
-<h2 id="version">version</h2>
+<h3 id="version">version</h3>
         <div class="hljs javascript">
           <pre>console.<span class="hljs-built_in">log</span>(acyort.<span class="hljs-built_in">version</span>)<span class="hljs-comment">
 // 2.0.12</span></pre>
         </div>
       <p>Get the AcyOrt version</p>
-<h2 id="logger">logger</h2>
+<h3 id="logger">logger</h3>
         <div class="hljs javascript">
           <pre><span class="hljs-section">const</span> { <span class="hljs-attribute">logger</span> } = acyort
 
@@ -82,21 +82,21 @@ logger.<span class="hljs-literal">error</span>(<span class="hljs-string">'error'
 // ✖ <span class="hljs-literal">error</span></pre>
         </div>
       <p>Print some information on console</p>
-<h2 id="renderer">renderer</h2>
+<h3 id="renderer">renderer</h3>
         <div class="hljs javascript">
           <pre><span class="hljs-keyword">const</span> { renderer } = acyort
 <span class="hljs-keyword">const</span> <span class="hljs-built_in">config</span> = renderer.render(<span class="hljs-string">'yaml'</span>, { path: <span class="hljs-string">'path/to/config.yml'</span> })
 <span class="hljs-comment">// { title: 'AcyOrt' ... }</span></pre>
         </div>
       <p><code>swig</code>, <code>yaml</code> parser. use <a href="https://github.com/acyortjs/acyort-render">acyort-render</a></p>
-<h2 id="config">config</h2>
+<h3 id="config">config</h3>
         <div class="hljs javascript">
           <pre>const { <span class="hljs-built_in">config</span> } = acyort
 console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">config</span>)
 // { title: <span class="hljs-string">'acyort'</span>, post_dir: <span class="hljs-string">'posts'</span> ... }</pre>
         </div>
       <p>Get your blog config</p>
-<h2 id="markeder">markeder</h2>
+<h3 id="markeder">markeder</h3>
         <div class="hljs javascript">
           <pre><span class="xml">const </span><span class="hljs-template-variable">{ markeder }</span><span class="xml"> = acyort
 const heading = '# An h1 header'
@@ -126,7 +126,7 @@ markeder.mark(_code)
 */</span></pre>
         </div>
       <p><code>markdown</code> parser. use <a href="https://github.com/acyortjs/acyort-marked">acyort-marked</a></p>
-<h2 id="helper">helper</h2>
+<h3 id="helper">helper</h3>
         <div class="hljs javascript">
           <pre>const {
 <span class="hljs-built_in">  _pages,</span>
@@ -152,7 +152,7 @@ console.log(helper<span class="hljs-selector-class">.methods</span>._js(<span cl
 <span class="hljs-comment">// reset the language files</span>
 acyort<span class="hljs-selector-class">.helper</span><span class="hljs-selector-class">.resetLocales</span>()</pre>
         </div>
-      <h2 id="server">server</h2>
+      <h3 id="server">server</h3>
         <div class="hljs javascript">
           <pre>const { <span class="hljs-built_in">status</span>, <span class="hljs-built_in">running</span> } = acyort.server
 
@@ -162,7 +162,7 @@ console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">statu
 acyort.server.start([port])</pre>
         </div>
       <p>Get current <code>liveReload</code> server file status(when the server is running). Or start a <code>liveReload</code> server. use <a href="https://github.com/acyortjs/acyort-server">acyort-server</a></p>
-<h2 id="builder">builder</h2>
+<h3 id="builder">builder</h3>
         <div class="hljs javascript">
           <pre>acyort<span class="hljs-selector-class">.builder</span><span class="hljs-selector-class">.addTags</span>([<span class="hljs-string">'archives'</span>])
 acyort<span class="hljs-selector-class">.builder</span><span class="hljs-selector-class">.compile</span>(<span class="hljs-string">'archives'</span>)
@@ -200,7 +200,7 @@ The custom template you should put it to theme <code>layout</code> folder</p>
       <span>Made by AcyOrt</span> .
       <span>Inspiration by Hexo</span>
     </div>
-    <p>Last updated: February 04, 2018</p>
+    <p>Last updated: February 05, 2018</p>
     <a href="#" class="top">Top</a>
   </div>
 </div>

@@ -54,7 +54,7 @@ Helpers | AcyOrt
 
   <div class="content markdown">
     <p>Helpers are used in templates to help you insert snippets or get data quickly.</p>
-<h2 id="url">_url</h2><p>Returns a url with the root path prefixed.</p>
+<h3 id="url">_url</h3><p>Returns a url with the root path prefixed.</p>
 
         <div class="hljs">
           <pre>{{ _url(path) }}</pre>
@@ -68,7 +68,7 @@ Helpers | AcyOrt
 {{ <span class="hljs-selector-tag">_url</span>() }}
 <span class="hljs-comment">// /</span></pre>
         </div>
-      <h2 id="time">_time</h2><p>Inserts formatted date. date can be unix time, ISO string, date object. use <a href="http://momentjs.com/">Moment.js</a></p>
+      <h3 id="time">_time</h3><p>Inserts formatted date. date can be unix time, ISO string, date object. use <a href="http://momentjs.com/">Moment.js</a></p>
 
         <div class="hljs">
           <pre>{{ _time(date, format) }}</pre>
@@ -79,7 +79,7 @@ Helpers | AcyOrt
           <pre>{{ <span class="hljs-variable">_time</span>(<span class="hljs-built_in">Date</span>.now(), <span class="hljs-string">'YYYY'</span>) }}
 <span class="hljs-comment">// 2018</span></pre>
         </div>
-      <h2 id="i18n">i18n</h2><p>Use <code>__</code> or <code>_n</code> helpers in templates to get the translated strings.</p>
+      <h3 id="i18n">i18n</h3><p>Use <code>__</code> or <code>_n</code> helpers in templates to get the translated strings.</p>
 
         <div class="hljs">
           <pre>{{ __(page.title) }}
@@ -104,7 +104,7 @@ Helpers | AcyOrt
 {{ <span class="hljs-selector-tag">_n</span>(<span class="hljs-string">'posts'</span>, <span class="hljs-number">3</span>) }}
 <span class="hljs-comment">// 3 posts</span></pre>
         </div>
-      <h2 id="posts">_posts</h2><p>Get all posts or get special post by <code>id</code></p>
+      <h3 id="posts">_posts</h3><p>Get all posts or get special post by <code>id</code></p>
 
         <div class="hljs">
           <pre>{{ _posts([id]) }}</pre>
@@ -118,7 +118,7 @@ Helpers | AcyOrt
 {{ _posts(<span class="hljs-number">7218771</span>) }}
 // { ... } Object</pre>
         </div>
-      <h2 id="pages">_pages</h2><p>Get all pages or get special page by <code>id</code></p>
+      <h3 id="pages">_pages</h3><p>Get all pages or get special page by <code>id</code></p>
 
         <div class="hljs">
           <pre>{{ _pages([id]) }}</pre>
@@ -132,7 +132,7 @@ Helpers | AcyOrt
 {{ _pages(<span class="hljs-number">7218771</span>) }}
 // { ... } Object</pre>
         </div>
-      <h2 id="categories">_categories</h2><p>Get all categories</p>
+      <h3 id="categories">_categories</h3><p>Get all categories</p>
 
         <div class="hljs">
           <pre>{{ _categories() }}</pre>
@@ -143,7 +143,7 @@ Helpers | AcyOrt
           <pre>{{ _categories<span class="hljs-comment">()</span> }}
 <span class="hljs-comment">// [ ... ] Array</span></pre>
         </div>
-      <h2 id="tags">_tags</h2><p>Get all tags</p>
+      <h3 id="tags">_tags</h3><p>Get all tags</p>
 
         <div class="hljs">
           <pre>{{ _tags() }}</pre>
@@ -184,7 +184,7 @@ Helpers | AcyOrt
       <span>Made by AcyOrt</span> .
       <span>Inspiration by Hexo</span>
     </div>
-    <p>Last updated: February 04, 2018</p>
+    <p>Last updated: February 05, 2018</p>
     <a href="#" class="top">Top</a>
   </div>
 </div>
