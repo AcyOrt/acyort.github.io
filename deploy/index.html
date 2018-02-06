@@ -51,22 +51,22 @@ CI deploy | AcyOrt
   </div>
 
   <div class="content markdown">
-    <p>AcyOrt support <code>CI</code> auto deploy. You blog can be deployed automatically via GitHub <code>webhook</code> and <a href="https://circleci.com">CircleCI</a></p>
-<p>Auto deploy <strong>do not</strong> need any installation or environment. Just need a browser.</p>
-<h2 id="howitworks">How it works</h2><p>The schematic</p>
+    <p>By integrating Github webhooks and CircleCI, your website can be deploy automatically after finishing writing.</p>
+<p>Once auto deploy is set correctly, the only thing you need to do to add a new post is to open a browser and write an issue.</p>
+<p><strong>How it works</strong></p>
+<p>The schematic. And there is a demo <a href="https://github.com/LoeiFy/Recordum/">repository</a></p>
 <p><img src="https://user-images.githubusercontent.com/2193211/35319242-eebaa61a-0119-11e8-87ee-339d984d4f05.png" alt="ci"></p>
-<p>And there is a demo <a href="https://github.com/LoeiFy/Recordum/">repository</a></p>
-<h2 id="howtodo">How to do</h2><p>What You Need</p>
-<ul>
-<li><strong>one</strong> CircleCI Personal API Tokens</li><li><strong>two</strong> GitHub Personal access tokens</li><li><strong>one</strong> GitHub repository</li><li>CirclleCI settings</li><li>Repository settings</li></ul>
-<h3 id="circlecitoken">CircleCI Token</h3><p>Login to <a href="https://circleci.com">CircleCI</a> via GitHub. and get your CircleCI <a href="https://circleci.com/account/api">token</a> . Name this token <code>ci-token</code></p>
-<h3 id="githubtokens">GitHub Tokens</h3><p>Login GitHub, access <a href="https://github.com/settings/tokens">token</a> page, and create <strong>two</strong> tokens.</p>
-<ul>
-<li>first <strong>without</strong> any rights. Name <code>read-token</code></li><li>last width <code>public_repo</code> rights. Name <code>repo-token</code></li></ul>
-<h3 id="githubrepository">GitHub repository</h3><p>Setup a new repository with <strong>two</strong> branch</p>
-<ul>
-<li><strong>master</strong>: <code>CircleCi</code>** and <code>AcyOrt</code> config files</li><li><strong>gh-pages</strong>: <code>AcyOrt</code> generated static files</li></ul>
-<h4 id="masterbranch">master branch</h4><p>Folders structure</p>
+<p><strong>How to do</strong></p>
+<h2 id="briefsteps">Brief steps</h2><ul>
+<li>A CircleCI API token</li><li>A GitHub repo</li><li>Two GitHub access tokens</li><li>Config CircleCI</li><li>Config Github repo</li></ul>
+<h2 id="detailprocedures">Detail procedures</h2><h3 id="circlecitoken">CircleCI Token</h3><p>Login <a href="https://circleci.com">CircleCI</a> via GitHub, get CircleCI <a href="https://circleci.com/account/api">token</a>, named <code>ci-token</code></p>
+<h3 id="githubtokens">GitHub Tokens</h3><p>Login GitHub, goto access <a href="https://github.com/settings/tokens">token</a> page, create two tokens:</p>
+<ol>
+<li>The token without any rights, named <code>read-token</code></li><li>The token with only <code>public_repo</code> right, named <code>repo-token</code></li></ol>
+<h3 id="githubrepository">GitHub repository</h3><p>There should be two branches in the repository</p>
+<ol>
+<li><code>master</code>: CircleCI and AcyOrt config files will be put in this branch</li></ol>
+<p>Folders structure</p>
 
         <div class="hljs">
           <pre>.
@@ -121,21 +121,24 @@ jobs:
 <span class="hljs-attr">timezone:</span>  <span class="hljs-comment"># set your timezone</span>
 <span class="hljs-attr">token:</span>  <span class="hljs-comment"># your `read-token` from github</span></pre>
         </div>
-      <h4 id="ghpagesbranch">gh-pages branch</h4><p>This branch is used to store AcyOrt generated static files. It <strong>must</strong> exist, you can add <code>CNAME</code> file to this branch</p>
-<h3 id="circlecisettings">CircleCI settings</h3><p>Login in CircleCI, click <code>PROJECTS</code>, Add the repository you just created. select the platform <code>Linux &amp; Node</code>, then click <code>Start building</code>. (it will build fail. this is normal because of missing <code>token</code>)</p>
-<p>Set the config below</p>
-<h4 id="environmentvariables">Environment Variables</h4><p>add <code>gh_token</code> variable, value is <code>repo-token</code></p>
-<h4 id="advancedsettings">Advanced Settings</h4><ul>
-<li>set <code>GitHub Status updates</code> off</li><li>set <code>Build forked pull requests</code> off</li></ul>
-<h3 id="repositorysettings">Repository settings</h3><p>Login GitHub, go to repository settings, add the <code>webhooks</code></p>
-<h4 id="payloadurl">Payload URL</h4><p>The CircleCI trigger build API is <code>/project/:vcs-type/:username/:project/tree/:branch</code>.
-So the <code>webhooks</code> URL is <code>https://circleci.com/api/v1.1/project/github/username/repository/tree/master?circle-token=ci-token</code>. you need to change the fields of this URL</p>
+      <ol>
+<li><code>gh-pages</code>:  it <strong>must</strong> exist. generated static files will be put in this branch. CNAME file should be put here if there is one.</li></ol>
+<h3 id="circlecisettings">CircleCI settings</h3><p>Login CircleCI, click PROJECTS, add the repo above, select platform <code>Linux &amp; Node</code>, click Start building. (It will fail because of missing token)</p>
 <ul>
-<li><code>username</code>: your GitHub username</li><li><code>repository</code>: your GitHub repository</li><li><code>ci-token</code>: the <code>ci-token</code> you get just now</li></ul>
-<h4 id="contenttype">Content type</h4><p>Use <code>application/json</code></p>
-<p><strong>Let me select individual events</strong></p>
-<p>Only check the <code>Issues</code> field</p>
-<h2 id="done">Done</h2><p>Now you can write your blog on GitHub issues, and you blog website will updated automatically</p>
+<li>Add Environment variables, key: <code>gh_token</code> value: <code>repo-token</code></li><li>In Advanced settings, set <code>Github Status updates</code> and <code>Build forked pull requests</code> off</li></ul>
+<h3 id="repositorysettings">Repository settings</h3><p>Login GiHub, goto repository settings page, add webhooks</p>
+<ol>
+<li>Set Payload URL</li></ol>
+<p>CircleCI build trigger API is <code>/project/:vas-type/:username/:project/tree/:branch</code>. so, webhook URL will be something like <code>https://circleci.com/api/v1.1/project/github/username/repository/tree/master?circle-token=ci-token</code></p>
+<ul>
+<li><code>username</code>: your GitHub username</li><li><code>repository</code>: your GitHub repository</li><li><p><code>ci-token</code>: the <code>ci-token</code> you get just now</p>
+</li><li><p>Select Content type</p>
+</li></ul>
+<p>Use <code>application/json</code></p>
+<ol>
+<li>Select Trigger events </li></ol>
+<p>On <code>Let me select individual events</code>, only check the <code>Issues</code> field</p>
+<h2 id="finally">Finally</h2><p>Enjoy writing on Github issues.</p>
 
 
     
@@ -147,15 +150,9 @@ So the <code>webhooks</code> URL is <code>https://circleci.com/api/v1.1/project/
       
       <p>Contents</p>
       <ul>
-<li><a href="#howitworks">How it works</a></li><li><a href="#howtodo">How to do</a><ul>
-<li><a href="#circlecitoken">CircleCI Token</a></li><li><a href="#githubtokens">GitHub Tokens</a></li><li><a href="#githubrepository">GitHub repository</a><ul>
-<li><a href="#masterbranch">master branch</a></li><li><a href="#ghpagesbranch">gh-pages branch</a></li></ul>
-</li><li><a href="#circlecisettings">CircleCI settings</a><ul>
-<li><a href="#environmentvariables">Environment Variables</a></li><li><a href="#advancedsettings">Advanced Settings</a></li></ul>
-</li><li><a href="#repositorysettings">Repository settings</a><ul>
-<li><a href="#payloadurl">Payload URL</a></li><li><a href="#contenttype">Content type</a></li></ul>
-</li></ul>
-</li><li><a href="#done">Done</a></li></ul>
+<li><a href="#briefsteps">Brief steps</a></li><li><a href="#detailprocedures">Detail procedures</a><ul>
+<li><a href="#circlecitoken">CircleCI Token</a></li><li><a href="#githubtokens">GitHub Tokens</a></li><li><a href="#githubrepository">GitHub repository</a></li><li><a href="#circlecisettings">CircleCI settings</a></li><li><a href="#repositorysettings">Repository settings</a></li></ul>
+</li><li><a href="#finally">Finally</a></li></ul>
 
       
     </div>
@@ -170,7 +167,7 @@ So the <code>webhooks</code> URL is <code>https://circleci.com/api/v1.1/project/
       <span>Made by AcyOrt</span> .
       <span>Inspiration by Hexo</span>
     </div>
-    <p>Last updated: February 05, 2018</p>
+    <p>Last updated: February 06, 2018</p>
     <a href="#" class="top">Top</a>
   </div>
 </div>
