@@ -53,16 +53,17 @@ Filter | AcyOrt
   </div>
 
   <div class="content markdown">
-    <p>A filter is used to modify some specified data. AcyOrt passes data to filters in sequence and the filters then modify the data one after the other.</p>
-<p>Here are list of filters used by AcyOrt.</p>
-<h3 id="supportlist">Support list</h3><h4 id="afterinit">after_init</h4><p>Executed after AcyOrt initialize</p>
+    <p>AcyOrt process data step after step, you can hook and modify data after some
+steps.</p>
+<p>Here are steps you can hook.</p>
+<h2 id="supportlist">Support list</h2><h3 id="afterinit">after_init</h3><p>Executed after AcyOrt initialize</p>
 
         <div class="hljs javascript">
           <pre>acyort.extend.register(<span class="hljs-string">'after_init'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
   <span class="hljs-comment">// ...</span>
 })</pre>
         </div>
-      <h4 id="afterfetch">after_fetch</h4><p>Executed after getting issues data form GitHub</p>
+      <h3 id="afterfetch">after_fetch</h3><p>Executed after getting issues data form GitHub</p>
 
         <div class="hljs javascript">
           <pre>acyort.extend.register('after_fetch', function(data) {
@@ -70,7 +71,7 @@ Filter | AcyOrt
   // ...
 })</pre>
         </div>
-      <h4 id="afterprocess">after_process</h4><p>Executed after processing the posts data</p>
+      <h3 id="afterprocess">after_process</h3><p>Executed after processing the posts data</p>
 
         <div class="hljs javascript">
           <pre>acyort.<span class="hljs-built_in">extend</span>.register(<span class="hljs-string">'after_process'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
@@ -91,7 +92,7 @@ Filter | AcyOrt
 */
 })</pre>
         </div>
-      <h4 id="afterbuild">after_build</h4><p>Executed after generating the static files</p>
+      <h3 id="afterbuild">after_build</h3><p>Executed after generating the static files</p>
 
         <div class="hljs javascript">
           <pre>acyort.<span class="hljs-built_in">extend</span>.register(<span class="hljs-string">'after_build'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
@@ -112,7 +113,7 @@ Filter | AcyOrt
 */
 })</pre>
         </div>
-      <h3 id="promiseuse">Promise use</h3><p>Filters support <code>Promise</code></p>
+      <h2 id="promiseuse">Promise use</h2><p>Filters support <code>Promise</code></p>
 
         <div class="hljs javascript">
           <pre>acyort.extend.register(<span class="hljs-string">'after_init'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
@@ -154,7 +155,7 @@ Filter | AcyOrt
       <span>Made by AcyOrt</span> .
       <span>Inspiration by Hexo</span>
     </div>
-    <p>Last updated: February 06, 2018</p>
+    <p>Last updated: February 07, 2018</p>
     <a href="#" class="top">Top</a>
   </div>
 </div>

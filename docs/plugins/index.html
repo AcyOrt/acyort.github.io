@@ -53,11 +53,10 @@ Plugins | AcyOrt
   </div>
 
   <div class="content markdown">
-    <p>It is easy to extend AcyOrt without modifying core module. There are two ways of plugins in AcyOrt
-Also you should enable the scripts/plugins in <code>config.yml</code></p>
-<h3 id="script">Script</h3><p>If your plugin is simply. Put your JavaScript files in the scripts folder and AcyOrt will load them during initialization.</p>
+    <p>It easy to write plugins for AcyOrt. There are two kind of plugins <code>npm module</code> and <code>script</code>, they should be registered in <code>config.yml</code></p>
+<h3 id="script">Script</h3><p>If plugin is simple, put it in <code>scripts</code> folder and register in <code>config.yml</code></p>
 <h3 id="plugin">Plugin</h3><p>You can publish the plugin to NPM. Plugins must contain at least two files <code>index.js</code>, <code>package.json</code></p>
-<p>You should set the name, version and main entries in <code>package.json</code></p>
+<p>Set module information in package.json, and register in <code>config.yml</code></p>
 
         <div class="hljs json">
           <pre>{
@@ -96,7 +95,7 @@ Also you should enable the scripts/plugins in <code>config.yml</code></p>
       <span>Made by AcyOrt</span> .
       <span>Inspiration by Hexo</span>
     </div>
-    <p>Last updated: February 06, 2018</p>
+    <p>Last updated: February 07, 2018</p>
     <a href="#" class="top">Top</a>
   </div>
 </div>

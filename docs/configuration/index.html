@@ -53,7 +53,7 @@ Configuration | AcyOrt
   </div>
 
   <div class="content markdown">
-    <p>Modify site settings in <code>config.yml</code></p>
+    <p><code>config.yml</code> contains following parts</p>
 <h3 id="site">Site</h3><table>
 <thead>
 <tr>
@@ -64,27 +64,27 @@ Configuration | AcyOrt
 <tbody>
 <tr>
 <td>title</td>
-<td>the title of your blog</td>
+<td>website title</td>
 </tr>
 <tr>
 <td>description</td>
-<td>the description of your blog</td>
+<td>website description</td>
 </tr>
 <tr>
 <td>language</td>
-<td>the language of your blog. Need themes support. default is <code>default</code>.</td>
+<td>language of website, theme support is needed. default <code>default</code></td>
 </tr>
 <tr>
 <td>timezone</td>
-<td>the timezone of your blog. uses the setting on your computer by default. example: <code>America/New_York</code>, <code>Japan</code>, and <code>UTC</code>.</td>
+<td>website timezone. use machine setting by default. example values: <code>America/New_Yourk</code>, <code>Japan</code>, <code>UTC</code></td>
 </tr>
 <tr>
 <td>menu</td>
-<td>the nav menus of your blog. default is <code>null</code>  </td>
+<td>navigation menus of website. default is <code>null</code>  </td>
 </tr>
 <tr>
 <td>theme</td>
-<td>the theme of your blog. default is <code>ccc45</code></td>
+<td>theme of website. default is <code>ccc45</code></td>
 </tr>
 </tbody>
 </table>
@@ -99,7 +99,7 @@ Configuration | AcyOrt
 <tbody>
 <tr>
 <td>url</td>
-<td>the URL of your blog. add <code>http</code> or <code>https</code> before. set as <code>http://yoursite.com/child</code> if necessary</td>
+<td>URL of blog. format like <code>http://&lt;domain&gt;/&lt;path&gt;</code> or <code>https://&lt;domain&gt;</code></td>
 <td><a href="http://acyort.com">http://acyort.com</a></td>
 </tr>
 </tbody>
@@ -115,22 +115,22 @@ Configuration | AcyOrt
 <tbody>
 <tr>
 <td>public_dir</td>
-<td>public folder. where the static site will be generated</td>
+<td>where static site files located</td>
 <td><code>/</code></td>
 </tr>
 <tr>
 <td>tag_dir</td>
-<td>tag directory</td>
+<td>tag pages directory, subdirectory in public dir</td>
 <td><code>tags</code></td>
 </tr>
 <tr>
 <td>category_dir</td>
-<td>category directory</td>
+<td>category pages directory, subdirectory in public dir</td>
 <td><code>categories</code></td>
 </tr>
 <tr>
 <td>post_dir</td>
-<td>posts directory</td>
+<td>posts pages directory, subdirectory in public dir</td>
 <td><code>posts</code></td>
 </tr>
 </tbody>
@@ -145,19 +145,19 @@ Configuration | AcyOrt
 <tbody>
 <tr>
 <td>user</td>
-<td>your GitHub username</td>
+<td>GitHub username</td>
 </tr>
 <tr>
 <td>repository</td>
-<td>your GitHub repository name. you blog contents comes from this repository issues</td>
+<td>GitHub repository name. website contents comes from this repository issues</td>
 </tr>
 <tr>
 <td>token</td>
-<td>your GitHub access token. token should be separated by &#39;#&#39;. example: <code>5#c31bffc137f44faf7ef</code></td>
+<td>Github access token <code>read-token</code> in <a href="/deploy/">here</a>. In order to prevent the token from removed by github, you should add a <code>#</code> inside it, for example the original token <code>abcdedf</code> should be replaced with <code>a#bcdef</code>.</td>
 </tr>
 <tr>
 <td>authors</td>
-<td>GitHub usernames. the white list of issues contents for your blog</td>
+<td>Github usernames, users whose issues can be generated to post.</td>
 </tr>
 </tbody>
 </table>
@@ -171,11 +171,11 @@ Configuration | AcyOrt
 <tbody>
 <tr>
 <td>scripts</td>
-<td>script file name. the script should be placed in <code>scripts</code> folder</td>
+<td>script file names. the scripts should be placed in <code>scripts</code> folder</td>
 </tr>
 <tr>
 <td>plugins</td>
-<td>npm module name. </td>
+<td>npm modules. </td>
 </tr>
 </tbody>
 </table>
@@ -190,7 +190,7 @@ Configuration | AcyOrt
 <tbody>
 <tr>
 <td>per_page</td>
-<td>blog pagination. set <code>0</code> to disable pagination</td>
+<td>post count per page. set <code>0</code> to disable it</td>
 <td>10</td>
 </tr>
 <tr>
@@ -200,17 +200,17 @@ Configuration | AcyOrt
 </tr>
 <tr>
 <td>line_numbers</td>
-<td>if show code line numbers</td>
+<td>whether showing line numbers in code block</td>
 <td>true</td>
 </tr>
 <tr>
 <td>order</td>
-<td>post order. order by issues <code>create time(created)</code> or <code>update time(updated)</code></td>
+<td>post ordering, order posts by issues create_time(created) or update_time(updated)</td>
 <td>created</td>
 </tr>
 <tr>
 <td>cache</td>
-<td>for development. cache github issues data</td>
+<td>whether caching GitHub issues data, just for development</td>
 <td>false </td>
 </tr>
 </tbody>
@@ -245,7 +245,7 @@ Configuration | AcyOrt
       <span>Made by AcyOrt</span> .
       <span>Inspiration by Hexo</span>
     </div>
-    <p>Last updated: February 06, 2018</p>
+    <p>Last updated: February 07, 2018</p>
     <a href="#" class="top">Top</a>
   </div>
 </div>
