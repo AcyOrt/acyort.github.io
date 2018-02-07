@@ -68,6 +68,64 @@ ul {
   color: #f24e4e;
 }
 
+#toggle {
+  width: 18px;
+  height: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  border-top: 2px solid #223464;
+  border-bottom: 2px solid #223464;
+  cursor: pointer;
+  position: relative;
+  display: none;
+  z-index: 1;
+  margin-left: 10px;
+}
+#toggle.active {
+  border: none;
+  top: -2px;
+}
+#toggle:before,
+#toggle:after {
+  content: '';
+  width: 100%;
+  position: absolute;
+  height: 2px;
+  top: 4px;
+  background: #223464;
+}
+#toggle:after {
+  display: none;
+}
+#toggle.active:after {
+  display: block;
+  transform: rotate(-45deg);
+}
+#toggle.active:before {
+  transform: rotate(45deg);
+}
+
+.mobile-menu {
+  background: #fff;
+  width: 100%;
+  position: fixed;
+  transition: all .3s ease;
+  transform: translateY(-100%);
+  box-shadow: 0 1px 2px 0 #d6d6d6;
+  left: 0;
+  top: 0;
+  padding: 10px 0;
+}
+.mobile-menu.active {
+  transform: translateY(0);
+}
+.mobile-menu a {
+  color: #7e85ae;
+  font-size: 16px;
+  display: block;
+  margin: 20px;
+}
+
 .features {
   margin-top: 170px;
   border-top: 1px solid #e9ebf8;
@@ -243,6 +301,7 @@ ul {
   background: none;
   outline: none;
   cursor: pointer;
+  display: inline-block;
   font-weight: 600;
 }
 
@@ -601,4 +660,74 @@ ul {
 
 .hljs-link {
   text-decoration: underline;
+}
+
+@media screen and (max-width: 600px) {
+  .center {
+    width: 94%;
+  }
+  .home {
+    padding-top: 100px;
+    width: 90%;
+  }
+  .home h1 {
+    font-size: 30px;
+  }
+  .home p {
+    margin: 20px 0 0 0;
+    font-size: 16px;
+  }
+  .features {
+    margin-top: 70px;
+    padding-top: 50px;
+  }
+  .menu a {
+    margin-right: 20px;
+  }
+  .language select {
+    padding: 5px 12px;
+    font-weight: normal;
+  }
+  .markdown {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  #toggle {
+    display: inline-block;
+  }
+  .menu a.normal {
+    display: none;
+  }
+  .start {
+    width: 120px;
+    padding: 10px 0;
+  }
+  .feature {
+    width: 96%;
+    margin: 0 0 10px 0;
+  }
+  .feature h3 {
+    font-size: 20px;
+  }
+  .feature h3:before {
+    width: 24px;
+    height: 24px;
+  }
+  .feature p {
+    font-size: 14px;
+  }
+  .banner {
+    height: 120px;
+    padding-left: 30px;
+  }
+  .footer span:last-child {
+    display: none;
+  }
+  .footer p,
+  .nav,
+  .toc,
+  #typer,
+  .footer a {
+    display: none;
+  }
 }

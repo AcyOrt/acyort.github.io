@@ -4,6 +4,12 @@
       <a class="logo" href="{{ _url() }}">{{ config.title }}</a>
       <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
       {% for u in config.menu %}
+      <a class="normal" href="{{ _url(u) }}">{{ __('menu.' + loop.key) }}</a>
+      {% endfor %}
+      <a class="normal" target="_blank" href="https://github.com/{{ config.user }}/{{ config.repository }}/issues">{{ __('source') }}</a>
+    </div>
+    <div class="mobile-menu">
+      {% for u in config.menu %}
       <a href="{{ _url(u) }}">{{ __('menu.' + loop.key) }}</a>
       {% endfor %}
       <a target="_blank" href="https://github.com/{{ config.user }}/{{ config.repository }}/issues">{{ __('source') }}</a>
@@ -12,6 +18,7 @@
       <select>
         <option>English</option>
       </select>
+      <div id="toggle"></div>
     </div>
   </div>
 </div>

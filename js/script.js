@@ -121,7 +121,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  if (typer) {
+  if (typer && window.innerWidth > 600) {
     type()
   }
+
+  document.querySelector('#toggle').addEventListener('click', function () {
+    document.querySelector('.mobile-menu').classList.toggle('active')
+    this.classList.toggle('active')
+  })
 })
