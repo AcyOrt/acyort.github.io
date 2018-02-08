@@ -42,6 +42,7 @@ Array.prototype.max = function () {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+  var w = window.innerWidth
   var stay = document.querySelectorAll('.stay')
   var bh = document.body.clientHeight
   var height = Array.prototype.slice.call(stay)
@@ -83,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
     requestAnimationFrame(ifFixed)
   }
 
-  if (stay.length) {
+  if (stay.length && w > 600) {
     ifFixed()
   }
 
@@ -121,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
-  if (typer && window.innerWidth > 600) {
+  if (typer && w > 600) {
     type()
   }
 

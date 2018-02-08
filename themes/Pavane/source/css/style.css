@@ -114,6 +114,7 @@ ul {
   box-shadow: 0 1px 2px 0 #d6d6d6;
   left: 0;
   top: 0;
+  z-index: 1;
   padding: 10px 0;
 }
 .mobile-menu.active {
@@ -470,7 +471,7 @@ ul {
 }
 .markdown pre {
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  font-size: 1em;
+  font-size: .9em;
   margin-top: 0;
   margin-bottom: 0;
   word-wrap: normal;
