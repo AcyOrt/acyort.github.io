@@ -24,6 +24,7 @@ menu:
   docs: /docs/
   api: /api/
   deploy: /deploy/
+  development: /development/
 
 # default category
 # default is "uncategorized"
