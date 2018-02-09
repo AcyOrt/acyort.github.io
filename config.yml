@@ -2,7 +2,7 @@
 
 # site
 title: AcyOrt
-description: A simple blog framework. Powered by GitHub and NodeJS
+description: A Node.js static website framework. Powered by GitHub.
 
 # url
 # you can set as "http://yoursite.com/child" if necessary
@@ -34,7 +34,7 @@ default_category:
 # the repository's issues
 # GitHub user/repository
 user: acyortjs
-repository: acyortjs.github.io
+repository: site
 
 
 # Advance
@@ -55,7 +55,7 @@ plugins:
 # output
 # html output directory
 # you can set child directory e.g. "child"
-public_dir:
+public_dir: public
 
 # authors
 # GitHub user
@@ -85,7 +85,7 @@ line_numbers: false
 # created: use "create time"
 # updated: use "update time"
 # default is "created"
-order: updated
+order:
 
 # directory
 # default is "categories", "tags", "posts"
@@ -107,6 +107,8 @@ cache: true
 
 # Other
 # customize some settings if necessary
+
+keywords: website,blog,github,static,issues
 
 docs_nav:
   Getting Started:
