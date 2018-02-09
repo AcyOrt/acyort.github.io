@@ -685,6 +685,9 @@ ul {
   .menu a {
     margin-right: 20px;
   }
+  .language {
+    margin-top: -2px;
+  }
   .language select {
     padding: 5px 12px;
     font-weight: normal;
