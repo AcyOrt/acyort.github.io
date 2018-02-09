@@ -15,13 +15,14 @@ jobs:
       - run: npm install acyort -g
       - run: acyort init
       - run: cp config.bak.yml config.yml
+      - run: npm i
       - run: acyort build
       - run: git checkout .
       - run: git checkout gh-pages
       - run: git reset --hard origin/gh-pages
       - run: cp -R public/* .
       - run: rm config.bak.yml
-      - run: rm -R scripts themes public
+      - run: rm -R scripts themes public package.json package-lock.json
       - run: git add .
       - run: git config user.name "LoeiFy"
       - run: git config user.email "LoeiFy@gmail.com"
