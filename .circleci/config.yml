@@ -22,7 +22,7 @@ jobs:
       - run: git reset --hard origin/gh-pages
       - run: cp -R public/* .
       - run: rm config.bak.yml
-      - run: rm -R scripts themes public package.json package-lock.json
+      - run: rm -R scripts themes public
       - run: git add .
       - run: git config user.name "LoeiFy"
       - run: git config user.email "LoeiFy@gmail.com"
