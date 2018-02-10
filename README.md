@@ -1,3 +1,5 @@
-# The Wesite for AcyOrt
+# AcyOrt Website
 
-https://acyortjs.github.io
+https://acyort.com
+
+Made by AcyOrt. Powered by GitHub & CircleCI.
