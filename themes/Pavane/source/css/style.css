@@ -275,20 +275,21 @@ ul {
   font-weight: 600;
   margin-right: 40px;
   letter-spacing: 1px;
+  vertical-align: top;
 }
 .menu a:hover {
   color: #f24e4e;
 }
-.menu .logo {
-  background: #223464;
-  color: #fff;
-  padding: 7px;
-  border-radius: 3px;
-  font-size: 17px;
-  letter-spacing: 2px;
+.menu a.normal {
+  padding: 7px 0;
 }
-.menu .logo:hover {
-  color: #fff;
+.menu .logo {
+  text-indent: -9999px;
+  background-image: url(../image/logo.png);
+  background-size: cover;
+  width: 32px;
+  height: 32px;
+  margin-right: 30px;
 }
 
 .language select {
