@@ -4,7 +4,7 @@
   "private": true,
   "description": "AcyOrt",
   "dependencies": {
-    "acyort-toc": "^0.1.0"
+    "acyort-toc": "^1.0.0"
   },
   "devDependencies": {
     "cssmin": "^0.4.3"

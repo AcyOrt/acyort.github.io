@@ -33,15 +33,15 @@ const allLinks = {
   api: getLinks(apiNav)
 }
 
-acyort.extend.helper('_docsNav', function () {
+acyort.helper.register('_docsNav', function () {
   return nav(docsNav, 'docs')
 })
 
-acyort.extend.helper('_apiNav', function () {
+acyort.helper.register('_apiNav', function () {
   return nav(apiNav, 'api')
 })
 
-acyort.extend.helper('_paginator', function ({ name, category }) {
+acyort.helper.register('_paginator', function ({ name, category }) {
   if (!category) {
     return ''
   }
