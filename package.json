@@ -1,10 +1,10 @@
 {
-  "name": "acyortjs.github.io",
-  "version": "0.1.0",
   "private": true,
+  "name": "acyort.com",
+  "version": "0.2.0",
   "description": "AcyOrt",
   "dependencies": {
-    "acyort-toc": "^1.0.0"
+    "acyort-toc": "^1.0.1"
   },
   "devDependencies": {
     "cssmin": "^0.4.3"
