@@ -11,6 +11,13 @@ acyort.extend.register('after_build', function (data) {
     status.path.indexOf('.yml') > -1            ||
     status.path.indexOf('/layout.html') > -1
   ) {
-    acyort.builder.output('home', 'index.html', posts[0])
+    posts.forEach((post) => {
+      if (post.tags.length) {
+        const { name } = post.tags[0]
+        acyort.builder.output('home', `${name}/index.html`, post)
+      } else {
+        acyort.builder.output('home', 'index.html', post)
+      }
+    })
   }
 })
