@@ -16,9 +16,10 @@ repository: site
 scripts:
   - nav.js
   - category.js
-  - home.js
+  - template.js
   - min.js
   - updated.js
+  - i18n.js
 plugins:
   - acyort-toc
 

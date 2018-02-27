@@ -22,8 +22,16 @@ acyort.extend.register('after_process', function (data) {
   data.pages.forEach((page) => {
     for (let i = 0; i < tags.length; i += 1) {
       if (tagMap[tags[i]].indexOf(page.id) > -1) {
+        page.language = tags[i]
         page.path = path.join('/', tags[i], page.path)
       }
+    }
+  })
+
+  data.posts.forEach((post) => {
+    if (post.tags.length) {
+      const { name } = post.tags[0]
+      post.language = name
     }
   })
 })

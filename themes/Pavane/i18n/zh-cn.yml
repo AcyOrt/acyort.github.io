@@ -1,0 +1,16 @@
+powered: 由 %s 构建
+source: 原始文档
+updated: 最后更新于
+toc: 目录
+top: 返回顶部
+start: 开始使用
+
+menu:
+  docs: 文档
+  api: API
+  deploy: 部署
+  development: 开发
+
+paginator:
+  prev: 上一页
+  next: 下一页
