@@ -4,12 +4,20 @@
       <a class="logo" href="{{ _url(page.language + '/') }}">{{ config.title }}</a>
       <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
       {% for u in config.menu %}
+      {% if page.language !== 'en' %}
       <a class="normal" href="{{ _url(page.language + u) }}">{{ __('menu.' + loop.key) }}</a>
+      {% else %}
+      <a class="normal" href="{{ _url(u) }}">{{ __('menu.' + loop.key) }}</a>
+      {% endif %}
       {% endfor %}
     </div>
     <div class="mobile-menu">
       {% for u in config.menu %}
+      {% if page.language !== 'en' %}
       <a href="{{ _url(page.language + u) }}">{{ __('menu.' + loop.key) }}</a>
+      {% else %}
+      <a href="{{ _url(u) }}">{{ __('menu.' + loop.key) }}</a>
+      {% endif %}
       {% endfor %}
     </div>
     <div class="language">

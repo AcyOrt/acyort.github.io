@@ -226,11 +226,11 @@ ul {
 }
 .footer a {
   color: #acb1ca;
-  display: block;
 }
 .footer a.top {
   color: #223464;
   font-weight: 600;
+  position: relative;
 }
 .footer p {
   margin: 0;

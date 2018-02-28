@@ -24,6 +24,8 @@ acyort.extend.register('after_process', function (data) {
       if (tagMap[tags[i]].indexOf(page.id) > -1) {
         page.language = tags[i]
         page.path = path.join('/', tags[i], page.path)
+      } else {
+        page.language = 'en'
       }
     }
   })
@@ -32,6 +34,8 @@ acyort.extend.register('after_process', function (data) {
     if (post.tags.length) {
       const { name } = post.tags[0]
       post.language = name
+    } else {
+      post.language = 'en'
     }
   })
 })

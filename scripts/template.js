@@ -3,6 +3,7 @@ acyort.builder.register(['home', 'doc'])
 acyort.extend.register('after_build', function (data) {
   const { posts, pages } = data
   const { status } = acyort.server
+  const { _time } = acyort.helper.methods
 
   if (
     !status.path                                ||
@@ -13,11 +14,10 @@ acyort.extend.register('after_build', function (data) {
   ) {
     posts.forEach((post) => {
       const { language } = post
-      if (language) {
-        acyort.helper.resetLocale(language)
+      acyort.helper.resetLocale(language)
+      if (language !== 'en') {
         acyort.builder.output('home', `${language}/index.html`, post)
       } else {
-        acyort.helper.resetLocale('default')
         acyort.builder.output('home', 'index.html', post)
       }
     })
@@ -32,11 +32,7 @@ acyort.extend.register('after_build', function (data) {
   ) {
     pages.forEach((page) => {
       const { language, path } = page
-      if (language) {
-        acyort.helper.resetLocale(language)
-      } else {
-        acyort.helper.resetLocale('default')
-      }
+      acyort.helper.resetLocale(language)
       acyort.builder.output('doc', path, page)
     })
   }

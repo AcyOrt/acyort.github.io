@@ -6,7 +6,7 @@
     </div>
     <p>
       <a target="_blank" href="https://github.com/{{ config.user }}/{{ config.repository }}/issues">
-        {{ __('updated') }}: {{ config.updated_at }}
+        {{ __('updated') }}: {{ _time(config.updated_at, 'MMM DD, YYYY') }}
       </a>
     </p>
     <a href="#" class="top">{{ __('top') }}</a>

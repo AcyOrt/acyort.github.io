@@ -36,11 +36,11 @@ const allLinks = {
 
 if (!running) {
   acyort.helper.register('_docsNav', function (language) {
-    return nav(docsNav, language ? `${language}/docs` : 'docs')
+    return nav(docsNav, language !== 'en' ? `${language}/docs` : 'docs')
   })
 
   acyort.helper.register('_apiNav', function (language) {
-    return nav(apiNav, language ? `${language}/api` : 'api')
+    return nav(apiNav, language !== 'en' ? `${language}/api` : 'api')
   })
 
   acyort.helper.register('_paginator', function ({ name, category }) {
