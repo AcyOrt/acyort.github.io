@@ -126,6 +126,18 @@ document.addEventListener('DOMContentLoaded', function () {
     type()
   }
 
+  document.querySelector('#language').addEventListener('change', function () {
+    var path = location.pathname.split('/')
+    var language = this.value
+
+    if (!language) {
+      path.splice(0, 2)
+      location.href = '/' + path.join('/')
+    } else {
+      location.href = '/' + language + path.join('/')
+    }
+  })
+
   document.querySelector('#toggle').addEventListener('click', function () {
     document.querySelector('.mobile-menu').classList.toggle('active')
     this.classList.toggle('active')

@@ -13,8 +13,20 @@
       {% endfor %}
     </div>
     <div class="language">
-      <select>
-        <option>English</option>
+      <select id="language">
+        {% if !page.language %}
+        <option value="" selected>English</option>
+        {% else %}
+        <option value="">English</option>
+        {% endif %}
+
+        {% for lan in config.languages %}
+        {% if page.language === loop.key %}
+        <option value="{{ loop.key }}" selected>{{ lan }}</option>
+        {% else %}
+        <option value="{{ loop.key }}">{{ lan }}</option>
+        {% endif %}
+        {% endfor %}
       </select>
       <div id="toggle"></div>
     </div>

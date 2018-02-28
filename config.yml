@@ -38,6 +38,9 @@ cache: true
 
 keywords: website,blog,github,static,issues
 
+languages:
+  zh-cn: 简体中文
+
 docs_nav:
   Getting Started:
     - Overview
