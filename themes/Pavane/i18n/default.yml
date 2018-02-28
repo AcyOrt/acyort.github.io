@@ -1,5 +1,4 @@
 powered: Made by %s
-source: Source
 updated: Last updated
 toc: Contents
 top: Top
@@ -14,3 +13,22 @@ menu:
 paginator:
   prev: Previous
   next: Next
+
+Getting Started: Getting Started
+Overview: Overview
+Setup: Setup
+Configuration: Configuration
+Basic Usage: Basic Usage
+Writing: Writing
+Commands: Commands
+Customization: Customization
+Permalink: Permalink
+Themes: Themes
+Variables: Variables
+Helpers: Helpers
+Plugins: Plugins
+
+API: API
+Filter: Filter
+Helper: Helper
+Methods: Methods

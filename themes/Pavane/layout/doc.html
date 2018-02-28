@@ -13,11 +13,11 @@
   <div class="nav">
     <div class="stay">
       {% if page.category === 'API' %}
-      {{ _apiNav() }}
+      {{ _apiNav(page.language) }}
       {% endif %}
 
       {% if (['Customization', 'Getting Started', 'Basic Usage']).indexOf(page.category) > -1 %}
-      {{ _docsNav() }}
+      {{ _docsNav(page.language) }}
       {% endif %}
     </div>
   </div>

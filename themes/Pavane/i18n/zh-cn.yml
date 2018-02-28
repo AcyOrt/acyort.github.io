@@ -1,5 +1,4 @@
 powered: 由 %s 构建
-source: 原始文档
 updated: 最后更新于
 toc: 目录
 top: 返回顶部
@@ -14,3 +13,22 @@ menu:
 paginator:
   prev: 上一页
   next: 下一页
+
+Getting Started: 开始使用
+Overview: 概述
+Setup: 创建
+Configuration: 配置
+Basic Usage: 基本操作
+Writing: 写作
+Commands: 命令
+Customization: 自定义
+Permalink: 永久链接
+Themes: 主题
+Variables: 变量
+Helpers: 辅助函数
+Plugins: 插件
+
+API: API
+Filter: 过滤器
+Helper: 辅助函数
+Methods: 内置函数

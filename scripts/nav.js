@@ -12,12 +12,12 @@ function nav(data, prefix) {
   html[1] = titles.map((title) => {
     const menus = data[title].map((menu) => {
       if (menu === 'Overview') {
-        return `<a href="/${prefix}/">${menu}</a>`
+        return `<a href="/${prefix}/">${__(menu)}</a>`
       }
-      return `<a href="/${prefix}/${menu.toLowerCase()}/">${menu}</a>`
+      return `<a href="/${prefix}/${menu.toLowerCase()}/">${__(menu)}</a>`
     })
 
-    return `<li><p>${title}</p>${menus.join('')}</li>`
+    return `<li><p>${__(title)}</p>${menus.join('')}</li>`
   }).join('')
 
   return html.join('')
@@ -35,12 +35,12 @@ const allLinks = {
 }
 
 if (!running) {
-  acyort.helper.register('_docsNav', function () {
-    return nav(docsNav, 'docs')
+  acyort.helper.register('_docsNav', function (language) {
+    return nav(docsNav, language ? `${language}/docs` : 'docs')
   })
 
-  acyort.helper.register('_apiNav', function () {
-    return nav(apiNav, 'api')
+  acyort.helper.register('_apiNav', function (language) {
+    return nav(apiNav, language ? `${language}/api` : 'api')
   })
 
   acyort.helper.register('_paginator', function ({ name, category }) {
