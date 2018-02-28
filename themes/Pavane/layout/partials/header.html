@@ -1,15 +1,15 @@
 <div class="header">
   <div class="center">
     <div class="menu">
-      <a class="logo" href="{{ _url() }}">{{ config.title }}</a>
+      <a class="logo" href="{{ _url(page.language + '/') }}">{{ config.title }}</a>
       <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
       {% for u in config.menu %}
-      <a class="normal" href="{{ _url(u) }}">{{ __('menu.' + loop.key) }}</a>
+      <a class="normal" href="{{ _url(page.language + u) }}">{{ __('menu.' + loop.key) }}</a>
       {% endfor %}
     </div>
     <div class="mobile-menu">
       {% for u in config.menu %}
-      <a href="{{ _url(u) }}">{{ __('menu.' + loop.key) }}</a>
+      <a href="{{ _url(page.language + u) }}">{{ __('menu.' + loop.key) }}</a>
       {% endfor %}
     </div>
     <div class="language">
