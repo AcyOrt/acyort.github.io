@@ -111,7 +111,6 @@ ul {
   position: fixed;
   transition: all .3s ease;
   transform: translateY(-100%);
-  box-shadow: 0 1px 2px 0 #d6d6d6;
   left: 0;
   top: 0;
   z-index: 1;
@@ -119,6 +118,7 @@ ul {
 }
 .mobile-menu.active {
   transform: translateY(0);
+  box-shadow: 0 1px 2px 0 #d6d6d6;
 }
 .mobile-menu a {
   color: #7e85ae;
@@ -225,10 +225,12 @@ ul {
   justify-content: space-between;
 }
 .footer a {
-  position: relative;
+  color: #acb1ca;
+  display: block;
+}
+.footer a.top {
   color: #223464;
   font-weight: 600;
-  display: block;
 }
 .footer p {
   margin: 0;
@@ -236,7 +238,6 @@ ul {
   width: 100%;
   position: absolute;
   top: 50px;
-  color: #acb1ca;
 }
 
 .paginator {

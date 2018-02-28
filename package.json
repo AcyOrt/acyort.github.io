@@ -4,7 +4,7 @@
   "version": "0.2.0",
   "description": "AcyOrt",
   "dependencies": {
-    "acyort-toc": "^1.0.1"
+    "acyort-toc": "^1.0.2"
   },
   "devDependencies": {
     "cssmin": "^0.4.3"

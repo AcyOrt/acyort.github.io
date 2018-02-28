@@ -3,6 +3,7 @@ const {
   api_nav: apiNav,
 } = acyort.config
 const { __ } = acyort.helper.methods
+const { running } = acyort.server.status
 
 function nav(data, prefix) {
   const html = ['<ul>', '', '</ul>']
@@ -33,38 +34,40 @@ const allLinks = {
   api: getLinks(apiNav)
 }
 
-acyort.helper.register('_docsNav', function () {
-  return nav(docsNav, 'docs')
-})
+if (!running) {
+  acyort.helper.register('_docsNav', function () {
+    return nav(docsNav, 'docs')
+  })
 
-acyort.helper.register('_apiNav', function () {
-  return nav(apiNav, 'api')
-})
+  acyort.helper.register('_apiNav', function () {
+    return nav(apiNav, 'api')
+  })
 
-acyort.helper.register('_paginator', function ({ name, category }) {
-  if (!category) {
-    return ''
-  }
-
-  const prefix = category === 'API' ? 'api' : 'docs'
-  const links = category === 'API' ? allLinks.api : allLinks.docs
-  const index = links.indexOf(name.toLowerCase())
-
-  function linkTag(i, dire) {
-    const item = dire === 'prev' ? links[i - 1] : links[i + 1]
-    if (item === 'overview') {
-      return `<a class="${dire}" href="/${prefix}/">${__(`paginator.${dire}`)}</a>`
+  acyort.helper.register('_paginator', function ({ name, category }) {
+    if (!category) {
+      return ''
     }
-    return `<a class="${dire}" href="/${prefix}/${item}/">${__(`paginator.${dire}`)}</a>`
-  }
 
-  if (index === -1) {
-    return linkTag(index + 1, 'next')
-  }
+    const prefix = category === 'API' ? 'api' : 'docs'
+    const links = category === 'API' ? allLinks.api : allLinks.docs
+    const index = links.indexOf(name.toLowerCase())
 
-  if (index === links.length - 1) {
-    return linkTag(index, 'prev')
-  }
+    function linkTag(i, dire) {
+      const item = dire === 'prev' ? links[i - 1] : links[i + 1]
+      if (item === 'overview') {
+        return `<a class="${dire}" href="/${prefix}/">${__(`paginator.${dire}`)}</a>`
+      }
+      return `<a class="${dire}" href="/${prefix}/${item}/">${__(`paginator.${dire}`)}</a>`
+    }
 
-  return linkTag(index, 'prev') + linkTag(index, 'next')
-})
+    if (index === -1) {
+      return linkTag(index + 1, 'next')
+    }
+
+    if (index === links.length - 1) {
+      return linkTag(index, 'prev')
+    }
+
+    return linkTag(index, 'prev') + linkTag(index, 'next')
+  })
+}
