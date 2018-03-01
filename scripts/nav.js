@@ -43,12 +43,12 @@ if (!running) {
     return nav(apiNav, language !== 'en' ? `${language}/api` : 'api')
   })
 
-  acyort.helper.register('_paginator', function ({ name, category }) {
+  acyort.helper.register('_paginator', function ({ name, category, language }) {
     if (!category) {
       return ''
     }
 
-    const prefix = category === 'API' ? 'api' : 'docs'
+    const prefix = category === 'API' ? `${language}/api` : `${language}/docs`
     const links = category === 'API' ? allLinks.api : allLinks.docs
     const index = links.indexOf(name.toLowerCase())
 

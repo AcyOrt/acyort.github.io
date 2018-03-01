@@ -12,7 +12,11 @@
   <div class="features">
     {{ page.content }}
   </div>
+  {% if page.language === 'en' %}
   <a class="start" href="{{ _url('/docs/') }}">{{ __('start') }}</a>
+  {% else %}
+  <a class="start" href="{{ _url('/zh-cn/docs/') }}">{{ __('start') }}</a>
+  {% endif %}
 </div>
 {% endblock %}
 
