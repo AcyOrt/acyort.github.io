@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: node:latest
+
+    working_directory: ~/acyort
+
+    branches:
+      only:
+        - master
+
+    steps:
+      - checkout
+      - run: npm install acyort -g
+      - run: acyort init
+      - run: cp config.bak.yml config.yml
+      - run: npm i
+      - run: acyort build
+      - run: git checkout .
+      - run: git checkout gh-pages
+      - run: git reset --hard origin/gh-pages
+      - run: cp -R public/* .
+      - run: rm config.bak.yml
+      - run: rm -R scripts themes public
+      - run: git add .
+      - run: git config user.name "LoeiFy"
+      - run: git config user.email "LoeiFy@gmail.com"
+      - run: git commit -m "Updated by circleci - `date`"
+      - run: git push -q https://${gh_token}@github.com/acyortjs/site.git gh-pages:gh-pages
