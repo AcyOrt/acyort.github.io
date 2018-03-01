@@ -48,7 +48,9 @@ if (!running) {
       return ''
     }
 
-    const prefix = category === 'API' ? `${language}/api` : `${language}/docs`
+    const lanPath = language === 'en' ? '' : `${language}/`
+
+    const prefix = category === 'API' ? `${lanPath}api` : `${lanPath}docs`
     const links = category === 'API' ? allLinks.api : allLinks.docs
     const index = links.indexOf(name.toLowerCase())
 

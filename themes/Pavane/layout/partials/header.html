@@ -1,7 +1,11 @@
 <div class="header">
   <div class="center">
     <div class="menu">
+      {% if page.language !== 'en' %}
       <a class="logo" href="{{ _url(page.language + '/') }}">{{ config.title }}</a>
+      {% else %}
+      <a class="logo" href="{{ _url('/') }}">{{ config.title }}</a>
+      {% endif %}
       <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
       {% for u in config.menu %}
       {% if page.language !== 'en' %}
