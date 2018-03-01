@@ -9,6 +9,7 @@ menu:
   api: /api/
   deploy: /deploy/
   development: /development/
+  troubleshooting: /troubleshooting/
 
 user: acyortjs
 repository: site

@@ -9,6 +9,7 @@ menu:
   api: API
   deploy: Deploy
   development: Development
+  troubleshooting: Q & A
 
 paginator:
   prev: Previous
