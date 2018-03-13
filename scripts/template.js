@@ -1,4 +1,4 @@
-acyort.builder.register(['home', 'doc'])
+acyort.template.register(['home', 'doc'])
 
 acyort.extend.register('after_build', function (data) {
   const { posts, pages } = data
