@@ -2,7 +2,7 @@ const path = require('path')
 
 const tagMap = {}
 
-acyort.extend.register('after_fetch', function (data) {
+acyort.filter.register('after_fetch', function (data) {
   data.forEach(({ id, labels }) => {
     if (labels.length) {
       const { name } = labels[0]
@@ -16,7 +16,7 @@ acyort.extend.register('after_fetch', function (data) {
   })
 })
 
-acyort.extend.register('after_process', function (data) {
+acyort.filter.register('after_process', function (data) {
   const tags = Object.keys(tagMap)
 
   data.pages.forEach((page) => {

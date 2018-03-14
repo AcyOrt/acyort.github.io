@@ -1,6 +1,6 @@
 acyort.template.register(['home', 'doc'])
 
-acyort.extend.register('after_build', function (data) {
+acyort.filter.register('after_build', function (data) {
   const { posts, pages } = data
   const { status } = acyort.server
   const { _time } = acyort.helper.methods

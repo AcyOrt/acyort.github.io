@@ -1,6 +1,6 @@
 const catsMap = {}
 
-acyort.extend.register('after_fetch', function (data) {
+acyort.filter.register('after_fetch', function (data) {
   data.forEach((issue) => {
     if (issue.milestone) {
       const { title } = issue.milestone
@@ -15,7 +15,7 @@ acyort.extend.register('after_fetch', function (data) {
   })
 })
 
-acyort.extend.register('after_process', function (data) {
+acyort.filter.register('after_process', function (data) {
   const cats = Object.keys(catsMap)
 
   data.pages.forEach((page) => {
