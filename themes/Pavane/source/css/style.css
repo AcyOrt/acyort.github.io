@@ -56,7 +56,7 @@ ul {
 .home h1 {
   color: #223464;
   font-weight: normal;
-  font-size: 50px;
+  font-size: 40px;
   margin: 0;
 }
 .home > p {
@@ -259,6 +259,9 @@ ul {
 }
 .paginator a:hover {
   text-decoration: none!important;
+}
+.paginator a.disabled {
+  visibility: hidden;
 }
 
 .header {

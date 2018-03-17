@@ -61,7 +61,7 @@ acyort.helper.register('_paginator', function ({ name, category, language }) {
   }
 
   if (index === -1) {
-    return linkTag(index + 1, 'next')
+    return `<a class="disabled"></a>${linkTag(index + 1, 'next')}`
   }
 
   if (index === links.length - 1) {
