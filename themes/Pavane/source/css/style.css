@@ -728,10 +728,20 @@ ul {
     font-size: 14px;
   }
   .banner {
-    height: 120px;
+    height: 150px;
     padding-left: 30px;
-    background-size: 150%;
+    background-size: 200%;
     background-position: center;
+  }
+  .paginator {
+    border: none;
+    margin-top: 0;
+  }
+  .footer {
+    margin-top: 40px;
+  }
+  .footer .center {
+    padding: 36px 0;
   }
   .footer p,
   .nav,
