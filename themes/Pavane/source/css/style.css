@@ -411,6 +411,7 @@ ul {
 }
 .markdown strong {
   font-weight: 600;
+  padding: 5px 0;
 }
 .markdown img {
   border-style: none;
@@ -539,7 +540,7 @@ ul {
 }
 .markdown p {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
 }
 .markdown hr {
   height: 0.25em;
@@ -576,6 +577,7 @@ ul {
   padding: 0 1em;
   color: #6a737d;
   border-left: 0.25em solid #dfe2e5;
+  margin-bottom: 16px;
 }
 .markdown blockquote > :first-child {
   margin-top: 0;
