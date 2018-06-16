@@ -33,15 +33,19 @@ const allLinks = {
   api: getLinks(apiNav)
 }
 
-acyort.helper.register('_docsNav', function (language) {
+acyort.helper.register('_docsNav', function () {
+  const { language } = this
   return nav(docsNav, language !== 'en' ? `${language}/docs` : 'docs')
 })
 
-acyort.helper.register('_apiNav', function (language) {
+acyort.helper.register('_apiNav', function () {
+  const { language } = this
   return nav(apiNav, language !== 'en' ? `${language}/api` : 'api')
 })
 
-acyort.helper.register('_paginator', function ({ name, category, language }) {
+acyort.helper.register('_paginator', function () {
+  const { name, category, language } = this
+
   if (!category) {
     return ''
   }

@@ -3,7 +3,6 @@ acyort.template.register(['home', 'doc'])
 acyort.filter.register('after_build', function (data) {
   const { posts, pages } = data
   const { status } = acyort.server
-  const { _time } = acyort.helper.methods
 
   if (
     !status.path                                ||
