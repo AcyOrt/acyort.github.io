@@ -23,6 +23,8 @@
       <a href="{{ _url(u) }}">{{ __('menu.' + loop.key) }}</a>
       {% endif %}
       {% endfor %}
+      {{ _docsNav() }}
+      {{ _apiNav() }}
     </div>
     <div class="language">
       <select id="language">

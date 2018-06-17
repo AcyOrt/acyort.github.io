@@ -6,6 +6,9 @@ body {
   margin: 0;
   line-height: 1;
 }
+body.active {
+  overflow-y: hidden;
+}
 a {
   cursor: pointer;
   text-decoration: none;
@@ -109,16 +112,19 @@ ul {
   background: #fff;
   width: 100%;
   position: fixed;
-  transform: translateY(-100%);
+  transform: translateX(100%);
   left: 0;
   top: 0;
+  bottom: 0;
   z-index: 1;
-  padding: 10px 0;
+  padding: 36px 0;
   transition: all .3s ease;
   visibility: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 .mobile-menu.active {
-  transform: translateY(0);
+  transform: translateX(0);
   visibility: visible;
   box-shadow: 0 1px 2px 0 #d6d6d6;
 }
@@ -127,6 +133,10 @@ ul {
   font-size: 16px;
   display: block;
   margin: 20px;
+  width: 50%;
+}
+.mobile-menu ul {
+  margin-left: 20px;
 }
 
 .features {
@@ -554,7 +564,6 @@ ul {
   border-collapse: collapse;
 }
 .markdown table {
-  display: block;
   width: 100%;
   overflow: auto;
 }
@@ -751,5 +760,9 @@ ul {
   #typer,
   .footer a {
     display: none;
+  }
+  .markdown table {
+    display: block;
+    width: auto;
   }
 }

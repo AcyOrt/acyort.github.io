@@ -141,5 +141,6 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelector('#toggle').addEventListener('click', function () {
     document.querySelector('.mobile-menu').classList.toggle('active')
     this.classList.toggle('active')
+    document.body.classList.toggle('active')
   })
 })
