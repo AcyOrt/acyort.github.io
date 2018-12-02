@@ -1,23 +1,18 @@
 {
   "private": true,
   "name": "acyort.com",
-  "version": "1.0.2",
-  "description": "AcyOrt",
+  "version": "2.0.0",
+  "description": "AcyOrt site",
   "dependencies": {
-    "acyort-toc": "^1.0.3"
   },
   "devDependencies": {
-    "cssmin": "^0.4.3"
   },
   "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/acyortjs/acyortjs.github.io.git"
   },
-  "keywords": [
-    "acyort"
-  ],
-  "author": "LoeiFy@gmail.com",
+  "author": "LoeiFy <LoeiFy@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/acyortjs/acyortjs.github.io/issues"

@@ -1,6 +1,4 @@
-Thumbs.db
 .DS_Store
-*.swp
-_issues.json
 node_modules/
 public/
+package-lock.json
