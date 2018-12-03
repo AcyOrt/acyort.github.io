@@ -1,43 +1,30 @@
 title: AcyOrt
-description: A Node.js static website framework. Powered by GitHub.
+keywords: website,acyort,github,static,issues
+description: A Node.js static website framework
 
 url: https://acyort.com
-theme: Pavane
+template: pavane
 
 menu:
   docs: /docs/
   api: /api/
   deploy: /deploy/
   development: /development/
-  troubleshooting: /troubleshooting/
 
-user: acyortjs
-repository: site
+
+repository: acyortjs/site
 
 scripts:
-  - nav.js
-  - category.js
-  - template.js
-  - min.js
-  - updated.js
-  - i18n.js
-plugins:
-  - acyort-toc
+  - fetcher.js
 
-public_dir: public
+plugins:
+
+public: public
 
 authors:
   - LoeiFy
 
 timezone: Asia/Shanghai
-line_numbers: false
-order: updated
-
-token: 5#c21bffc137f44faf7e9c4a84da827f7cc2cfeaa
-
-cache: true
-
-keywords: website,blog,github,static,issues
 
 languages:
   zh-cn: 简体中文
@@ -48,11 +35,9 @@ docs_nav:
     - Setup
     - Configuration
   Basic Usage:
-    - Writing
     - Commands
   Customization:
-    - Permalink
-    - Themes
+    - Templates
     - Variables
     - Helpers
     - Plugins
@@ -60,5 +45,4 @@ docs_nav:
 api_nav:
   API:
     - Overview
-    - Filter
     - Methods
