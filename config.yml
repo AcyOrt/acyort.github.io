@@ -15,7 +15,7 @@ menu:
 repository: acyortjs/site
 
 scripts:
-  - fetcher.js
+  - script.js
 
 plugins:
 

@@ -1,7 +1,7 @@
 const { join } = require('path')
 const octokit = require('@octokit/rest')()
 
-function getData(acyort) {
+function fetch(acyort) {
   const cacheFile = join(process.cwd(), 'cache.json')
   const { repository } = acyort.config
   const [owner, repo] = repository.split('/')
@@ -20,6 +20,7 @@ function getData(acyort) {
       const { data, headers } = await octokit.issues.listForRepo({
         owner,
         repo,
+        sort: 'updated',
         per_page: 20,
         page,
       })
@@ -37,6 +38,6 @@ function getData(acyort) {
   })
 }
 
-module.exports = async (acyort) => {
-  acyort.store.set('issues', await getData(acyort))
+module.exports = async function fetcher() {
+  this.store.set('issues', await fetch(this))
 }
