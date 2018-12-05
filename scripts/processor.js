@@ -13,10 +13,12 @@ module.exports = function processor() {
         body,
       } = issue
       const matched = title.split(regex)
+      const splited = matched[1].split('/').filter(i => i)
 
       return {
         id,
         title: matched[2],
+        name: splited.slice(-1)[0],
         url: `/${matched[1]}/`,
         path: `/${matched[1]}/index.html`,
         language: labels.map(({ name }) => name)[0] || 'en',
@@ -25,6 +27,7 @@ module.exports = function processor() {
       }
     })
 
+  this.store.set('issues', null)
   this.store.set('pages', pages)
   this.store.set('updatedAt', issues[0].updated)
   this.store.set('version', this.version)

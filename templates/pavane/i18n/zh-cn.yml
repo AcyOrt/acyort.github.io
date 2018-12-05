@@ -9,7 +9,6 @@ menu:
   api: API
   deploy: 部署
   development: 开发
-  troubleshooting: 问题解答
 
 paginator:
   prev: 上一页
@@ -30,5 +29,4 @@ Helpers: 辅助函数
 Plugins: 插件
 
 API: API
-Filter: 过滤器
 Methods: 内置方法

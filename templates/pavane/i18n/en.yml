@@ -9,7 +9,6 @@ menu:
   api: API
   deploy: Deploy
   development: Development
-  troubleshooting: Q & A
 
 paginator:
   prev: Previous
@@ -30,5 +29,4 @@ Helpers: Helpers
 Plugins: Plugins
 
 API: API
-Filter: Filter
 Methods: Methods

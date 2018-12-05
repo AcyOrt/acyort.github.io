@@ -4,8 +4,7 @@
   "version": "2.0.0",
   "description": "AcyOrt site",
   "dependencies": {
-    "@octokit/rest": "^16.1.0",
-    "cssmin": "^0.4.3"
+    "@octokit/rest": "^16.1.0"
   },
   "devDependencies": {
     "eslint": "^5.9.0",
