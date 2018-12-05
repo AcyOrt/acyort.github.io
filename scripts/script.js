@@ -1,5 +1,6 @@
 const fetcher = require('./fetcher')
 const processor = require('./processor')
+const output = require('./output')
 const helpers = require('./helper')
 
 module.exports = (acyort) => {
@@ -12,6 +13,7 @@ module.exports = (acyort) => {
   acyort.workflow.register(
     fetcher.bind(acyort),
     processor.bind(acyort),
+    output.bind(acyort),
   )
 
   acyort.helper.register('_apiNav', _apiNav)
