@@ -14,8 +14,7 @@ module.exports = function processor() {
       } = issue
       const matched = title.split(regex)
       const splited = matched[1].split('/').filter(i => i)
-
-      return {
+      const data = {
         id,
         title: matched[2],
         name: splited.slice(-1)[0],
@@ -25,10 +24,15 @@ module.exports = function processor() {
         category: (milestone || {}).title,
         content: this.renderer.render('markdown', body, { lineNumbers: false }),
       }
+
+      if (data.language !== 'en') {
+        data.path = `/${data.language}${data.path}`
+      }
+
+      return data
     })
 
-  this.store.set('issues', null)
   this.store.set('pages', pages)
-  this.store.set('updatedAt', issues[0].updated)
-  this.store.set('version', this.version)
+  this.config.version = this.version
+  this.config.updated_at = issues[0].updated_at
 }
