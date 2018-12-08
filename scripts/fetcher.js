@@ -2,7 +2,7 @@ const { join } = require('path')
 const octokit = require('@octokit/rest')()
 
 function fetch(acyort) {
-  const cacheFile = join(process.cwd(), 'cache.json')
+  const cacheFile = join(process.cwd(), 'issues.json')
   const { repository } = acyort.config
   const [owner, repo] = repository.split('/')
   const { fs, logger } = acyort

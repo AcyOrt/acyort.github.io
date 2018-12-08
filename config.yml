@@ -19,6 +19,7 @@ scripts:
 
 plugins:
   - acyort-toc
+  - acyort-server
 
 public: public
 

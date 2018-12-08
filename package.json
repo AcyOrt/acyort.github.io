@@ -5,6 +5,7 @@
   "description": "AcyOrt site",
   "dependencies": {
     "@octokit/rest": "^16.1.0",
+    "acyort-server": "^2.0.3",
     "acyort-toc": "^2.0.0"
   },
   "devDependencies": {
@@ -12,7 +13,9 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0"
   },
-  "scripts": {},
+  "scripts": {
+    "start": "acyort server"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/acyortjs/acyortjs.github.io.git"

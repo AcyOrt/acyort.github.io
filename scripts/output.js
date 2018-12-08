@@ -1,6 +1,8 @@
 module.exports = function output() {
-  this.store.get('pages')
-    .forEach((page) => {
+  const { path: filePath = '' } = this.store.get('server_status') || {}
+
+  const pages = () => {
+    this.store.get('pages').forEach((page) => {
       const { path, language } = page
       this.helper.language = language
       this.outputHTML({
@@ -9,9 +11,10 @@ module.exports = function output() {
         data: page,
       })
     })
+  }
 
-  this.store.get('posts')
-    .forEach((post) => {
+  const posts = () => {
+    this.store.get('posts').forEach((post) => {
       const { language } = post
       this.helper.language = language
       if (language !== 'en') {
@@ -28,6 +31,27 @@ module.exports = function output() {
         })
       }
     })
+  }
 
-  this.copySource()
+  const source = () => {
+    this.copySource()
+  }
+
+  if (!filePath) {
+    pages()
+    posts()
+    source()
+  }
+
+  if (filePath.includes('/pavane/source/')) {
+    source()
+  }
+
+  if (filePath.includes('/layout/doc.html')) {
+    pages()
+  }
+
+  if (filePath.includes('/layout/home.html')) {
+    posts()
+  }
 }
