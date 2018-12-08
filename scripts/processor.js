@@ -23,6 +23,7 @@ module.exports = function processor() {
         language: labels.map(({ name }) => name)[0] || 'en',
         category: (milestone || {}).title,
         content: this.renderer.render('markdown', body, { lineNumbers: false }),
+        raw: body,
       }
 
       if (data.language !== 'en') {

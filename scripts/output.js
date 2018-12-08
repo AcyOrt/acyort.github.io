@@ -9,4 +9,6 @@ module.exports = function output() {
         data: page,
       })
     })
+
+  this.copySource()
 }
