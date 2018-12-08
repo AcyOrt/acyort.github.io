@@ -32,8 +32,24 @@ module.exports = function processor() {
 
       return data
     })
+  const posts = issues
+    .filter(({ user, title }) => authors.includes(user.login) && !regex.test(title))
+    .map((issue) => {
+      const {
+        id,
+        labels,
+        body,
+      } = issue
+
+      return {
+        id,
+        language: labels.map(({ name }) => name)[0] || 'en',
+        content: this.renderer.render('markdown', body, { lineNumbers: false }),
+      }
+    })
 
   this.store.set('pages', pages)
+  this.store.set('posts', posts)
   this.config.version = this.version
   this.config.updated_at = issues[0].updated_at
 }
