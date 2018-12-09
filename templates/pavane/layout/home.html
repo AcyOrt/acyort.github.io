@@ -19,7 +19,18 @@
 
 <div class="center home">
   <div class="features">
-    {{ page.content }}
+    <div class="feature writing">
+      <h3>{{ __('custom feature.title') }}</h3>
+      <p>{{ __('custom feature.description') }}</p>
+    </div>
+    <div class="feature plugin">
+      <h3>{{ __('plugin feature.title') }}</h3>
+      <p>{{ __('plugin feature.description') }}</p>
+    </div>
+    <div class="feature ci">
+      <h3>{{ __('deploy feature.title') }}</h3>
+      <p>{{ __('deploy feature.description') }}</p>
+    </div>
   </div>
 </div>
 {% endblock %}

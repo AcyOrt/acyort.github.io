@@ -1,5 +1,6 @@
 module.exports = function output() {
   const { path: filePath = '' } = this.store.get('server_status') || {}
+  const { language: locale, languages } = this.config
 
   const pages = () => {
     this.store.get('pages').forEach((page) => {
@@ -13,23 +14,14 @@ module.exports = function output() {
     })
   }
 
-  const posts = () => {
-    this.store.get('posts').forEach((post) => {
-      const { language } = post
+  const home = () => {
+    Object.keys(languages).concat([locale]).forEach((language) => {
       this.helper.language = language
-      if (language !== 'en') {
-        this.outputHTML({
-          template: 'home',
-          path: `${language}/index.html`,
-          data: post,
-        })
-      } else {
-        this.outputHTML({
-          template: 'home',
-          path: 'index.html',
-          data: post,
-        })
-      }
+      this.outputHTML({
+        template: 'home',
+        path: language === 'en' ? 'index.html' : `${language}/index.html`,
+        data: { language },
+      })
     })
   }
 
@@ -48,11 +40,11 @@ module.exports = function output() {
   }
 
   if (filePath.includes('/layout/home.html')) {
-    posts()
+    home()
     return
   }
 
   pages()
-  posts()
+  home()
   source()
 }

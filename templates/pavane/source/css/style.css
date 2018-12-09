@@ -145,8 +145,8 @@ ul {
 }
 .feature {
   text-align: left;
-  margin: 0 2% 50px 2%;
-  width: 44%;
+  margin: 0 1.5% 50px 1.5%;
+  width: 30%;
   display: inline-block;
   height: 150px;
   vertical-align: top;
@@ -166,12 +166,10 @@ ul {
   height: 30px;
   background-image: url(../image/ci.svg);
   background-size: cover;
+  opacity: .7;
 }
 .feature.writing h3:before {
   background-image: url(../image/write.svg);
-}
-.feature.multiple h3:before {
-  background-image: url(../image/author.svg);
 }
 .feature.plugin h3:before {
   background-image: url(../image/plugin.svg);

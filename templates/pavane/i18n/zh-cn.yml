@@ -30,3 +30,15 @@ Plugins: 插件
 
 API: API
 Methods: 内置方法
+
+plugin feature:
+  title: 丰富的插件
+  description: 内置强大的插件系统，支持脚本以及 NPM 模块
+
+deploy feature:
+  title: CI 部署
+  description: 能够自动被 CI 构建部署，只需要在浏览器操作
+
+custom feature:
+  title: 强大的定制系统
+  description: 你可以非常轻松自由地定制各种网站
