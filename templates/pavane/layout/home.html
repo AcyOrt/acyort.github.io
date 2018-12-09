@@ -5,18 +5,22 @@
 {% endblock %}
 
 {% block content %}
+<div id="home" class="banner">
+  <div class="center">
+    <h1>AcyOrt</h1>
+    <p>A <span>Node.js</span> static website framework.</p>
+    {% if page.language === 'en' %}
+    <a class="start" href="{{ _url('/docs/') }}">{{ __('start') }}</a>
+    {% else %}
+    <a class="start" href="{{ _url('/zh-cn/docs/') }}">{{ __('start') }}</a>
+    {% endif %}
+  </div>
+</div>
+
 <div class="center home">
-  <h1>AcyOrt</h1>
-  <p>A <span>Node.js</span> static website framework</p>
-  <pre id="typer"></pre>
   <div class="features">
     {{ page.content }}
   </div>
-  {% if page.language === 'en' %}
-  <a class="start" href="{{ _url('/docs/') }}">{{ __('start') }}</a>
-  {% else %}
-  <a class="start" href="{{ _url('/zh-cn/docs/') }}">{{ __('start') }}</a>
-  {% endif %}
 </div>
 {% endblock %}
 

@@ -8,7 +8,6 @@ template: pavane
 menu:
   docs: /docs/
   api: /api/
-  deploy: /deploy/
   development: /development/
 
 

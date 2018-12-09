@@ -24,20 +24,23 @@ ul {
   padding: 0;
 }
 .banner {
-  height: 180px;
+  height: 150px;
   display: flex;
   align-items: center;
   align-content: center;
   background-color: #f9fafd;
   background-image: url(../image/map.svg);
-  background-position: right top;
-  background-size: 70%;
+  background-position: 70% center;
+  background-size: 120%;
   background-repeat: no-repeat;
   color: #223464;
   font-size: 30px;
   border-top: 1px solid #e9ebf8;
   border-bottom: 1px solid #e9ebf8;
   letter-spacing: 1px;
+}
+#home.banner {
+  height: 360px;
 }
 
 .github {
@@ -50,24 +53,21 @@ ul {
   left: -10px;
 }
 
-.home {
-  padding-top: 230px;
-  line-height: 1;
-  color: #5d648e;
-  position: relative;
+#home {
+  text-align: center;
 }
-.home h1 {
+#home h1 {
   color: #223464;
-  font-weight: normal;
-  font-size: 40px;
+  font-size: 50px;
   margin: 0;
 }
-.home > p {
+#home p {
   margin: 30px 0 0 0;
-  font-size: 18px;
-  line-height: 2;
+  font-size: 24px;
+  line-height: 1;
+  color: #585858;
 }
-.home > p span {
+#home p span {
   color: #f24e4e;
 }
 
@@ -140,8 +140,6 @@ ul {
 }
 
 .features {
-  margin-top: 170px;
-  border-top: 1px solid #e9ebf8;
   padding-top: 100px;
   text-align: center;
 }
@@ -184,27 +182,12 @@ ul {
   line-height: 1.6;
 }
 
-#typer {
-  position: absolute;
-  right: 0;
-  width: 61.8%;
-  top: 30px;
-  height: 400px;
-  padding: 20px 16px 0 16px;
-  background: #232323;
-  color: #e6e1dc;
-  border-radius: 5px;
-  box-shadow: 0px 12px 36px 10px rgba(0, 0, 0, 0.1);
-  line-height: 1.4;
-  font-size: 13px;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-}
-
 .start {
+  background: #fff;
   display: block;
   width: 160px;
   text-align: center;
-  margin: 0 auto;
+  margin: 70px auto 0;
   font-size: 14px;
   padding: 14px 0;
   font-weight: 600;
@@ -251,10 +234,13 @@ ul {
   position: absolute;
   top: 50px;
 }
+.copy {
+  position: relative;
+  z-index: 1;
+}
 
 .paginator {
   margin-top: 40px;
-  border-top: 1px solid #e9ebf8;
   padding-top: 40px;
   display: flex;
   justify-content: space-between;
@@ -757,7 +743,6 @@ ul {
   .footer p,
   .nav,
   .toc,
-  #typer,
   .footer a {
     display: none;
   }

@@ -1,4 +1,4 @@
-# AcyOrt Website
+# AcyOrt
 
 https://acyort.com
 

@@ -37,21 +37,22 @@ module.exports = function output() {
     this.copySource()
   }
 
-  if (!filePath) {
-    pages()
-    posts()
-    source()
-  }
-
   if (filePath.includes('/pavane/source/')) {
     source()
+    return
   }
 
   if (filePath.includes('/layout/doc.html')) {
     pages()
+    return
   }
 
   if (filePath.includes('/layout/home.html')) {
     posts()
+    return
   }
+
+  pages()
+  posts()
+  source()
 }
