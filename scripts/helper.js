@@ -61,9 +61,9 @@ module.exports = (acyort) => {
     function linkTag(i, dire) {
       const item = dire === 'prev' ? links[i - 1] : links[i + 1]
       if (item === 'overview') {
-        return `<a class="${dire}" href="/${prefix}/">${__(`paginator.${dire}`)}</a>`
+        return `<a name="paginator" class="${dire}" href="/${prefix}/">${__(`paginator.${dire}`)}</a>`
       }
-      return `<a class="${dire}" href="/${prefix}/${item}/">${__(`paginator.${dire}`)}</a>`
+      return `<a name="paginator" class="${dire}" href="/${prefix}/${item}/">${__(`paginator.${dire}`)}</a>`
     }
 
     if (index === -1) {

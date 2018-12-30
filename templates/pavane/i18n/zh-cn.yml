@@ -7,8 +7,7 @@ start: 开始使用
 menu:
   docs: 文档
   api: API
-  deploy: 部署
-  development: 开发
+  miscellaneous: 其他
 
 paginator:
   prev: 上一页
@@ -19,17 +18,20 @@ Overview: 概述
 Setup: 创建
 Configuration: 配置
 Basic Usage: 基本操作
-Writing: 写作
-Commands: 命令
+Command: 命令
 Customization: 自定义
-Permalink: 永久链接
-Themes: 主题
-Variables: 变量
-Helpers: 辅助函数
-Plugins: 插件
+Template: 模板
+Variable: 变量
+Helper: 辅助函数
+Plugin: 插件
 
 API: API
-Methods: 内置方法
+Method: 所有方法
+Store: 数据存储
+Process: 流程控制
+CLi: 命令行
+Workflow: 流程注册
+Output: 输出 HTML
 
 plugin feature:
   title: 丰富的插件

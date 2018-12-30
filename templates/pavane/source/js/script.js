@@ -67,4 +67,19 @@ document.addEventListener('DOMContentLoaded', function () {
     this.classList.toggle('active')
     document.body.classList.toggle('active')
   })
+
+  ;[].slice.call(document.querySelectorAll('.markdown a'))
+    .filter(function (a) {
+      var href = a.getAttribute('href')
+      var name = a.getAttribute('name')
+      return href && href.charAt(0) === '/' && name !== 'paginator'
+    })
+    .forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault()
+        var href = a.getAttribute('href')
+        var prefix = window.__language === 'en' ? '' : '/' + window.__language
+        location.href = prefix + href
+      })
+    })
 })

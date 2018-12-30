@@ -7,8 +7,7 @@ start: Get started
 menu:
   docs: Docs
   api: API
-  deploy: Deploy
-  development: Development
+  miscellaneous: Miscellaneous
 
 paginator:
   prev: Previous
@@ -19,17 +18,20 @@ Overview: Overview
 Setup: Setup
 Configuration: Configuration
 Basic Usage: Basic Usage
-Writing: Writing
-Commands: Commands
+Command: Command
 Customization: Customization
-Permalink: Permalink
-Themes: Themes
-Variables: Variables
-Helpers: Helpers
-Plugins: Plugins
+Template: Template
+Variable: Variable
+Helper: Helper
+Plugin: Plugin
 
 API: API
-Methods: Methods
+Method: Method
+Store: Store
+Process: Process
+CLi: CLI
+Workflow: Workflow
+Output: Output
 
 plugin feature:
   title: Various Plugins

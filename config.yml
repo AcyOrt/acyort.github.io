@@ -1,5 +1,5 @@
 title: AcyOrt
-keywords: website,acyort,github,static,issues
+keywords: website,acyort,static
 description: A Node.js static website framework
 
 url: https://acyort.com
@@ -8,8 +8,7 @@ template: pavane
 menu:
   docs: /docs/
   api: /api/
-  development: /development/
-
+  miscellaneous: /miscellaneous/
 
 repository: acyortjs/site
 
@@ -37,15 +36,20 @@ docs_nav:
     - Overview
     - Setup
     - Configuration
-  Basic Usage:
-    - Commands
+    - Command
   Customization:
-    - Templates
-    - Variables
-    - Helpers
-    - Plugins
+    - Template
+    - Variable
+    - Helper
+    - Plugin
 
 api_nav:
   API:
     - Overview
-    - Methods
+    - Method
+    - Store
+    - Process
+    - CLi
+    - Workflow
+    - Helper
+    - Output
