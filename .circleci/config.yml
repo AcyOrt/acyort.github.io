@@ -15,8 +15,8 @@ jobs:
     steps:
       - checkout
       - run: npm install acyort -g
-      - run: acyort init
       - run: npm i
+      - run: acyort init
       - run: acyort flow
       - run: git checkout .
       - run: git checkout gh-pages

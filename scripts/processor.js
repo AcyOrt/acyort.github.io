@@ -34,7 +34,10 @@ module.exports = function processor() {
         path: `/${matched[1]}/index.html`,
         language: labels.map(({ name }) => name)[0] || 'en',
         category: (milestone || {}).title,
-        content: this.renderer.render('markdown', body, { lineNumbers: false }),
+        content: this.renderer.render('markdown', body, {
+          lineNumbers: false,
+          headingIdFormater: s => s.toLowerCase().split(' ').join('-'),
+        }),
         raw: body,
       }
 
