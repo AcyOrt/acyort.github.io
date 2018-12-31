@@ -22,7 +22,6 @@ jobs:
       - run: git checkout gh-pages
       - run: git reset --hard origin/gh-pages
       - run: cp -R public/* .
-      - run: rm -R public
       - run: git add .
       - run: git config user.name "LoeiFy"
       - run: git config user.email "LoeiFy@gmail.com"
