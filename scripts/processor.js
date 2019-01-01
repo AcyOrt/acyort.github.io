@@ -36,7 +36,11 @@ module.exports = function processor() {
         category: (milestone || {}).title,
         content: this.renderer.render('markdown', body, {
           lineNumbers: false,
-          headingIdFormater: s => s.toLowerCase().split(' ').join('-'),
+          headingIdFormater: s => s
+            .replace(/\//g, '')
+            .toLowerCase()
+            .split(' ')
+            .join('-'),
         }),
         raw: body,
       }

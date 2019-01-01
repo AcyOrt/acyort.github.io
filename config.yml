@@ -19,7 +19,7 @@ plugins:
   - acyort-toc
   - acyort-server
 
-public: public
+public: docs
 
 authors:
   - LoeiFy

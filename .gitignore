@@ -1,6 +1,6 @@
 .DS_Store
 node_modules/
-public/
+docs/
 package-lock.json
 pages.json
 issues.json
