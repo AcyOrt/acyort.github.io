@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "zh-cn"</script>
+
+<title>
+其他 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      
+      <a class="logo" href="/zh-cn/">AcyOrt</a>
+      
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      
+      <a class="normal" href="/zh-cn/docs/">文档</a>
+      
+      
+      
+      <a class="normal" href="/zh-cn/api/">API</a>
+      
+      
+      
+      <a class="normal" href="/zh-cn/miscellaneous/">其他</a>
+      
+      
+    </div>
+    <div class="mobile-menu">
+      
+      
+      <a href="/zh-cn/docs/">文档</a>
+      
+      
+      
+      <a href="/zh-cn/api/">API</a>
+      
+      
+      
+      <a href="/zh-cn/miscellaneous/">其他</a>
+      
+      
+      <ul><li><p>开始使用</p><a href="/zh-cn/docs/">概述</a><a href="/zh-cn/docs/setup/">创建</a><a href="/zh-cn/docs/configuration/">配置</a><a href="/zh-cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh-cn/docs/template/">模板</a><a href="/zh-cn/docs/variable/">变量</a><a href="/zh-cn/docs/helper/">辅助函数</a><a href="/zh-cn/docs/plugin/">插件</a></li></ul>
+      <ul><li><p>API</p><a href="/zh-cn/api/">概述</a><a href="/zh-cn/api/method/">所有方法</a><a href="/zh-cn/api/store/">数据存储</a><a href="/zh-cn/api/process/">流程控制</a><a href="/zh-cn/api/cli/">命令行</a><a href="/zh-cn/api/workflow/">流程注册</a><a href="/zh-cn/api/helper/">辅助函数</a><a href="/zh-cn/api/output/">输出 HTML</a></li></ul>
+    </div>
+    <div class="language">
+      <select id="language">
+        
+        <option value="">English</option>
+        
+
+        
+        
+        <option value="zh-cn" selected>简体中文</option>
+        
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">其他</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>这里说明一下 AcyOrt 的开发方式，以及当前存在的一些插件介绍</p>
+
+            <h2>
+              <a href="#开发" id="开发" class="heading"></a>开发
+            </h2>
+          <p>克隆项目并且安装相应模块</p>
+
+      <div class="hljs bash">
+        <pre><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">clone</span> git@github.com:acyortjs/acyort.git</span>
+<span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> acyort &amp;&amp; npm i</span></pre>
+      </div>
+    
+            <h3>
+              <a href="#开发脚本" id="开发脚本" class="heading"></a>开发脚本
+            </h3>
+          <p>为了方便测试，内置以下 npm scripts</p>
+<p><strong>flow</strong></p>
+<p>执行函数流程，将流程注册的函数按顺序运行</p>
+
+      <div class="hljs bash">
+        <pre>$ npm <span class="hljs-keyword">run</span><span class="bash"> flow</span></pre>
+      </div>
+    <p><strong>help</strong></p>
+<p>显示所有支持的 cli 命令，包括插件注册的 cli 命令</p>
+
+      <div class="hljs bash">
+        <pre>$ npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">help</span></span></pre>
+      </div>
+    <p><strong>version</strong></p>
+<p>简单显示当前环境版本</p>
+
+      <div class="hljs bash">
+        <pre>$ npm <span class="hljs-built_in">run</span> <span class="hljs-built_in">version</span></pre>
+      </div>
+    <p><strong>clean</strong></p>
+<p>清除运行生成文件</p>
+
+      <div class="hljs bash">
+        <pre>$ npm <span class="hljs-keyword">run</span><span class="bash"> clean</span></pre>
+      </div>
+    
+            <h3>
+              <a href="#单元测试" id="单元测试" class="heading"></a>单元测试
+            </h3>
+          <p>包含代码 lint，以及一些覆盖率测试</p>
+
+      <div class="hljs bash">
+        <pre>$ npm t <span class="hljs-comment"># lint and coverage test</span>
+$ npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span>:unit <span class="hljs-comment"># unit test</span>
+</span>$ npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span>:lint <span class="hljs-comment"># code lint</span>
+</span>$ npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span>:cover <span class="hljs-comment"># coverage test</span></span></pre>
+      </div>
+    
+            <h2>
+              <a href="#插件工具" id="插件工具" class="heading"></a>插件/工具
+            </h2>
+          <p>这里列出一些插件，以及一些助手 npm 模块</p>
+<ul>
+<li>LiveReload（插件） 本地服务器，用于模板开发 <a href="https://github.com/acyortjs/acyort-server">acyort-server</a></li>
+<li>Toc Helper（插件） 根据 markdown 内容生成目录 <a href="https://github.com/acyortjs/acyort-toc">acyort-toc</a></li>
+<li>Pagination utilities（工具） 分页工具 <a href="https://github.com/acyortjs/paginator">paginator</a></li>
+</ul>
+
+
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      
+      <p>目录</p>
+      <ul>
+<li><a href="#%E5%BC%80%E5%8F%91">开发</a><ul>
+<li><a href="#%E5%BC%80%E5%8F%91%E8%84%9A%E6%9C%AC">开发脚本</a></li>
+<li><a href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95">单元测试</a></li>
+</ul>
+</li>
+<li><a href="#%E6%8F%92%E4%BB%B6%E5%B7%A5%E5%85%B7">插件/工具</a></li>
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>由 AcyOrt@3.0.10 构建</span>
+    </div>
+    <p>
+      <a target="_blank" href="https://github.com/acyortjs/site/issues">
+        最后更新于: 12月 30, 2018
+      </a>
+    </p>
+    <a href="#" class="top">返回顶部</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "en"</script>
+
+<title>
+API - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      
+      <a class="logo" href="/">AcyOrt</a>
+      
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      
+      <a class="normal" href="/docs/">Docs</a>
+      
+      
+      
+      <a class="normal" href="/api/">API</a>
+      
+      
+      
+      <a class="normal" href="/miscellaneous/">Miscellaneous</a>
+      
+      
+    </div>
+    <div class="mobile-menu">
+      
+      
+      <a href="/docs/">Docs</a>
+      
+      
+      
+      <a href="/api/">API</a>
+      
+      
+      
+      <a href="/miscellaneous/">Miscellaneous</a>
+      
+      
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/variable/">Variable</a><a href="/docs/helper/">Helper</a><a href="/docs/plugin/">Plugin</a></li></ul>
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/method/">Method</a><a href="/api/store/">Store</a><a href="/api/process/">Process</a><a href="/api/cli/">CLI</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/output/">Output</a></li></ul>
+    </div>
+    <div class="language">
+      <select id="language">
+        
+        <option value="">English</option>
+        
+
+        
+        
+        <option value="zh-cn">简体中文</option>
+        
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">API</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/method/">Method</a><a href="/api/store/">Store</a><a href="/api/process/">Process</a><a href="/api/cli/">CLI</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/output/">Output</a></li></ul>
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>AcyOrt is used by default as a global CLI mode, but it is also supported as a node module. This following is a usage example</p>
+
+      <div class="hljs javascript">
+        <pre><span class="hljs-keyword">const</span> acyort = require(<span class="hljs-string">'acyort'</span>)
+
+<span class="hljs-keyword">const</span> <span class="hljs-built_in">config</span> = {
+  base: __dirname, <span class="hljs-comment">// specify the base directory</span>
+  <span class="hljs-keyword">template</span>: <span class="hljs-string">'ccc45'</span>, <span class="hljs-comment">// specify the template name</span>
+  language: <span class="hljs-string">'en'</span>, <span class="hljs-comment">// language</span>
+  root: <span class="hljs-string">'/'</span>, <span class="hljs-comment">// website root directory</span>
+  timezone: <span class="hljs-string">'UTC'</span>, <span class="hljs-comment">// time zone</span>
+  <span class="hljs-keyword">public</span>: <span class="hljs-string">'/'</span> <span class="hljs-comment">// file output root directory (relative to the base directory)</span>
+  url: <span class="hljs-string">'https://acyort.com'</span>, <span class="hljs-comment">// website URL</span>
+}
+
+<span class="hljs-keyword">const</span> ctx = acyort(<span class="hljs-built_in">config</span>) <span class="hljs-comment">// at this point `ctx` can access the APIs provided by AcyOrt</span></pre>
+      </div>
+    <p>So when should I use it as CLI and when can I use it as a node module?</p>
+<p>In fact, both methods are similar. If your application already exists and you just want to borrow some of AcyOrt&#39;s capabilities, you can use it as node plugin. Others still recommend using CLI, by filling some configuration, use some plugins to generate the website.</p>
+<p>AcyOrt built-in numbers of APIs. See <a href="/api/method/">API</a> for details.</p>
+
+
+    
+    <div class="paginator">
+      <a class="disabled"></a><a name="paginator" class="next" href="/api/method/">Next</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>Built by AcyOrt@3.0.10</span>
+    </div>
+    <p>
+      <a target="_blank" href="https://github.com/acyortjs/site/issues">
+        Last updated: Dec 30, 2018
+      </a>
+    </p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

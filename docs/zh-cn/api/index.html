@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "zh-cn"</script>
+
+<title>
+API - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      
+      <a class="logo" href="/zh-cn/">AcyOrt</a>
+      
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      
+      <a class="normal" href="/zh-cn/docs/">文档</a>
+      
+      
+      
+      <a class="normal" href="/zh-cn/api/">API</a>
+      
+      
+      
+      <a class="normal" href="/zh-cn/miscellaneous/">其他</a>
+      
+      
+    </div>
+    <div class="mobile-menu">
+      
+      
+      <a href="/zh-cn/docs/">文档</a>
+      
+      
+      
+      <a href="/zh-cn/api/">API</a>
+      
+      
+      
+      <a href="/zh-cn/miscellaneous/">其他</a>
+      
+      
+      <ul><li><p>开始使用</p><a href="/zh-cn/docs/">概述</a><a href="/zh-cn/docs/setup/">创建</a><a href="/zh-cn/docs/configuration/">配置</a><a href="/zh-cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh-cn/docs/template/">模板</a><a href="/zh-cn/docs/variable/">变量</a><a href="/zh-cn/docs/helper/">辅助函数</a><a href="/zh-cn/docs/plugin/">插件</a></li></ul>
+      <ul><li><p>API</p><a href="/zh-cn/api/">概述</a><a href="/zh-cn/api/method/">所有方法</a><a href="/zh-cn/api/store/">数据存储</a><a href="/zh-cn/api/process/">流程控制</a><a href="/zh-cn/api/cli/">命令行</a><a href="/zh-cn/api/workflow/">流程注册</a><a href="/zh-cn/api/helper/">辅助函数</a><a href="/zh-cn/api/output/">输出 HTML</a></li></ul>
+    </div>
+    <div class="language">
+      <select id="language">
+        
+        <option value="">English</option>
+        
+
+        
+        
+        <option value="zh-cn" selected>简体中文</option>
+        
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">API</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      <ul><li><p>API</p><a href="/zh-cn/api/">概述</a><a href="/zh-cn/api/method/">所有方法</a><a href="/zh-cn/api/store/">数据存储</a><a href="/zh-cn/api/process/">流程控制</a><a href="/zh-cn/api/cli/">命令行</a><a href="/zh-cn/api/workflow/">流程注册</a><a href="/zh-cn/api/helper/">辅助函数</a><a href="/zh-cn/api/output/">输出 HTML</a></li></ul>
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>AcyOrt 默认作为一个全局命令行模块使用，即 cli 方式使用，不过也支持作为一个 node 模块使用，以下是一个使用例子</p>
+
+      <div class="hljs javascript">
+        <pre><span class="hljs-keyword">const</span> acyort = require(<span class="hljs-string">'acyort'</span>)
+
+<span class="hljs-keyword">const</span> <span class="hljs-built_in">config</span> = {
+  base: __dirname, <span class="hljs-comment">// 指定模版，输出基础目录</span>
+  <span class="hljs-keyword">template</span>: <span class="hljs-string">'ccc45'</span>, <span class="hljs-comment">// 指定模板名字</span>
+  language: <span class="hljs-string">'en'</span>, <span class="hljs-comment">// 语言</span>
+  root: <span class="hljs-string">'/'</span>, <span class="hljs-comment">// 网站根目录</span>
+  timezone: <span class="hljs-string">'UTC'</span>, <span class="hljs-comment">// 时区</span>
+  <span class="hljs-keyword">public</span>: <span class="hljs-string">'/'</span> <span class="hljs-comment">// 文件输出根目录（相对于基础目录）</span>
+  url: <span class="hljs-string">'https://acyort.com'</span>, <span class="hljs-comment">// 网站 URL</span>
+}
+
+<span class="hljs-keyword">const</span> ctx = acyort(<span class="hljs-built_in">config</span>) <span class="hljs-comment">// 此时 ctx 就能访问到所以 AcyOrt 提供的方法</span></pre>
+      </div>
+    <p>那么何时应该使用命令行方式，又何时可以作为一个 node 模块使用呢？</p>
+<p>其实两种方式都差不多，如果你的应用已经存在，只是想借用 AcyOrt 的一些能力，那么可以 node 插件方式使用。其他的还是推荐使用全局命令行方式，填写一些配置，使用一些插件就可以生成网站</p>
+<p>AcyOrt 内置了许多 API 方法，具体查看 <a href="/api/method/">API</a></p>
+
+
+    
+    <div class="paginator">
+      <a class="disabled"></a><a name="paginator" class="next" href="/zh-cn/api/method/">下一页</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>由 AcyOrt@3.0.10 构建</span>
+    </div>
+    <p>
+      <a target="_blank" href="https://github.com/acyortjs/site/issues">
+        最后更新于: 12月 30, 2018
+      </a>
+    </p>
+    <a href="#" class="top">返回顶部</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

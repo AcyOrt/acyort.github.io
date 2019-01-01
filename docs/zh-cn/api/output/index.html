@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "zh-cn"</script>
+
+<title>
+输出 HTML - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      
+      <a class="logo" href="/zh-cn/">AcyOrt</a>
+      
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      
+      <a class="normal" href="/zh-cn/docs/">文档</a>
+      
+      
+      
+      <a class="normal" href="/zh-cn/api/">API</a>
+      
+      
+      
+      <a class="normal" href="/zh-cn/miscellaneous/">其他</a>
+      
+      
+    </div>
+    <div class="mobile-menu">
+      
+      
+      <a href="/zh-cn/docs/">文档</a>
+      
+      
+      
+      <a href="/zh-cn/api/">API</a>
+      
+      
+      
+      <a href="/zh-cn/miscellaneous/">其他</a>
+      
+      
+      <ul><li><p>开始使用</p><a href="/zh-cn/docs/">概述</a><a href="/zh-cn/docs/setup/">创建</a><a href="/zh-cn/docs/configuration/">配置</a><a href="/zh-cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh-cn/docs/template/">模板</a><a href="/zh-cn/docs/variable/">变量</a><a href="/zh-cn/docs/helper/">辅助函数</a><a href="/zh-cn/docs/plugin/">插件</a></li></ul>
+      <ul><li><p>API</p><a href="/zh-cn/api/">概述</a><a href="/zh-cn/api/method/">所有方法</a><a href="/zh-cn/api/store/">数据存储</a><a href="/zh-cn/api/process/">流程控制</a><a href="/zh-cn/api/cli/">命令行</a><a href="/zh-cn/api/workflow/">流程注册</a><a href="/zh-cn/api/helper/">辅助函数</a><a href="/zh-cn/api/output/">输出 HTML</a></li></ul>
+    </div>
+    <div class="language">
+      <select id="language">
+        
+        <option value="">English</option>
+        
+
+        
+        
+        <option value="zh-cn" selected>简体中文</option>
+        
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">输出 HTML</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      <ul><li><p>API</p><a href="/zh-cn/api/">概述</a><a href="/zh-cn/api/method/">所有方法</a><a href="/zh-cn/api/store/">数据存储</a><a href="/zh-cn/api/process/">流程控制</a><a href="/zh-cn/api/cli/">命令行</a><a href="/zh-cn/api/workflow/">流程注册</a><a href="/zh-cn/api/helper/">辅助函数</a><a href="/zh-cn/api/output/">输出 HTML</a></li></ul>
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>这个函数用于指定模板，数据快速生成 HTML 文件，生成方式为同步方式</p>
+
+      <div class="hljs javascript">
+        <pre><span class="hljs-selector-tag">acyort</span><span class="hljs-selector-class">.outputHTML</span>({
+  <span class="hljs-attribute">template</span>: <span class="hljs-string">'doc'</span>, <span class="hljs-comment">// 指定当前使用哪个模板，该模板必须在 `template` 的 `layout` 目录下 </span>
+  <span class="hljs-attribute">path</span>: <span class="hljs-string">'doc/index.html'</span>, <span class="hljs-comment">// 指定输出目录，此目录为相对网站的基础目录</span>
+  <span class="hljs-attribute">data</span>: { <span class="hljs-attribute">title</span>: <span class="hljs-string">'acyort'</span> }, <span class="hljs-comment">// 指定模板数据</span>
+  <span class="hljs-attribute">engine</span>: <span class="hljs-string">'swig'</span>, <span class="hljs-comment">// 可选，默认为 swig，如果设置其他渲染器，必须先注册</span>
+})</pre>
+      </div>
+    <p><strong>自定义辅助函数说明</strong></p>
+<p>按照上面例子输出 HTML 文件时候，当你在插件中注册辅助函数的时候，辅助函数的上下文 <code>this</code> 能访问到指定的模板数据</p>
+
+      <div class="hljs javascript">
+        <pre>acyort.helper.register(<span class="hljs-string">'_test'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-keyword">this</span>) <span class="hljs-comment">// 输出 { title: 'acyort' }，即指定的模板数据</span>
+})</pre>
+      </div>
+    <p><strong>指定其他渲染引擎</strong></p>
+<p>如果想使用 <code>ejs</code> 之类的模板引擎，那必须在 <code>renderer</code> 先注册</p>
+
+      <div class="hljs javascript">
+        <pre>const ejs = require(<span class="hljs-string">'ejs'</span>)
+
+acyort.<span class="hljs-keyword">renderer</span>.register(<span class="hljs-string">'ejs'</span>, {
+  <span class="hljs-keyword">render</span>: ejs.<span class="hljs-keyword">render</span>,
+  renderFile: (<span class="hljs-keyword">file</span>, data) =&gt; {
+    const <span class="hljs-keyword">text</span> = fs.readFileSync(<span class="hljs-keyword">file</span>).toString()
+    <span class="hljs-keyword">return</span> ejs.<span class="hljs-keyword">render</span>(<span class="hljs-keyword">text</span>, data)
+  }
+})</pre>
+      </div>
+    
+
+    
+    <div class="paginator">
+      <a name="paginator" class="prev" href="/zh-cn/api/helper/">上一页</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>由 AcyOrt@3.0.10 构建</span>
+    </div>
+    <p>
+      <a target="_blank" href="https://github.com/acyortjs/site/issues">
+        最后更新于: 12月 30, 2018
+      </a>
+    </p>
+    <a href="#" class="top">返回顶部</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>
