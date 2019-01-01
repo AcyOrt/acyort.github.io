@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "zh-cn"</script>
+
+<title>
+数据存储 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      
+      <a class="logo" href="/zh-cn/">AcyOrt</a>
+      
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      
+      <a class="normal" href="/zh-cn/docs/">文档</a>
+      
+      
+      
+      <a class="normal" href="/zh-cn/api/">API</a>
+      
+      
+      
+      <a class="normal" href="/zh-cn/miscellaneous/">其他</a>
+      
+      
+    </div>
+    <div class="mobile-menu">
+      
+      
+      <a href="/zh-cn/docs/">文档</a>
+      
+      
+      
+      <a href="/zh-cn/api/">API</a>
+      
+      
+      
+      <a href="/zh-cn/miscellaneous/">其他</a>
+      
+      
+      <ul><li><p>开始使用</p><a href="/zh-cn/docs/">概述</a><a href="/zh-cn/docs/setup/">创建</a><a href="/zh-cn/docs/configuration/">配置</a><a href="/zh-cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh-cn/docs/template/">模板</a><a href="/zh-cn/docs/variable/">变量</a><a href="/zh-cn/docs/helper/">辅助函数</a><a href="/zh-cn/docs/plugin/">插件</a></li></ul>
+      <ul><li><p>API</p><a href="/zh-cn/api/">概述</a><a href="/zh-cn/api/method/">所有方法</a><a href="/zh-cn/api/store/">数据存储</a><a href="/zh-cn/api/process/">流程控制</a><a href="/zh-cn/api/cli/">命令行</a><a href="/zh-cn/api/workflow/">流程注册</a><a href="/zh-cn/api/helper/">辅助函数</a><a href="/zh-cn/api/output/">输出 HTML</a></li></ul>
+    </div>
+    <div class="language">
+      <select id="language">
+        
+        <option value="">English</option>
+        
+
+        
+        
+        <option value="zh-cn" selected>简体中文</option>
+        
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">数据存储</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      <ul><li><p>API</p><a href="/zh-cn/api/">概述</a><a href="/zh-cn/api/method/">所有方法</a><a href="/zh-cn/api/store/">数据存储</a><a href="/zh-cn/api/process/">流程控制</a><a href="/zh-cn/api/cli/">命令行</a><a href="/zh-cn/api/workflow/">流程注册</a><a href="/zh-cn/api/helper/">辅助函数</a><a href="/zh-cn/api/output/">输出 HTML</a></li></ul>
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>AcyOrt 提供一个 store 函数用于数据存储，可以在运行过程中用于数据传递</p>
+
+      <div class="hljs javascript">
+        <pre><span class="hljs-section">const</span> { <span class="hljs-attribute">store</span> } = acyort</pre>
+      </div>
+    <p>store 函数提供三个方法</p>
+
+      <div class="hljs javascript">
+        <pre><span class="hljs-selector-tag">store</span><span class="hljs-selector-class">.set</span>(<span class="hljs-string">'key'</span>, { <span class="hljs-attribute">a</span>: <span class="hljs-number">1</span> }) <span class="hljs-comment">// 存储一个名为 key，值为 { a: 1 } </span>
+<span class="hljs-selector-tag">store</span><span class="hljs-selector-class">.get</span>(<span class="hljs-string">'key'</span>) <span class="hljs-comment">// 获取名为 key 的值，结果为 { a: 1 }</span>
+<span class="hljs-selector-tag">store</span><span class="hljs-selector-class">.reset</span>() <span class="hljs-comment">// 清空所有值</span></pre>
+      </div>
+    <p><strong>例子</strong></p>
+<p>用于 cli 与 workflow 之间的通信</p>
+
+      <div class="hljs javascript">
+        <pre>module<span class="hljs-selector-class">.exports</span> = (acyort) =&gt; {
+  acyort<span class="hljs-selector-class">.cli</span><span class="hljs-selector-class">.register</span>(<span class="hljs-string">'options'</span>, {
+    name: <span class="hljs-string">'--config'</span>,
+    alias: <span class="hljs-string">'-c'</span>,
+    description: <span class="hljs-string">'Show config'</span>,
+    action(argv) {
+      this<span class="hljs-selector-class">.store</span><span class="hljs-selector-class">.set</span>(<span class="hljs-string">'cli'</span>, argv) <span class="hljs-comment">// 存储 cli 参数</span>
+      this.process() <span class="hljs-comment">// 执行 AcyOrt 的运行流程</span>
+    },
+  })
+
+  acyort<span class="hljs-selector-class">.workflow</span><span class="hljs-selector-class">.register</span>(function () {
+    const argv = acyort<span class="hljs-selector-class">.store</span><span class="hljs-selector-class">.get</span>(<span class="hljs-string">'cli'</span>) <span class="hljs-comment">// 这里获取 cli 运行参数</span>
+  })
+}</pre>
+      </div>
+    
+
+    
+    <div class="paginator">
+      <a name="paginator" class="prev" href="/zh-cn/api/method/">上一页</a><a name="paginator" class="next" href="/zh-cn/api/process/">下一页</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>由 AcyOrt@3.0.10 构建</span>
+    </div>
+    <p>
+      <a target="_blank" href="https://github.com/acyortjs/site/issues">
+        最后更新于: 12月 30, 2018
+      </a>
+    </p>
+    <a href="#" class="top">返回顶部</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

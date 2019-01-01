@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "zh-cn"</script>
+
+<title>
+插件 - AcyOrt
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      
+      <a class="logo" href="/zh-cn/">AcyOrt</a>
+      
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      
+      <a class="normal" href="/zh-cn/docs/">文档</a>
+      
+      
+      
+      <a class="normal" href="/zh-cn/api/">API</a>
+      
+      
+      
+      <a class="normal" href="/zh-cn/miscellaneous/">其他</a>
+      
+      
+    </div>
+    <div class="mobile-menu">
+      
+      
+      <a href="/zh-cn/docs/">文档</a>
+      
+      
+      
+      <a href="/zh-cn/api/">API</a>
+      
+      
+      
+      <a href="/zh-cn/miscellaneous/">其他</a>
+      
+      
+      <ul><li><p>开始使用</p><a href="/zh-cn/docs/">概述</a><a href="/zh-cn/docs/setup/">创建</a><a href="/zh-cn/docs/configuration/">配置</a><a href="/zh-cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh-cn/docs/template/">模板</a><a href="/zh-cn/docs/variable/">变量</a><a href="/zh-cn/docs/helper/">辅助函数</a><a href="/zh-cn/docs/plugin/">插件</a></li></ul>
+      <ul><li><p>API</p><a href="/zh-cn/api/">概述</a><a href="/zh-cn/api/method/">所有方法</a><a href="/zh-cn/api/store/">数据存储</a><a href="/zh-cn/api/process/">流程控制</a><a href="/zh-cn/api/cli/">命令行</a><a href="/zh-cn/api/workflow/">流程注册</a><a href="/zh-cn/api/helper/">辅助函数</a><a href="/zh-cn/api/output/">输出 HTML</a></li></ul>
+    </div>
+    <div class="language">
+      <select id="language">
+        
+        <option value="">English</option>
+        
+
+        
+        
+        <option value="zh-cn" selected>简体中文</option>
+        
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">插件</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+
+      
+      <ul><li><p>开始使用</p><a href="/zh-cn/docs/">概述</a><a href="/zh-cn/docs/setup/">创建</a><a href="/zh-cn/docs/configuration/">配置</a><a href="/zh-cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh-cn/docs/template/">模板</a><a href="/zh-cn/docs/variable/">变量</a><a href="/zh-cn/docs/helper/">辅助函数</a><a href="/zh-cn/docs/plugin/">插件</a></li></ul>
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>AcyOrt 的插件制作很简单，插件使用都需要在配置文件 <code>config.yml</code> 注册</p>
+
+            <h3>
+              <a href="#插件类型" id="插件类型" class="heading"></a>插件类型
+            </h3>
+          <p>有两种插件类型 <code>npm 模块</code> 和 <code>script</code></p>
+<p><strong>Script</strong></p>
+<p>如果插件比较简单，可以将它放入 <code>scripts</code> 文件夹并且在 <code>config.yml</code> 注册</p>
+
+      <div class="hljs yml">
+        <pre><span class="hljs-selector-tag">scripts</span>:
+ <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">scriptA</span><span class="hljs-selector-class">.js</span>
+ <span class="hljs-selector-tag">-</span> <span class="hljs-selector-tag">scriptB</span><span class="hljs-selector-class">.js</span></pre>
+      </div>
+    <p><strong>Plugin</strong></p>
+<p>NPM 插件跟普通 node 模块一样，同样需要在 <code>config.yml</code> 注册</p>
+
+      <div class="hljs yml">
+        <pre>plugins: 
+ -<span class="ruby"> moduleA
+</span> -<span class="ruby"> moduleB</span></pre>
+      </div>
+    
+            <h3>
+              <a href="#插件写法" id="插件写法" class="heading"></a>插件写法
+            </h3>
+          <p>插件需要 <code>export</code> 一个函数，函数的变量为 <code>acyort</code>，你可以在函数里使用</p>
+
+      <div class="hljs javascript">
+        <pre><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-params">(acyort)</span> =&gt;</span> {
+  const { store, version } = acyort
+  ... 
+}</pre>
+      </div>
+    <p>具体 API 方法使用可以查看 <a href="/api/method/">method</a></p>
+
+
+    
+    <div class="paginator">
+      <a name="paginator" class="prev" href="/zh-cn/docs/helper/">上一页</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      
+      <p>目录</p>
+      <ul>
+<li><a href="#%E6%8F%92%E4%BB%B6%E7%B1%BB%E5%9E%8B">插件类型</a></li>
+<li><a href="#%E6%8F%92%E4%BB%B6%E5%86%99%E6%B3%95">插件写法</a></li>
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>由 AcyOrt@3.0.10 构建</span>
+    </div>
+    <p>
+      <a target="_blank" href="https://github.com/acyortjs/site/issues">
+        最后更新于: 12月 30, 2018
+      </a>
+    </p>
+    <a href="#" class="top">返回顶部</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>
