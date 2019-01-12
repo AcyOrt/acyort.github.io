@@ -91,7 +91,11 @@ Template - AcyOrt
   <div class="content markdown">
     <p>AcyOrt uses <a href="https://github.com/node-swig/swig-templates">swig</a> as the default template engine</p>
 <p>You can customize the template engine by registering <a href="https://github.com/acyortjs/renderer">renderer</a></p>
-<p>Template usually have the following file structure</p>
+
+            <h3>
+              <a href="#template-structure" id="template-structure" class="heading"></a>Template structure
+            </h3>
+          <p>Template usually have the following file structure</p>
 
       <div class="hljs">
         <pre>.
@@ -106,6 +110,36 @@ Template - AcyOrt
 <p><strong>source</strong></p>
 <p>Put the website resource files (such as CSS, JavaScript) here</p>
 
+            <h3>
+              <a href="#template-introduction" id="template-introduction" class="heading"></a>Template introduction
+            </h3>
+          <p>Templates can be placed directly in the <code>templates</code> directory, or using the npm package. AcyOrt will use the template in the current <code>templates</code> directory by default. If not found, it will look for the npm package</p>
+<p><strong>npm template development</strong></p>
+<p>The template must be placed under <code>templates</code> in the directory, and the npm entry should specify the <code>template</code> name</p>
+<p>npm template directory structure</p>
+
+      <div class="hljs">
+        <pre>.
+├─ package.json # npm config
+├─ index.js # main entry
+└─ templates 
+    └─ ccc45 # template</pre>
+      </div>
+    
+      <div class="hljs javascript">
+        <pre><span class="hljs-comment">// package.json</span>
+{
+  <span class="hljs-string">"name"</span>: <span class="hljs-string">"npmTemplate"</span>,
+  <span class="hljs-string">"version"</span>: <span class="hljs-string">"0.1.0"</span>,
+  <span class="hljs-string">"main"</span>: <span class="hljs-string">"index.js"</span>
+}</pre>
+      </div>
+    
+      <div class="hljs javascript">
+        <pre>// entry: <span class="hljs-keyword">index</span>.js
+module.exports.template = <span class="hljs-string">'ccc45'</span> // <span class="hljs-keyword">if</span> <span class="hljs-keyword">no</span> <span class="hljs-keyword">set</span> `<span class="hljs-keyword">template</span>` <span class="hljs-keyword">value</span>, `<span class="hljs-keyword">template</span>` will use npm package <span class="hljs-type">name</span></pre>
+      </div>
+    
 
     
     <div class="paginator">
@@ -118,6 +152,13 @@ Template - AcyOrt
     <div class="stay">
       
       
+      <p>Contents</p>
+      <ul>
+<li><a href="#template-structure">Template structure</a></li>
+<li><a href="#template-introduction">Template introduction</a></li>
+</ul>
+
+      
     </div>
   </div>
 </div>
@@ -127,11 +168,11 @@ Template - AcyOrt
   <div class="center">
     <div class="copy">
       &copy; 2019.
-      <span>Built by AcyOrt@3.0.10</span>
+      <span>Built by AcyOrt@3.0.11</span>
     </div>
     <p>
       <a target="_blank" href="https://github.com/acyortjs/site/issues">
-        Last updated: Dec 30, 2018
+        Last updated: Jan 12, 2019
       </a>
     </p>
     <a href="#" class="top">Top</a>
