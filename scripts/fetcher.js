@@ -23,6 +23,7 @@ function fetch(acyort) {
       logger.info(`getting data...${page}`)
 
       const { data, headers } = await octokit.issues.listForRepo({
+        creator: 'LoeiFy',
         owner,
         repo,
         sort: 'updated',

@@ -94,12 +94,13 @@ Store - AcyOrt
       <div class="hljs javascript">
         <pre><span class="hljs-section">const</span> { <span class="hljs-attribute">store</span> } = acyort</pre>
       </div>
-    <p>store provides three methods</p>
+    <p>store provides 4 methods</p>
 
       <div class="hljs javascript">
         <pre><span class="hljs-selector-tag">store</span><span class="hljs-selector-class">.set</span>(<span class="hljs-string">'key'</span>, { <span class="hljs-attribute">a</span>: <span class="hljs-number">1</span> }) <span class="hljs-comment">// store a key named `key` with a value of { a: 1 } </span>
 <span class="hljs-selector-tag">store</span><span class="hljs-selector-class">.get</span>(<span class="hljs-string">'key'</span>) <span class="hljs-comment">// get the value named `key` with the result { a: 1 }</span>
-<span class="hljs-selector-tag">store</span><span class="hljs-selector-class">.reset</span>() <span class="hljs-comment">// clear values</span></pre>
+<span class="hljs-selector-tag">store</span><span class="hljs-selector-class">.reset</span>() <span class="hljs-comment">// clear values</span>
+<span class="hljs-selector-tag">store</span><span class="hljs-selector-class">.getPluginData</span>(<span class="hljs-string">'plugin name'</span>, <span class="hljs-string">'data key'</span>) <span class="hljs-comment">// get other plugin data, each plugin/script has its own namespace</span></pre>
       </div>
     <p><strong>example</strong></p>
 <p>Used for communication between <code>CLI</code> and <code>Workflow</code></p>
@@ -111,7 +112,7 @@ Store - AcyOrt
     alias: <span class="hljs-string">'-c'</span>,
     description: <span class="hljs-string">'Show config'</span>,
     action(argv) {
-      this<span class="hljs-selector-class">.store</span><span class="hljs-selector-class">.set</span>(<span class="hljs-string">'cli'</span>, argv) <span class="hljs-comment">// store `cli`</span>
+      acyort<span class="hljs-selector-class">.store</span><span class="hljs-selector-class">.set</span>(<span class="hljs-string">'cli'</span>, argv) <span class="hljs-comment">// store `cli`</span>
       this.process() <span class="hljs-comment">// run AcyOrt process</span>
     },
   })
@@ -147,7 +148,7 @@ Store - AcyOrt
     </div>
     <p>
       <a target="_blank" href="https://github.com/acyortjs/site/issues">
-        Last updated: Jan 12, 2019
+        Last updated: Jan 14, 2019
       </a>
     </p>
     <a href="#" class="top">Top</a>
