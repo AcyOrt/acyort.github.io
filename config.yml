@@ -12,10 +12,8 @@ menu:
 
 repository: acyortjs/site
 
-scripts:
-  - script.js
-
 plugins:
+  - script.js
   - acyort-toc
   - acyort-server
 
