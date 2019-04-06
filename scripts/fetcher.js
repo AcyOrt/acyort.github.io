@@ -1,9 +1,8 @@
 const { join } = require('path')
-const octokit = require('@octokit/rest')()
+const Octokit = require('@octokit/rest')
 
-octokit.authenticate({
-  type: 'token',
-  token: 'd#e8919195a05bd0c3e3c0d5b5bcfd218bc606694'.split('#').join(''),
+const octokit = new Octokit({
+  auth: `token ${'d#e8919195a05bd0c3e3c0d5b5bcfd218bc606694'.split('#').join('')}`,
 })
 
 function fetch(acyort) {

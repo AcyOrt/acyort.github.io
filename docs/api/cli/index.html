@@ -105,7 +105,6 @@ CLI - AcyOrt
     action(argv) { <span class="hljs-comment">// register action function</span>
       <span class="hljs-comment">// `argv` is the command line argument</span>
       console.log(<span class="hljs-string">'CLI arguments: '</span>, argv, <span class="hljs-string">'\n'</span>)
-      console.log(this.config) <span class="hljs-comment">// `this` is AcyOrt context</span>
     },
 })</pre>
       </div>
@@ -119,7 +118,6 @@ acyort<span class="hljs-selector-class">.cli</span><span class="hljs-selector-cl
   description: <span class="hljs-string">'Show config'</span>, <span class="hljs-comment">// description</span>
   action(argv) { <span class="hljs-comment">// action</span>
     acyort<span class="hljs-selector-class">.logger</span><span class="hljs-selector-class">.log</span>(<span class="hljs-string">'CLI arguments: '</span>, argv, <span class="hljs-string">'\n'</span>)
-    acyort<span class="hljs-selector-class">.logger</span><span class="hljs-selector-class">.info</span>(this.config)
   },
 })</pre>
       </div>
@@ -149,11 +147,11 @@ acyort<span class="hljs-selector-class">.cli</span><span class="hljs-selector-cl
   <div class="center">
     <div class="copy">
       &copy; 2019.
-      <span>Built by AcyOrt@3.1.1</span>
+      <span>Built by AcyOrt@3.2.1</span>
     </div>
     <p>
       <a target="_blank" href="https://github.com/acyortjs/site/issues">
-        Last updated: Feb 24, 2019
+        Last updated: Apr 06, 2019
       </a>
     </p>
     <a href="#" class="top">Top</a>

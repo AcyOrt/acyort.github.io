@@ -1,17 +1,17 @@
 {
   "private": true,
   "name": "acyort.com",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "AcyOrt site",
   "dependencies": {
-    "@octokit/rest": "^16.1.0",
-    "acyort-server": "^2.1.3",
+    "@octokit/rest": "^16.23.2",
+    "acyort-server": "^2.2.0",
     "acyort-toc": "^2.0.0"
   },
   "devDependencies": {
-    "eslint": "^5.9.0",
+    "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0"
+    "eslint-plugin-import": "^2.16.0"
   },
   "scripts": {
     "start": "acyort server"

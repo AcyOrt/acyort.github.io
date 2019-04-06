@@ -102,8 +102,8 @@
     <span class="hljs-attribute">name</span>: <span class="hljs-string">'config'</span>, <span class="hljs-comment">// 命令名称</span>
     <span class="hljs-attribute">fullName</span>: <span class="hljs-string">'configs'</span>, <span class="hljs-comment">// 命令全名，用于展示</span>
     <span class="hljs-attribute">description</span>: <span class="hljs-string">'Show config'</span>, <span class="hljs-comment">// 描述</span>
-    action(argv, acyort) { <span class="hljs-comment">// 注册执行函数</span>
-      <span class="hljs-comment">// argv 为命令行参数，acyort 为当前可以访问的 AcyOrt 方法集合</span>
+    action(argv) { <span class="hljs-comment">// 注册执行函数</span>
+      <span class="hljs-comment">// argv 为命令行参数</span>
       console.log(<span class="hljs-string">'CLI arguments: '</span>, argv, <span class="hljs-string">'\n'</span>)
       console.log(acyort.config)
     },
@@ -117,9 +117,9 @@ acyort<span class="hljs-selector-class">.cli</span><span class="hljs-selector-cl
   name: <span class="hljs-string">'--config'</span>, <span class="hljs-comment">// 全名</span>
   alias: <span class="hljs-string">'-c'</span>, <span class="hljs-comment">// 简写</span>
   description: <span class="hljs-string">'Show config'</span>, <span class="hljs-comment">// 描述</span>
-  action(argv, _acyort) {
+  action(argv) {
     acyort<span class="hljs-selector-class">.logger</span><span class="hljs-selector-class">.log</span>(<span class="hljs-string">'CLI arguments: '</span>, argv, <span class="hljs-string">'\n'</span>)
-    acyort<span class="hljs-selector-class">.logger</span><span class="hljs-selector-class">.info</span>(_acyort.config)
+    acyort<span class="hljs-selector-class">.logger</span><span class="hljs-selector-class">.info</span>(acyort.config)
   },
 })</pre>
       </div>
@@ -149,11 +149,11 @@ acyort<span class="hljs-selector-class">.cli</span><span class="hljs-selector-cl
   <div class="center">
     <div class="copy">
       &copy; 2019.
-      <span>由 AcyOrt@3.1.1 构建</span>
+      <span>由 AcyOrt@3.2.1 构建</span>
     </div>
     <p>
       <a target="_blank" href="https://github.com/acyortjs/site/issues">
-        最后更新于: 2月 24, 2019
+        最后更新于: 4月 06, 2019
       </a>
     </p>
     <a href="#" class="top">返回顶部</a>
