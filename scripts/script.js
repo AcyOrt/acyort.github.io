@@ -1,4 +1,3 @@
-const fetcher = require('./fetcher')
 const processor = require('./processor')
 const output = require('./output')
 const helpers = require('./helper')
@@ -11,7 +10,6 @@ module.exports = (acyort) => {
   } = helpers(acyort)
 
   acyort.workflow.register(
-    fetcher.bind(acyort),
     processor.bind(acyort),
     output.bind(acyort),
   )

@@ -2,7 +2,6 @@ title: AcyOrt
 keywords: website,acyort,static
 description: A Node.js static website framework
 
-url: https://acyort.com
 template: pavane
 
 menu:
@@ -10,17 +9,12 @@ menu:
   api: /api/
   miscellaneous: /miscellaneous/
 
-repository: acyortjs/site
-
 plugins:
   - script.js
   - acyort-toc
   - acyort-server
 
 public: docs
-
-authors:
-  - LoeiFy
 
 timezone: Asia/Shanghai
 
