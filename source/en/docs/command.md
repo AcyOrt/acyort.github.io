@@ -1,5 +1,7 @@
 ---
 category: Getting Started
+title: Command
+order: 3
 ---
 
 AcyOrt has the following CLI commands, and supports custom CLI commands.

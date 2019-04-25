@@ -1,5 +1,7 @@
 ---
 category: API
+title: Method
+order: 1
 ---
 
 AcyOrt provides some APIs for plugins to use. In plugins, you can get these APIs via the function variable `acyort`

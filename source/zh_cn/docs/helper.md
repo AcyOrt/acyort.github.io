@@ -1,6 +1,7 @@
 ---
 category: Customization
 title: 辅助函数
+order: 6
 ---
 
 AcyOrt 内置一些辅助函数用于渲染模版使用，同时你可以自定义一些辅助函数用于模版渲染使用

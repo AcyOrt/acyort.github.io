@@ -1,7 +1,7 @@
 ---
 category: API
 title: 数据存储
-order: 1
+order: 2
 ---
 
 AcyOrt 提供一个 store 函数用于数据存储，可以在运行过程中用于数据传递

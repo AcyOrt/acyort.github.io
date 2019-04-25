@@ -1,6 +1,7 @@
 ---
 category: API
 title: 输出 HTML
+order: 7
 ---
 
 这个函数用于指定模板，数据快速生成 HTML 文件，生成方式为同步方式

@@ -1,5 +1,7 @@
 ---
 category: Getting Started
+title: Configuration
+order: 2
 ---
 
 The configuration file `config.yml` contains the following main configuration, you can customize some configuration if needs

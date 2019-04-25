@@ -1,5 +1,7 @@
 ---
 category: Customization
+title: Template
+order: 4
 ---
 
 AcyOrt uses [swig](https://github.com/node-swig/swig-templates) as the default template engine

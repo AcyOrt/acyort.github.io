@@ -1,3 +1,7 @@
+---
+title: Miscellaneous
+---
+
 Here is about the development of AcyOrt, and some plugins/utilities.
 
 ## Development

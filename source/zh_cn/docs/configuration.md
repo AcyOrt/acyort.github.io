@@ -1,6 +1,7 @@
 ---
 category: Getting Started
 title: 配置
+order: 2
 ---
 
 配置文件 `config.yml` 包含以下主要配置，你可以自定义加上一些配置

@@ -1,6 +1,7 @@
 ---
 category: API
 title: 流程控制
+order: 3
 ---
 
 运行流程函数 `process` 用于顺序执行插件注册函数

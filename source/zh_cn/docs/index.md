@@ -1,6 +1,7 @@
 ---
 category: Getting Started
 title: 文档
+order: 0
 ---
 
 AcyOrt 是一个简单的静态网站生成框架，基于 NodeJS 构建。通过这个框架你可以自定义各种类型的静态网站。可以通过插件完全自定义网站的生成

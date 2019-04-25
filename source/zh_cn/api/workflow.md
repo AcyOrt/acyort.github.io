@@ -1,6 +1,7 @@
 ---
 category: API
 title: 流程注册
+order: 5
 ---
 
 AcyOrt 的运行过程就是执行注册到流程里的函数，所以如果没有注册流程函数，那么运行 AcyOrt 会没有任何结果

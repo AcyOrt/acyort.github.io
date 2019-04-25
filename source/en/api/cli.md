@@ -1,5 +1,7 @@
 ---
 category: API
+title: CLI
+order: 4
 ---
 
 AcyOrt provides an interface for registering command line interfaces, you can register commands or options

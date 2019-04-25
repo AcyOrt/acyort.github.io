@@ -1,5 +1,7 @@
 ---
 category: API
+title: Process
+order: 3
 ---
 
 Process function use for execute the functions sequentially that be registered in `plugins`

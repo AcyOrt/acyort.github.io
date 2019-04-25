@@ -1,5 +1,7 @@
 ---
 category: Customization
+title: Helper
+order: 6
 ---
 
 AcyOrt has built-in helper functions for rendering templates, also you can customize helper functions

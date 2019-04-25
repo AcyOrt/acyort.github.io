@@ -1,6 +1,7 @@
 ---
 category: Getting Started
 title: 创建
+order: 1
 ---
 
 当安装好 AcyOrt，可以使用下面命令初始化一个网站

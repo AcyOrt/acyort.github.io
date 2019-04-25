@@ -1,6 +1,7 @@
 ---
 category: API
 title: API
+order: 0
 ---
 
 AcyOrt 默认作为一个全局命令行模块使用，即 cli 方式使用，不过也支持作为一个 node 模块使用，以下是一个使用例子

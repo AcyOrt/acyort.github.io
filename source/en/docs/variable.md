@@ -1,5 +1,7 @@
 ---
 category: Customization
+title: Variable
+order: 5
 ---
 
 Templates can use variables, including helper functions

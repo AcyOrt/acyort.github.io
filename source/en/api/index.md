@@ -1,5 +1,7 @@
 ---
 category: API
+title: API
+order: 0
 ---
 
 AcyOrt is used by default as a global CLI mode, but it is also supported as a node module. This following is a usage example

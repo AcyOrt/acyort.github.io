@@ -1,5 +1,7 @@
 ---
 category: API
+title: Output HTML
+order: 7
 ---
 
 This function is used to generate HTML file quickly and synchronously by specify template and data

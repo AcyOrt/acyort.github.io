@@ -1,6 +1,7 @@
 ---
 category: API
 title: 内置方法
+order: 1
 ---
 
 AcyOrt 提供一些 API 方便插件使用，在插件中，你可以通过函数变量 `acyort` 获取这些 API

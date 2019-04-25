@@ -1,6 +1,7 @@
 ---
 category: Customization
 title: 插件
+order: 7
 ---
 
 AcyOrt 的插件制作很简单，插件使用都需要在配置文件 `config.yml` 注册

@@ -1,6 +1,7 @@
 ---
 category: Customization
 title: 变量
+order: 5
 ---
 
 网站模版可以使用一些变量，包括一些辅助函数

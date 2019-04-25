@@ -1,6 +1,7 @@
 ---
 category: API
 title: 自定义函数
+order: 6
 ---
 
 AcyOrt 提供一个 helper 方法，除了能够访问内置的辅助函数外，还可以注册一些自定义的函数

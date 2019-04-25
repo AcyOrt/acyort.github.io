@@ -1,5 +1,7 @@
 ---
 category: Customization
+title: Plugin
+order: 7
 ---
 
 It is easy to make AcyOrt plugin, plugin usage needs to be registered in the configuration file `config.yml`

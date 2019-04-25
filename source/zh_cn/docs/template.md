@@ -1,6 +1,7 @@
 ---
 category: Customization
 title: 模板
+order: 4
 ---
 
 AcyOrt 使用 [Swig](https://github.com/node-swig/swig-templates) 作为默认模版引擎.

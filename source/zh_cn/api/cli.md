@@ -1,6 +1,7 @@
 ---
 category: API
 title: 命令行
+order: 4
 ---
 
 AcyOrt 提供一个接口用户注册命令行界面，可以注册命令或者选项
