@@ -22,26 +22,3 @@ language: en
 
 languages:
   zh-cn: 简体中文
-
-docs_nav:
-  Getting Started:
-    - Overview
-    - Setup
-    - Configuration
-    - Command
-  Customization:
-    - Template
-    - Variable
-    - Helper
-    - Plugin
-
-api_nav:
-  API:
-    - Overview
-    - Method
-    - Store
-    - Process
-    - CLi
-    - Workflow
-    - Helper
-    - Output

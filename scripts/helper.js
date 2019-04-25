@@ -1,6 +1,8 @@
 /* eslint no-underscore-dangle: 0 */
 module.exports = (acyort) => {
   const { __ } = acyort.helper.methods
+
+  // nav use order
   const {
     docs_nav: docsNav,
     api_nav: apiNav,
