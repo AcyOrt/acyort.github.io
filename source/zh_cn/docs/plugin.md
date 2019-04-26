@@ -1,16 +1,16 @@
 ---
 category: Customization
 title: 插件
-order: 7
+order: 5
 ---
 
-AcyOrt 的插件制作很简单，插件使用都需要在配置文件 `config.yml` 注册
+插件的使用都需要在配置文件 `config.yml` 注册，同时插件的开发也很方便
 
 ### 插件类型
 
-有两种插件类型 `npm 模块` 和 `script`
+有两种插件类型 `NPM 模块` 和 `script`
 
-**Script**
+**script**
 
 如果插件比较简单，可以将它放入 `scripts` 文件夹并且在 `config.yml` 注册
 
@@ -20,7 +20,7 @@ plugins:
  - scriptB.js
 ```
 
-**Plugin**
+**NPM 插件**
 
 NPM 插件跟普通 node 模块一样，同样需要在 `config.yml` 注册
 
@@ -36,9 +36,9 @@ plugins:
 
 ```js
 module.exports = (acyort) => {
-  const { store, version } = acyort
-  ...
+  const { store, version, ... } = acyort
+  // ...
 }
 ```
 
-具体 API 方法使用可以查看 [method](/api/method/)
+插件有着丰富的 API 可以使用，具体 API 可以查看 [API](/api/) 说明

@@ -2,7 +2,7 @@
 title: 其他
 ---
 
-这里说明一下 AcyOrt 的开发方式，以及当前存在的一些插件介绍
+这里说明 AcyOrt 的开发方式，以及一些插件介绍
 
 ## 开发
 
@@ -62,8 +62,8 @@ $ npm run test:cover # coverage test
 
 ## 插件/工具
 
-这里列出一些插件，以及一些助手 npm 模块
+一些插件，以及工具类模块
 
-- LiveReload（插件） 本地服务器，用于模板开发 [acyort-server](https://github.com/acyortjs/acyort-server)
-- Toc Helper（插件） 根据 markdown 内容生成目录 [acyort-toc](https://github.com/acyortjs/acyort-toc)
-- Pagination utilities（工具） 分页工具 [paginator](https://github.com/acyortjs/paginator)
+- acyort-server（插件） 本地 LiveReload 服务器，用于模板开发 [acyort-server](https://github.com/acyortjs/acyort-server)
+- acyort-toc（插件） 根据 markdown 内容生成目录 [acyort-toc](https://github.com/acyortjs/acyort-toc)
+- paginator（工具） 分页工具 [paginator](https://github.com/acyortjs/paginator)

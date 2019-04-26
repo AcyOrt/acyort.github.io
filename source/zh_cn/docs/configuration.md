@@ -4,7 +4,7 @@ title: 配置
 order: 2
 ---
 
-配置文件 `config.yml` 包含以下主要配置，你可以自定义加上一些配置
+配置文件 `config.yml` 包含以下主要配置，你可以自定义加上一些额外配置
 
 **基础**
 
@@ -17,8 +17,8 @@ url | 网站 URL，格式 `http://<domain>/<path>` 或者 `https://<domain>`，�
 
 **扩展**
 
-插件的使用定义，具体插件用法可以看 [这里](/docs/plugin/)
+插件的使用定义，详细查看 [插件](/docs/plugin/) 说明
 
 设置 | 描述
 --- | ---
-plugins | npm 模块名称或者 script 名字（script 需要把文件放入 scripts 文件夹）
+plugins | npm 模块名称，或者 script 名字（script 需要把文件放入 scripts 文件夹）

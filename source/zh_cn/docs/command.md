@@ -32,7 +32,7 @@ $ acyort version
 $ acyort flow
 ```
 
-按顺序执行 AcyOrt 脚本流程，相关自定义流程看 [这里](/api/workflow/)
+按顺序执行 AcyOrt 插件注册函数流程，详细查看 [流程](/api/workflow/) 说明
 
 **文件清理**
 
@@ -40,8 +40,25 @@ $ acyort flow
 $ acyort clean
 ```
 
-清除生成的一些静态文件，不会删除配置文件，git 之类的文件
+清除生成的一些静态文件，不会删除配置文件，git 之类的配置文件
+
+```js
+// 不会删除的路径或者文件
+[
+  'templates',
+  'scripts',
+  'config.yml',
+  'CNAME',
+  'README.md',
+  'LICENSE',
+  '.gitignore',
+  'package.json',
+  'package-lock.json',
+  'node_modules',
+  '.git',
+]
+```
 
 ### 注册 CLI 命令
 
-支持自定义控制命令，运行在插件上使用。具体查看 [这里](/api/cli/)
+支持自定义命令，详细查看 [CLI](/api/cli/) 说明

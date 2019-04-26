@@ -4,9 +4,9 @@ title: 模板
 order: 4
 ---
 
-AcyOrt 使用 [Swig](https://github.com/node-swig/swig-templates) 作为默认模版引擎.
+使用 [swig](https://github.com/node-swig/swig-templates) 作为默认模版引擎
 
-你可以自定义模版引擎通过注册 [renderer](https://github.com/acyortjs/renderer)
+支持自定义模版引擎，详细查看 [renderer](/api/renderer/) 说明
 
 ### 模板结构
 
@@ -31,17 +31,20 @@ AcyOrt 使用 [Swig](https://github.com/node-swig/swig-templates) 作为默认�
 
 将网站需要的资源文件 (例如 CSS，JavaScript) 放到这里
 
-### 模板引入
+### 模板注册
 
-模板可以直接放在 `templates` 目录，或者使用 npm 包，AcyOrt 默认会使用当前 `templates` 目录下的模板，如果找不到，就会寻找当前的 npm 包
+模板可以直接放在 `templates` 目录，或者使用 npm 包
 
-**npm 模板开发**
+默认会使用当前 `templates` 目录下的模板，如果找不到，就会寻找当前目录下的 npm 包
 
-模板必须放到目录的 `templates` 下，然后 npm 的入口文件要指定 `template` 名字
+**npm 模板**
 
-npm 模板的目录结构
+npm 模板也必须放到模块目录的 `templates` 下，然后 npm 的入口文件要指定 `template` 名字
+
+以下为典型的 npm 模板例子
 
 ```
+# 目录结构
 .
 ├─ package.json # 包配置
 ├─ index.js # 主入口文件
@@ -50,7 +53,7 @@ npm 模板的目录结构
 ```
 
 ```js
-// package.json
+// package.json 定义
 {
   "name": "npmTemplate",
   "version": "0.1.0",
@@ -61,4 +64,7 @@ npm 模板的目录结构
 ```js
 // 入口 index.js
 module.exports.template = 'ccc45' // 不指定 template，这时候 template 会使用 npm 包名
+module.exports = () => {
+  // [可选] 其他插件逻辑
+}
 ```

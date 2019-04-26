@@ -26,7 +26,7 @@ $ acyort init
 
 **config.yml**
 
-网站配置文件，查看 [配置](/docs/configuration/) 获取更多说明
+配置文件，具体查看 [配置](/docs/configuration/) 说明
 
 **templates**
 
@@ -34,4 +34,4 @@ $ acyort init
 
 **scripts**
 
-自定义脚本目录，用于存放 [插件](/docs/plugin/)
+自定义插件目录，用于存放自定义 [插件](/docs/plugin/)

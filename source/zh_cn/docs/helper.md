@@ -4,11 +4,11 @@ title: 辅助函数
 order: 6
 ---
 
-AcyOrt 内置一些辅助函数用于渲染模版使用，同时你可以自定义一些辅助函数用于模版渲染使用
+内置一些辅助函数用于模版渲染，同时支持自定义辅助函数
 
 ### 内置函数
 
-内置函数有 4 个，不能被自定义函数覆盖
+内置 4 个不能被自定义覆盖的辅助函数
 
 **URL 函数**
 
@@ -17,14 +17,14 @@ AcyOrt 内置一些辅助函数用于渲染模版使用，同时你可以自定�
 ```html
 {{ _url(path) }}
 
-<!-- 例子 -->
-<p>{{ _url('path') }}</p> <!-- <p>/root/path</p> -->
-<a href="{{ _url() }}">link</a> <!-- <a href="/">link</a> -->
+<!-- 例子, 假设当前根目录为 root -->
+<p>{{ _url('path/to') }}</p> <!-- <p>/root/path/to</p> -->
+<a href="{{ _url() }}">link</a> <!-- <a href="/root">link</a> -->
 ```
 
 **时间函数**
 
-时间格式化， 时间参数可以是 unix time, ISO string, date object，会根据时区，语言设置变化。使用 [Moment.js](http://momentjs.com/)
+时间格式化，根据时区，语言设置返回不同格式。详细查看 [Moment.js](http://momentjs.com/) 说明
 
 ```html
 {{ _time(date, format) }}
@@ -35,7 +35,7 @@ AcyOrt 内置一些辅助函数用于渲染模版使用，同时你可以自定�
 
 **多语言函数**
 
-在模版中使用 `__` 或者 `_n` 用于翻译多语言文本，使用的是 [i18n](https://github.com/acyortjs/i18n)
+在模版中使用 `__` 或者 `_n` 用于多语言渲染，详细查看 [i18n](https://github.com/acyortjs/i18n) 说明
 
 ```html
 {{ __(page.title) }}
@@ -62,4 +62,4 @@ posts:
 
 ### 自定义函数
 
-自定义辅助函数可以参考 [helper](/api/helper/)
+自定义辅助函数查看 [helper](/api/helper/) 说明
