@@ -1,18 +1,18 @@
 ---
 category: API
-title: 流程控制
-order: 3
+title: 运行流程
+order: 5
 ---
 
-运行流程函数 `process` 用于顺序执行插件注册函数
+运行流程函数 `process` 用于顺序执行插件注册的函数
 
 ```js
 acyort.cli.register('options', {
-  name: '--config',
-  alias: '-c',
-  description: 'Show config',
+  name: '--run',
+  alias: '-r',
+  description: 'Run the process',
   action(argv) {
-    this.process() // 执行 AcyOrt 的运行流程
+    this.process() // 执行运行流程
   },
 })
 ```
@@ -22,10 +22,10 @@ acyort.cli.register('options', {
 函数的执行顺序是根据插件注册函数的先后顺序，支持 Promise
 
 ```js
-function a() { console.log(a) }
+function a() { console.log('a') }
 
 function b() {
-  console.log(b)
+  console.log('b')
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve()

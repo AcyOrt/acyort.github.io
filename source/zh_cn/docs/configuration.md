@@ -6,6 +6,21 @@ order: 2
 
 配置文件 `config.yml` 包含以下主要配置，你可以自定义加上一些额外配置
 
+```js
+// 典型例子
+{
+  url: 'https://acyort.com',
+  template: 'ccc45',
+  plugins: [ 'script.js' ],
+  public: '/',
+  timezone: 'Asia/Shanghai',
+  language: 'en',
+  base: '/Users/am0200/Documents/github/acyort/assets',
+  root: '/',
+  templatePath: '/Users/am0200/Documents/github/acyort/assets/templates/ccc45'
+}
+```
+
 **基础**
 
 设置 | 描述

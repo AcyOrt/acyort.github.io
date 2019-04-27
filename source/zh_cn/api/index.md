@@ -137,7 +137,7 @@ acyort.cli.register('options', {
 })
 ```
 
-### 注册辅助函数
+### 模板渲染函数
 
 自定义一些函数用于模板使用，详细查看 [helper](/api/helper/) 说明
 

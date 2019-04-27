@@ -1,27 +1,26 @@
 ---
 category: API
-title: 数据存储
-order: 2
+title: 数据共享
+order: 3
 ---
 
-AcyOrt 提供一个 store 函数用于数据存储，可以在运行过程中用于数据传递
+提供一个 store 方法用于数据共享/存储，方便插件间的数据共享
 
 ```js
 const { store } = acyort
-```
 
-store 函数提供 4 个方法
-
-```js
 store.set('key', { a: 1 }) // 存储一个名为 key，值为 { a: 1 }
 store.get('key') // 获取名为 key 的值，结果为 { a: 1 }
-store.get('字段名', '插件名') // 获取其他插件的数据，默认情况下，每个插件有自己的命名空间，存储数据不会混乱
-store.reset() // 清空所有值
+
+// 获取其他插件的数据，默认情况下，每个插件有自己的命名空间，存储数据不会混乱
+store.get('字段名', '插件名')
+
+store.reset() // 清空所有值，只会清空当前插件，不影响其他
 ```
 
 **例子**
 
-用于 cli 与 workflow 之间的通信
+用于 `cli` 与 `workflow` 之间的通信
 
 ```js
 module.exports = (acyort) => {
