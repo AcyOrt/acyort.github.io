@@ -1,7 +1,7 @@
 ---
 category: API
 title: 辅助/工具类
-order: 7
+order: 6
 ---
 
 提供一些实用函数方法用于快速构建页面，可以通过访问 `util` 获取
@@ -42,5 +42,26 @@ util.outputHTML({
 ```js
 acyort.helper.register('_test', function () {
   console.log(this) // 输出 { title: 'acyort' }，即指定的模板数据 `data`
+  return `<p>${this.title}</p>`
 })
+```
+
+以下为一个模板使用例子
+
+```html
+<!-- 模板内容 -->
+<div class="content">
+  <h1>{{ page.title }}</h1>
+  <a href="{{ config.url }}">index</a>
+  {{ _test() }}
+  <p>{{ _time(Date.now(), 'YYYY') }}</p>
+</div>
+
+<!-- 输出结果 -->
+<div class="content">
+  <h1>acyort</h1>
+  <a href="/">index</a>
+  <p>acyort</p>
+  <p>2019</p>
+</div>
 ```

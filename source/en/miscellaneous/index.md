@@ -2,7 +2,7 @@
 title: Miscellaneous
 ---
 
-Here is about the development of AcyOrt, and some plugins/utilities.
+This is about the development of AcyOrt, and some plugins introduction
 
 ## Development
 
