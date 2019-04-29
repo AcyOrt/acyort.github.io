@@ -1,16 +1,14 @@
 ---
 category: API
 title: Workflow
-order: 5
+order: 4
 ---
 
-The operation of AcyOrt is to execute the function registered in the workflow, so if there is no registered functions, the running will have no results
+The running of AcyOrt is to execute the function registered in the workflow, so if there is no registered functions, the running will have no results
 
-```js
-const { workflow } = acyort
-```
+### Register
 
-The workflow function only provides `register` function, which can register multiple functions
+The `workflow` provides `register` method, which can register multiple functions
 
 ```js
 function a() {
@@ -23,10 +21,30 @@ acyort.workflow.register(a, b)
 // run acyort flow to execute the registered `a` and `b` function
 ```
 
-The running process are strictly in order, and the default `scripts` registered functions are higher priority than the functions registered by `plugins`
+**important**
+
+This function cannot be used in the `action` function when registering `cli`
+
+### Run workflow
+
+Run the `workflow` method `start` function to execute the functions registing in plugins sequentially
 
 ```js
-// support Promise
+acyort.cli.register('command', {
+  name: '--run',
+  alias: '-r',
+  description: 'Run the process',
+  action(argv) {
+    this.workflow.start() // start the flow
+      .catch(e => console.log(e)) // Promise
+  },
+})
+```
+
+The running are strictly in order
+
+```js
+// workflow register
 function a() {
   console.log('a')
   return new Promise((resolve) => {
@@ -42,3 +60,7 @@ function b() {
 acyort.workflow.register(a, b)
 // run acyort flow, first output `a`, then output `b` after 300 ms
 ```
+
+**important**
+
+This function can only be used in the `this` context of the `action` function when registering `cli`

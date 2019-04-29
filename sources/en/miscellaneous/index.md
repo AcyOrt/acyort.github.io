@@ -2,7 +2,7 @@
 title: Miscellaneous
 ---
 
-This is about the development of AcyOrt, and some plugins introduction
+This is about the development, and some plugins introduction of AcyOrt
 
 ## Development
 
@@ -19,7 +19,7 @@ For testing, the following scripts are built in
 
 **flow**
 
-Process the functions in order that registered in the workflow
+Run the functions in order that registered in the workflow
 
 ```bash
 $ npm run flow
@@ -27,7 +27,7 @@ $ npm run flow
 
 **help**
 
-Display all built in cli commands, including the registered
+Display all built in cli commands, including registered
 
 ```bash
 $ npm run help
@@ -64,6 +64,6 @@ $ npm run test:cover # coverage test
 
 Here are some plugins and utilities
 
-- LiveReload  server (plugin), for template development [acyort-server](https://github.com/acyortjs/acyort-server)
-- Markdown TOC helper (plugin)  [acyort-toc](https://github.com/acyortjs/acyort-toc)
-- Pagination (utility)  [paginator](https://github.com/acyortjs/paginator)
+- acyort-server (plugin) local LiveReload  server, for template development [acyort-server](https://github.com/acyortjs/acyort-server)
+- acyort-toc (plugin) Markdown TOC helper [acyort-toc](https://github.com/acyortjs/acyort-toc)
+- paginator (utility) Pagination [paginator](https://github.com/acyortjs/paginator)

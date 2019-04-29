@@ -26,13 +26,13 @@ $ acyort version
 
 Display AcyOrt version, and current system information
 
-**Workflow Process**
+**Workflow Runing**
 
 ```bash
 $ acyort flow
 ```
 
-Execute the AcyOrt script process in order, see [workflow](/api/workflow/) for more detail
+Execute the registed scripts in order, see [workflow](/api/workflow/) for more detail
 
 **Cleanup**
 
@@ -41,6 +41,23 @@ $ acyort clean
 ```
 
 Clear generated static files, will not delete configuration files, like `git` etc.
+
+```js
+// Paths or files that will not be deleted
+[
+  'templates',
+  'scripts',
+  'config.yml',
+  'CNAME',
+  'README.md',
+  'LICENSE',
+  '.gitignore',
+  'package.json',
+  'package-lock.json',
+  'node_modules',
+  '.git',
+]
+```
 
 ### CLI Registration
 

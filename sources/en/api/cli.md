@@ -1,19 +1,19 @@
 ---
 category: API
 title: CLI
-order: 4
+order: 2
 ---
 
 AcyOrt provides an interface for registering command line interfaces, you can register commands or options
 
-```js
-const { cli } = acyort
-```
+Built-in commands, check [Command](/docs/command/) for more
 
-**Register Command**
+Get the currently registered commands or options by running `acyort` or `acyort -h`
+
+### Register Command
 
 ```js
-// after registering the following command, you can run the `acyort config` command
+// after registering the following command, you can run the `acyort config`
 acyort.cli.register('commands', {
     name: 'config', // command name
     fullName: 'configs', // full name of the command, for display
@@ -21,11 +21,12 @@ acyort.cli.register('commands', {
     action(argv) { // register action function
       // `argv` is the command line argument
       console.log('CLI arguments: ', argv, '\n')
+      console.log(acyort.config)
     },
 })
 ```
 
-**Register Option**
+### Register Option
 
 ```js
 // after registering the following options, you can run `acyort -c` or `acyort --config`
@@ -39,10 +40,8 @@ acyort.cli.register('options', {
 })
 ```
 
-You can view the currently registered commands or options by running `acyort` or `acyort -h` directly.
-
 **important**
 
-The APIs of context `this` variable can access `process` only
+The `cli` APIs of context `this` variable can only access `workflow`, and the method is `start`
 
-Detailed function definitions can be seen [method](/api/method/)
+Detailed function definitions can be seen [API](/api/)

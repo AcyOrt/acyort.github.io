@@ -1,16 +1,16 @@
 ---
 category: Customization
 title: Plugin
-order: 7
+order: 5
 ---
 
 It is easy to make AcyOrt plugin, plugin usage needs to be registered in the configuration file `config.yml`
 
 ### Plugin type
 
-There are two plugin types, `npm module` and `script`
+There are two plugin types, `NPM` module and `script`
 
-**Script**
+**script**
 
 If the plugin is simple, you can put it in the `scripts` folder and register it in `config.yml`
 
@@ -20,7 +20,7 @@ plugins:
  - scriptB.js
 ```
 
-**Plugin**
+**NPM**
 
 The NPM plugin is the same as the normal node module and also needs to be registered in `config.yml`
 
@@ -37,8 +37,8 @@ The plugin needs `export` a function with `acyort` variable
 ```js
 module.exports = (acyort) => {
   const { store, version } = acyort
-  ...
+  //...
 }
 ```
 
-The specific APIs you can check [method](/api/method/)
+The specific APIs you can check [API](/api/)

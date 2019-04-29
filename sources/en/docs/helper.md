@@ -4,11 +4,11 @@ title: Helper
 order: 6
 ---
 
-AcyOrt has built-in helper functions for rendering templates, also you can customize helper functions
+AcyOrt has built-in helper functions for rendering templates, and you can customize helper functions
 
 ### Built-in functions
 
-There are built-in functions that cannot be overridden by custom function
+There are 4 built-in functions that cannot be overridden by custom function
 
 **URL**
 
@@ -17,14 +17,14 @@ Return the URL path with the root directory
 ```html
 {{ _url(path) }}
 
-<!-- example -->
-<p>{{ _url('path') }}</p> <!-- <p>/root/path</p> -->
-<a href="{{ _url() }}">link</a> <!-- <a href="/">link</a> -->
+<!-- example, current root path is `root` -->
+<p>{{ _url('path') }}</p> <!-- <p>/root/path/to</p> -->
+<a href="{{ _url() }}">link</a> <!-- <a href="/root">link</a> -->
 ```
 
 **time**
 
-Time formatting, time parameters can be `unix time, ISO string, date object`, depending on the time zone, language settings, check [Moment.js](http://momentjs.com/)
+Time formatting, depending on the time zone, language settings, check [Moment.js](http://momentjs.com/) for more details
 
 ```html
 {{ _time(date, format) }}

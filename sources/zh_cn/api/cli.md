@@ -35,7 +35,7 @@ acyort.cli.register('options', {
   alias: '-c', // 简写
   description: 'Show config', // 描述
   action(argv) {
-    console.log(this) // 只能访问到 process 方法
+    console.log(this) // 只能访问到 workflow 方法
     acyort.logger.log('CLI arguments: ', argv, '\n')
     acyort.logger.info(acyort.config)
   },
@@ -44,6 +44,6 @@ acyort.cli.register('options', {
 
 **注意**
 
-cli 注册函数中 `this` 上下文变量能访问的方法只有 `process`
+cli 注册函数中 `this` 上下文变量能访问的方法只有 `workflow` 的 `start` 方法
 
 详细 API 函数可以查看 [API](/api/) 说明

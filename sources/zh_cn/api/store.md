@@ -30,7 +30,7 @@ module.exports = (acyort) => {
     description: 'Show config',
     action(argv) {
       acyort.store.set('cli', argv) // 存储 cli 参数
-      this.process() // 执行 AcyOrt 的运行流程
+      this.workflow.start() // 执行 AcyOrt 的运行流程
     },
   })
 

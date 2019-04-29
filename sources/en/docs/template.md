@@ -4,9 +4,9 @@ title: Template
 order: 4
 ---
 
-AcyOrt uses [swig](https://github.com/node-swig/swig-templates) as the default template engine
+Uses [swig](https://github.com/node-swig/swig-templates) as the default template engine
 
-You can customize the template engine by registering [renderer](https://github.com/acyortjs/renderer)
+You can customize the template engine by registering [renderer](/api/renderer/)
 
 ### Template structure
 
@@ -25,7 +25,7 @@ Template file, file suffix is `.html`
 
 **i18n**
 
-Language file. YAML configuration files
+Language file. `YAML` configuration files
 
 **source**
 
@@ -33,7 +33,9 @@ Put the website resource files (such as CSS, JavaScript) here
 
 ### Template introduction
 
-Templates can be placed directly in the `templates` directory, or using the npm package. AcyOrt will use the template in the current `templates` directory by default. If not found, it will look for the npm package
+Templates can be placed directly in the `templates` directory, or using the npm package.
+
+AcyOrt will use the template in the current `templates` directory by default. If not found, it will look for the npm package
 
 **npm template development**
 
@@ -61,4 +63,7 @@ npm template directory structure
 ```js
 // entry: index.js
 module.exports.template = 'ccc45' // if no set `template` value, `template` will use npm package name
+module.exports = () => {
+  // [options] plugin detail
+}
 ```

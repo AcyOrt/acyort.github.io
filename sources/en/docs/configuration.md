@@ -6,6 +6,21 @@ order: 2
 
 The configuration file `config.yml` contains the following main configuration, you can customize some configuration if needs
 
+```js
+// example
+{
+  url: 'https://acyort.com',
+  template: 'ccc45',
+  plugins: [ 'script.js' ],
+  public: '/',
+  timezone: 'Asia/Shanghai',
+  language: 'en',
+  base: '/Users/am0200/Documents/github/acyort/assets',
+  root: '/',
+  templatePath: '/Users/am0200/Documents/github/acyort/assets/templates/ccc45'
+}
+```
+
 **basic**
 
 Settings | Description

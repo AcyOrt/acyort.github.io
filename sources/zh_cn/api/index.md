@@ -114,27 +114,12 @@ const { cli } = acyort
 const { store } = acyort
 ```
 
-### 注册流程
+### 流程
 
 该方法用于注册运行流程，可以自由控制整个构建过程，详细查看 [wordflow](/api/wordflow/) 说明
 
 ```js
 const { workflow } = acyort
-```
-
-### 运行流程
-
-用于执行插件注册的流程函数，只能在命令行注册中的 action 函数上下文访问到，详细查看 [process](/api/process/) 说明
-
-```js
-acyort.cli.register('options', {
-  name: '--process',
-  alias: '-p',
-  description: 'processing',
-  action(argv) {
-    this.process().then(() => ...)
-  },
-})
 ```
 
 ### 模板渲染函数
