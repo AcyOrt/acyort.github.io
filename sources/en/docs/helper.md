@@ -10,6 +10,18 @@ AcyOrt has built-in helper functions for rendering templates, and you can custom
 
 There are 4 built-in functions that cannot be overridden by custom function
 
+> The following helper functions are used directly in `outputHTML` method under [util](/api/util/)
+>
+> You need to use the helper's `getHelper` method to access these helper functions, if not use the `outputHTML`
+
+```js
+const { helper } = acyort
+const _time = helper.getHelper('_time') // parameter is the `helper` name
+
+_time(Date.now(), 'YYYY') // 2019
+```
+
+
 **URL**
 
 Return the URL path with the root directory

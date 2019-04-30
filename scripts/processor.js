@@ -1,19 +1,15 @@
-const { join } = require('path')
+const { relative, resolve } = require('path')
+const dirTree = require('directory-tree')
+
 
 module.exports = function processor() {
-  const regex = /^\[(.+?)]/
-  const issues = this.store.get('issues')
-  const cacheFile = join(this.config.base, 'pages.json')
-  const { authors } = this.config
+  const { version, fs } = this
+  const SOURCES_PATH = resolve(__dirname, '../sources')
+  const tree = dirTree(SOURCES_PATH, { extensions: /\.md$/ })
 
-  this.config.version = this.version
-  this.config.updated_at = issues[0].updated_at
+  console.log(relative(SOURCES_PATH, '/Users/am0200/Documents/github/site/sources/en/miscellaneous'))
 
-  if (this.fs.existsSync(cacheFile)) {
-    this.store.set('pages', require(cacheFile)) // eslint-disable-line
-    return
-  }
-
+  /*
   const pages = issues
     .filter(({ user, title }) => authors.includes(user.login) && regex.test(title))
     .map((issue) => {
@@ -51,7 +47,5 @@ module.exports = function processor() {
 
       return data
     })
-
-  this.fs.outputFileSync(cacheFile, JSON.stringify(pages))
-  this.store.set('pages', pages)
+  */
 }

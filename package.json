@@ -3,8 +3,9 @@
   "name": "acyortjs",
   "version": "3.0.0",
   "dependencies": {
-    "acyort-server": "^2.3.0",
-    "acyort-toc": "^2.0.0"
+    "acyort-server": "*",
+    "acyort-toc": "*",
+    "directory-tree": "^2.2.2"
   },
   "devDependencies": {
     "eslint": "*",

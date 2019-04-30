@@ -14,33 +14,17 @@ paginator:
   next: Next
 
 Getting Started: Getting Started
-Overview: Overview
-Setup: Setup
-Configuration: Configuration
-Basic Usage: Basic Usage
-Command: Command
 Customization: Customization
-Template: Template
-Variable: Variable
-Helper: Helper
-Plugin: Plugin
-
 API: API
-Method: Method
-Store: Store
-Process: Process
-CLi: CLI
-Workflow: Workflow
-Output: Output
 
-plugin feature:
+featurePlugin:
   title: Various Plugins
   description: Built-in a powerful plugin system. Support scripts and NPM modules.
 
-deploy feature:
+featureDeploy:
   title: CI Deployment
   description: Can be deployed automatically by continuous integration. Just need a browser.
 
-custom feature:
+featureCustom:
   title: Powerful Customization
   description: You can customize all kinds of website easily and freely.

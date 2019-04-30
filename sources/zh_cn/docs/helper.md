@@ -10,6 +10,17 @@ order: 6
 
 内置 4 个不能被自定义覆盖的辅助函数
 
+> 以下辅助函数都是在 [工具/辅助类](/api/util/) 下的 `outputHTML` 中直接使用的
+>
+> 如果不使用 `outputHTML` 函数，访问这些辅助函数，需要通过 helper 的 `getHelper` 方法
+
+```js
+const { helper } = acyort
+const _time = helper.getHelper('_time') // 参数为 helper 函数名字
+
+_time(Date.now(), 'YYYY') // 2019
+```
+
 **URL 函数**
 
 返回带根目录的 URL 路径
@@ -30,7 +41,7 @@ order: 6
 {{ _time(date, format) }}
 
 <!-- 例子 -->
-<p>{{ _time(Date.now(), 'YYYY') }}</p> <!-- <p>2018</p> -->
+<p>{{ _time(Date.now(), 'YYYY') }}</p> <!-- <p>2019</p> -->
 ```
 
 **多语言函数**
