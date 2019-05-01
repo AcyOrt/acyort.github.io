@@ -1,51 +1,58 @@
 const { relative, resolve } = require('path')
 const dirTree = require('directory-tree')
-
+const fm = require('front-matter')
+const slugify = require('@sindresorhus/slugify')
 
 module.exports = function processor() {
-  const { version, fs } = this
-  const SOURCES_PATH = resolve(__dirname, '../sources')
-  const tree = dirTree(SOURCES_PATH, { extensions: /\.md$/ })
+  const {
+    version,
+    fs,
+    renderer,
+    helper,
+    store,
+  } = this
 
-  console.log(relative(SOURCES_PATH, '/Users/am0200/Documents/github/site/sources/en/miscellaneous'))
+  const toc = helper.getHelper('_toc')
+  const sourcesPath = resolve(__dirname, '../sources')
+  const dirs = dirTree(sourcesPath, { extensions: /\.md$/ })
+  const trees = []
 
-  /*
-  const pages = issues
-    .filter(({ user, title }) => authors.includes(user.login) && regex.test(title))
-    .map((issue) => {
-      const {
-        id,
-        title,
-        labels,
-        milestone,
-        body,
-      } = issue
-      const matched = title.split(regex)
-      const splited = matched[1].split('/').filter(i => i)
-      const data = {
-        id,
-        title: matched[2],
-        name: splited.slice(-1)[0],
-        url: `/${matched[1]}/`,
-        path: `/${matched[1]}/index.html`,
-        language: labels.map(({ name }) => name)[0] || 'en',
-        category: (milestone || {}).title,
-        content: this.renderer.render('markdown', body, {
-          lineNumbers: false,
-          headingIdFormater: s => s
-            .replace(/\//g, '')
-            .toLowerCase()
-            .split(' ')
-            .join('-'),
-        }),
-        raw: body,
+  const re = (o) => {
+    const {
+      type,
+      children,
+      path,
+    } = o
+
+    if (type === 'directory') {
+      children.forEach(re)
+    }
+    if (type === 'file') {
+      const { attributes, body } = fm(fs.readFileSync(path, 'utf8'))
+      const relativePath = relative(sourcesPath, path).split('.md')[0]
+
+      let language = 'en'
+      let url = `/${relativePath}/`
+
+      if (relativePath.includes('en/')) {
+        url = `/${relativePath.split('en/')[1]}/`
+      } else {
+        [language] = relativePath.split('/')
       }
 
-      if (data.language !== 'en') {
-        data.path = `/${data.language}${data.path}`
-      }
+      trees.push({
+        ...attributes,
+        path: `${url}index.html`,
+        url,
+        language,
+        version,
+        toc: toc(body),
+        content: renderer.render('markdown', body, { getHeadingId: slugify }),
+      })
+    }
+  }
 
-      return data
-    })
-  */
+  re(dirs)
+
+  store.set('pages', trees)
 }
