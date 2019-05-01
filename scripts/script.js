@@ -11,7 +11,7 @@ module.exports = (acyort) => {
 
   acyort.workflow.register(
     processor.bind(acyort),
-    // output.bind(acyort),
+    output.bind(acyort),
   )
 
   // acyort.helper.register('_apiNav', _apiNav)

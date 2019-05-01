@@ -8,7 +8,7 @@ AcyOrt provides a helper API that can registers custom functions, and access bui
 
 Built-in helpers see [helper](/docs/helper/) for more
 
-**Register helper**
+### Register
 
 ```js
 // register a `_test` helper
@@ -17,8 +17,23 @@ acyort.helper.register('_test', function test() {
 })
 ```
 
+When use the `outputHTML` method under [util](/api/util/) to generate a page, you can access the function directly
 
 ```html
 <!-- use it on template -->
 <div>{{ _test() }}</div>
 ```
+
+### Set language
+
+Set the language currently in use, including the [Moment.js](http://momentjs.com/)
+
+```js
+acyort.helper.language = 'zh-cn'
+```
+
+### Get language
+
+```js
+console.log(acyort.helper.language) // 'en'
+``

@@ -1,4 +1,4 @@
-const { relative, resolve } = require('path')
+const { relative, join } = require('path')
 const dirTree = require('directory-tree')
 const fm = require('front-matter')
 const slugify = require('@sindresorhus/slugify')
@@ -10,10 +10,18 @@ module.exports = function processor() {
     renderer,
     helper,
     store,
+    config,
   } = this
 
+  const cacheFile = join(config.base, 'pages.json')
+
+  if (fs.existsSync(cacheFile)) {
+    store.set('pages', require(cacheFile)) // eslint-disable-line
+    return
+  }
+
   const toc = helper.getHelper('_toc')
-  const sourcesPath = resolve(__dirname, '../sources')
+  const sourcesPath = join(config.base, 'sources')
   const dirs = dirTree(sourcesPath, { extensions: /\.md$/ })
   const trees = []
 
@@ -54,5 +62,6 @@ module.exports = function processor() {
 
   re(dirs)
 
+  fs.outputFileSync(cacheFile, JSON.stringify(trees))
   store.set('pages', trees)
 }
