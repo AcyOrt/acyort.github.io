@@ -217,9 +217,6 @@ ul {
   position: relative;
   justify-content: space-between;
 }
-.footer a {
-  color: #acb1ca;
-}
 .footer a.top {
   color: #223464;
   font-weight: 600;
