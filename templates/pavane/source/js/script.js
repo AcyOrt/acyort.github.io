@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var path = location.pathname.split('/')
     var language = this.value
 
-    if (!language) {
+    if (language === 'en') {
       path.splice(0, 2)
       location.href = '/' + path.join('/')
     } else {

@@ -10,7 +10,7 @@
 <script>window.__language = "en"</script>
 
 <title>
-Setup - AcyOrt
+AcyOrt / Setup
 </title>
 </head>
 
@@ -19,51 +19,96 @@ Setup - AcyOrt
 <div class="header">
   <div class="center">
     <div class="menu">
-      
-      <a class="logo" href="/">AcyOrt</a>
-      
+      <a
+        class="logo"
+        
+        href="/"
+        
+      >
+        AcyOrt
+      </a>
+
       <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+
       
+      <a
+        class="normal"
+        
+        href="/docs/"
+        
+      >
+        Docs
+      </a>
       
-      <a class="normal" href="/docs/">Docs</a>
+      <a
+        class="normal"
+        
+        href="/api/"
+        
+      >
+        API
+      </a>
       
-      
-      
-      <a class="normal" href="/api/">API</a>
-      
-      
-      
-      <a class="normal" href="/miscellaneous/">Miscellaneous</a>
-      
+      <a
+        class="normal"
+        
+        href="/miscellaneous/"
+        
+      >
+        Miscellaneous
+      </a>
       
     </div>
+
     <div class="mobile-menu">
       
+      <a
+        
+        href="/docs/"
+        
+      >
+        Docs
+      </a>
       
-      <a href="/docs/">Docs</a>
+      <a
+        
+        href="/api/"
+        
+      >
+        API
+      </a>
       
+      <a
+        
+        href="/miscellaneous/"
+        
+      >
+        Miscellaneous
+      </a>
       
-      
-      <a href="/api/">API</a>
-      
-      
-      
-      <a href="/miscellaneous/">Miscellaneous</a>
-      
-      
-      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/variable/">Variable</a><a href="/docs/helper/">Helper</a><a href="/docs/plugin/">Plugin</a></li></ul>
-      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/method/">Method</a><a href="/api/store/">Store</a><a href="/api/process/">Process</a><a href="/api/cli/">CLI</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/output/">Output</a></li></ul>
+
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/"></a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
     </div>
+
     <div class="language">
       <select id="language">
         
-        <option value="">English</option>
+        <option
+          value="en"
+          
+          selected
+          
+        >
+          English
+        </option>
         
-
-        
-        
-        <option value="zh-cn">简体中文</option>
-        
+        <option
+          value="zh_CN"
+          
+        >
+          简体中文
+        </option>
         
       </select>
       <div id="toggle"></div>
@@ -83,37 +128,21 @@ Setup - AcyOrt
       
 
       
-      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/variable/">Variable</a><a href="/docs/helper/">Helper</a><a href="/docs/plugin/">Plugin</a></li></ul>
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
       
     </div>
   </div>
 
   <div class="content markdown">
-    <p>When AcyOrt is installed, you can use the following command to initialize new website</p>
+    <p>When AcyOrt is installed, you can use the following command to initialize new website</p><pre class="language-bash"><code class="language-bash">$ acyort init <span class="token operator">&lt;</span>folder<span class="token operator">></span>
 
-      <div class="hljs bash">
-        <pre><span class="hljs-meta">$</span><span class="bash"> acyort init &lt;folder&gt;</span>
-<span class="hljs-meta">
-#</span><span class="bash"> or</span>
-<span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span>  &lt;folder&gt;</span>
-<span class="hljs-meta">$</span><span class="bash"> acyort init</span></pre>
-      </div>
-    <p>When initialization is complete, the website folder is the following structure</p>
-
-      <div class="hljs">
-        <pre>.
+<span class="token comment"># or</span>
+$ <span class="token function">cd</span>  <span class="token operator">&lt;</span>folder<span class="token operator">></span>
+$ acyort init</code></pre><p>When initialization is complete, the website folder is the following structure</p><pre class="language-none"><code class="language-none">.
 ├─ config.yml
 ├─ templates&#x2F;
 |   └─ ccc45&#x2F;
-├─ scripts&#x2F;</pre>
-      </div>
-    <p><strong>config.yml</strong></p>
-<p>Website configuration file, see <a href="/docs/configuration/">configuration</a> for more instructions</p>
-<p><strong>templates</strong></p>
-<p>Template folder, see <a href="/docs/template/">template</a> for more instructions</p>
-<p><strong>scripts</strong></p>
-<p>Custom script directory, see <a href="/docs/plugin/">plugin</a> for more instructions</p>
-
+├─ scripts&#x2F;</code></pre><p><strong>config.yml</strong></p><p>Website configuration file, see <a href="/docs/configuration/">configuration</a> for more instructions</p><p><strong>templates</strong></p><p>Template folder, see <a href="/docs/template/">template</a> for more instructions</p><p><strong>scripts</strong></p><p>Custom script directory, see <a href="/docs/plugin/">plugin</a> for more instructions</p>
 
     
     <div class="paginator">
@@ -125,7 +154,6 @@ Setup - AcyOrt
   <div class="toc">
     <div class="stay">
       
-      
     </div>
   </div>
 </div>
@@ -135,12 +163,10 @@ Setup - AcyOrt
   <div class="center">
     <div class="copy">
       &copy; 2019.
-      <span>Built by AcyOrt@3.2.0</span>
+      <span>Built by AcyOrt@3.3.0</span>
     </div>
     <p>
-      <a target="_blank" href="https://github.com/acyortjs/site/issues">
-        Last updated: Apr 06, 2019
-      </a>
+      Last updated: May 2, 2019 8:16 PM
     </p>
     <a href="#" class="top">Top</a>
   </div>

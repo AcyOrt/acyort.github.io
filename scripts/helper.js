@@ -1,10 +1,12 @@
 /* eslint no-underscore-dangle: 0 */
 module.exports = (acyort) => {
-  const { __ } = acyort.helper.methods
+  const __ = acyort.helper.get('__')
+
+  // nav use order
   const {
     docs_nav: docsNav,
     api_nav: apiNav,
-  } = acyort.config
+  } = acyort.config.get()
 
   function nav(data, prefix) {
     const html = ['<ul>', '', '</ul>']

@@ -1,57 +1,69 @@
-const { join } = require('path')
+const { relative, join } = require('path')
+const dirTree = require('directory-tree')
+const fm = require('front-matter')
+const { slugify } = require('acyort-toc')
 
 module.exports = function processor() {
-  const regex = /^\[(.+?)]/
-  const issues = this.store.get('issues')
-  const cacheFile = join(this.config.base, 'pages.json')
-  const { authors } = this.config
+  const {
+    version,
+    fs,
+    renderer,
+    helper,
+    store,
+  } = this
+  const config = this.config.get()
+  const cacheFile = join(config.base, 'pages.json')
 
-  this.config.version = this.version
-  this.config.updated_at = issues[0].updated_at
+  this.config.set('version', version)
 
-  if (this.fs.existsSync(cacheFile)) {
-    this.store.set('pages', require(cacheFile)) // eslint-disable-line
+  if (fs.existsSync(cacheFile)) {
+    store.set('pages', require(cacheFile)) // eslint-disable-line
     return
   }
 
-  const pages = issues
-    .filter(({ user, title }) => authors.includes(user.login) && regex.test(title))
-    .map((issue) => {
-      const {
-        id,
-        title,
-        labels,
-        milestone,
-        body,
-      } = issue
-      const matched = title.split(regex)
-      const splited = matched[1].split('/').filter(i => i)
-      const data = {
-        id,
-        title: matched[2],
-        name: splited.slice(-1)[0],
-        url: `/${matched[1]}/`,
-        path: `/${matched[1]}/index.html`,
-        language: labels.map(({ name }) => name)[0] || 'en',
-        category: (milestone || {}).title,
-        content: this.renderer.render('markdown', body, {
-          lineNumbers: false,
-          headingIdFormater: s => s
-            .replace(/\//g, '')
-            .toLowerCase()
-            .split(' ')
-            .join('-'),
-        }),
-        raw: body,
+  const toc = helper.get('_toc')
+  const sourcesPath = join(config.base, 'sources')
+  const dirs = dirTree(sourcesPath, { extensions: /\.md$/ })
+  const trees = []
+
+  const re = (o) => {
+    const {
+      type,
+      children,
+      path,
+      name,
+    } = o
+
+    if (type === 'directory') {
+      children.forEach(re)
+    }
+    if (type === 'file') {
+      const { attributes, body } = fm(fs.readFileSync(path, 'utf8'))
+      const relativePath = relative(sourcesPath, path).split('.md')[0]
+
+      let language = 'en'
+      let url = `/${relativePath}`
+
+      if (relativePath.includes('en/')) {
+        url = `/${relativePath.split('en/')[1]}`
+      } else {
+        [language] = relativePath.split('/')
       }
 
-      if (data.language !== 'en') {
-        data.path = `/${data.language}${data.path}`
-      }
+      trees.push({
+        ...attributes,
+        name: name.split('.md')[0],
+        path: url.includes('/index') ? `${url}.html` : `${url}/index.html`,
+        url: `${url}/`,
+        language,
+        toc: toc(body),
+        content: renderer.render('markdown', body, { getHeadingId: slugify }),
+      })
+    }
+  }
 
-      return data
-    })
+  re(dirs)
 
-  this.fs.outputFileSync(cacheFile, JSON.stringify(pages))
-  this.store.set('pages', pages)
+  fs.outputFileSync(cacheFile, JSON.stringify(trees))
+  store.set('pages', trees)
 }

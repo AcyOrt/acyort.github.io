@@ -1,45 +1,61 @@
 <div class="header">
   <div class="center">
     <div class="menu">
-      {% if page.language !== 'en' %}
-      <a class="logo" href="{{ _url(page.language + '/') }}">{{ config.title }}</a>
-      {% else %}
-      <a class="logo" href="{{ _url('/') }}">{{ config.title }}</a>
-      {% endif %}
+      <a
+        class="logo"
+        {% if page.language !== 'en' %}
+        href="{{ _url(page.language + '/') }}"
+        {% else %}
+        href="{{ _url('/') }}"
+        {% endif %}
+      >
+        {{ config.title }}
+      </a>
+
       <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+
       {% for u in config.menu %}
-      {% if page.language !== 'en' %}
-      <a class="normal" href="{{ _url(page.language + u) }}">{{ __('menu.' + loop.key) }}</a>
-      {% else %}
-      <a class="normal" href="{{ _url(u) }}">{{ __('menu.' + loop.key) }}</a>
-      {% endif %}
+      <a
+        class="normal"
+        {% if page.language !== 'en' %}
+        href="{{ _url(page.language + u) }}"
+        {% else %}
+        href="{{ _url(u) }}"
+        {% endif %}
+      >
+        {{ __('menu.' + loop.key) }}
+      </a>
       {% endfor %}
     </div>
+
     <div class="mobile-menu">
       {% for u in config.menu %}
-      {% if page.language !== 'en' %}
-      <a href="{{ _url(page.language + u) }}">{{ __('menu.' + loop.key) }}</a>
-      {% else %}
-      <a href="{{ _url(u) }}">{{ __('menu.' + loop.key) }}</a>
-      {% endif %}
+      <a
+        {% if page.language !== 'en' %}
+        href="{{ _url(page.language + u) }}"
+        {% else %}
+        href="{{ _url(u) }}"
+        {% endif %}
+      >
+        {{ __('menu.' + loop.key) }}
+      </a>
       {% endfor %}
+
       {{ _docsNav() }}
       {{ _apiNav() }}
     </div>
+
     <div class="language">
       <select id="language">
-        {% if !page.language %}
-        <option value="" selected>English</option>
-        {% else %}
-        <option value="">English</option>
-        {% endif %}
-
         {% for lan in config.languages %}
-        {% if page.language === loop.key %}
-        <option value="{{ loop.key }}" selected>{{ lan }}</option>
-        {% else %}
-        <option value="{{ loop.key }}">{{ lan }}</option>
-        {% endif %}
+        <option
+          value="{{ loop.key }}"
+          {% if page.language === loop.key %}
+          selected
+          {% endif %}
+        >
+          {{ lan }}
+        </option>
         {% endfor %}
       </select>
       <div id="toggle"></div>

@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "en"</script>
+
+<title>
+AcyOrt / Util
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a
+        class="logo"
+        
+        href="/"
+        
+      >
+        AcyOrt
+      </a>
+
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+
+      
+      <a
+        class="normal"
+        
+        href="/docs/"
+        
+      >
+        Docs
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/miscellaneous/"
+        
+      >
+        Miscellaneous
+      </a>
+      
+    </div>
+
+    <div class="mobile-menu">
+      
+      <a
+        
+        href="/docs/"
+        
+      >
+        Docs
+      </a>
+      
+      <a
+        
+        href="/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        
+        href="/miscellaneous/"
+        
+      >
+        Miscellaneous
+      </a>
+      
+
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/"></a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
+    </div>
+
+    <div class="language">
+      <select id="language">
+        
+        <option
+          value="en"
+          
+          selected
+          
+        >
+          English
+        </option>
+        
+        <option
+          value="zh_CN"
+          
+        >
+          简体中文
+        </option>
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">Util</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/"></a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>Provides some utility methods for quickly building pages, which can be obtained by accessing <code>util</code></p><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> util <span class="token punctuation">}</span> <span class="token operator">=</span> acyort</code></pre><h3>
+  <a href="#source" id="source"></a>Source
+</h3><p>This function is used to copy the resource files in the <code>source</code> folder in the template to the website root directory</p><pre class="language-js"><code class="language-js">util<span class="token punctuation">.</span><span class="token function">copySource</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// sync</span></code></pre><h3>
+  <a href="#output-html" id="output-html"></a>output HTML
+</h3><p>This function is used to specify the template, and the data, generates HTML files</p><pre class="language-js"><code class="language-js">util<span class="token punctuation">.</span><span class="token function">outputHTML</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  template<span class="token punctuation">:</span> <span class="token string">'doc'</span><span class="token punctuation">,</span> <span class="token comment">// specify which template used, must be in the `layout` directory of `template`</span>
+  path<span class="token punctuation">:</span> <span class="token string">'doc/index.html'</span><span class="token punctuation">,</span> <span class="token comment">// specify the output directory, which is the base directory of website</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'acyort'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// specify template data</span>
+  engine<span class="token punctuation">:</span> <span class="token string">'swig'</span><span class="token punctuation">,</span> <span class="token comment">// optional, defaults `swig`, if set another renderer, should register it firstly</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre><p>Use this method to generate HTML, the variable that the template can access is</p><ul>
+<li><code>config</code>: website config <code>config.yml</code> detail, see <a href="/docs/configuration/">Configuration</a> for more</li>
+<li><code>page</code>: is the <code>data</code> variable passed by <code>outputHTML</code></li>
+<li>helper functions: Specifically <a href="/docs/helper/">Built-in</a> helper, and <a href="/api/helper/">Custom</a> helper</li>
+</ul>
+<p>The custom helper function can quickly access the <code>data</code> passed by <code>outputHTML</code> via the <code>this</code> context</p><pre class="language-js"><code class="language-js">acyort<span class="token punctuation">.</span>helper<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'_test'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token comment">// { title: 'acyort' }, the specified template data `data`</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`&lt;p></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>title<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/p>`</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre><p>Template use example</p><pre class="language-html"><code class="language-html"><span class="token comment">&lt;!-- template --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>{{ page.title }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{ config.url }}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>index<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+  {{ _test() }}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ _time(Date.now(), 'YYYY') }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- result --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>acyort<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>index<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>acyort<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>2019<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+
+    
+    <div class="paginator">
+      <a name="paginator" class="prev" href="/api/helper/">Previous</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      <p>Contents</p>
+      <ul>
+<li><a href="#source">Source</a></li>
+<li><a href="#output-html">output HTML</a></li>
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>Built by AcyOrt@3.3.0</span>
+    </div>
+    <p>
+      Last updated: May 2, 2019 8:16 PM
+    </p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

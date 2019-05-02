@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "en"</script>
+
+<title>
+AcyOrt / Renderer
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a
+        class="logo"
+        
+        href="/"
+        
+      >
+        AcyOrt
+      </a>
+
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+
+      
+      <a
+        class="normal"
+        
+        href="/docs/"
+        
+      >
+        Docs
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/miscellaneous/"
+        
+      >
+        Miscellaneous
+      </a>
+      
+    </div>
+
+    <div class="mobile-menu">
+      
+      <a
+        
+        href="/docs/"
+        
+      >
+        Docs
+      </a>
+      
+      <a
+        
+        href="/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        
+        href="/miscellaneous/"
+        
+      >
+        Miscellaneous
+      </a>
+      
+
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/"></a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
+    </div>
+
+    <div class="language">
+      <select id="language">
+        
+        <option
+          value="en"
+          
+          selected
+          
+        >
+          English
+        </option>
+        
+        <option
+          value="zh_CN"
+          
+        >
+          简体中文
+        </option>
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">Renderer</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/"></a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>AcyOrt use <a href="https://github.com/acyortjs/renderer">renderer</a> for rendering</p><h3>
+  <a href="#defaults" id="defaults"></a>Defaults
+</h3><p>Built-in supports <code>yaml</code>，<code>swig</code>，<code>markdown</code> renders</p><ul>
+<li><code>yaml</code> use <a href="https://github.com/nodeca/js-yaml">js-yaml</a></li>
+<li><code>swig</code> use <a href="https://github.com/node-swig/swig-templates">swig-templates</a></li>
+<li><code>markdown</code> use <a href="https://github.com/acyortjs/markdown">@acyort/markdown</a></li>
+</ul>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> renderer <span class="token punctuation">}</span> <span class="token operator">=</span> acyort
+
+<span class="token comment">// default swig, yaml and markdown</span>
+renderer<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'swig'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'swig'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+renderer<span class="token punctuation">.</span><span class="token function">renderFile</span><span class="token punctuation">(</span><span class="token string">'swig'</span><span class="token punctuation">,</span> <span class="token string">'path/to/html'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'swig'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+renderer<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'yaml'</span><span class="token punctuation">,</span> <span class="token string">'title: yaml'</span><span class="token punctuation">)</span>
+renderer<span class="token punctuation">.</span><span class="token function">renderFile</span><span class="token punctuation">(</span><span class="token string">'yaml'</span><span class="token punctuation">,</span> <span class="token string">'path/to/yaml'</span><span class="token punctuation">)</span>
+
+renderer<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'markdown'</span><span class="token punctuation">,</span> <span class="token string">'# h1'</span><span class="token punctuation">)</span>
+renderer<span class="token punctuation">.</span><span class="token function">renderFile</span><span class="token punctuation">(</span><span class="token string">'markdown'</span><span class="token punctuation">,</span> <span class="token string">'path/to/markdown'</span><span class="token punctuation">)</span>
+
+<span class="token comment">// markdown supports code highlighting and math latex, and can set if show line numbers</span>
+renderer<span class="token punctuation">.</span><span class="token function">renderFile</span><span class="token punctuation">(</span><span class="token string">'markdown'</span><span class="token punctuation">,</span> <span class="token string">'path/to/markdown'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> lineNumbers<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre><h3>
+  <a href="#customs" id="customs"></a>Customs
+</h3><p>Register render engine</p><pre class="language-js"><code class="language-js"><span class="token comment">// register ejs</span>
+<span class="token keyword">const</span> ejs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'ejs'</span><span class="token punctuation">)</span>
+
+renderer<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'ejs'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  render<span class="token punctuation">:</span> ejs<span class="token punctuation">.</span>render<span class="token punctuation">,</span>
+  <span class="token function-variable function">renderFile</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token parameter">file<span class="token punctuation">,</span> data</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> text <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">readFileSync</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> ejs<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>text<span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre>
+
+    
+    <div class="paginator">
+      <a name="paginator" class="prev" href="/api/">Previous</a><a name="paginator" class="next" href="/api/cli/">Next</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      <p>Contents</p>
+      <ul>
+<li><a href="#defaults">Defaults</a></li>
+<li><a href="#customs">Customs</a></li>
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>Built by AcyOrt@3.3.0</span>
+    </div>
+    <p>
+      Last updated: May 2, 2019 8:16 PM
+    </p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

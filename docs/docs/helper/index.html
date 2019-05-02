@@ -10,7 +10,7 @@
 <script>window.__language = "en"</script>
 
 <title>
-Helper - AcyOrt
+AcyOrt / Helper
 </title>
 </head>
 
@@ -19,51 +19,96 @@ Helper - AcyOrt
 <div class="header">
   <div class="center">
     <div class="menu">
-      
-      <a class="logo" href="/">AcyOrt</a>
-      
+      <a
+        class="logo"
+        
+        href="/"
+        
+      >
+        AcyOrt
+      </a>
+
       <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+
       
+      <a
+        class="normal"
+        
+        href="/docs/"
+        
+      >
+        Docs
+      </a>
       
-      <a class="normal" href="/docs/">Docs</a>
+      <a
+        class="normal"
+        
+        href="/api/"
+        
+      >
+        API
+      </a>
       
-      
-      
-      <a class="normal" href="/api/">API</a>
-      
-      
-      
-      <a class="normal" href="/miscellaneous/">Miscellaneous</a>
-      
+      <a
+        class="normal"
+        
+        href="/miscellaneous/"
+        
+      >
+        Miscellaneous
+      </a>
       
     </div>
+
     <div class="mobile-menu">
       
+      <a
+        
+        href="/docs/"
+        
+      >
+        Docs
+      </a>
       
-      <a href="/docs/">Docs</a>
+      <a
+        
+        href="/api/"
+        
+      >
+        API
+      </a>
       
+      <a
+        
+        href="/miscellaneous/"
+        
+      >
+        Miscellaneous
+      </a>
       
-      
-      <a href="/api/">API</a>
-      
-      
-      
-      <a href="/miscellaneous/">Miscellaneous</a>
-      
-      
-      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/variable/">Variable</a><a href="/docs/helper/">Helper</a><a href="/docs/plugin/">Plugin</a></li></ul>
-      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/method/">Method</a><a href="/api/store/">Store</a><a href="/api/process/">Process</a><a href="/api/cli/">CLI</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/output/">Output</a></li></ul>
+
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/"></a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
     </div>
+
     <div class="language">
       <select id="language">
         
-        <option value="">English</option>
+        <option
+          value="en"
+          
+          selected
+          
+        >
+          English
+        </option>
         
-
-        
-        
-        <option value="zh-cn">简体中文</option>
-        
+        <option
+          value="zh_CN"
+          
+        >
+          简体中文
+        </option>
         
       </select>
       <div id="toggle"></div>
@@ -83,72 +128,52 @@ Helper - AcyOrt
       
 
       
-      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/variable/">Variable</a><a href="/docs/helper/">Helper</a><a href="/docs/plugin/">Plugin</a></li></ul>
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
       
     </div>
   </div>
 
   <div class="content markdown">
-    <p>AcyOrt has built-in helper functions for rendering templates, also you can customize helper functions</p>
+    <p>AcyOrt has built-in helper functions for rendering templates, and you can customize helper functions</p><h3>
+  <a href="#built-in" id="built-in"></a>Built-in
+</h3><p>There are 4 built-in functions that cannot be overridden by custom function</p><blockquote>
+<p>The following helper functions are used directly in <code>outputHTML</code> method under <a href="/api/util/">util</a></p><p>You need to use the helper&#39;s <code>getHelper</code> method to access these helper functions, if not use the <code>outputHTML</code></p></blockquote>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> helper <span class="token punctuation">}</span> <span class="token operator">=</span> acyort
+<span class="token keyword">const</span> _time <span class="token operator">=</span> helper<span class="token punctuation">.</span><span class="token function">getHelper</span><span class="token punctuation">(</span><span class="token string">'_time'</span><span class="token punctuation">)</span> <span class="token comment">// parameter is the `helper` name</span>
 
-            <h3>
-              <a href="#built-in-functions" id="built-in-functions" class="heading"></a>Built-in functions
-            </h3>
-          <p>There are built-in functions that cannot be overridden by custom function</p>
-<p><strong>URL</strong></p>
-<p>Return the URL path with the root directory</p>
+<span class="token function">_time</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'YYYY'</span><span class="token punctuation">)</span> <span class="token comment">// 2019</span></code></pre><p><strong>URL</strong></p><p>Return the URL path with the root directory</p><pre class="language-html"><code class="language-html">{{ _url(path) }}
 
-      <div class="hljs html">
-        <pre><span class="xml"></span><span class="hljs-template-variable">{{ _url(path) }}</span><span class="xml">
+<span class="token comment">&lt;!-- example, current root path is `root` --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ _url('path') }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- &lt;p>/root/path/to&lt;/p> --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{ _url() }}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>link<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- &lt;a href="/root">link&lt;/a> --></span></code></pre><p><strong>time</strong></p><p>Time formatting, depending on the time zone, language settings, check <a href="http://momentjs.com/">Moment.js</a> for more details</p><pre class="language-html"><code class="language-html">{{ _time(date, format) }}
 
-<span class="hljs-comment">&lt;!-- example --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">{{ _url('path') }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span> <span class="hljs-comment">&lt;!-- &lt;p&gt;/root/path&lt;/p&gt; --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"</span></span></span><span class="hljs-template-variable">{{ _url() }}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">"</span>&gt;</span>link<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> <span class="hljs-comment">&lt;!-- &lt;a href="/"&gt;link&lt;/a&gt; --&gt;</span></span></pre>
-      </div>
-    <p><strong>time</strong></p>
-<p>Time formatting, time parameters can be <code>unix time, ISO string, date object</code>, depending on the time zone, language settings, check <a href="http://momentjs.com/">Moment.js</a></p>
+<span class="token comment">&lt;!-- example --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ _time(Date.now(), 'YYYY') }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- &lt;p>2018&lt;/p> --></span></code></pre><p><strong>language</strong></p><p>Use <code>__</code> or <code>_n</code> in the template to translate multilingual text, check <a href="https://github.com/acyortjs/i18n">i18n </a></p><p>AcyOrt allows language changes at runtime, just changes the config language</p><pre class="language-js"><code class="language-js">acyort<span class="token punctuation">.</span>config<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'language'</span><span class="token punctuation">,</span> <span class="token string">'zh_CN'</span><span class="token punctuation">)</span> <span class="token comment">// also change the time language</span></code></pre><pre class="language-html"><code class="language-html">{{ __(page.title) }}
+{{ _n(page.posts) }}
 
-      <div class="hljs html">
-        <pre><span class="xml"></span><span class="hljs-template-variable">{{ _time(<span class="hljs-name">date</span>, format) }}</span><span class="xml">
+<span class="token comment">&lt;!-- example --></span>
 
-<span class="hljs-comment">&lt;!-- example --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">{{ _time(<span class="hljs-name">Date</span>.now(), 'YYYY') }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span> <span class="hljs-comment">&lt;!-- &lt;p&gt;2018&lt;/p&gt; --&gt;</span></span></pre>
-      </div>
-    <p><strong>language</strong></p>
-<p>Use <code>__</code> or <code>_n</code> in the template to translate multilingual text, check <a href="https://github.com/acyortjs/i18n">i18n </a></p>
-
-      <div class="hljs html">
-        <pre><span class="xml"></span><span class="hljs-template-variable">{{ __(page.title) }}</span><span class="xml">
-</span><span class="hljs-template-variable">{{ _n(page.posts) }}</span><span class="xml">
-
-<span class="hljs-comment">&lt;!-- example --&gt;</span>
-
-<span class="hljs-comment">&lt;!--
+<span class="token comment">&lt;!--
 The yaml language file
 
 # i18n config yml
-index:  
+index:
   title: Home
-posts: 
+posts:
   zero: No posts
   one: One post
   other: %d posts
 
---&gt;</span>
+--></span>
 
-<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">{{ __('index.title') }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span> <span class="hljs-comment">&lt;!-- &lt;p&gt;Home&lt;/p&gt; --&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">{{ _n('posts', 3) }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span> <span class="hljs-comment">&lt;!-- 3 posts --&gt;</span></span></pre>
-      </div>
-    
-            <h3>
-              <a href="#custom-functions" id="custom-functions" class="heading"></a>Custom functions
-            </h3>
-          <p>Custom helper functions, check <a href="/api/helper/">helper</a></p>
-
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ __('index.title') }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- &lt;p>Home&lt;/p> --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ _n('posts', 3) }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- 3 posts --></span></code></pre><h3>
+  <a href="#customs" id="customs"></a>Customs
+</h3><p>Custom helper functions, check <a href="/api/helper/">helper</a></p>
 
     
     <div class="paginator">
-      <a name="paginator" class="prev" href="/docs/variable/">Previous</a><a name="paginator" class="next" href="/docs/plugin/">Next</a>
+      <a name="paginator" class="prev" href="/docs/plugin/">Previous</a>
     </div>
     
   </div>
@@ -156,11 +181,10 @@ posts:
   <div class="toc">
     <div class="stay">
       
-      
       <p>Contents</p>
       <ul>
-<li><a href="#built-in-functions">Built-in functions</a></li>
-<li><a href="#custom-functions">Custom functions</a></li>
+<li><a href="#built-in">Built-in</a></li>
+<li><a href="#customs">Customs</a></li>
 </ul>
 
       
@@ -173,12 +197,10 @@ posts:
   <div class="center">
     <div class="copy">
       &copy; 2019.
-      <span>Built by AcyOrt@3.2.0</span>
+      <span>Built by AcyOrt@3.3.0</span>
     </div>
     <p>
-      <a target="_blank" href="https://github.com/acyortjs/site/issues">
-        Last updated: Apr 06, 2019
-      </a>
+      Last updated: May 2, 2019 8:16 PM
     </p>
     <a href="#" class="top">Top</a>
   </div>

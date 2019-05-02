@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "zh_CN"</script>
+
+<title>
+AcyOrt / 辅助/工具类
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a
+        class="logo"
+        
+        href="/zh_CN/"
+        
+      >
+        AcyOrt
+      </a>
+
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+
+      
+      <a
+        class="normal"
+        
+        href="/zh_CN/docs/"
+        
+      >
+        文档
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/zh_CN/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/zh_CN/miscellaneous/"
+        
+      >
+        其他
+      </a>
+      
+    </div>
+
+    <div class="mobile-menu">
+      
+      <a
+        
+        href="/zh_CN/docs/"
+        
+      >
+        文档
+      </a>
+      
+      <a
+        
+        href="/zh_CN/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        
+        href="/zh_CN/miscellaneous/"
+        
+      >
+        其他
+      </a>
+      
+
+      <ul><li><p>开始使用</p><a href="/zh_CN/docs/">概述</a><a href="/zh_CN/docs/setup/">创建</a><a href="/zh_CN/docs/configuration/">配置</a><a href="/zh_CN/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_CN/docs/template/">模板</a><a href="/zh_CN/docs/plugin/">插件</a><a href="/zh_CN/docs/helper/">辅助函数</a></li></ul>
+      <ul><li><p>API</p><a href="/zh_CN/api/">概述</a><a href="/zh_CN/api/renderer/">渲染器</a><a href="/zh_CN/api/cli/"></a><a href="/zh_CN/api/store/">数据存储</a><a href="/zh_CN/api/workflow/">流程</a><a href="/zh_CN/api/helper/">辅助函数</a><a href="/zh_CN/api/util/">工具类</a></li></ul>
+    </div>
+
+    <div class="language">
+      <select id="language">
+        
+        <option
+          value="en"
+          
+        >
+          English
+        </option>
+        
+        <option
+          value="zh_CN"
+          
+          selected
+          
+        >
+          简体中文
+        </option>
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">辅助/工具类</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      <ul><li><p>API</p><a href="/zh_CN/api/">概述</a><a href="/zh_CN/api/renderer/">渲染器</a><a href="/zh_CN/api/cli/"></a><a href="/zh_CN/api/store/">数据存储</a><a href="/zh_CN/api/workflow/">流程</a><a href="/zh_CN/api/helper/">辅助函数</a><a href="/zh_CN/api/util/">工具类</a></li></ul>
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>提供一些实用函数方法用于快速构建页面，可以通过访问 <code>util</code> 获取</p><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> util <span class="token punctuation">}</span> <span class="token operator">=</span> acyort</code></pre><h3>
+  <a href="#静态文件处理" id="静态文件处理"></a>静态文件处理
+</h3><p>此函数用于将模板中的 <code>source</code> 文件夹里面的资源文件复制到网站根目录</p><pre class="language-js"><code class="language-js">util<span class="token punctuation">.</span><span class="token function">copySource</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 同步方式</span></code></pre><h3>
+  <a href="#输出HTML" id="输出HTML"></a>输出 HTML
+</h3><p>这个函数用于指定模板，数据同步方式生成 HTML 文件</p><pre class="language-js"><code class="language-js">util<span class="token punctuation">.</span><span class="token function">outputHTML</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  template<span class="token punctuation">:</span> <span class="token string">'doc'</span><span class="token punctuation">,</span> <span class="token comment">// 指定当前使用哪个模板，该模板必须在 `template` 的 `layout` 目录下</span>
+  path<span class="token punctuation">:</span> <span class="token string">'doc/index.html'</span><span class="token punctuation">,</span> <span class="token comment">// 指定输出目录，此目录为相对网站的基础目录</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'acyort'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// 指定模板数据</span>
+  engine<span class="token punctuation">:</span> <span class="token string">'swig'</span><span class="token punctuation">,</span> <span class="token comment">// 默认为 swig，如果设置其他渲染器，必须先注册</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre><p>使用此方式生成 HTML，模版能访问到的变量为以下</p><ul>
+<li><code>config</code> 变量：为网站配置文件 <code>config.yml</code> 里面的设置内容，详细查看 <a href="/docs/configuration/">配置</a> 说明</li>
+<li><code>page</code> 变量：此变量为 <code>outputHTML</code> 传递的 <code>data</code> 变量</li>
+<li>辅助函数：具体为 <a href="/docs/helper/">内置</a> 辅助函数，以及 <a href="/api/helper/">自定义</a> 辅助函数</li>
+</ul>
+<p>其中自定义辅助函数可以通过 <code>this</code> 上下文快速访问到 <code>outputHTML</code> 传递的 <code>data</code> 变量</p><pre class="language-js"><code class="language-js">acyort<span class="token punctuation">.</span>helper<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'_test'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token comment">// 输出 { title: 'acyort' }，即指定的模板数据 `data`</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`&lt;p></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>title<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/p>`</span></span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre><p>以下为一个模板使用例子</p><pre class="language-html"><code class="language-html"><span class="token comment">&lt;!-- 模板内容 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>{{ page.title }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{ config.url }}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>index<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+  {{ _test() }}
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ _time(Date.now(), 'YYYY') }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span>
+
+<span class="token comment">&lt;!-- 输出结果 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>content<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>acyort<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>index<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>acyort<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>2019<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+
+    
+    <div class="paginator">
+      <a name="paginator" class="prev" href="/zh_CN/api/helper/">上一页</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      <p>目录</p>
+      <ul>
+<li><a href="#静态文件处理">静态文件处理</a></li>
+<li><a href="#输出HTML">输出 HTML</a></li>
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>由 AcyOrt@3.3.0 构建</span>
+    </div>
+    <p>
+      最后更新于: 2019年5月2日 20:16
+    </p>
+    <a href="#" class="top">返回顶部</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

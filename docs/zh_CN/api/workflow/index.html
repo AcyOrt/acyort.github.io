@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "zh_CN"</script>
+
+<title>
+AcyOrt / 流程
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a
+        class="logo"
+        
+        href="/zh_CN/"
+        
+      >
+        AcyOrt
+      </a>
+
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+
+      
+      <a
+        class="normal"
+        
+        href="/zh_CN/docs/"
+        
+      >
+        文档
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/zh_CN/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/zh_CN/miscellaneous/"
+        
+      >
+        其他
+      </a>
+      
+    </div>
+
+    <div class="mobile-menu">
+      
+      <a
+        
+        href="/zh_CN/docs/"
+        
+      >
+        文档
+      </a>
+      
+      <a
+        
+        href="/zh_CN/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        
+        href="/zh_CN/miscellaneous/"
+        
+      >
+        其他
+      </a>
+      
+
+      <ul><li><p>开始使用</p><a href="/zh_CN/docs/">概述</a><a href="/zh_CN/docs/setup/">创建</a><a href="/zh_CN/docs/configuration/">配置</a><a href="/zh_CN/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_CN/docs/template/">模板</a><a href="/zh_CN/docs/plugin/">插件</a><a href="/zh_CN/docs/helper/">辅助函数</a></li></ul>
+      <ul><li><p>API</p><a href="/zh_CN/api/">概述</a><a href="/zh_CN/api/renderer/">渲染器</a><a href="/zh_CN/api/cli/"></a><a href="/zh_CN/api/store/">数据存储</a><a href="/zh_CN/api/workflow/">流程</a><a href="/zh_CN/api/helper/">辅助函数</a><a href="/zh_CN/api/util/">工具类</a></li></ul>
+    </div>
+
+    <div class="language">
+      <select id="language">
+        
+        <option
+          value="en"
+          
+        >
+          English
+        </option>
+        
+        <option
+          value="zh_CN"
+          
+          selected
+          
+        >
+          简体中文
+        </option>
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">流程</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      <ul><li><p>API</p><a href="/zh_CN/api/">概述</a><a href="/zh_CN/api/renderer/">渲染器</a><a href="/zh_CN/api/cli/"></a><a href="/zh_CN/api/store/">数据存储</a><a href="/zh_CN/api/workflow/">流程</a><a href="/zh_CN/api/helper/">辅助函数</a><a href="/zh_CN/api/util/">工具类</a></li></ul>
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>AcyOrt 的运行过程就是执行注册到流程里的函数，所以如果没有注册流程函数，那么运行过程会没有任何结果</p><h3>
+  <a href="#注册流程" id="注册流程"></a>注册流程
+</h3><p>提供一个 <code>register</code> 方法，可以同时注册多个流程函数</p><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>acyort<span class="token punctuation">.</span>version<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  acyort<span class="token punctuation">.</span>store<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+acyort<span class="token punctuation">.</span>workflow<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
+<span class="token comment">// 运行 acyort flow，就会执行注册的 a，b 函数</span></code></pre><p><strong>注意</strong></p><p>这个函数不能在注册 cli 时候的 action 函数中使用</p><h3>
+  <a href="#运行流程" id="运行流程"></a>运行流程
+</h3><p>运行流程函数 <code>start</code> 用于顺序执行插件注册的函数</p><pre class="language-js"><code class="language-js">acyort<span class="token punctuation">.</span>cli<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'command'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  name<span class="token punctuation">:</span> <span class="token string">'--run'</span><span class="token punctuation">,</span>
+  alias<span class="token punctuation">:</span> <span class="token string">'-r'</span><span class="token punctuation">,</span>
+  description<span class="token punctuation">:</span> <span class="token string">'Run the process'</span><span class="token punctuation">,</span>
+  <span class="token function">action</span><span class="token punctuation">(</span><span class="token parameter">argv</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>workflow<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 执行运行流程</span>
+      <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">e</span> <span class="token operator">=></span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// Promise</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre><p><strong>顺序执行</strong></p><p>函数的执行顺序是根据插件注册函数的先后顺序，支持 Promise</p><pre class="language-js"><code class="language-js"><span class="token comment">// 以下函数注册过程</span>
+<span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'b'</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+      <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+acyort<span class="token punctuation">.</span>workflow<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> a<span class="token punctuation">)</span>
+
+<span class="token comment">// 执行 `start`</span>
+
+<span class="token comment">/*
+输出 b
+等待 1000ms
+输出 a
+*/</span></code></pre><p><strong>注意</strong></p><p>这个函数只能在注册 cli 时候的 action 函数中的 <code>this</code> 上下文使用</p>
+
+    
+    <div class="paginator">
+      <a name="paginator" class="prev" href="/zh_CN/api/store/">上一页</a><a name="paginator" class="next" href="/zh_CN/api/helper/">下一页</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      <p>目录</p>
+      <ul>
+<li><a href="#注册流程">注册流程</a></li>
+<li><a href="#运行流程">运行流程</a></li>
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>由 AcyOrt@3.3.0 构建</span>
+    </div>
+    <p>
+      最后更新于: 2019年5月2日 20:16
+    </p>
+    <a href="#" class="top">返回顶部</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

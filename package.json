@@ -1,29 +1,21 @@
 {
   "private": true,
-  "name": "acyort.com",
-  "version": "2.0.1",
-  "description": "AcyOrt site",
+  "name": "acyortjs",
+  "version": "3.0.0",
   "dependencies": {
-    "@octokit/rest": "^16.23.2",
-    "acyort-server": "^2.2.0",
-    "acyort-toc": "^2.0.0"
+    "acyort-server": "*",
+    "acyort-toc": "*",
+    "directory-tree": "^2.2.2",
+    "front-matter": "^3.0.2"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0"
+    "eslint": "*",
+    "eslint-config-airbnb-base": "*",
+    "eslint-plugin-import": "*"
   },
   "scripts": {
-    "start": "acyort server"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/acyortjs/acyortjs.github.io.git"
+    "start": "rm -rf pages.json && acyort server"
   },
   "author": "LoeiFy <LoeiFy@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/acyortjs/acyortjs.github.io/issues"
-  },
-  "homepage": "https://github.com/acyortjs/acyortjs.github.io#readme"
+  "license": "MIT"
 }
