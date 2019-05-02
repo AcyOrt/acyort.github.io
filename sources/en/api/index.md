@@ -32,6 +32,17 @@ const ctx = acyort(config) // at this point `ctx` can access the APIs provided b
 
 AcyOrt built-in numbers of APIs
 
+- fs
+- version
+- logger
+- renderer
+- workflow
+- cli
+- store
+- config
+- helper
+- util
+
 ### File Operations
 
 Use [fs-extra](https://github.com/jprichardson/node-fs-extra)
@@ -54,7 +65,7 @@ const { version } = acyort
 Get the configuration information from config.yml, and get some extra path information, etc
 
 ```js
-const { config } = acyort
+const config = acyort.config.get() // get all config
 /*
 {
   url: 'https://acyort.com',
@@ -68,6 +79,10 @@ const { config } = acyort
   base: '/Users/am0200/Documents/github/acyort/assets'
 }
 */
+
+const url = acyort.config.get('url') // single config
+
+acyort.config.set('version', acyort.version) // add config
 ```
 
 ### Log

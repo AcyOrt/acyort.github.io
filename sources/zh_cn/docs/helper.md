@@ -12,11 +12,11 @@ order: 6
 
 > 以下辅助函数都是在 [工具/辅助类](/api/util/) 下的 `outputHTML` 中直接使用的
 >
-> 如果不使用 `outputHTML` 函数，访问这些辅助函数，需要通过 helper 的 `getHelper` 方法
+> 如果不使用 `outputHTML` 函数，访问这些辅助函数，需要通过 helper 的 `get` 方法
 
 ```js
 const { helper } = acyort
-const _time = helper.getHelper('_time') // 参数为 helper 函数名字
+const _time = helper.get('_time') // 参数为 helper 函数名字
 
 _time(Date.now(), 'YYYY') // 2019
 ```
@@ -47,6 +47,12 @@ _time(Date.now(), 'YYYY') // 2019
 **多语言函数**
 
 在模版中使用 `__` 或者 `_n` 用于多语言渲染，详细查看 [i18n](https://github.com/acyortjs/i18n) 说明
+
+AcyOrt 允许运行时进行语言更换，直接更改配置的语言即可
+
+```js
+acyort.config.set('language', 'zh_CN') // 同时时间函数的语言也会修改
+```
 
 ```html
 {{ __(page.title) }}

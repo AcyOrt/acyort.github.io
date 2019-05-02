@@ -10,10 +10,11 @@ module.exports = function processor() {
     renderer,
     helper,
     store,
-    config,
   } = this
-
+  const config = this.config.get()
   const cacheFile = join(config.base, 'pages.json')
+
+  this.config.set('version', version)
 
   if (fs.existsSync(cacheFile)) {
     store.set('pages', require(cacheFile)) // eslint-disable-line
@@ -53,7 +54,6 @@ module.exports = function processor() {
         path: `${url}index.html`,
         url,
         language,
-        version,
         toc: toc(body),
         content: renderer.render('markdown', body, { getHeadingId: slugify }),
       })

@@ -21,7 +21,6 @@ const _time = helper.getHelper('_time') // parameter is the `helper` name
 _time(Date.now(), 'YYYY') // 2019
 ```
 
-
 **URL**
 
 Return the URL path with the root directory
@@ -48,6 +47,12 @@ Time formatting, depending on the time zone, language settings, check [Moment.js
 **language**
 
 Use `__` or `_n` in the template to translate multilingual text, check [i18n ](https://github.com/acyortjs/i18n)
+
+AcyOrt allows language changes at runtime, just changes the config language
+
+```js
+acyort.config.set('language', 'zh_CN') // also change the time language
+```
 
 ```html
 {{ __(page.title) }}

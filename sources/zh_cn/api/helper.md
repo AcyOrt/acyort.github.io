@@ -8,7 +8,7 @@ AcyOrt 提供一个 `helper` 方法，除了能够访问内置的辅助渲染函
 
 内置函数可以查看 [helper](/docs/helper/) 说明
 
-### 注册函数
+**注册函数**
 
 ```js
 // 注册一个自定义函数 `_test`
@@ -22,18 +22,4 @@ acyort.helper.register('_test', function test() {
 ```html
 <!-- 模板页面使用 -->
 <div>{{ _test() }}</div>
-```
-
-### 设置语言
-
-设置当前使用的语言，包括时间函数 [Moment.js](http://momentjs.com/) 的语言
-
-```js
-acyort.helper.language = 'zh-cn'
-```
-
-### 获取语言
-
-```js
-console.log(acyort.helper.language) // 'en'
 ```

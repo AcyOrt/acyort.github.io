@@ -32,6 +32,17 @@ const ctx = acyort(config) // 此时 ctx 就能访问到所以 AcyOrt 提供的�
 
 AcyOrt 内置了许多 API 方法，以下为方法列表
 
+- fs
+- version
+- logger
+- renderer
+- workflow
+- cli
+- store
+- config
+- helper
+- util
+
 ### 文件操作
 
 文件操作使用的是 [fs-extra](https://github.com/jprichardson/node-fs-extra)
@@ -56,7 +67,7 @@ const { version } = acyort
 同时会获得当前运行的一些额外信息，基础路径，模板路径等
 
 ```js
-const { config } = acyort
+const config = acyort.config.get() // 全部配置信息
 /*
 {
   url: 'https://acyort.com',
@@ -70,6 +81,10 @@ const { config } = acyort
   base: '/Users/am0200/Documents/github/acyort/assets'
 }
 */
+
+const url = acyort.config.get('url') // 单个配置
+
+acyort.config.set('version', acyort.version) // 添加配置
 ```
 
 ### 输出信息
