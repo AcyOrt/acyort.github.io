@@ -1,7 +1,6 @@
 ---
 category: API
 title: API
-order: 0
 ---
 
 AcyOrt is used by default as a global CLI mode

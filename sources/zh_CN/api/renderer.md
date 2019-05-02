@@ -1,7 +1,6 @@
 ---
 category: API
 title: 渲染器
-order: 1
 ---
 
 渲染器使用的是 [renderer](https://github.com/acyortjs/renderer)

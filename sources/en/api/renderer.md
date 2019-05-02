@@ -1,12 +1,11 @@
 ---
 category: API
 title: Renderer
-order: 1
 ---
 
-Use [renderer](https://github.com/acyortjs/renderer)
+AcyOrt use [renderer](https://github.com/acyortjs/renderer) for rendering
 
-### Default supports
+### Defaults
 
 Built-in supports `yaml`，`swig`，`markdown` renders
 

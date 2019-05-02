@@ -87,8 +87,8 @@ AcyOrt / Template
       </a>
       
 
-      
-      
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/"></a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
     </div>
 
     <div class="language">
@@ -128,19 +128,19 @@ AcyOrt / Template
       
 
       
-      
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
       
     </div>
   </div>
 
   <div class="content markdown">
     <p>Uses <a href="https://github.com/node-swig/swig-templates">swig</a> as the default template engine</p><p>You can customize the template engine by registering <a href="/api/renderer/">renderer</a></p><h3>
-  <a href="#template-structure" id="template-structure"></a>Template structure
+  <a href="#structure" id="structure"></a>Structure
 </h3><p>Template usually have the following file structure</p><pre class="language-none"><code class="language-none">.
 ├─ layout
 ├─ i18n
 └─ source</code></pre><p><strong>layout</strong></p><p>Template file, file suffix is <code>.html</code></p><p><strong>i18n</strong></p><p>Language file. <code>YAML</code> configuration files</p><p><strong>source</strong></p><p>Put the website resource files (such as CSS, JavaScript) here</p><h3>
-  <a href="#template-introduction" id="template-introduction"></a>Template introduction
+  <a href="#introduction" id="introduction"></a>Introduction
 </h3><p>Templates can be placed directly in the <code>templates</code> directory, or using the npm package.</p><p>AcyOrt will use the template in the current <code>templates</code> directory by default. If not found, it will look for the npm package</p><p><strong>npm template development</strong></p><p>The template must be placed under <code>templates</code> in the directory, and the npm entry should specify the <code>template</code> name</p><p>npm template directory structure</p><pre class="language-none"><code class="language-none">.
 ├─ package.json # npm config
 ├─ index.js # main entry
@@ -158,7 +158,7 @@ module<span class="token punctuation">.</span><span class="token function-variab
 
     
     <div class="paginator">
-      
+      <a name="paginator" class="prev" href="/docs/command/">Previous</a><a name="paginator" class="next" href="/docs/plugin/">Next</a>
     </div>
     
   </div>
@@ -168,8 +168,8 @@ module<span class="token punctuation">.</span><span class="token function-variab
       
       <p>Contents</p>
       <ul>
-<li><a href="#template-structure">Template structure</a></li>
-<li><a href="#template-introduction">Template introduction</a></li>
+<li><a href="#structure">Structure</a></li>
+<li><a href="#introduction">Introduction</a></li>
 </ul>
 
       
@@ -185,7 +185,7 @@ module<span class="token punctuation">.</span><span class="token function-variab
       <span>Built by AcyOrt@3.3.0</span>
     </div>
     <p>
-      Last updated: May 02, 2019 18:07
+      Last updated: May 2, 2019 7:49 PM
     </p>
     <a href="#" class="top">Top</a>
   </div>

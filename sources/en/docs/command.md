@@ -1,12 +1,11 @@
 ---
 category: Getting Started
 title: Command
-order: 3
 ---
 
 AcyOrt has the following CLI commands, and supports custom CLI commands.
 
-### Built-in commands
+### Built-in
 
 Built in basic commands, as well as some options
 
@@ -59,6 +58,6 @@ Clear generated static files, will not delete configuration files, like `git` et
 ]
 ```
 
-### CLI Registration
+### Registration
 
 Support for custom CLI commands, see [CLI](/api/cli/) for more detail

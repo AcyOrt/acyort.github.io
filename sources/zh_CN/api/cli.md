@@ -1,7 +1,6 @@
 ---
 category: API
 title: 命令行
-order: 2
 ---
 
 此接口用于注册命令行，可以注册命令或者选项

@@ -1,7 +1,6 @@
 ---
 category: API
 title: Workflow
-order: 4
 ---
 
 The running of AcyOrt is to execute the function registered in the workflow, so if there is no registered functions, the running will have no results
@@ -25,7 +24,7 @@ acyort.workflow.register(a, b)
 
 This function cannot be used in the `action` function when registering `cli`
 
-### Run workflow
+### Run Flow
 
 Run the `workflow` method `start` function to execute the functions registing in plugins sequentially
 

@@ -1,7 +1,6 @@
 ---
 category: Getting Started
 title: Documentation
-order: 0
 ---
 
 AcyOrt is a simple static website framework built on NodeJS. Through this framework you can customize various types of static websites

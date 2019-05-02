@@ -1,7 +1,6 @@
 ---
 category: Customization
 title: 辅助函数
-order: 6
 ---
 
 内置一些辅助函数用于模版渲染，同时支持自定义辅助函数

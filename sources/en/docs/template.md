@@ -1,14 +1,13 @@
 ---
 category: Customization
 title: Template
-order: 4
 ---
 
 Uses [swig](https://github.com/node-swig/swig-templates) as the default template engine
 
 You can customize the template engine by registering [renderer](/api/renderer/)
 
-### Template structure
+### Structure
 
 Template usually have the following file structure
 
@@ -31,7 +30,7 @@ Language file. `YAML` configuration files
 
 Put the website resource files (such as CSS, JavaScript) here
 
-### Template introduction
+### Introduction
 
 Templates can be placed directly in the `templates` directory, or using the npm package.
 

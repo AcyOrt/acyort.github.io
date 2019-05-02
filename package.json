@@ -14,7 +14,7 @@
     "eslint-plugin-import": "*"
   },
   "scripts": {
-    "start": "acyort server"
+    "start": "rm -rf pages.json && acyort server"
   },
   "author": "LoeiFy <LoeiFy@gmail.com>",
   "license": "MIT"

@@ -87,8 +87,8 @@ AcyOrt / CLI
       </a>
       
 
-      
-      
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/"></a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
     </div>
 
     <div class="language">
@@ -126,7 +126,7 @@ AcyOrt / CLI
   <div class="nav">
     <div class="stay">
       
-      
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/"></a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
       
 
       
@@ -135,7 +135,7 @@ AcyOrt / CLI
 
   <div class="content markdown">
     <p>AcyOrt provides an interface for registering command line interfaces, you can register commands or options</p><p>Built-in commands, check <a href="/docs/command/">Command</a> for more</p><p>Get the currently registered commands or options by running <code>acyort</code> or <code>acyort -h</code></p><h3>
-  <a href="#register-command" id="register-command"></a>Register Command
+  <a href="#commands" id="commands"></a>Commands
 </h3><pre class="language-js"><code class="language-js"><span class="token comment">// after registering the following command, you can run the `acyort config`</span>
 acyort<span class="token punctuation">.</span>cli<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'commands'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
     name<span class="token punctuation">:</span> <span class="token string">'config'</span><span class="token punctuation">,</span> <span class="token comment">// command name</span>
@@ -147,7 +147,7 @@ acyort<span class="token punctuation">.</span>cli<span class="token punctuation"
       console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>acyort<span class="token punctuation">.</span>config<span class="token punctuation">)</span>
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre><h3>
-  <a href="#register-option" id="register-option"></a>Register Option
+  <a href="#options" id="options"></a>Options
 </h3><pre class="language-js"><code class="language-js"><span class="token comment">// after registering the following options, you can run `acyort -c` or `acyort --config`</span>
 acyort<span class="token punctuation">.</span>cli<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'options'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
   name<span class="token punctuation">:</span> <span class="token string">'--config'</span><span class="token punctuation">,</span> <span class="token comment">// full name</span>
@@ -160,7 +160,7 @@ acyort<span class="token punctuation">.</span>cli<span class="token punctuation"
 
     
     <div class="paginator">
-      
+      <a name="paginator" class="prev" href="/api/renderer/">Previous</a><a name="paginator" class="next" href="/api/store/">Next</a>
     </div>
     
   </div>
@@ -170,8 +170,8 @@ acyort<span class="token punctuation">.</span>cli<span class="token punctuation"
       
       <p>Contents</p>
       <ul>
-<li><a href="#register-command">Register Command</a></li>
-<li><a href="#register-option">Register Option</a></li>
+<li><a href="#commands">Commands</a></li>
+<li><a href="#options">Options</a></li>
 </ul>
 
       
@@ -187,7 +187,7 @@ acyort<span class="token punctuation">.</span>cli<span class="token punctuation"
       <span>Built by AcyOrt@3.3.0</span>
     </div>
     <p>
-      Last updated: May 02, 2019 18:07
+      Last updated: May 2, 2019 7:49 PM
     </p>
     <a href="#" class="top">Top</a>
   </div>

@@ -1,7 +1,6 @@
 ---
 category: API
 title: Store
-order: 2
 ---
 
 AcyOrt provides a store function for data storage, can be used for plugins data sharing

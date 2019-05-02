@@ -17,6 +17,19 @@ Getting Started: 开始使用
 Customization: 自定义
 API: API
 
+Overview: 概述
+Setup: 创建
+Configuration: 配置
+Command: 命令
+Template: 模板
+Helper: 辅助函数
+Plugin: 插件
+Store: 数据存储
+CLi: 命令行
+Workflow: 流程
+Renderer: 渲染器
+Util: 工具类
+
 featurePlugin:
   title: 丰富的插件
   description: 内置强大的插件系统，支持脚本以及 NPM 模块

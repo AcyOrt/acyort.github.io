@@ -1,7 +1,6 @@
 ---
 category: API
 title: Util
-order: 6
 ---
 
 Provides some utility methods for quickly building pages, which can be obtained by accessing `util`

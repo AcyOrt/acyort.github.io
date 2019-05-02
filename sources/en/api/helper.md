@@ -1,7 +1,6 @@
 ---
 category: API
 title: Helper
-order: 5
 ---
 
 AcyOrt provides a helper API that can registers custom functions, and access built-in helpers

@@ -1,7 +1,6 @@
 ---
 category: API
 title: 数据共享
-order: 3
 ---
 
 提供一个 store 方法用于数据共享/存储，方便插件间的数据共享

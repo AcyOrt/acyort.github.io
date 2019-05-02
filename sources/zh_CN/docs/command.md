@@ -1,7 +1,6 @@
 ---
 category: Getting Started
 title: 命令
-order: 3
 ---
 
 AcyOrt 内置以下控制台命令可以使用，同时支持自定义控制台命令

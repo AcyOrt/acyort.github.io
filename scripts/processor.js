@@ -31,6 +31,7 @@ module.exports = function processor() {
       type,
       children,
       path,
+      name,
     } = o
 
     if (type === 'directory') {
@@ -51,6 +52,7 @@ module.exports = function processor() {
 
       trees.push({
         ...attributes,
+        name: name.split('.md')[0],
         path: url.includes('/index') ? `${url}.html` : `${url}/index.html`,
         url: `${url}/`,
         language,

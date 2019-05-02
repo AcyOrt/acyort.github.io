@@ -1,7 +1,6 @@
 ---
 category: Customization
 title: 插件
-order: 5
 ---
 
 插件的使用都需要在配置文件 `config.yml` 注册，同时插件的开发也很方便

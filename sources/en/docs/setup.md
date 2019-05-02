@@ -1,7 +1,6 @@
 ---
 category: Getting Started
 title: Setup
-order: 1
 ---
 
 When AcyOrt is installed, you can use the following command to initialize new website

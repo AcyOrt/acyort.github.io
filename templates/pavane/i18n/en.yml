@@ -17,6 +17,19 @@ Getting Started: Getting Started
 Customization: Customization
 API: API
 
+Overview: Overview
+Setup: Setup
+Configuration: Configuration
+Command: Command
+Template: Template
+Helper: Helper
+Plugin: Plugin
+Store: Store
+CLi: CLI
+Workflow: Workflow
+Renderer: Renderer
+Util: Util
+
 featurePlugin:
   title: Various Plugins
   description: Built-in a powerful plugin system. Support scripts and NPM modules.

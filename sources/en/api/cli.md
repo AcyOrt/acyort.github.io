@@ -1,7 +1,6 @@
 ---
 category: API
 title: CLI
-order: 2
 ---
 
 AcyOrt provides an interface for registering command line interfaces, you can register commands or options
@@ -10,7 +9,7 @@ Built-in commands, check [Command](/docs/command/) for more
 
 Get the currently registered commands or options by running `acyort` or `acyort -h`
 
-### Register Command
+### Commands
 
 ```js
 // after registering the following command, you can run the `acyort config`
@@ -26,7 +25,7 @@ acyort.cli.register('commands', {
 })
 ```
 
-### Register Option
+### Options
 
 ```js
 // after registering the following options, you can run `acyort -c` or `acyort --config`

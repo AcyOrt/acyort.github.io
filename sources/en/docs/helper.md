@@ -1,12 +1,11 @@
 ---
 category: Customization
 title: Helper
-order: 6
 ---
 
 AcyOrt has built-in helper functions for rendering templates, and you can customize helper functions
 
-### Built-in functions
+### Built-in
 
 There are 4 built-in functions that cannot be overridden by custom function
 
@@ -77,6 +76,6 @@ posts:
 <p>{{ _n('posts', 3) }}</p> <!-- 3 posts -->
 ```
 
-### Custom functions
+### Customs
 
 Custom helper functions, check [helper](/api/helper/)

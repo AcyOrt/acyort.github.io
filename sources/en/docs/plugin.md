@@ -1,12 +1,11 @@
 ---
 category: Customization
 title: Plugin
-order: 5
 ---
 
 It is easy to make AcyOrt plugin, plugin usage needs to be registered in the configuration file `config.yml`
 
-### Plugin type
+### Types
 
 There are two plugin types, `NPM` module and `script`
 
@@ -30,7 +29,7 @@ plugins:
  - moduleB
 ```
 
-### Plugin registration
+### Registration
 
 The plugin needs `export` a function with `acyort` variable
 

@@ -87,8 +87,8 @@ AcyOrt / Workflow
       </a>
       
 
-      
-      
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/"></a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
     </div>
 
     <div class="language">
@@ -126,7 +126,7 @@ AcyOrt / Workflow
   <div class="nav">
     <div class="stay">
       
-      
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/"></a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
       
 
       
@@ -144,7 +144,7 @@ AcyOrt / Workflow
 <span class="token punctuation">}</span>
 acyort<span class="token punctuation">.</span>workflow<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span>
 <span class="token comment">// run acyort flow to execute the registered `a` and `b` function</span></code></pre><p><strong>important</strong></p><p>This function cannot be used in the <code>action</code> function when registering <code>cli</code></p><h3>
-  <a href="#run-workflow" id="run-workflow"></a>Run workflow
+  <a href="#run-flow" id="run-flow"></a>Run Flow
 </h3><p>Run the <code>workflow</code> method <code>start</code> function to execute the functions registing in plugins sequentially</p><pre class="language-js"><code class="language-js">acyort<span class="token punctuation">.</span>cli<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'command'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
   name<span class="token punctuation">:</span> <span class="token string">'--run'</span><span class="token punctuation">,</span>
   alias<span class="token punctuation">:</span> <span class="token string">'-r'</span><span class="token punctuation">,</span>
@@ -171,7 +171,7 @@ acyort<span class="token punctuation">.</span>workflow<span class="token punctua
 
     
     <div class="paginator">
-      
+      <a name="paginator" class="prev" href="/api/store/">Previous</a><a name="paginator" class="next" href="/api/helper/">Next</a>
     </div>
     
   </div>
@@ -182,7 +182,7 @@ acyort<span class="token punctuation">.</span>workflow<span class="token punctua
       <p>Contents</p>
       <ul>
 <li><a href="#register">Register</a></li>
-<li><a href="#run-workflow">Run workflow</a></li>
+<li><a href="#run-flow">Run Flow</a></li>
 </ul>
 
       
@@ -198,7 +198,7 @@ acyort<span class="token punctuation">.</span>workflow<span class="token punctua
       <span>Built by AcyOrt@3.3.0</span>
     </div>
     <p>
-      Last updated: May 02, 2019 18:07
+      Last updated: May 2, 2019 7:49 PM
     </p>
     <a href="#" class="top">Top</a>
   </div>

@@ -1,7 +1,6 @@
 ---
 category: API
 title: 模板渲染函数
-order: 5
 ---
 
 AcyOrt 提供一个 `helper` 方法，除了能够访问内置的辅助渲染函数外，还可以注册一些自定义的函数

@@ -1,7 +1,6 @@
 ---
 category: Customization
 title: 模板
-order: 4
 ---
 
 使用 [swig](https://github.com/node-swig/swig-templates) 作为默认模版引擎
