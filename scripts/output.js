@@ -1,12 +1,11 @@
 module.exports = function output() {
-  // const { path: filePath = '' } = this.store.get('server_status') || {}
-  // const { language: locale, languages } = this.config
   const {
     store,
     config,
     util,
   } = this
   const { languages } = config.get()
+  const { path: filePath = '' } = store.get('status', 'acyort-server') || {}
 
   const pages = () => {
     store.get('pages').forEach((page) => {
@@ -31,26 +30,26 @@ module.exports = function output() {
     })
   }
 
-  // const source = () => {
-  //   this.copySource()
-  // }
+  const source = () => {
+    util.copySource()
+  }
 
-  // if (filePath.includes('/pavane/source/')) {
-  //   source()
-  //   return
-  // }
+  if (filePath.includes('/pavane/source/')) {
+    source()
+    return
+  }
 
-  // if (filePath.includes('/layout/doc.html')) {
-  //   pages()
-  //   return
-  // }
+  if (filePath.includes('/layout/doc.html')) {
+    pages()
+    return
+  }
 
-  // if (filePath.includes('/layout/home.html')) {
-  //   home()
-  //   return
-  // }
+  if (filePath.includes('/layout/home.html')) {
+    home()
+    return
+  }
 
-  // pages()
+  pages()
   home()
-//   source()
+  source()
 }
