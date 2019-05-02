@@ -17,9 +17,7 @@ module.exports = function processor() {
   this.config.set('version', version)
 
   if (fs.existsSync(cacheFile)) {
-    const { languages, trees } = require(cacheFile) // eslint-disable-line
-    store.set('pages', trees)
-    this.config.set('languages', languages)
+    store.set('pages', require(cacheFile)) // eslint-disable-line
     return
   }
 
@@ -27,7 +25,6 @@ module.exports = function processor() {
   const sourcesPath = join(config.base, 'sources')
   const dirs = dirTree(sourcesPath, { extensions: /\.md$/ })
   const trees = []
-  const languages = []
 
   const re = (o) => {
     const {
@@ -37,10 +34,6 @@ module.exports = function processor() {
     } = o
 
     if (type === 'directory') {
-      const language = relative(sourcesPath, path).split('/')[0]
-      if (language && !languages.includes(language)) {
-        languages.push(language)
-      }
       children.forEach(re)
     }
     if (type === 'file') {
@@ -69,7 +62,6 @@ module.exports = function processor() {
 
   re(dirs)
 
-  fs.outputFileSync(cacheFile, JSON.stringify({ trees, languages }))
+  fs.outputFileSync(cacheFile, JSON.stringify(trees))
   store.set('pages', trees)
-  this.config.set('languages', languages)
 }

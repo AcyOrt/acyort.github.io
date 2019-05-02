@@ -21,14 +21,14 @@ module.exports = function output() {
   }
 
   const home = () => {
-    // Object.keys(languages).forEach((language) => {
-    //   this.helper.language = language
-    //   this.outputHTML({
-    //     template: 'home',
-    //     path: language === 'en' ? 'index.html' : `${language}/index.html`,
-    //     data: { language },
-    //   })
-    // })
+    Object.keys(languages).forEach((language) => {
+      config.set('language', language)
+      util.outputHTML({
+        template: 'home',
+        path: language === 'en' ? 'index.html' : `${language}/index.html`,
+        data: { language },
+      })
+    })
   }
 
   // const source = () => {
@@ -50,7 +50,7 @@ module.exports = function output() {
   //   return
   // }
 
-  pages()
+  // pages()
   home()
 //   source()
 }

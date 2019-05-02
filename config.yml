@@ -17,3 +17,7 @@ plugins:
 public: docs
 
 timezone: Asia/Shanghai
+
+languages:
+  en: English
+  zh_CN: 简体中文

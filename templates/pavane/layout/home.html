@@ -9,27 +9,33 @@
   <div class="center">
     <h1>AcyOrt</h1>
     <p>A <span>Node.js</span> static website framework.</p>
-    {% if page.language === 'en' %}
-    <a class="start" href="{{ _url('/docs/') }}">{{ __('start') }}</a>
-    {% else %}
-    <a class="start" href="{{ _url('/zh-cn/docs/') }}">{{ __('start') }}</a>
-    {% endif %}
+
+    <a
+      class="start"
+      {% if page.language === 'en' %}
+      href="{{ _url('/docs/') }}"
+      {% else %}
+      href="{{ _url('/' + page.language + '/docs/') }}"
+      {% endif %}
+    >
+      {{ __('start') }}
+    </a>
   </div>
 </div>
 
 <div class="center home">
   <div class="features">
     <div class="feature writing">
-      <h3>{{ __('custom feature.title') }}</h3>
-      <p>{{ __('custom feature.description') }}</p>
+      <h3>{{ __('featureCustom.title') }}</h3>
+      <p>{{ __('featureCustom.description') }}</p>
     </div>
     <div class="feature plugin">
-      <h3>{{ __('plugin feature.title') }}</h3>
-      <p>{{ __('plugin feature.description') }}</p>
+      <h3>{{ __('featurePlugin.title') }}</h3>
+      <p>{{ __('featurePlugin.description') }}</p>
     </div>
     <div class="feature ci">
-      <h3>{{ __('deploy feature.title') }}</h3>
-      <p>{{ __('deploy feature.description') }}</p>
+      <h3>{{ __('featureDeploy.title') }}</h3>
+      <p>{{ __('featureDeploy.description') }}</p>
     </div>
   </div>
 </div>
