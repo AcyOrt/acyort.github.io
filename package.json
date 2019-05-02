@@ -3,7 +3,6 @@
   "name": "acyortjs",
   "version": "3.0.0",
   "dependencies": {
-    "@sindresorhus/slugify": "^0.9.1",
     "acyort-server": "*",
     "acyort-toc": "*",
     "directory-tree": "^2.2.2",

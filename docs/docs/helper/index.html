@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "en"</script>
+
+<title>
+AcyOrt / Helper
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      
+      <a class="logo" href="/">AcyOrt</a>
+      
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      
+      <a class="normal" href="/docs/">Docs</a>
+      
+      
+      
+      <a class="normal" href="/api/">API</a>
+      
+      
+      
+      <a class="normal" href="/miscellaneous/">Miscellaneous</a>
+      
+      
+    </div>
+    <div class="mobile-menu">
+      
+      
+      <a href="/docs/">Docs</a>
+      
+      
+      
+      <a href="/api/">API</a>
+      
+      
+      
+      <a href="/miscellaneous/">Miscellaneous</a>
+      
+      
+      
+      
+    </div>
+    <div class="language">
+      <select id="language">
+        
+        <option value="">English</option>
+        
+
+        
+        
+        <option value="0">en</option>
+        
+        
+        
+        <option value="1">zh_CN</option>
+        
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">Helper</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>AcyOrt has built-in helper functions for rendering templates, and you can customize helper functions</p><h3>
+  <a href="#built-in-functions" id="built-in-functions"></a>Built-in functions
+</h3><p>There are 4 built-in functions that cannot be overridden by custom function</p><blockquote>
+<p>The following helper functions are used directly in <code>outputHTML</code> method under <a href="/api/util/">util</a></p><p>You need to use the helper&#39;s <code>getHelper</code> method to access these helper functions, if not use the <code>outputHTML</code></p></blockquote>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> helper <span class="token punctuation">}</span> <span class="token operator">=</span> acyort
+<span class="token keyword">const</span> _time <span class="token operator">=</span> helper<span class="token punctuation">.</span><span class="token function">getHelper</span><span class="token punctuation">(</span><span class="token string">'_time'</span><span class="token punctuation">)</span> <span class="token comment">// parameter is the `helper` name</span>
+
+<span class="token function">_time</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'YYYY'</span><span class="token punctuation">)</span> <span class="token comment">// 2019</span></code></pre><p><strong>URL</strong></p><p>Return the URL path with the root directory</p><pre class="language-html"><code class="language-html">{{ _url(path) }}
+
+<span class="token comment">&lt;!-- example, current root path is `root` --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ _url('path') }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- &lt;p>/root/path/to&lt;/p> --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{ _url() }}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>link<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- &lt;a href="/root">link&lt;/a> --></span></code></pre><p><strong>time</strong></p><p>Time formatting, depending on the time zone, language settings, check <a href="http://momentjs.com/">Moment.js</a> for more details</p><pre class="language-html"><code class="language-html">{{ _time(date, format) }}
+
+<span class="token comment">&lt;!-- example --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ _time(Date.now(), 'YYYY') }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- &lt;p>2018&lt;/p> --></span></code></pre><p><strong>language</strong></p><p>Use <code>__</code> or <code>_n</code> in the template to translate multilingual text, check <a href="https://github.com/acyortjs/i18n">i18n </a></p><p>AcyOrt allows language changes at runtime, just changes the config language</p><pre class="language-js"><code class="language-js">acyort<span class="token punctuation">.</span>config<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'language'</span><span class="token punctuation">,</span> <span class="token string">'zh_CN'</span><span class="token punctuation">)</span> <span class="token comment">// also change the time language</span></code></pre><pre class="language-html"><code class="language-html">{{ __(page.title) }}
+{{ _n(page.posts) }}
+
+<span class="token comment">&lt;!-- example --></span>
+
+<span class="token comment">&lt;!--
+The yaml language file
+
+# i18n config yml
+index:
+  title: Home
+posts:
+  zero: No posts
+  one: One post
+  other: %d posts
+
+--></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ __('index.title') }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- &lt;p>Home&lt;/p> --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ _n('posts', 3) }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- 3 posts --></span></code></pre><h3>
+  <a href="#custom-functions" id="custom-functions"></a>Custom functions
+</h3><p>Custom helper functions, check <a href="/api/helper/">helper</a></p>
+
+    
+    <div class="paginator">
+      
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      <p>Contents</p>
+      <ul>
+<li><a href="#built-in-functions">Built-in functions</a></li>
+<li><a href="#custom-functions">Custom functions</a></li>
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>Built by AcyOrt@3.3.0</span>
+    </div>
+    <p>
+      Last updated: May 02, 2019 17:27
+    </p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

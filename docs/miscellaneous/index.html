@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "en"</script>
+
+<title>
+AcyOrt / Miscellaneous
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      
+      <a class="logo" href="/">AcyOrt</a>
+      
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      
+      <a class="normal" href="/docs/">Docs</a>
+      
+      
+      
+      <a class="normal" href="/api/">API</a>
+      
+      
+      
+      <a class="normal" href="/miscellaneous/">Miscellaneous</a>
+      
+      
+    </div>
+    <div class="mobile-menu">
+      
+      
+      <a href="/docs/">Docs</a>
+      
+      
+      
+      <a href="/api/">API</a>
+      
+      
+      
+      <a href="/miscellaneous/">Miscellaneous</a>
+      
+      
+      
+      
+    </div>
+    <div class="language">
+      <select id="language">
+        
+        <option value="">English</option>
+        
+
+        
+        
+        <option value="0">en</option>
+        
+        
+        
+        <option value="1">zh_CN</option>
+        
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">Miscellaneous</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>This is about the development, and some plugins introduction of AcyOrt</p><h2>
+  <a href="#development" id="development"></a>Development
+</h2><p>Fork and Install modules</p><pre class="language-bash"><code class="language-bash">$ <span class="token function">git</span> clone git@github.com:acyortjs/acyort.git
+$ <span class="token function">cd</span> acyort <span class="token operator">&amp;&amp;</span> <span class="token function">npm</span> i</code></pre><h3>
+  <a href="#npm-scripts" id="npm-scripts"></a>npm Scripts
+</h3><p>For testing, the following scripts are built in</p><p><strong>flow</strong></p><p>Run the functions in order that registered in the workflow</p><pre class="language-bash"><code class="language-bash">$ <span class="token function">npm</span> run flow</code></pre><p><strong>help</strong></p><p>Display all built in cli commands, including registered</p><pre class="language-bash"><code class="language-bash">$ <span class="token function">npm</span> run <span class="token function">help</span></code></pre><p><strong>version</strong></p><p>Display the environment</p><pre class="language-bash"><code class="language-bash">$ <span class="token function">npm</span> run version</code></pre><p><strong>clean</strong></p><p>Clean generated files.</p><pre class="language-bash"><code class="language-bash">$ <span class="token function">npm</span> run clean</code></pre><h3>
+  <a href="#test" id="test"></a>test
+</h3><p>Including test cases, coverage and code lint</p><pre class="language-bash"><code class="language-bash">$ <span class="token function">npm</span> t <span class="token comment"># lint and coverage test</span>
+$ <span class="token function">npm</span> run test:unit <span class="token comment"># unit test</span>
+$ <span class="token function">npm</span> run test:lint <span class="token comment"># code lint</span>
+$ <span class="token function">npm</span> run test:cover <span class="token comment"># coverage test</span></code></pre><h2>
+  <a href="#plugins-utilities" id="plugins-utilities"></a>Plugins/Utilities
+</h2><p>Here are some plugins and utilities</p><ul>
+<li>acyort-server (plugin) local LiveReload  server, for template development <a href="https://github.com/acyortjs/acyort-server">acyort-server</a></li>
+<li>acyort-toc (plugin) Markdown TOC helper <a href="https://github.com/acyortjs/acyort-toc">acyort-toc</a></li>
+<li>paginator (utility) Pagination <a href="https://github.com/acyortjs/paginator">paginator</a></li>
+</ul>
+
+
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      <p>Contents</p>
+      <ul>
+<li><a href="#development">Development</a><ul>
+<li><a href="#npm-scripts">npm Scripts</a></li>
+<li><a href="#test">test</a></li>
+</ul>
+</li>
+<li><a href="#plugins-utilities">Plugins/Utilities</a></li>
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>Built by AcyOrt@3.3.0</span>
+    </div>
+    <p>
+      Last updated: May 02, 2019 17:27
+    </p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

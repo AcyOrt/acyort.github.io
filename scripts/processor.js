@@ -1,7 +1,7 @@
 const { relative, join } = require('path')
 const dirTree = require('directory-tree')
 const fm = require('front-matter')
-const slugify = require('@sindresorhus/slugify')
+const { slugify } = require('acyort-toc')
 
 module.exports = function processor() {
   const {
@@ -17,14 +17,17 @@ module.exports = function processor() {
   this.config.set('version', version)
 
   if (fs.existsSync(cacheFile)) {
-    store.set('pages', require(cacheFile)) // eslint-disable-line
+    const { languages, trees } = require(cacheFile) // eslint-disable-line
+    store.set('pages', trees)
+    this.config.set('languages', languages)
     return
   }
 
-  const toc = helper.getHelper('_toc')
+  const toc = helper.get('_toc')
   const sourcesPath = join(config.base, 'sources')
   const dirs = dirTree(sourcesPath, { extensions: /\.md$/ })
   const trees = []
+  const languages = []
 
   const re = (o) => {
     const {
@@ -34,6 +37,10 @@ module.exports = function processor() {
     } = o
 
     if (type === 'directory') {
+      const language = relative(sourcesPath, path).split('/')[0]
+      if (language && !languages.includes(language)) {
+        languages.push(language)
+      }
       children.forEach(re)
     }
     if (type === 'file') {
@@ -41,18 +48,18 @@ module.exports = function processor() {
       const relativePath = relative(sourcesPath, path).split('.md')[0]
 
       let language = 'en'
-      let url = `/${relativePath}/`
+      let url = `/${relativePath}`
 
       if (relativePath.includes('en/')) {
-        url = `/${relativePath.split('en/')[1]}/`
+        url = `/${relativePath.split('en/')[1]}`
       } else {
         [language] = relativePath.split('/')
       }
 
       trees.push({
         ...attributes,
-        path: `${url}index.html`,
-        url,
+        path: url.includes('/index') ? `${url}.html` : `${url}/index.html`,
+        url: `${url}/`,
         language,
         toc: toc(body),
         content: renderer.render('markdown', body, { getHeadingId: slugify }),
@@ -62,6 +69,7 @@ module.exports = function processor() {
 
   re(dirs)
 
-  fs.outputFileSync(cacheFile, JSON.stringify(trees))
+  fs.outputFileSync(cacheFile, JSON.stringify({ trees, languages }))
   store.set('pages', trees)
+  this.config.set('languages', languages)
 }

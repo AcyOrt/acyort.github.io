@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "en"</script>
+
+<title>
+AcyOrt / Command
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      
+      <a class="logo" href="/">AcyOrt</a>
+      
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      
+      <a class="normal" href="/docs/">Docs</a>
+      
+      
+      
+      <a class="normal" href="/api/">API</a>
+      
+      
+      
+      <a class="normal" href="/miscellaneous/">Miscellaneous</a>
+      
+      
+    </div>
+    <div class="mobile-menu">
+      
+      
+      <a href="/docs/">Docs</a>
+      
+      
+      
+      <a href="/api/">API</a>
+      
+      
+      
+      <a href="/miscellaneous/">Miscellaneous</a>
+      
+      
+      
+      
+    </div>
+    <div class="language">
+      <select id="language">
+        
+        <option value="">English</option>
+        
+
+        
+        
+        <option value="0">en</option>
+        
+        
+        
+        <option value="1">zh_CN</option>
+        
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">Command</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>AcyOrt has the following CLI commands, and supports custom CLI commands.</p><h3>
+  <a href="#built-in-commands" id="built-in-commands"></a>Built-in commands
+</h3><p>Built in basic commands, as well as some options</p><p><strong>initialization</strong></p><pre class="language-bash"><code class="language-bash">$ acyort init <span class="token operator">&lt;</span>folder<span class="token operator">></span></code></pre><p>Initialize a new website folder. You can initialize the current folder without entering the directory.</p><p><strong>Version</strong></p><pre class="language-bash"><code class="language-bash">$ acyort version</code></pre><p>Display AcyOrt version, and current system information</p><p><strong>Workflow Runing</strong></p><pre class="language-bash"><code class="language-bash">$ acyort flow</code></pre><p>Execute the registed scripts in order, see <a href="/api/workflow/">workflow</a> for more detail</p><p><strong>Cleanup</strong></p><pre class="language-bash"><code class="language-bash">$ acyort clean</code></pre><p>Clear generated static files, will not delete configuration files, like <code>git</code> etc.</p><pre class="language-js"><code class="language-js"><span class="token comment">// Paths or files that will not be deleted</span>
+<span class="token punctuation">[</span>
+  <span class="token string">'templates'</span><span class="token punctuation">,</span>
+  <span class="token string">'scripts'</span><span class="token punctuation">,</span>
+  <span class="token string">'config.yml'</span><span class="token punctuation">,</span>
+  <span class="token string">'CNAME'</span><span class="token punctuation">,</span>
+  <span class="token string">'README.md'</span><span class="token punctuation">,</span>
+  <span class="token string">'LICENSE'</span><span class="token punctuation">,</span>
+  <span class="token string">'.gitignore'</span><span class="token punctuation">,</span>
+  <span class="token string">'package.json'</span><span class="token punctuation">,</span>
+  <span class="token string">'package-lock.json'</span><span class="token punctuation">,</span>
+  <span class="token string">'node_modules'</span><span class="token punctuation">,</span>
+  <span class="token string">'.git'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span></code></pre><h3>
+  <a href="#cli-registration" id="cli-registration"></a>CLI Registration
+</h3><p>Support for custom CLI commands, see <a href="/api/cli/">CLI</a> for more detail</p>
+
+    
+    <div class="paginator">
+      
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      <p>Contents</p>
+      <ul>
+<li><a href="#built-in-commands">Built-in commands</a></li>
+<li><a href="#cli-registration">CLI Registration</a></li>
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>Built by AcyOrt@3.3.0</span>
+    </div>
+    <p>
+      Last updated: May 02, 2019 17:27
+    </p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

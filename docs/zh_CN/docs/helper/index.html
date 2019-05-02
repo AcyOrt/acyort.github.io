@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "zh_CN"</script>
+
+<title>
+AcyOrt / 辅助函数
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      
+      <a class="logo" href="/zh_CN/">AcyOrt</a>
+      
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      
+      <a class="normal" href="/zh_CN/docs/">文档</a>
+      
+      
+      
+      <a class="normal" href="/zh_CN/api/">API</a>
+      
+      
+      
+      <a class="normal" href="/zh_CN/miscellaneous/">其他</a>
+      
+      
+    </div>
+    <div class="mobile-menu">
+      
+      
+      <a href="/zh_CN/docs/">文档</a>
+      
+      
+      
+      <a href="/zh_CN/api/">API</a>
+      
+      
+      
+      <a href="/zh_CN/miscellaneous/">其他</a>
+      
+      
+      
+      
+    </div>
+    <div class="language">
+      <select id="language">
+        
+        <option value="">English</option>
+        
+
+        
+        
+        <option value="0">en</option>
+        
+        
+        
+        <option value="1">zh_CN</option>
+        
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">辅助函数</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>内置一些辅助函数用于模版渲染，同时支持自定义辅助函数</p><h3>
+  <a href="#内置函数" id="内置函数"></a>内置函数
+</h3><p>内置 4 个不能被自定义覆盖的辅助函数</p><blockquote>
+<p>以下辅助函数都是在 <a href="/api/util/">工具/辅助类</a> 下的 <code>outputHTML</code> 中直接使用的</p><p>如果不使用 <code>outputHTML</code> 函数，访问这些辅助函数，需要通过 helper 的 <code>get</code> 方法</p></blockquote>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> helper <span class="token punctuation">}</span> <span class="token operator">=</span> acyort
+<span class="token keyword">const</span> _time <span class="token operator">=</span> helper<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'_time'</span><span class="token punctuation">)</span> <span class="token comment">// 参数为 helper 函数名字</span>
+
+<span class="token function">_time</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'YYYY'</span><span class="token punctuation">)</span> <span class="token comment">// 2019</span></code></pre><p><strong>URL 函数</strong></p><p>返回带根目录的 URL 路径</p><pre class="language-html"><code class="language-html">{{ _url(path) }}
+
+<span class="token comment">&lt;!-- 例子, 假设当前根目录为 root --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ _url('path/to') }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- &lt;p>/root/path/to&lt;/p> --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>{{ _url() }}<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>link<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- &lt;a href="/root">link&lt;/a> --></span></code></pre><p><strong>时间函数</strong></p><p>时间格式化，根据时区，语言设置返回不同格式。详细查看 <a href="http://momentjs.com/">Moment.js</a> 说明</p><pre class="language-html"><code class="language-html">{{ _time(date, format) }}
+
+<span class="token comment">&lt;!-- 例子 --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ _time(Date.now(), 'YYYY') }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- &lt;p>2019&lt;/p> --></span></code></pre><p><strong>多语言函数</strong></p><p>在模版中使用 <code>__</code> 或者 <code>_n</code> 用于多语言渲染，详细查看 <a href="https://github.com/acyortjs/i18n">i18n</a> 说明</p><p>AcyOrt 允许运行时进行语言更换，直接更改配置的语言即可</p><pre class="language-js"><code class="language-js">acyort<span class="token punctuation">.</span>config<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'language'</span><span class="token punctuation">,</span> <span class="token string">'zh_CN'</span><span class="token punctuation">)</span> <span class="token comment">// 同时时间函数的语言也会修改</span></code></pre><pre class="language-html"><code class="language-html">{{ __(page.title) }}
+{{ _n(page.posts) }}
+
+<span class="token comment">&lt;!-- 例子 --></span>
+
+<span class="token comment">&lt;!--
+语言文件为以下 yaml
+
+# i18n config yml
+index:
+  title: Home
+posts:
+  zero: No posts
+  one: One post
+  other: %d posts
+
+--></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ __('index.title') }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- &lt;p>Home&lt;/p> --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>{{ _n('posts', 3) }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span> <span class="token comment">&lt;!-- 3 posts --></span></code></pre><h3>
+  <a href="#自定义函数" id="自定义函数"></a>自定义函数
+</h3><p>自定义辅助函数查看 <a href="/api/helper/">helper</a> 说明</p>
+
+    
+    <div class="paginator">
+      
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      <p>目录</p>
+      <ul>
+<li><a href="#内置函数">内置函数</a></li>
+<li><a href="#自定义函数">自定义函数</a></li>
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>由 AcyOrt@3.3.0 构建</span>
+    </div>
+    <p>
+      最后更新于: 5月 02, 2019 17:27
+    </p>
+    <a href="#" class="top">返回顶部</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

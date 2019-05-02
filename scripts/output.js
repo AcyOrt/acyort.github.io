@@ -3,14 +3,16 @@ module.exports = function output() {
   // const { language: locale, languages } = this.config
   const {
     store,
-    helper,
+    config,
+    util,
   } = this
+  const { languages } = config.get()
 
   const pages = () => {
-    this.store.get('pages').forEach((page) => {
+    store.get('pages').forEach((page) => {
       const { path, language } = page
-      this.helper.language = language
-      this.outputHTML({
+      config.set('language', language)
+      util.outputHTML({
         template: 'doc',
         path,
         data: page,
@@ -18,16 +20,16 @@ module.exports = function output() {
     })
   }
 
-  // const home = () => {
-  //   Object.keys(languages).concat([locale]).forEach((language) => {
-  //     this.helper.language = language
-  //     this.outputHTML({
-  //       template: 'home',
-  //       path: language === 'en' ? 'index.html' : `${language}/index.html`,
-  //       data: { language },
-  //     })
-  //   })
-  // }
+  const home = () => {
+    // Object.keys(languages).forEach((language) => {
+    //   this.helper.language = language
+    //   this.outputHTML({
+    //     template: 'home',
+    //     path: language === 'en' ? 'index.html' : `${language}/index.html`,
+    //     data: { language },
+    //   })
+    // })
+  }
 
   // const source = () => {
   //   this.copySource()
@@ -49,6 +51,6 @@ module.exports = function output() {
   // }
 
   pages()
-//   home()
+  home()
 //   source()
 }

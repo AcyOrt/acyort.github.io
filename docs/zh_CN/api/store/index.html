@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "zh_CN"</script>
+
+<title>
+AcyOrt / 数据共享
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      
+      <a class="logo" href="/zh_CN/">AcyOrt</a>
+      
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+      
+      
+      <a class="normal" href="/zh_CN/docs/">文档</a>
+      
+      
+      
+      <a class="normal" href="/zh_CN/api/">API</a>
+      
+      
+      
+      <a class="normal" href="/zh_CN/miscellaneous/">其他</a>
+      
+      
+    </div>
+    <div class="mobile-menu">
+      
+      
+      <a href="/zh_CN/docs/">文档</a>
+      
+      
+      
+      <a href="/zh_CN/api/">API</a>
+      
+      
+      
+      <a href="/zh_CN/miscellaneous/">其他</a>
+      
+      
+      
+      
+    </div>
+    <div class="language">
+      <select id="language">
+        
+        <option value="">English</option>
+        
+
+        
+        
+        <option value="0">en</option>
+        
+        
+        
+        <option value="1">zh_CN</option>
+        
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">数据共享</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>提供一个 store 方法用于数据共享/存储，方便插件间的数据共享</p><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> store <span class="token punctuation">}</span> <span class="token operator">=</span> acyort
+
+store<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'key'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> a<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// 存储一个名为 key，值为 { a: 1 }</span>
+store<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'key'</span><span class="token punctuation">)</span> <span class="token comment">// 获取名为 key 的值，结果为 { a: 1 }</span>
+
+<span class="token comment">// 获取其他插件的数据，默认情况下，每个插件有自己的命名空间，存储数据不会混乱</span>
+store<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'字段名'</span><span class="token punctuation">,</span> <span class="token string">'插件名'</span><span class="token punctuation">)</span>
+
+store<span class="token punctuation">.</span><span class="token function">reset</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 清空所有值，只会清空当前插件，不影响其他</span></code></pre><p><strong>例子</strong></p><p>用于 <code>cli</code> 与 <code>workflow</code> 之间的通信</p><pre class="language-js"><code class="language-js">module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">acyort</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  acyort<span class="token punctuation">.</span>cli<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'options'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    name<span class="token punctuation">:</span> <span class="token string">'--config'</span><span class="token punctuation">,</span>
+    alias<span class="token punctuation">:</span> <span class="token string">'-c'</span><span class="token punctuation">,</span>
+    description<span class="token punctuation">:</span> <span class="token string">'Show config'</span><span class="token punctuation">,</span>
+    <span class="token function">action</span><span class="token punctuation">(</span><span class="token parameter">argv</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      acyort<span class="token punctuation">.</span>store<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'cli'</span><span class="token punctuation">,</span> argv<span class="token punctuation">)</span> <span class="token comment">// 存储 cli 参数</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>workflow<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 执行 AcyOrt 的运行流程</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+  acyort<span class="token punctuation">.</span>workflow<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> argv <span class="token operator">=</span> acyort<span class="token punctuation">.</span>store<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'cli'</span><span class="token punctuation">)</span> <span class="token comment">// 这里获取 cli 运行参数</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre>
+
+    
+    <div class="paginator">
+      
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>由 AcyOrt@3.3.0 构建</span>
+    </div>
+    <p>
+      最后更新于: 5月 02, 2019 17:27
+    </p>
+    <a href="#" class="top">返回顶部</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

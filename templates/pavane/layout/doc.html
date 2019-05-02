@@ -1,7 +1,7 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-{{ page.title }} - {{ config.title }}
+{{ config.title }} / {{ page.title }}
 {% endblock %}
 
 {% block content %}
@@ -16,7 +16,7 @@
       {{ _apiNav() }}
       {% endif %}
 
-      {% if (['Customization', 'Getting Started', 'Basic Usage']).indexOf(page.category) > -1 %}
+      {% if (['Customization', 'Getting Started']).indexOf(page.category) > -1 %}
       {{ _docsNav() }}
       {% endif %}
     </div>
@@ -34,10 +34,9 @@
 
   <div class="toc">
     <div class="stay">
-      {% set toc = _toc() %}
-      {% if toc %}
+      {% if page.toc %}
       <p>{{ __('toc') }}</p>
-      {{ toc }}
+      {{ page.toc }}
       {% endif %}
     </div>
   </div>
