@@ -88,7 +88,7 @@ AcyOrt / Helper
       
 
       <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
-      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/"></a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/">CLI</a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
     </div>
 
     <div class="language">
@@ -126,7 +126,7 @@ AcyOrt / Helper
   <div class="nav">
     <div class="stay">
       
-      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/"></a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/">CLI</a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
       
 
       
@@ -134,11 +134,29 @@ AcyOrt / Helper
   </div>
 
   <div class="content markdown">
-    <p>AcyOrt provides a helper API that can registers custom functions, and access built-in helpers</p><p>Built-in helpers see <a href="/docs/helper/">helper</a> for more</p><p><strong>Register function</strong></p><pre class="language-js"><code class="language-js"><span class="token comment">// register a `_test` helper</span>
+    <p>AcyOrt provides a helper API that can registers custom functions, and access built-in helpers</p><p>Built-in helpers see <a href="/docs/helper/">helper</a> for more</p><h3>
+  <a href="#register" id="register"></a>Register
+</h3><pre class="language-js"><code class="language-js"><span class="token comment">// register a `_test` helper</span>
 acyort<span class="token punctuation">.</span>helper<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'_test'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`&lt;p></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>acyort<span class="token punctuation">.</span>version<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/p>`</span></span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre><p>When use the <code>outputHTML</code> method under <a href="/api/util/">util</a> to generate a page, you can access the function directly</p><pre class="language-html"><code class="language-html"><span class="token comment">&lt;!-- use it on template --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>{{ _test() }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>{{ _test() }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre><h3>
+  <a href="#get" id="get"></a>Get
+</h3><p>Provides <code>get</code> method to get the helper</p><pre class="language-js"><code class="language-js"><span class="token comment">// get all</span>
+acyort<span class="token punctuation">.</span>helper<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">/*
+{
+  __: ...
+  _n: ...
+  _time: ...
+  _url: ...
+  test:
+  ...
+}
+*/</span>
+
+<span class="token comment">// get one</span>
+acyort<span class="token punctuation">.</span>helper<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'_time'</span><span class="token punctuation">)</span> <span class="token comment">// function _time() ...</span></code></pre>
 
     
     <div class="paginator">
@@ -150,6 +168,13 @@ acyort<span class="token punctuation">.</span>helper<span class="token punctuati
   <div class="toc">
     <div class="stay">
       
+      <p>Contents</p>
+      <ul>
+<li><a href="#register">Register</a></li>
+<li><a href="#get">Get</a></li>
+</ul>
+
+      
     </div>
   </div>
 </div>
@@ -159,10 +184,10 @@ acyort<span class="token punctuation">.</span>helper<span class="token punctuati
   <div class="center">
     <div class="copy">
       &copy; 2019.
-      <span>Built by AcyOrt@3.3.0</span>
+      <span>Built by AcyOrt@3.3.1</span>
     </div>
     <p>
-      Last updated: May 2, 2019 8:29 PM
+      Last updated: May 3, 2019 3:07 PM
     </p>
     <a href="#" class="top">Top</a>
   </div>

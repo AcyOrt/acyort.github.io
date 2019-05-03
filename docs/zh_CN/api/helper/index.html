@@ -88,7 +88,7 @@ AcyOrt / 模板渲染函数
       
 
       <ul><li><p>开始使用</p><a href="/zh_CN/docs/">概述</a><a href="/zh_CN/docs/setup/">创建</a><a href="/zh_CN/docs/configuration/">配置</a><a href="/zh_CN/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_CN/docs/template/">模板</a><a href="/zh_CN/docs/plugin/">插件</a><a href="/zh_CN/docs/helper/">辅助函数</a></li></ul>
-      <ul><li><p>API</p><a href="/zh_CN/api/">概述</a><a href="/zh_CN/api/renderer/">渲染器</a><a href="/zh_CN/api/cli/"></a><a href="/zh_CN/api/store/">数据存储</a><a href="/zh_CN/api/workflow/">流程</a><a href="/zh_CN/api/helper/">辅助函数</a><a href="/zh_CN/api/util/">工具类</a></li></ul>
+      <ul><li><p>API</p><a href="/zh_CN/api/">概述</a><a href="/zh_CN/api/renderer/">渲染器</a><a href="/zh_CN/api/cli/">命令行</a><a href="/zh_CN/api/store/">数据存储</a><a href="/zh_CN/api/workflow/">流程</a><a href="/zh_CN/api/helper/">辅助函数</a><a href="/zh_CN/api/util/">工具类</a></li></ul>
     </div>
 
     <div class="language">
@@ -126,7 +126,7 @@ AcyOrt / 模板渲染函数
   <div class="nav">
     <div class="stay">
       
-      <ul><li><p>API</p><a href="/zh_CN/api/">概述</a><a href="/zh_CN/api/renderer/">渲染器</a><a href="/zh_CN/api/cli/"></a><a href="/zh_CN/api/store/">数据存储</a><a href="/zh_CN/api/workflow/">流程</a><a href="/zh_CN/api/helper/">辅助函数</a><a href="/zh_CN/api/util/">工具类</a></li></ul>
+      <ul><li><p>API</p><a href="/zh_CN/api/">概述</a><a href="/zh_CN/api/renderer/">渲染器</a><a href="/zh_CN/api/cli/">命令行</a><a href="/zh_CN/api/store/">数据存储</a><a href="/zh_CN/api/workflow/">流程</a><a href="/zh_CN/api/helper/">辅助函数</a><a href="/zh_CN/api/util/">工具类</a></li></ul>
       
 
       
@@ -134,11 +134,29 @@ AcyOrt / 模板渲染函数
   </div>
 
   <div class="content markdown">
-    <p>AcyOrt 提供一个 <code>helper</code> 方法，除了能够访问内置的辅助渲染函数外，还可以注册一些自定义的函数</p><p>内置函数可以查看 <a href="/docs/helper/">helper</a> 说明</p><p><strong>注册函数</strong></p><pre class="language-js"><code class="language-js"><span class="token comment">// 注册一个自定义函数 `_test`</span>
+    <p>AcyOrt 提供一个 <code>helper</code> 方法，除了能够访问内置的辅助渲染函数外，还可以注册一些自定义的函数</p><p>内置函数可以查看 <a href="/docs/helper/">helper</a> 说明</p><h3>
+  <a href="#注册函数" id="注册函数"></a>注册函数
+</h3><pre class="language-js"><code class="language-js"><span class="token comment">// 注册一个自定义函数 `_test`</span>
 acyort<span class="token punctuation">.</span>helper<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'_test'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token template-string"><span class="token string">`&lt;p></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>acyort<span class="token punctuation">.</span>version<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/p>`</span></span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre><p>当使用 <a href="/api/util/">工具/辅助类</a> 下的 <code>outputHTML</code> 方法生成页面时候，可以直接访问函数</p><pre class="language-html"><code class="language-html"><span class="token comment">&lt;!-- 模板页面使用 --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>{{ _test() }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">></span></span>{{ _test() }}<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">></span></span></code></pre><h3>
+  <a href="#获取辅助函数" id="获取辅助函数"></a>获取辅助函数
+</h3><p>提供一个 <code>get</code> 方法用于获取当前的辅助函数</p><pre class="language-js"><code class="language-js"><span class="token comment">// 获取所有</span>
+acyort<span class="token punctuation">.</span>helper<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">/*
+{
+  __: ...
+  _n: ...
+  _time: ...
+  _url: ...
+  test:
+  ...
+}
+*/</span>
+
+<span class="token comment">// 获取单个</span>
+acyort<span class="token punctuation">.</span>helper<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'_time'</span><span class="token punctuation">)</span> <span class="token comment">// function _time() ...</span></code></pre>
 
     
     <div class="paginator">
@@ -150,6 +168,13 @@ acyort<span class="token punctuation">.</span>helper<span class="token punctuati
   <div class="toc">
     <div class="stay">
       
+      <p>目录</p>
+      <ul>
+<li><a href="#注册函数">注册函数</a></li>
+<li><a href="#获取辅助函数">获取辅助函数</a></li>
+</ul>
+
+      
     </div>
   </div>
 </div>
@@ -159,10 +184,10 @@ acyort<span class="token punctuation">.</span>helper<span class="token punctuati
   <div class="center">
     <div class="copy">
       &copy; 2019.
-      <span>由 AcyOrt@3.3.0 构建</span>
+      <span>由 AcyOrt@3.3.1 构建</span>
     </div>
     <p>
-      最后更新于: 2019年5月2日 20:29
+      最后更新于: 2019年5月3日 15:07
     </p>
     <a href="#" class="top">返回顶部</a>
   </div>

@@ -25,7 +25,7 @@ Template: 模板
 Helper: 辅助函数
 Plugin: 插件
 Store: 数据存储
-CLi: 命令行
+Cli: 命令行
 Workflow: 流程
 Renderer: 渲染器
 Util: 工具类

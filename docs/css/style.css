@@ -130,13 +130,15 @@ ul {
 }
 .mobile-menu a {
   color: #7e85ae;
-  font-size: 16px;
-  display: block;
-  margin: 20px;
-  width: 50%;
+  font-size: 15px;
+  margin: 15px;
+  display: inline-block;
+}
+.mobile-menu > a {
+  margin-left: 20px;
 }
 .mobile-menu ul {
-  margin-left: 20px;
+  padding-left: 20px;
 }
 
 .features {
@@ -324,7 +326,8 @@ ul {
 .nav a {
   display: block;
   color: #3870df;
-  margin-top: 12px;
+  margin-top: 15px;
+  font-size: 14px;
 }
 .nav a:hover {
   color: #f24e4e;
@@ -569,8 +572,9 @@ ul {
   background-color: #f6f8fa;
 }
 .markdown blockquote {
+  margin-top: 16px;
   padding: 0 1em;
-  color: #6a737d;
+  color: #778ca2;
   border-left: 0.25em solid #dfe2e5;
   margin-bottom: 16px;
 }

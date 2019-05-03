@@ -7,7 +7,7 @@ AcyOrt 提供一个 `helper` 方法，除了能够访问内置的辅助渲染函
 
 内置函数可以查看 [helper](/docs/helper/) 说明
 
-**注册函数**
+### 注册函数
 
 ```js
 // 注册一个自定义函数 `_test`
@@ -21,4 +21,26 @@ acyort.helper.register('_test', function test() {
 ```html
 <!-- 模板页面使用 -->
 <div>{{ _test() }}</div>
+```
+
+### 获取辅助函数
+
+提供一个 `get` 方法用于获取当前的辅助函数
+
+```js
+// 获取所有
+acyort.helper.get()
+/*
+{
+  __: ...
+  _n: ...
+  _time: ...
+  _url: ...
+  test:
+  ...
+}
+*/
+
+// 获取单个
+acyort.helper.get('_time') // function _time() ...
 ```

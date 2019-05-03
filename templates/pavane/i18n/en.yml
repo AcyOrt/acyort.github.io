@@ -25,7 +25,7 @@ Template: Template
 Helper: Helper
 Plugin: Plugin
 Store: Store
-CLi: CLI
+Cli: CLI
 Workflow: Workflow
 Renderer: Renderer
 Util: Util

@@ -7,7 +7,7 @@ AcyOrt provides a helper API that can registers custom functions, and access bui
 
 Built-in helpers see [helper](/docs/helper/) for more
 
-**Register function**
+### Register
 
 ```js
 // register a `_test` helper
@@ -21,4 +21,26 @@ When use the `outputHTML` method under [util](/api/util/) to generate a page, yo
 ```html
 <!-- use it on template -->
 <div>{{ _test() }}</div>
+```
+
+### Get
+
+Provides `get` method to get the helper
+
+```js
+// get all
+acyort.helper.get()
+/*
+{
+  __: ...
+  _n: ...
+  _time: ...
+  _url: ...
+  test:
+  ...
+}
+*/
+
+// get one
+acyort.helper.get('_time') // function _time() ...
 ```
