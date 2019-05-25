@@ -151,3 +151,11 @@ const { helper } = acyort
 ```js
 const { util } = acyort
 ```
+
+### 钩子函数
+
+提供钩子函数 `hooks` 用于插件间的一些交互，详细查看 [hooks](/api/hooks) 说明
+
+```js
+const { hooks } = acyort
+```

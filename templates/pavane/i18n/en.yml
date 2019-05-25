@@ -29,6 +29,7 @@ Cli: CLI
 Workflow: Workflow
 Renderer: Renderer
 Util: Util
+Hooks: Hooks
 
 featurePlugin:
   title: Various Plugins

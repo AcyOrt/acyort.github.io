@@ -23,6 +23,7 @@ This function is used to specify the template, and the data, generates HTML file
 
 ```js
 util.outputHTML({
+  templatePath: resolve(__dirname, '../s.html'), // specify the absolute template path, and the `template` will be ignored
   template: 'doc', // specify which template used, must be in the `layout` directory of `template`
   path: 'doc/index.html', // specify the output directory, which is the base directory of website
   data: { title: 'acyort' }, // specify template data

@@ -29,6 +29,7 @@ Cli: 命令行
 Workflow: 流程
 Renderer: 渲染器
 Util: 工具类
+Hooks: 钩子
 
 featurePlugin:
   title: 丰富的插件

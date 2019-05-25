@@ -20,7 +20,7 @@ timezone: Asia/Shanghai
 
 languages:
   en: English
-  zh_CN: 简体中文
+  zh_cn: 简体中文
 
 docs_nav:
   Getting Started:
@@ -42,3 +42,4 @@ api_nav:
     - Workflow
     - Helper
     - Util
+    - Hooks

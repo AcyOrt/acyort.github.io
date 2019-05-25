@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "en"</script>
+
+<title>
+AcyOrt / Hooks
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a
+        class="logo"
+        
+        href="/"
+        
+      >
+        AcyOrt
+      </a>
+
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+
+      
+      <a
+        class="normal"
+        
+        href="/docs/"
+        
+      >
+        Docs
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/miscellaneous/"
+        
+      >
+        Miscellaneous
+      </a>
+      
+    </div>
+
+    <div class="mobile-menu">
+      
+      <a
+        
+        href="/docs/"
+        
+      >
+        Docs
+      </a>
+      
+      <a
+        
+        href="/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        
+        href="/miscellaneous/"
+        
+      >
+        Miscellaneous
+      </a>
+      
+
+      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/">CLI</a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a><a href="/api/hooks/">Hooks</a></li></ul>
+    </div>
+
+    <div class="language">
+      <select id="language">
+        
+        <option
+          value="en"
+          
+          selected
+          
+        >
+          English
+        </option>
+        
+        <option
+          value="zh_cn"
+          
+        >
+          简体中文
+        </option>
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">Hooks</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/">CLI</a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a><a href="/api/hooks/">Hooks</a></li></ul>
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>AcyOrt provides <code>hooks</code> for some interaction between plugins, which is allowing plugins to provide API interfaces for other to use.</p><p>An example: a blog plugin, the user hope to add a special mark on the title of each article, follow the traditional practice, you can only make some modifications on the basis of the plugin to achieve the purpose</p><p>But with <code>hooks</code>, plugins can open provides interfaces at certain stages of the plugin, allowing external access to plugin, so that the special requirements above can be solved perfectly</p><p>Hooks consists of two parts</p><h3>
+  <a href="#plugin-provides-hooks" id="plugin-provides-hooks"></a>Plugin provides hooks
+</h3><p>Plugin provides hooks and run at specific times</p><pre class="language-js"><code class="language-js">module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">acyort</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token operator">...</span> <span class="token comment">// get data progress</span>
+
+  <span class="token comment">// provide a hook named `special_hook_name` and pass in `data`, `other` parameter</span>
+  <span class="token comment">// support async</span>
+  <span class="token keyword">await</span> acyort<span class="token punctuation">.</span><span class="token function">hooks</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'special_hook_name'</span><span class="token punctuation">,</span> data<span class="token punctuation">,</span> other<span class="token punctuation">)</span>
+
+  <span class="token comment">// data may be modified by others</span>
+  acyort<span class="token punctuation">.</span>store<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre><h3>
+  <a href="#access-the-hooks" id="access-the-hooks"></a>Access the hooks
+</h3><p>External can get data through hooks and do some processing</p><pre class="language-js"><code class="language-js">module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">acyort</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">// Use tap to access the hook provided by the plugin. Parameters is be provided by the plugin hooks, and some data modification can be performed</span>
+  acyort<span class="token punctuation">.</span>hooks<span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span><span class="token string">'special_hook_name'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">data<span class="token punctuation">,</span> other</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    data<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'aksdj4'</span> <span class="token comment">// change origin data</span>
+    <span class="token operator">...</span>
+
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span> <span class="token comment">// Promise</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre><p><strong>important</strong></p><ul>
+<li>Hooks cannot be accessed repeatedly and will be overwritten</li>
+<li>The data that is usually modified is <code>reference</code> data, and will not receive return datas, but if it is asynchronous, should return <code>Promise</code></li>
+</ul>
+
+
+    
+    <div class="paginator">
+      <a name="paginator" class="prev" href="/api/util/">Previous</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      <p>Contents</p>
+      <ul>
+<li><a href="#plugin-provides-hooks">Plugin provides hooks</a></li>
+<li><a href="#access-the-hooks">Access the hooks</a></li>
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>Built by AcyOrt@3.4.0</span>
+    </div>
+    <p>
+      Last updated: May 25, 2019 9:56 PM
+    </p>
+    <a href="#" class="top">Top</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

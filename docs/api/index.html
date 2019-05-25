@@ -88,7 +88,7 @@ AcyOrt / API
       
 
       <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
-      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/">CLI</a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/">CLI</a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a><a href="/api/hooks/">Hooks</a></li></ul>
     </div>
 
     <div class="language">
@@ -104,7 +104,7 @@ AcyOrt / API
         </option>
         
         <option
-          value="zh_CN"
+          value="zh_cn"
           
         >
           简体中文
@@ -126,7 +126,7 @@ AcyOrt / API
   <div class="nav">
     <div class="stay">
       
-      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/">CLI</a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a></li></ul>
+      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/">CLI</a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a><a href="/api/hooks/">Hooks</a></li></ul>
       
 
       
@@ -208,7 +208,9 @@ renderer<span class="token punctuation">.</span><span class="token function">ren
   <a href="#helper" id="helper"></a>Helper
 </h3><p>Helper functions can be easily used in templates, and you can customize helper functions for template using, check <a href="/api/helper/">helper</a> for more</p><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> helper <span class="token punctuation">}</span> <span class="token operator">=</span> acyort</code></pre><h3>
   <a href="#util" id="util"></a>Util
-</h3><p>Provides some tool/util functions for plugin use, check <a href="/api/util">util</a> for more</p><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> util <span class="token punctuation">}</span> <span class="token operator">=</span> acyort</code></pre>
+</h3><p>Provides some tool/util functions for plugin use, check <a href="/api/util">util</a> for more</p><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> util <span class="token punctuation">}</span> <span class="token operator">=</span> acyort</code></pre><h3>
+  <a href="#hooks" id="hooks"></a>Hooks
+</h3><p>Provides <code>hooks</code> for some interaction between plugins, check <a href="/api/hooks">hooks</a> for more</p><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> hooks <span class="token punctuation">}</span> <span class="token operator">=</span> acyort</code></pre>
 
     
     <div class="paginator">
@@ -232,6 +234,7 @@ renderer<span class="token punctuation">.</span><span class="token function">ren
 <li><a href="#workflow">Workflow</a></li>
 <li><a href="#helper">Helper</a></li>
 <li><a href="#util">Util</a></li>
+<li><a href="#hooks">Hooks</a></li>
 </ul>
 
       
@@ -244,10 +247,10 @@ renderer<span class="token punctuation">.</span><span class="token function">ren
   <div class="center">
     <div class="copy">
       &copy; 2019.
-      <span>Built by AcyOrt@3.3.1</span>
+      <span>Built by AcyOrt@3.4.0</span>
     </div>
     <p>
-      Last updated: May 3, 2019 3:07 PM
+      Last updated: May 25, 2019 9:56 PM
     </p>
     <a href="#" class="top">Top</a>
   </div>

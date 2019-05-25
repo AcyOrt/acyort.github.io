@@ -7,7 +7,7 @@
 <meta name="keywords" content="website,acyort,static" />
 <meta name="description" content="A Node.js static website framework" />
 <link rel="stylesheet" href="/css/style.css" />
-<script>window.__language = "zh_CN"</script>
+<script>window.__language = "zh_cn"</script>
 
 <title>
 AcyOrt / API
@@ -22,7 +22,7 @@ AcyOrt / API
       <a
         class="logo"
         
-        href="/zh_CN/"
+        href="/zh_cn/"
         
       >
         AcyOrt
@@ -34,7 +34,7 @@ AcyOrt / API
       <a
         class="normal"
         
-        href="/zh_CN/docs/"
+        href="/zh_cn/docs/"
         
       >
         文档
@@ -43,7 +43,7 @@ AcyOrt / API
       <a
         class="normal"
         
-        href="/zh_CN/api/"
+        href="/zh_cn/api/"
         
       >
         API
@@ -52,7 +52,7 @@ AcyOrt / API
       <a
         class="normal"
         
-        href="/zh_CN/miscellaneous/"
+        href="/zh_cn/miscellaneous/"
         
       >
         其他
@@ -64,7 +64,7 @@ AcyOrt / API
       
       <a
         
-        href="/zh_CN/docs/"
+        href="/zh_cn/docs/"
         
       >
         文档
@@ -72,7 +72,7 @@ AcyOrt / API
       
       <a
         
-        href="/zh_CN/api/"
+        href="/zh_cn/api/"
         
       >
         API
@@ -80,15 +80,15 @@ AcyOrt / API
       
       <a
         
-        href="/zh_CN/miscellaneous/"
+        href="/zh_cn/miscellaneous/"
         
       >
         其他
       </a>
       
 
-      <ul><li><p>开始使用</p><a href="/zh_CN/docs/">概述</a><a href="/zh_CN/docs/setup/">创建</a><a href="/zh_CN/docs/configuration/">配置</a><a href="/zh_CN/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_CN/docs/template/">模板</a><a href="/zh_CN/docs/plugin/">插件</a><a href="/zh_CN/docs/helper/">辅助函数</a></li></ul>
-      <ul><li><p>API</p><a href="/zh_CN/api/">概述</a><a href="/zh_CN/api/renderer/">渲染器</a><a href="/zh_CN/api/cli/">命令行</a><a href="/zh_CN/api/store/">数据存储</a><a href="/zh_CN/api/workflow/">流程</a><a href="/zh_CN/api/helper/">辅助函数</a><a href="/zh_CN/api/util/">工具类</a></li></ul>
+      <ul><li><p>开始使用</p><a href="/zh_cn/docs/">概述</a><a href="/zh_cn/docs/setup/">创建</a><a href="/zh_cn/docs/configuration/">配置</a><a href="/zh_cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_cn/docs/template/">模板</a><a href="/zh_cn/docs/plugin/">插件</a><a href="/zh_cn/docs/helper/">辅助函数</a></li></ul>
+      <ul><li><p>API</p><a href="/zh_cn/api/">概述</a><a href="/zh_cn/api/renderer/">渲染器</a><a href="/zh_cn/api/cli/">命令行</a><a href="/zh_cn/api/store/">数据存储</a><a href="/zh_cn/api/workflow/">流程</a><a href="/zh_cn/api/helper/">辅助函数</a><a href="/zh_cn/api/util/">工具类</a><a href="/zh_cn/api/hooks/">钩子</a></li></ul>
     </div>
 
     <div class="language">
@@ -102,7 +102,7 @@ AcyOrt / API
         </option>
         
         <option
-          value="zh_CN"
+          value="zh_cn"
           
           selected
           
@@ -126,7 +126,7 @@ AcyOrt / API
   <div class="nav">
     <div class="stay">
       
-      <ul><li><p>API</p><a href="/zh_CN/api/">概述</a><a href="/zh_CN/api/renderer/">渲染器</a><a href="/zh_CN/api/cli/">命令行</a><a href="/zh_CN/api/store/">数据存储</a><a href="/zh_CN/api/workflow/">流程</a><a href="/zh_CN/api/helper/">辅助函数</a><a href="/zh_CN/api/util/">工具类</a></li></ul>
+      <ul><li><p>API</p><a href="/zh_cn/api/">概述</a><a href="/zh_cn/api/renderer/">渲染器</a><a href="/zh_cn/api/cli/">命令行</a><a href="/zh_cn/api/store/">数据存储</a><a href="/zh_cn/api/workflow/">流程</a><a href="/zh_cn/api/helper/">辅助函数</a><a href="/zh_cn/api/util/">工具类</a><a href="/zh_cn/api/hooks/">钩子</a></li></ul>
       
 
       
@@ -208,11 +208,13 @@ renderer<span class="token punctuation">.</span><span class="token function">ren
   <a href="#模板渲染函数" id="模板渲染函数"></a>模板渲染函数
 </h3><p>自定义一些函数用于模板使用，详细查看 <a href="/api/helper/">helper</a> 说明</p><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> helper <span class="token punctuation">}</span> <span class="token operator">=</span> acyort</code></pre><h3>
   <a href="#工具-辅助类" id="工具-辅助类"></a>工具/辅助类
-</h3><p>提供一些工具/辅助类函数用于插件使用，详细查看 <a href="/api/util">util</a> 说明</p><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> util <span class="token punctuation">}</span> <span class="token operator">=</span> acyort</code></pre>
+</h3><p>提供一些工具/辅助类函数用于插件使用，详细查看 <a href="/api/util">util</a> 说明</p><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> util <span class="token punctuation">}</span> <span class="token operator">=</span> acyort</code></pre><h3>
+  <a href="#钩子函数" id="钩子函数"></a>钩子函数
+</h3><p>提供钩子函数 <code>hooks</code> 用于插件间的一些交互，详细查看 <a href="/api/hooks">hooks</a> 说明</p><pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> hooks <span class="token punctuation">}</span> <span class="token operator">=</span> acyort</code></pre>
 
     
     <div class="paginator">
-      <a class="disabled"></a><a name="paginator" class="next" href="/zh_CN/api/renderer/">下一页</a>
+      <a class="disabled"></a><a name="paginator" class="next" href="/zh_cn/api/renderer/">下一页</a>
     </div>
     
   </div>
@@ -232,6 +234,7 @@ renderer<span class="token punctuation">.</span><span class="token function">ren
 <li><a href="#流程">流程</a></li>
 <li><a href="#模板渲染函数">模板渲染函数</a></li>
 <li><a href="#工具-辅助类">工具/辅助类</a></li>
+<li><a href="#钩子函数">钩子函数</a></li>
 </ul>
 
       
@@ -244,10 +247,10 @@ renderer<span class="token punctuation">.</span><span class="token function">ren
   <div class="center">
     <div class="copy">
       &copy; 2019.
-      <span>由 AcyOrt@3.3.1 构建</span>
+      <span>由 AcyOrt@3.4.0 构建</span>
     </div>
     <p>
-      最后更新于: 2019年5月3日 15:07
+      最后更新于: 2019年5月25日 21:56
     </p>
     <a href="#" class="top">返回顶部</a>
   </div>

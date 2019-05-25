@@ -7,7 +7,7 @@
 <meta name="keywords" content="website,acyort,static" />
 <meta name="description" content="A Node.js static website framework" />
 <link rel="stylesheet" href="/css/style.css" />
-<script>window.__language = "zh_CN"</script>
+<script>window.__language = "zh_cn"</script>
 
 <title>
 AcyOrt / 辅助/工具类
@@ -22,7 +22,7 @@ AcyOrt / 辅助/工具类
       <a
         class="logo"
         
-        href="/zh_CN/"
+        href="/zh_cn/"
         
       >
         AcyOrt
@@ -34,7 +34,7 @@ AcyOrt / 辅助/工具类
       <a
         class="normal"
         
-        href="/zh_CN/docs/"
+        href="/zh_cn/docs/"
         
       >
         文档
@@ -43,7 +43,7 @@ AcyOrt / 辅助/工具类
       <a
         class="normal"
         
-        href="/zh_CN/api/"
+        href="/zh_cn/api/"
         
       >
         API
@@ -52,7 +52,7 @@ AcyOrt / 辅助/工具类
       <a
         class="normal"
         
-        href="/zh_CN/miscellaneous/"
+        href="/zh_cn/miscellaneous/"
         
       >
         其他
@@ -64,7 +64,7 @@ AcyOrt / 辅助/工具类
       
       <a
         
-        href="/zh_CN/docs/"
+        href="/zh_cn/docs/"
         
       >
         文档
@@ -72,7 +72,7 @@ AcyOrt / 辅助/工具类
       
       <a
         
-        href="/zh_CN/api/"
+        href="/zh_cn/api/"
         
       >
         API
@@ -80,15 +80,15 @@ AcyOrt / 辅助/工具类
       
       <a
         
-        href="/zh_CN/miscellaneous/"
+        href="/zh_cn/miscellaneous/"
         
       >
         其他
       </a>
       
 
-      <ul><li><p>开始使用</p><a href="/zh_CN/docs/">概述</a><a href="/zh_CN/docs/setup/">创建</a><a href="/zh_CN/docs/configuration/">配置</a><a href="/zh_CN/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_CN/docs/template/">模板</a><a href="/zh_CN/docs/plugin/">插件</a><a href="/zh_CN/docs/helper/">辅助函数</a></li></ul>
-      <ul><li><p>API</p><a href="/zh_CN/api/">概述</a><a href="/zh_CN/api/renderer/">渲染器</a><a href="/zh_CN/api/cli/">命令行</a><a href="/zh_CN/api/store/">数据存储</a><a href="/zh_CN/api/workflow/">流程</a><a href="/zh_CN/api/helper/">辅助函数</a><a href="/zh_CN/api/util/">工具类</a></li></ul>
+      <ul><li><p>开始使用</p><a href="/zh_cn/docs/">概述</a><a href="/zh_cn/docs/setup/">创建</a><a href="/zh_cn/docs/configuration/">配置</a><a href="/zh_cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_cn/docs/template/">模板</a><a href="/zh_cn/docs/plugin/">插件</a><a href="/zh_cn/docs/helper/">辅助函数</a></li></ul>
+      <ul><li><p>API</p><a href="/zh_cn/api/">概述</a><a href="/zh_cn/api/renderer/">渲染器</a><a href="/zh_cn/api/cli/">命令行</a><a href="/zh_cn/api/store/">数据存储</a><a href="/zh_cn/api/workflow/">流程</a><a href="/zh_cn/api/helper/">辅助函数</a><a href="/zh_cn/api/util/">工具类</a><a href="/zh_cn/api/hooks/">钩子</a></li></ul>
     </div>
 
     <div class="language">
@@ -102,7 +102,7 @@ AcyOrt / 辅助/工具类
         </option>
         
         <option
-          value="zh_CN"
+          value="zh_cn"
           
           selected
           
@@ -126,7 +126,7 @@ AcyOrt / 辅助/工具类
   <div class="nav">
     <div class="stay">
       
-      <ul><li><p>API</p><a href="/zh_CN/api/">概述</a><a href="/zh_CN/api/renderer/">渲染器</a><a href="/zh_CN/api/cli/">命令行</a><a href="/zh_CN/api/store/">数据存储</a><a href="/zh_CN/api/workflow/">流程</a><a href="/zh_CN/api/helper/">辅助函数</a><a href="/zh_CN/api/util/">工具类</a></li></ul>
+      <ul><li><p>API</p><a href="/zh_cn/api/">概述</a><a href="/zh_cn/api/renderer/">渲染器</a><a href="/zh_cn/api/cli/">命令行</a><a href="/zh_cn/api/store/">数据存储</a><a href="/zh_cn/api/workflow/">流程</a><a href="/zh_cn/api/helper/">辅助函数</a><a href="/zh_cn/api/util/">工具类</a><a href="/zh_cn/api/hooks/">钩子</a></li></ul>
       
 
       
@@ -139,6 +139,7 @@ AcyOrt / 辅助/工具类
 </h3><p>此函数用于将模板中的 <code>source</code> 文件夹里面的资源文件复制到网站根目录</p><pre class="language-js"><code class="language-js">util<span class="token punctuation">.</span><span class="token function">copySource</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 同步方式</span></code></pre><h3>
   <a href="#输出HTML" id="输出HTML"></a>输出 HTML
 </h3><p>这个函数用于指定模板，数据同步方式生成 HTML 文件</p><pre class="language-js"><code class="language-js">util<span class="token punctuation">.</span><span class="token function">outputHTML</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  templatePath<span class="token punctuation">:</span> <span class="token function">resolve</span><span class="token punctuation">(</span>__dirname<span class="token punctuation">,</span> <span class="token string">'../s.html'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// 可以指定模板绝对路径，这时候会忽略 `template` 的值</span>
   template<span class="token punctuation">:</span> <span class="token string">'doc'</span><span class="token punctuation">,</span> <span class="token comment">// 指定当前使用哪个模板，该模板必须在 `template` 的 `layout` 目录下</span>
   path<span class="token punctuation">:</span> <span class="token string">'doc/index.html'</span><span class="token punctuation">,</span> <span class="token comment">// 指定输出目录，此目录为相对网站的基础目录</span>
   data<span class="token punctuation">:</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'acyort'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// 指定模板数据</span>
@@ -169,7 +170,7 @@ AcyOrt / 辅助/工具类
 
     
     <div class="paginator">
-      <a name="paginator" class="prev" href="/zh_CN/api/helper/">上一页</a>
+      <a name="paginator" class="prev" href="/zh_cn/api/helper/">上一页</a><a name="paginator" class="next" href="/zh_cn/api/hooks/">下一页</a>
     </div>
     
   </div>
@@ -193,10 +194,10 @@ AcyOrt / 辅助/工具类
   <div class="center">
     <div class="copy">
       &copy; 2019.
-      <span>由 AcyOrt@3.3.1 构建</span>
+      <span>由 AcyOrt@3.4.0 构建</span>
     </div>
     <p>
-      最后更新于: 2019年5月3日 15:07
+      最后更新于: 2019年5月25日 21:56
     </p>
     <a href="#" class="top">返回顶部</a>
   </div>

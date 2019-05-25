@@ -149,3 +149,11 @@ Provides some tool/util functions for plugin use, check [util](/api/util) for mo
 ```js
 const { util } = acyort
 ```
+
+### Hooks
+
+Provides `hooks` for some interaction between plugins, check [hooks](/api/hooks) for more
+
+```js
+const { hooks } = acyort
+```

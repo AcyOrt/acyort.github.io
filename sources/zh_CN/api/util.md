@@ -23,6 +23,7 @@ util.copySource() // 同步方式
 
 ```js
 util.outputHTML({
+  templatePath: resolve(__dirname, '../s.html'), // 可以指定模板绝对路径，这时候会忽略 `template` 的值
   template: 'doc', // 指定当前使用哪个模板，该模板必须在 `template` 的 `layout` 目录下
   path: 'doc/index.html', // 指定输出目录，此目录为相对网站的基础目录
   data: { title: 'acyort' }, // 指定模板数据
