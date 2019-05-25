@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "zh_cn"</script>
+
+<title>
+AcyOrt / 模板
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a
+        class="logo"
+        
+        href="/zh_cn/"
+        
+      >
+        AcyOrt
+      </a>
+
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+
+      
+      <a
+        class="normal"
+        
+        href="/zh_cn/docs/"
+        
+      >
+        文档
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/zh_cn/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/zh_cn/miscellaneous/"
+        
+      >
+        其他
+      </a>
+      
+    </div>
+
+    <div class="mobile-menu">
+      
+      <a
+        
+        href="/zh_cn/docs/"
+        
+      >
+        文档
+      </a>
+      
+      <a
+        
+        href="/zh_cn/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        
+        href="/zh_cn/miscellaneous/"
+        
+      >
+        其他
+      </a>
+      
+
+      <ul><li><p>开始使用</p><a href="/zh_cn/docs/">概述</a><a href="/zh_cn/docs/setup/">创建</a><a href="/zh_cn/docs/configuration/">配置</a><a href="/zh_cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_cn/docs/template/">模板</a><a href="/zh_cn/docs/plugin/">插件</a><a href="/zh_cn/docs/helper/">辅助函数</a></li></ul>
+      <ul><li><p>API</p><a href="/zh_cn/api/">概述</a><a href="/zh_cn/api/renderer/">渲染器</a><a href="/zh_cn/api/cli/">命令行</a><a href="/zh_cn/api/store/">数据存储</a><a href="/zh_cn/api/workflow/">流程</a><a href="/zh_cn/api/helper/">辅助函数</a><a href="/zh_cn/api/util/">工具类</a><a href="/zh_cn/api/hooks/">钩子</a></li></ul>
+    </div>
+
+    <div class="language">
+      <select id="language">
+        
+        <option
+          value="en"
+          
+        >
+          English
+        </option>
+        
+        <option
+          value="zh_cn"
+          
+          selected
+          
+        >
+          简体中文
+        </option>
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">模板</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+
+      
+      <ul><li><p>开始使用</p><a href="/zh_cn/docs/">概述</a><a href="/zh_cn/docs/setup/">创建</a><a href="/zh_cn/docs/configuration/">配置</a><a href="/zh_cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_cn/docs/template/">模板</a><a href="/zh_cn/docs/plugin/">插件</a><a href="/zh_cn/docs/helper/">辅助函数</a></li></ul>
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>使用 <a href="https://github.com/node-swig/swig-templates">swig</a> 作为默认模版引擎</p><p>支持自定义模版引擎，详细查看 <a href="/api/renderer/">renderer</a> 说明</p><h3>
+  <a href="#模板结构" id="模板结构"></a>模板结构
+</h3><p>模板通常有如下文件结构</p><pre class="language-none"><code class="language-none">.
+├─ layout
+├─ i18n
+└─ source</code></pre><p><strong>layout</strong></p><p>模板文件, 文件后缀为 <code>.html</code></p><p><strong>i18n</strong></p><p>语言文件. 为 YAML 配置文件.</p><p><strong>source</strong></p><p>将网站需要的资源文件 (例如 CSS，JavaScript) 放到这里</p><h3>
+  <a href="#模板注册" id="模板注册"></a>模板注册
+</h3><p>模板可以直接放在 <code>templates</code> 目录，或者使用 npm 包</p><p>默认会使用当前 <code>templates</code> 目录下的模板，如果找不到，就会寻找当前目录下的 npm 包</p><p><strong>npm 模板</strong></p><p>npm 模板也必须放到模块目录的 <code>templates</code> 下，然后 npm 的入口文件要指定 <code>template</code> 名字</p><p>以下为典型的 npm 模板例子</p><pre class="language-none"><code class="language-none"># 目录结构
+.
+├─ package.json # 包配置
+├─ index.js # 主入口文件
+└─ templates
+    └─ ccc45 # 模板目录</code></pre><pre class="language-js"><code class="language-js"><span class="token comment">// package.json 定义</span>
+<span class="token punctuation">{</span>
+  <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"npmTemplate"</span><span class="token punctuation">,</span>
+  <span class="token string">"version"</span><span class="token punctuation">:</span> <span class="token string">"0.1.0"</span><span class="token punctuation">,</span>
+  <span class="token string">"main"</span><span class="token punctuation">:</span> <span class="token string">"index.js"</span>
+<span class="token punctuation">}</span></code></pre><pre class="language-js"><code class="language-js"><span class="token comment">// 入口 index.js</span>
+module<span class="token punctuation">.</span>exports<span class="token punctuation">.</span>template <span class="token operator">=</span> <span class="token string">'ccc45'</span> <span class="token comment">// 不指定 template，这时候 template 会使用 npm 包名</span>
+module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">// [可选] 其他插件逻辑</span>
+<span class="token punctuation">}</span></code></pre>
+
+    
+    <div class="paginator">
+      <a name="paginator" class="prev" href="/zh_cn/docs/command/">上一页</a><a name="paginator" class="next" href="/zh_cn/docs/plugin/">下一页</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      <p>目录</p>
+      <ul>
+<li><a href="#模板结构">模板结构</a></li>
+<li><a href="#模板注册">模板注册</a></li>
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>由 AcyOrt@3.4.0 构建</span>
+    </div>
+    <p>
+      最后更新于: 2019年5月25日 22:02
+    </p>
+    <a href="#" class="top">返回顶部</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

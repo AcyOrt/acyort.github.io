@@ -1,0 +1,205 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "zh_cn"</script>
+
+<title>
+AcyOrt / 钩子函数
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a
+        class="logo"
+        
+        href="/zh_cn/"
+        
+      >
+        AcyOrt
+      </a>
+
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+
+      
+      <a
+        class="normal"
+        
+        href="/zh_cn/docs/"
+        
+      >
+        文档
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/zh_cn/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/zh_cn/miscellaneous/"
+        
+      >
+        其他
+      </a>
+      
+    </div>
+
+    <div class="mobile-menu">
+      
+      <a
+        
+        href="/zh_cn/docs/"
+        
+      >
+        文档
+      </a>
+      
+      <a
+        
+        href="/zh_cn/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        
+        href="/zh_cn/miscellaneous/"
+        
+      >
+        其他
+      </a>
+      
+
+      <ul><li><p>开始使用</p><a href="/zh_cn/docs/">概述</a><a href="/zh_cn/docs/setup/">创建</a><a href="/zh_cn/docs/configuration/">配置</a><a href="/zh_cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_cn/docs/template/">模板</a><a href="/zh_cn/docs/plugin/">插件</a><a href="/zh_cn/docs/helper/">辅助函数</a></li></ul>
+      <ul><li><p>API</p><a href="/zh_cn/api/">概述</a><a href="/zh_cn/api/renderer/">渲染器</a><a href="/zh_cn/api/cli/">命令行</a><a href="/zh_cn/api/store/">数据存储</a><a href="/zh_cn/api/workflow/">流程</a><a href="/zh_cn/api/helper/">辅助函数</a><a href="/zh_cn/api/util/">工具类</a><a href="/zh_cn/api/hooks/">钩子</a></li></ul>
+    </div>
+
+    <div class="language">
+      <select id="language">
+        
+        <option
+          value="en"
+          
+        >
+          English
+        </option>
+        
+        <option
+          value="zh_cn"
+          
+          selected
+          
+        >
+          简体中文
+        </option>
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">钩子函数</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+      <ul><li><p>API</p><a href="/zh_cn/api/">概述</a><a href="/zh_cn/api/renderer/">渲染器</a><a href="/zh_cn/api/cli/">命令行</a><a href="/zh_cn/api/store/">数据存储</a><a href="/zh_cn/api/workflow/">流程</a><a href="/zh_cn/api/helper/">辅助函数</a><a href="/zh_cn/api/util/">工具类</a><a href="/zh_cn/api/hooks/">钩子</a></li></ul>
+      
+
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>AcyOrt 提供钩子函数 <code>hooks</code> 用于插件间的一些交互，相当于说允许插件提供 API 接口供其他插件使用</p><p>假设场景：一个博客网站插件，使用者有个特殊需求，希望在每篇文章标题上加同一个特殊标记，如果按照传统做法，只能在插件基础上做一些修改达到目的</p><p>但是有了 <code>hooks</code>，插件开发者可以在插件的某些阶段开放一些接口，允许外部访问插件数据，那么就可以完美解决上面的特殊需求问题了</p><p>钩子 <code>hooks</code> 由两部分构成</p><h3>
+  <a href="#插件提供钩子" id="插件提供钩子"></a>插件提供钩子
+</h3><p>插件在某些特定时候提供钩子运行</p><pre class="language-js"><code class="language-js">module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">acyort</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token operator">...</span> <span class="token comment">// 数据的一些获取过程</span>
+
+  <span class="token comment">// 提供一个名为 `special_hook_name` 的钩子，并传入 `data`, `other` 参数调用</span>
+  <span class="token comment">// hooks 是支持 async 的</span>
+  <span class="token keyword">await</span> acyort<span class="token punctuation">.</span><span class="token function">hooks</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'special_hook_name'</span><span class="token punctuation">,</span> data<span class="token punctuation">,</span> other<span class="token punctuation">)</span>
+
+  <span class="token comment">// 这时候 data 可能被外部做一些修改了</span>
+  acyort<span class="token punctuation">.</span>store<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre><h3>
+  <a href="#通过钩子访问" id="通过钩子访问"></a>通过钩子访问
+</h3><p>外部可以通过钩子获取数据并做一些处理</p><pre class="language-js"><code class="language-js">module<span class="token punctuation">.</span><span class="token function-variable function">exports</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">acyort</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+  <span class="token comment">// 通过 tap 来访问插件提供的 hook，函数参数为插件提供的数据，可以进行一些数据修改</span>
+  acyort<span class="token punctuation">.</span>hooks<span class="token punctuation">.</span><span class="token function">tap</span><span class="token punctuation">(</span><span class="token string">'special_hook_name'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">data<span class="token punctuation">,</span> other</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+    data<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'aksdj4'</span> <span class="token comment">// 修改数据</span>
+    <span class="token operator">...</span>
+
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span> <span class="token comment">// 支持 Promise</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre><p><strong>注意点</strong></p><ul>
+<li>钩子不能重复访问，会覆盖</li>
+<li>通常修改的数据是 <code>引用</code> 数据，不会接收返回数据，但如果是异步，要返回 Promise</li>
+</ul>
+
+
+    
+    <div class="paginator">
+      <a name="paginator" class="prev" href="/zh_cn/api/util/">上一页</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      <p>目录</p>
+      <ul>
+<li><a href="#插件提供钩子">插件提供钩子</a></li>
+<li><a href="#通过钩子访问">通过钩子访问</a></li>
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>由 AcyOrt@3.4.0 构建</span>
+    </div>
+    <p>
+      最后更新于: 2019年5月25日 22:02
+    </p>
+    <a href="#" class="top">返回顶部</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>

@@ -7,10 +7,10 @@
 <meta name="keywords" content="website,acyort,static" />
 <meta name="description" content="A Node.js static website framework" />
 <link rel="stylesheet" href="/css/style.css" />
-<script>window.__language = "en"</script>
+<script>window.__language = "zh_cn"</script>
 
 <title>
-AcyOrt / Renderer
+AcyOrt / 渲染器
 </title>
 </head>
 
@@ -22,7 +22,7 @@ AcyOrt / Renderer
       <a
         class="logo"
         
-        href="/"
+        href="/zh_cn/"
         
       >
         AcyOrt
@@ -34,16 +34,16 @@ AcyOrt / Renderer
       <a
         class="normal"
         
-        href="/docs/"
+        href="/zh_cn/docs/"
         
       >
-        Docs
+        文档
       </a>
       
       <a
         class="normal"
         
-        href="/api/"
+        href="/zh_cn/api/"
         
       >
         API
@@ -52,10 +52,10 @@ AcyOrt / Renderer
       <a
         class="normal"
         
-        href="/miscellaneous/"
+        href="/zh_cn/miscellaneous/"
         
       >
-        Miscellaneous
+        其他
       </a>
       
     </div>
@@ -64,15 +64,15 @@ AcyOrt / Renderer
       
       <a
         
-        href="/docs/"
+        href="/zh_cn/docs/"
         
       >
-        Docs
+        文档
       </a>
       
       <a
         
-        href="/api/"
+        href="/zh_cn/api/"
         
       >
         API
@@ -80,15 +80,15 @@ AcyOrt / Renderer
       
       <a
         
-        href="/miscellaneous/"
+        href="/zh_cn/miscellaneous/"
         
       >
-        Miscellaneous
+        其他
       </a>
       
 
-      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
-      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/">CLI</a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a><a href="/api/hooks/">Hooks</a></li></ul>
+      <ul><li><p>开始使用</p><a href="/zh_cn/docs/">概述</a><a href="/zh_cn/docs/setup/">创建</a><a href="/zh_cn/docs/configuration/">配置</a><a href="/zh_cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_cn/docs/template/">模板</a><a href="/zh_cn/docs/plugin/">插件</a><a href="/zh_cn/docs/helper/">辅助函数</a></li></ul>
+      <ul><li><p>API</p><a href="/zh_cn/api/">概述</a><a href="/zh_cn/api/renderer/">渲染器</a><a href="/zh_cn/api/cli/">命令行</a><a href="/zh_cn/api/store/">数据存储</a><a href="/zh_cn/api/workflow/">流程</a><a href="/zh_cn/api/helper/">辅助函数</a><a href="/zh_cn/api/util/">工具类</a><a href="/zh_cn/api/hooks/">钩子</a></li></ul>
     </div>
 
     <div class="language">
@@ -97,14 +97,14 @@ AcyOrt / Renderer
         <option
           value="en"
           
-          selected
-          
         >
           English
         </option>
         
         <option
           value="zh_cn"
+          
+          selected
           
         >
           简体中文
@@ -119,14 +119,14 @@ AcyOrt / Renderer
 
 
 <div class="banner">
-  <div class="center">Renderer</div>
+  <div class="center">渲染器</div>
 </div>
 
 <div class="center main">
   <div class="nav">
     <div class="stay">
       
-      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/">CLI</a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a><a href="/api/hooks/">Hooks</a></li></ul>
+      <ul><li><p>API</p><a href="/zh_cn/api/">概述</a><a href="/zh_cn/api/renderer/">渲染器</a><a href="/zh_cn/api/cli/">命令行</a><a href="/zh_cn/api/store/">数据存储</a><a href="/zh_cn/api/workflow/">流程</a><a href="/zh_cn/api/helper/">辅助函数</a><a href="/zh_cn/api/util/">工具类</a><a href="/zh_cn/api/hooks/">钩子</a></li></ul>
       
 
       
@@ -134,16 +134,16 @@ AcyOrt / Renderer
   </div>
 
   <div class="content markdown">
-    <p>AcyOrt use <a href="https://github.com/acyortjs/renderer">renderer</a> for rendering</p><h3>
-  <a href="#defaults" id="defaults"></a>Defaults
-</h3><p>Built-in supports <code>yaml</code>，<code>swig</code>，<code>markdown</code> renders</p><ul>
-<li><code>yaml</code> use <a href="https://github.com/nodeca/js-yaml">js-yaml</a></li>
-<li><code>swig</code> use <a href="https://github.com/node-swig/swig-templates">swig-templates</a></li>
-<li><code>markdown</code> use <a href="https://github.com/acyortjs/markdown">@acyort/markdown</a></li>
+    <p>渲染器使用的是 <a href="https://github.com/acyortjs/renderer">renderer</a></p><h3>
+  <a href="#默认支持" id="默认支持"></a>默认支持
+</h3><p>内置支持 <code>yaml</code>，<code>swig</code>，<code>markdown</code> 渲染输出</p><ul>
+<li><code>yaml</code> 使用的是 <a href="https://github.com/nodeca/js-yaml">js-yaml</a></li>
+<li><code>swig</code> 使用的是 <a href="https://github.com/node-swig/swig-templates">swig-templates</a></li>
+<li><code>markdown</code> 使用的是 <a href="https://github.com/acyortjs/markdown">@acyort/markdown</a></li>
 </ul>
 <pre class="language-js"><code class="language-js"><span class="token keyword">const</span> <span class="token punctuation">{</span> renderer <span class="token punctuation">}</span> <span class="token operator">=</span> acyort
 
-<span class="token comment">// default swig, yaml and markdown</span>
+<span class="token comment">// 内置支持 swig, yaml and markdown</span>
 renderer<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'swig'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'swig'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
 renderer<span class="token punctuation">.</span><span class="token function">renderFile</span><span class="token punctuation">(</span><span class="token string">'swig'</span><span class="token punctuation">,</span> <span class="token string">'path/to/html'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> title<span class="token punctuation">:</span> <span class="token string">'swig'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
 
@@ -153,10 +153,10 @@ renderer<span class="token punctuation">.</span><span class="token function">ren
 renderer<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'markdown'</span><span class="token punctuation">,</span> <span class="token string">'# h1'</span><span class="token punctuation">)</span>
 renderer<span class="token punctuation">.</span><span class="token function">renderFile</span><span class="token punctuation">(</span><span class="token string">'markdown'</span><span class="token punctuation">,</span> <span class="token string">'path/to/markdown'</span><span class="token punctuation">)</span>
 
-<span class="token comment">// markdown supports code highlighting and math latex, and can set if show line numbers</span>
+<span class="token comment">// markdown 渲染支持 代码高亮/数学公式，同时可以设定是否显示代码行号</span>
 renderer<span class="token punctuation">.</span><span class="token function">renderFile</span><span class="token punctuation">(</span><span class="token string">'markdown'</span><span class="token punctuation">,</span> <span class="token string">'path/to/markdown'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> lineNumbers<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre><h3>
-  <a href="#customs" id="customs"></a>Customs
-</h3><p>Register render engine</p><pre class="language-js"><code class="language-js"><span class="token comment">// register ejs</span>
+  <a href="#自定义" id="自定义"></a>自定义
+</h3><p>使用 <code>register</code> 自定义渲染器</p><pre class="language-js"><code class="language-js"><span class="token comment">// 支持 ejs</span>
 <span class="token keyword">const</span> ejs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'ejs'</span><span class="token punctuation">)</span>
 
 renderer<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'ejs'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
@@ -169,7 +169,7 @@ renderer<span class="token punctuation">.</span><span class="token function">reg
 
     
     <div class="paginator">
-      <a name="paginator" class="prev" href="/api/">Previous</a><a name="paginator" class="next" href="/api/cli/">Next</a>
+      <a name="paginator" class="prev" href="/zh_cn/api/">上一页</a><a name="paginator" class="next" href="/zh_cn/api/cli/">下一页</a>
     </div>
     
   </div>
@@ -177,10 +177,10 @@ renderer<span class="token punctuation">.</span><span class="token function">reg
   <div class="toc">
     <div class="stay">
       
-      <p>Contents</p>
+      <p>目录</p>
       <ul>
-<li><a href="#defaults">Defaults</a></li>
-<li><a href="#customs">Customs</a></li>
+<li><a href="#默认支持">默认支持</a></li>
+<li><a href="#自定义">自定义</a></li>
 </ul>
 
       
@@ -193,12 +193,12 @@ renderer<span class="token punctuation">.</span><span class="token function">reg
   <div class="center">
     <div class="copy">
       &copy; 2019.
-      <span>Built by AcyOrt@3.4.0</span>
+      <span>由 AcyOrt@3.4.0 构建</span>
     </div>
     <p>
-      Last updated: May 25, 2019 10:02 PM
+      最后更新于: 2019年5月25日 22:02
     </p>
-    <a href="#" class="top">Top</a>
+    <a href="#" class="top">返回顶部</a>
   </div>
 </div>
 

@@ -7,10 +7,10 @@
 <meta name="keywords" content="website,acyort,static" />
 <meta name="description" content="A Node.js static website framework" />
 <link rel="stylesheet" href="/css/style.css" />
-<script>window.__language = "en"</script>
+<script>window.__language = "zh_cn"</script>
 
 <title>
-AcyOrt / Configuration
+AcyOrt / 配置
 </title>
 </head>
 
@@ -22,7 +22,7 @@ AcyOrt / Configuration
       <a
         class="logo"
         
-        href="/"
+        href="/zh_cn/"
         
       >
         AcyOrt
@@ -34,16 +34,16 @@ AcyOrt / Configuration
       <a
         class="normal"
         
-        href="/docs/"
+        href="/zh_cn/docs/"
         
       >
-        Docs
+        文档
       </a>
       
       <a
         class="normal"
         
-        href="/api/"
+        href="/zh_cn/api/"
         
       >
         API
@@ -52,10 +52,10 @@ AcyOrt / Configuration
       <a
         class="normal"
         
-        href="/miscellaneous/"
+        href="/zh_cn/miscellaneous/"
         
       >
-        Miscellaneous
+        其他
       </a>
       
     </div>
@@ -64,15 +64,15 @@ AcyOrt / Configuration
       
       <a
         
-        href="/docs/"
+        href="/zh_cn/docs/"
         
       >
-        Docs
+        文档
       </a>
       
       <a
         
-        href="/api/"
+        href="/zh_cn/api/"
         
       >
         API
@@ -80,15 +80,15 @@ AcyOrt / Configuration
       
       <a
         
-        href="/miscellaneous/"
+        href="/zh_cn/miscellaneous/"
         
       >
-        Miscellaneous
+        其他
       </a>
       
 
-      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
-      <ul><li><p>API</p><a href="/api/">Overview</a><a href="/api/renderer/">Renderer</a><a href="/api/cli/">CLI</a><a href="/api/store/">Store</a><a href="/api/workflow/">Workflow</a><a href="/api/helper/">Helper</a><a href="/api/util/">Util</a><a href="/api/hooks/">Hooks</a></li></ul>
+      <ul><li><p>开始使用</p><a href="/zh_cn/docs/">概述</a><a href="/zh_cn/docs/setup/">创建</a><a href="/zh_cn/docs/configuration/">配置</a><a href="/zh_cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_cn/docs/template/">模板</a><a href="/zh_cn/docs/plugin/">插件</a><a href="/zh_cn/docs/helper/">辅助函数</a></li></ul>
+      <ul><li><p>API</p><a href="/zh_cn/api/">概述</a><a href="/zh_cn/api/renderer/">渲染器</a><a href="/zh_cn/api/cli/">命令行</a><a href="/zh_cn/api/store/">数据存储</a><a href="/zh_cn/api/workflow/">流程</a><a href="/zh_cn/api/helper/">辅助函数</a><a href="/zh_cn/api/util/">工具类</a><a href="/zh_cn/api/hooks/">钩子</a></li></ul>
     </div>
 
     <div class="language">
@@ -97,14 +97,14 @@ AcyOrt / Configuration
         <option
           value="en"
           
-          selected
-          
         >
           English
         </option>
         
         <option
           value="zh_cn"
+          
+          selected
           
         >
           简体中文
@@ -119,7 +119,7 @@ AcyOrt / Configuration
 
 
 <div class="banner">
-  <div class="center">Configuration</div>
+  <div class="center">配置</div>
 </div>
 
 <div class="center main">
@@ -128,13 +128,13 @@ AcyOrt / Configuration
       
 
       
-      <ul><li><p>Getting Started</p><a href="/docs/">Overview</a><a href="/docs/setup/">Setup</a><a href="/docs/configuration/">Configuration</a><a href="/docs/command/">Command</a></li><li><p>Customization</p><a href="/docs/template/">Template</a><a href="/docs/plugin/">Plugin</a><a href="/docs/helper/">Helper</a></li></ul>
+      <ul><li><p>开始使用</p><a href="/zh_cn/docs/">概述</a><a href="/zh_cn/docs/setup/">创建</a><a href="/zh_cn/docs/configuration/">配置</a><a href="/zh_cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_cn/docs/template/">模板</a><a href="/zh_cn/docs/plugin/">插件</a><a href="/zh_cn/docs/helper/">辅助函数</a></li></ul>
       
     </div>
   </div>
 
   <div class="content markdown">
-    <p>The configuration file <code>config.yml</code> contains the following main configuration, you can customize some configuration if needs</p><pre class="language-js"><code class="language-js"><span class="token comment">// example</span>
+    <p>配置文件 <code>config.yml</code> 包含以下主要配置，你可以自定义加上一些额外配置</p><pre class="language-js"><code class="language-js"><span class="token comment">// 典型例子</span>
 <span class="token punctuation">{</span>
   url<span class="token punctuation">:</span> <span class="token string">'https://acyort.com'</span><span class="token punctuation">,</span>
   template<span class="token punctuation">:</span> <span class="token string">'ccc45'</span><span class="token punctuation">,</span>
@@ -145,47 +145,47 @@ AcyOrt / Configuration
   base<span class="token punctuation">:</span> <span class="token string">'/Users/am0200/Documents/github/acyort/assets'</span><span class="token punctuation">,</span>
   root<span class="token punctuation">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span>
   templatePath<span class="token punctuation">:</span> <span class="token string">'/Users/am0200/Documents/github/acyort/assets/templates/ccc45'</span>
-<span class="token punctuation">}</span></code></pre><p><strong>basic</strong></p><table>
+<span class="token punctuation">}</span></code></pre><p><strong>基础</strong></p><table>
 <thead>
 <tr>
-<th>Settings</th>
-<th>Description</th>
+<th>设置</th>
+<th>描述</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>language</td>
-<td>Website language, requires theme support, default is <code>en</code></td>
+<td>网站语言，需要主题支持，默认是 <code>en</code></td>
 </tr>
 <tr>
 <td>timezone</td>
-<td>Website time zone. Default is current time zone. Examples: <code>America/New_Yourk</code>, <code>Japan</code>, <code>UTC</code></td>
+<td>网站时区。默认使用当前时区。可用例子：<code>America/New_Yourk</code>, <code>Japan</code>, <code>UTC</code></td>
 </tr>
 <tr>
 <td>template</td>
-<td>Website template, default is <code>ccc45</code></td>
+<td>网站主题，默认 <code>ccc45</code></td>
 </tr>
 <tr>
 <td>url</td>
-<td>Website URL, format like <code>http://&lt;domain&gt;/&lt;path&gt;</code> or <code>https://&lt;domain&gt;</code>. It will generate the current root directory based on the URL</td>
+<td>网站 URL，格式 <code>http://&lt;domain&gt;/&lt;path&gt;</code> 或者 <code>https://&lt;domain&gt;</code>，会根据 URL 生成当前的根目录</td>
 </tr>
 </tbody></table>
-<p><strong>extension</strong></p><p>The definition of the use of the plugin, see <a href="/docs/plugin/">plugin</a> for more detail</p><table>
+<p><strong>扩展</strong></p><p>插件的使用定义，详细查看 <a href="/docs/plugin/">插件</a> 说明</p><table>
 <thead>
 <tr>
-<th>Settings</th>
-<th>Description</th>
+<th>设置</th>
+<th>描述</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>plugins</td>
-<td>npm module name or script name (script should be placed in scripts folder)</td>
+<td>npm 模块名称，或者 script 名字（script 需要把文件放入 scripts 文件夹）</td>
 </tr>
 </tbody></table>
 
 
     
     <div class="paginator">
-      <a name="paginator" class="prev" href="/docs/setup/">Previous</a><a name="paginator" class="next" href="/docs/command/">Next</a>
+      <a name="paginator" class="prev" href="/zh_cn/docs/setup/">上一页</a><a name="paginator" class="next" href="/zh_cn/docs/command/">下一页</a>
     </div>
     
   </div>
@@ -202,12 +202,12 @@ AcyOrt / Configuration
   <div class="center">
     <div class="copy">
       &copy; 2019.
-      <span>Built by AcyOrt@3.4.0</span>
+      <span>由 AcyOrt@3.4.0 构建</span>
     </div>
     <p>
-      Last updated: May 25, 2019 10:02 PM
+      最后更新于: 2019年5月25日 22:02
     </p>
-    <a href="#" class="top">Top</a>
+    <a href="#" class="top">返回顶部</a>
   </div>
 </div>
 

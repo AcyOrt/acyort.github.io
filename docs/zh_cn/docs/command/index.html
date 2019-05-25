@@ -1,0 +1,197 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<meta name="keywords" content="website,acyort,static" />
+<meta name="description" content="A Node.js static website framework" />
+<link rel="stylesheet" href="/css/style.css" />
+<script>window.__language = "zh_cn"</script>
+
+<title>
+AcyOrt / 命令
+</title>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="center">
+    <div class="menu">
+      <a
+        class="logo"
+        
+        href="/zh_cn/"
+        
+      >
+        AcyOrt
+      </a>
+
+      <a class="github" target="_blank" href="https://github.com/acyortjs/acyort/"></a>
+
+      
+      <a
+        class="normal"
+        
+        href="/zh_cn/docs/"
+        
+      >
+        文档
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/zh_cn/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        class="normal"
+        
+        href="/zh_cn/miscellaneous/"
+        
+      >
+        其他
+      </a>
+      
+    </div>
+
+    <div class="mobile-menu">
+      
+      <a
+        
+        href="/zh_cn/docs/"
+        
+      >
+        文档
+      </a>
+      
+      <a
+        
+        href="/zh_cn/api/"
+        
+      >
+        API
+      </a>
+      
+      <a
+        
+        href="/zh_cn/miscellaneous/"
+        
+      >
+        其他
+      </a>
+      
+
+      <ul><li><p>开始使用</p><a href="/zh_cn/docs/">概述</a><a href="/zh_cn/docs/setup/">创建</a><a href="/zh_cn/docs/configuration/">配置</a><a href="/zh_cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_cn/docs/template/">模板</a><a href="/zh_cn/docs/plugin/">插件</a><a href="/zh_cn/docs/helper/">辅助函数</a></li></ul>
+      <ul><li><p>API</p><a href="/zh_cn/api/">概述</a><a href="/zh_cn/api/renderer/">渲染器</a><a href="/zh_cn/api/cli/">命令行</a><a href="/zh_cn/api/store/">数据存储</a><a href="/zh_cn/api/workflow/">流程</a><a href="/zh_cn/api/helper/">辅助函数</a><a href="/zh_cn/api/util/">工具类</a><a href="/zh_cn/api/hooks/">钩子</a></li></ul>
+    </div>
+
+    <div class="language">
+      <select id="language">
+        
+        <option
+          value="en"
+          
+        >
+          English
+        </option>
+        
+        <option
+          value="zh_cn"
+          
+          selected
+          
+        >
+          简体中文
+        </option>
+        
+      </select>
+      <div id="toggle"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="banner">
+  <div class="center">命令</div>
+</div>
+
+<div class="center main">
+  <div class="nav">
+    <div class="stay">
+      
+
+      
+      <ul><li><p>开始使用</p><a href="/zh_cn/docs/">概述</a><a href="/zh_cn/docs/setup/">创建</a><a href="/zh_cn/docs/configuration/">配置</a><a href="/zh_cn/docs/command/">命令</a></li><li><p>自定义</p><a href="/zh_cn/docs/template/">模板</a><a href="/zh_cn/docs/plugin/">插件</a><a href="/zh_cn/docs/helper/">辅助函数</a></li></ul>
+      
+    </div>
+  </div>
+
+  <div class="content markdown">
+    <p>AcyOrt 内置以下控制台命令可以使用，同时支持自定义控制台命令</p><h3>
+  <a href="#内置命令" id="内置命令"></a>内置命令
+</h3><p>内置一些基础命令，以及一些选项</p><p><strong>初始化</strong></p><pre class="language-bash"><code class="language-bash">$ acyort init <span class="token operator">&lt;</span>folder<span class="token operator">></span></code></pre><p>初始化一个新的网站文件夹. 你也可以初始化在当前文件夹，不输入目录即可</p><p><strong>版本信息</strong></p><pre class="language-bash"><code class="language-bash">$ acyort version</code></pre><p>显示当前 AcyOrt，系统的一些版本信息</p><p><strong>构建流程</strong></p><pre class="language-bash"><code class="language-bash">$ acyort flow</code></pre><p>按顺序执行 AcyOrt 插件注册函数流程，详细查看 <a href="/api/workflow/">流程</a> 说明</p><p><strong>文件清理</strong></p><pre class="language-bash"><code class="language-bash">$ acyort clean</code></pre><p>清除生成的一些静态文件，不会删除配置文件，git 之类的配置文件</p><pre class="language-js"><code class="language-js"><span class="token comment">// 不会删除的路径或者文件</span>
+<span class="token punctuation">[</span>
+  <span class="token string">'templates'</span><span class="token punctuation">,</span>
+  <span class="token string">'scripts'</span><span class="token punctuation">,</span>
+  <span class="token string">'config.yml'</span><span class="token punctuation">,</span>
+  <span class="token string">'CNAME'</span><span class="token punctuation">,</span>
+  <span class="token string">'README.md'</span><span class="token punctuation">,</span>
+  <span class="token string">'LICENSE'</span><span class="token punctuation">,</span>
+  <span class="token string">'.gitignore'</span><span class="token punctuation">,</span>
+  <span class="token string">'package.json'</span><span class="token punctuation">,</span>
+  <span class="token string">'package-lock.json'</span><span class="token punctuation">,</span>
+  <span class="token string">'node_modules'</span><span class="token punctuation">,</span>
+  <span class="token string">'.git'</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span></code></pre><h3>
+  <a href="#注册CLI命令" id="注册CLI命令"></a>注册 CLI 命令
+</h3><p>支持自定义命令，详细查看 <a href="/api/cli/">CLI</a> 说明</p>
+
+    
+    <div class="paginator">
+      <a name="paginator" class="prev" href="/zh_cn/docs/configuration/">上一页</a><a name="paginator" class="next" href="/zh_cn/docs/template/">下一页</a>
+    </div>
+    
+  </div>
+
+  <div class="toc">
+    <div class="stay">
+      
+      <p>目录</p>
+      <ul>
+<li><a href="#内置命令">内置命令</a></li>
+<li><a href="#注册CLI命令">注册 CLI 命令</a></li>
+</ul>
+
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="footer">
+  <div class="center">
+    <div class="copy">
+      &copy; 2019.
+      <span>由 AcyOrt@3.4.0 构建</span>
+    </div>
+    <p>
+      最后更新于: 2019年5月25日 22:02
+    </p>
+    <a href="#" class="top">返回顶部</a>
+  </div>
+</div>
+
+
+
+<script src="/js/script.js"></script>
+
+
+</body>
+</html>
