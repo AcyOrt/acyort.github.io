@@ -2,7 +2,18 @@
 title: Miscellaneous
 ---
 
-This is about the development, and some plugins introduction of AcyOrt
+This is about the development, and plugin examples of AcyOrt
+
+## Plugins
+
+Here are some plugins, and website examples
+
+- [acyort-server](https://github.com/acyortjs/acyort-server) **local LiveReload  server, for template development**
+- [acyort-toc](https://github.com/acyortjs/acyort-toc) **Markdown TOC helper**
+- [pigeon](https://github.com/acyortjs/pigeon) **Blog plugin**
+- [am0200.com](https://github.com/LoeiFy/am0200) **Website**
+- [acyort-donob-plugins](https://github.com/zWingz/acyort-donob-plugins) **Blog plugin**
+
 
 ## Development
 
@@ -59,11 +70,3 @@ $ npm run test:unit # unit test
 $ npm run test:lint # code lint
 $ npm run test:cover # coverage test
 ```
-
-## Plugins/Utilities
-
-Here are some plugins and utilities
-
-- acyort-server (plugin) local LiveReload  server, for template development [acyort-server](https://github.com/acyortjs/acyort-server)
-- acyort-toc (plugin) Markdown TOC helper [acyort-toc](https://github.com/acyortjs/acyort-toc)
-- paginator (utility) Pagination [paginator](https://github.com/acyortjs/paginator)

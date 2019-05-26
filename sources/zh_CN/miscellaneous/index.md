@@ -4,6 +4,17 @@ title: 其他
 
 这里说明 AcyOrt 的开发方式，以及一些插件介绍
 
+## 插件
+
+一些插件，以及网站例子
+
+- [acyort-server](https://github.com/acyortjs/acyort-server) **本地 LiveReload 服务器，用于模板开发**
+- [acyort-toc](https://github.com/acyortjs/acyort-toc) **根据 markdown 内容生成目录**
+- [pigeon](https://github.com/acyortjs/pigeon) **博客插件**
+- [am0200.com](https://github.com/LoeiFy/am0200) **网站**
+- [acyort-donob-plugins](https://github.com/zWingz/acyort-donob-plugins) **博客插件**
+)
+
 ## 开发
 
 克隆项目并且安装相应模块
@@ -59,11 +70,3 @@ $ npm run test:unit # unit test
 $ npm run test:lint # code lint
 $ npm run test:cover # coverage test
 ```
-
-## 插件/工具
-
-一些插件，以及工具类模块
-
-- acyort-server（插件） 本地 LiveReload 服务器，用于模板开发 [acyort-server](https://github.com/acyortjs/acyort-server)
-- acyort-toc（插件） 根据 markdown 内容生成目录 [acyort-toc](https://github.com/acyortjs/acyort-toc)
-- paginator（工具） 分页工具 [paginator](https://github.com/acyortjs/paginator)

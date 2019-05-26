@@ -14,7 +14,8 @@
     "eslint-plugin-import": "*"
   },
   "scripts": {
-    "start": "rm -rf pages.json && acyort server"
+    "start": "rm -rf pages.json && acyort server",
+    "build": "rm -rf pages.json && acyort flow"
   },
   "author": "LoeiFy <LoeiFy@gmail.com>",
   "license": "MIT"
