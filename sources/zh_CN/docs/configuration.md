@@ -27,6 +27,7 @@ title: 配置
 language | 网站语言，需要主题支持，默认是 `en`
 timezone | 网站时区。默认使用当前时区。可用例子：`America/New_Yourk`, `Japan`, `UTC`
 template | 网站主题，默认 `ccc45`
+public | 生成的静态文件存放目录，默认是 `/`
 url | 网站 URL，格式 `http://<domain>/<path>` 或者 `https://<domain>`，会根据 URL 生成当前的根目录
 
 **扩展**

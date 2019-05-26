@@ -27,6 +27,7 @@ Settings | Description
 language | Website language, requires theme support, default is `en`
 timezone | Website time zone. Default is current time zone. Examples: `America/New_Yourk`, `Japan`, `UTC`
 template | Website template, default is `ccc45`
+public | Contents folder, where the statics will be generated, default is `/`
 url | Website URL, format like `http://<domain>/<path>` or `https://<domain>`. It will generate the current root directory based on the URL
 
 **extension**
